@@ -96,13 +96,15 @@ with open('nell/labeled_edges.tsv', 'w') as file:
         for j in data[i]:
             file.write(j[0] + '\t' + j[1] + '\t' + j[2] + '\n')
 
+os.makedirs('nell/relations', exist_ok=True)
 for i in data:
-    with open('nell/relations/'+ i +'.tsv', 'w') as file:
+    with open('nell/relations/'+ i, 'w') as file:
         for j in data[i]:
             file.write(j[0] + '\t' + j[2] + '\n')
-            
+
+os.makedirs('nell/category_instances', exist_ok=True)
 for i in consts:
-    with open('nell/category_instances/'+ i +'.tsv', 'w') as file:
+    with open('nell/category_instances/'+ i, 'w') as file:
         for j in consts[i]:
             file.write(j + '\n')
     

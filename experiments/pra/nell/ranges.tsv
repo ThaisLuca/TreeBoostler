@@ -1,8 +1,8 @@
-teamplayssport	sport
+athleteledsportsteam	sportsteam
+teamalsoknownas	sportsteam
+athleteplaysforteam	sportsteam
+athleteplayssport	sport
 teamplaysagainstteam	sportsteam
 athleteplaysinleague	sportsleague
-athleteplaysforteam	sportsteam
-teamalsoknownas	sportsteam
+teamplayssport	sport
 teamplaysinleague	sportsleague
-athleteledsportsteam	sportsteam
-athleteplayssport	sport
