@@ -17,5 +17,12 @@
     "negative instances": {
       "negative to positive ratio": 10
     }
+  },
+  "operation": {
+    "type": "train and test",
+    "learning": {
+      "l1 weight": 0.005,
+      "l2 weight": 1
+    }
   }
 }
