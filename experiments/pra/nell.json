@@ -13,7 +13,7 @@
     "relation metadata": "my_nell",
     "graph": "my_nell",
     "percent training":0.8,
-    "relations":["athleteplaysforteam", "athleteledsportsteam"],
+    "relations":["athleteplaysforteam", "athleteledsportsteam", "athleteplaysinleague", "athleteplayssport", "teamalsoknownas", "teamplaysagainstteam", "teamplaysinleague", "teamplayssport"],
     "negative instances": {
       "negative to positive ratio": 10
     }
