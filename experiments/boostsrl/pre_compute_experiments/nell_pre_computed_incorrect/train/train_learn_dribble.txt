@@ -1,0 +1,1736 @@
+% Running on host: rodrigo-ubuntu
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+
+% Calling ILPouterLoop from createRegressionOuterLooper.
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/train/train_pos.txt, nell_pre_computed_incorrect/train/train_neg.txt, nell_pre_computed_incorrect/train/train_bk.txt, nell_pre_computed_incorrect/train/train_facts.txt]
+%  for N=0: args[N]=nell_pre_computed_incorrect/train/train_pos.txt
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/train/train_pos.txt, nell_pre_computed_incorrect/train/train_neg.txt, nell_pre_computed_incorrect/train/train_bk.txt, nell_pre_computed_incorrect/train/train_facts.txt]
+%  for N=1: args[N]=nell_pre_computed_incorrect/train/train_neg.txt
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/train/train_pos.txt, nell_pre_computed_incorrect/train/train_neg.txt, nell_pre_computed_incorrect/train/train_bk.txt, nell_pre_computed_incorrect/train/train_facts.txt]
+%  for N=2: args[N]=nell_pre_computed_incorrect/train/train_bk.txt
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/train/train_pos.txt, nell_pre_computed_incorrect/train/train_neg.txt, nell_pre_computed_incorrect/train/train_bk.txt, nell_pre_computed_incorrect/train/train_facts.txt]
+%  for N=3: args[N]=nell_pre_computed_incorrect/train/train_facts.txt
+
+% Welcome to the WILL ILP/SRL systems.
+
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+% Reading background theory from dir: null
+% Load '../background.txt'.
+
+% Switching to VarIndicator = uppercase.
+
+***** Warning: % Since this is the first setting of the notation for variables, will keep:
+%   variableIndicator = uppercase *****
+
+  loadThisFile: i=0 newName=precomputed.txt sents=[(athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D)), (athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B)), (athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D))]
+
+***** Warning: % Since this is the first setting of the notation for variables, will keep:
+%   variableIndicator = uppercase *****
+
+% [ LazyGroundClauseIndex ]  Building full index for mode/1 with 1 assertions.
+% LoadAllModes() called.  Currently loaded modes: []
+% [ LazyGroundClauseIndex ]  Building full index for sameAs/2 with 2 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for exp/3.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for log/3.
+% LoadAllLibraries() called.  Currently loaded libraries: [listsInLogic, differentInLogic, modes_arithmeticInLogic, inlines_comparisonInLogic, modes_listsInLogic, inlines_differentInLogic, modes_differentInLogic, arithmeticInLogic, inlines_listsInLogic, modes_comparisonInLogic, comparisonInLogic, inlines_arithmeticInLogic]
+
+%  Read the facts.
+%  Have read 7.964 facts.
+% Have read 517 examples from 'nell_pre_computed_incorrect/train' [nell_pre_computed_incorrect/train/train*].
+% Have read 518 examples from 'nell_pre_computed_incorrect/train' [nell_pre_computed_incorrect/train/train*].
+
+%  LearnOneClause initialized.
+
+% The outer looper has been created.
+
+% Initializing the ILP inner looper.
+
+% NEW target:                 athleteplaysforteam(E, F)
+%  targetPred:                athleteplaysforteam/2
+%  targetArgTypes:            signature = [const, const], types = [+athlete, +sportsteam]
+%  targets:                   [athleteplaysforteam(E, F)]
+%  targetPredicates:          [athleteplaysforteam/2]
+%  targetArgSpecs:            [[E[+athlete], F[+sportsteam]]]
+%  variablesInTargets:        [[E, F]]
+
+% Precompute #0's requests: 'precomputed.txt'
+%   athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D)
+%   athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B)
+%   athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D)
+% Processing precompute file: precomputed.txt
+Writing to file: /home/rodrigoazs/Projetos/BoostSRL/precomputed.txt
+
+% Precomputing 'precomputed.txt'.
+
+%%% Precomputing 1 predicates.
+
+% Saving all provable instances of 'athleteplaysforteam'
+% using clause:   athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D)
+
+%  Found 645.660 proofs of 'athleteplaysforteam(A, B)'.
+%     Have precomputed a total of 10.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 20.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 30.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 40.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 50.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 60.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 70.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 80.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 90.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 100.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 110.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 120.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 130.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 140.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 150.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 160.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 170.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 180.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 190.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 200.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 210.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 220.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 230.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 240.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 250.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 260.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 270.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 280.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 290.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 300.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 310.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 320.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 330.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 340.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 350.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 360.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 370.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 380.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 390.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 400.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 410.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 420.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 430.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 440.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 450.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 460.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 470.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 480.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 490.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 500.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 510.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 520.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 530.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 540.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 550.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 560.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 570.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 580.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 590.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 600.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 610.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 620.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 630.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 640.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+
+// Precomputed a total of 645.660 facts (and found 0 duplications) from: 'athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D).'
+
+% using clause:   athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B)
+
+%  Found 0 proofs of 'athleteplaysforteam(A, B)'.
+
+// Precomputed a total of 0 facts (and found 0 duplications) from: 'athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B).'
+
+/* *** NOTE THAT NOTHING WAS FOUND FOR 'athleteplaysforteam(A, B)'. *** */
+// Possibly a typo?  If not, add to a BK file:   okIfUnknown: athleteplaysforteam/2.
+// NOTE: if the head of this rule appears in other rules, this error report might be incorrect.
+
+% Skipping over this 'waitHere': Fix the above?
+% using clause:   athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D)
+
+%  Found 1.471.113 proofs of 'athleteplaysforteam(A, B)'.
+%     Have precomputed a total of 10.000 unique facts (about athleteplaysforteam/2) so far and found 2.745 duplications.
+%     Have precomputed a total of 20.000 unique facts (about athleteplaysforteam/2) so far and found 10.980 duplications.
+%     Have precomputed a total of 30.000 unique facts (about athleteplaysforteam/2) so far and found 14.640 duplications.
+%     Have precomputed a total of 40.000 unique facts (about athleteplaysforteam/2) so far and found 18.300 duplications.
+%     Have precomputed a total of 50.000 unique facts (about athleteplaysforteam/2) so far and found 21.045 duplications.
+%     Have precomputed a total of 60.000 unique facts (about athleteplaysforteam/2) so far and found 22.875 duplications.
+%     Have precomputed a total of 70.000 unique facts (about athleteplaysforteam/2) so far and found 24.705 duplications.
+%     Have precomputed a total of 80.000 unique facts (about athleteplaysforteam/2) so far and found 25.620 duplications.
+%     Have precomputed a total of 90.000 unique facts (about athleteplaysforteam/2) so far and found 25.620 duplications.
+%     Have precomputed a total of 100.000 unique facts (about athleteplaysforteam/2) so far and found 25.620 duplications.
+%     Have precomputed a total of 110.000 unique facts (about athleteplaysforteam/2) so far and found 28.365 duplications.
+%     Have precomputed a total of 120.000 unique facts (about athleteplaysforteam/2) so far and found 31.110 duplications.
+%     Have precomputed a total of 130.000 unique facts (about athleteplaysforteam/2) so far and found 32.940 duplications.
+%     Have precomputed a total of 140.000 unique facts (about athleteplaysforteam/2) so far and found 33.855 duplications.
+%     Have precomputed a total of 150.000 unique facts (about athleteplaysforteam/2) so far and found 35.685 duplications.
+%     Have precomputed a total of 160.000 unique facts (about athleteplaysforteam/2) so far and found 36.600 duplications.
+%     Have precomputed a total of 170.000 unique facts (about athleteplaysforteam/2) so far and found 41.175 duplications.
+%     Have precomputed a total of 180.000 unique facts (about athleteplaysforteam/2) so far and found 43.005 duplications.
+%     Have precomputed a total of 190.000 unique facts (about athleteplaysforteam/2) so far and found 44.835 duplications.
+%     Have precomputed a total of 200.000 unique facts (about athleteplaysforteam/2) so far and found 44.835 duplications.
+%     Have precomputed a total of 210.000 unique facts (about athleteplaysforteam/2) so far and found 44.835 duplications.
+%     Have precomputed a total of 220.000 unique facts (about athleteplaysforteam/2) so far and found 45.750 duplications.
+%     Have precomputed a total of 230.000 unique facts (about athleteplaysforteam/2) so far and found 47.580 duplications.
+%     Have precomputed a total of 240.000 unique facts (about athleteplaysforteam/2) so far and found 50.325 duplications.
+%     Have precomputed a total of 250.000 unique facts (about athleteplaysforteam/2) so far and found 52.155 duplications.
+%     Have precomputed a total of 260.000 unique facts (about athleteplaysforteam/2) so far and found 52.155 duplications.
+%     Have precomputed a total of 270.000 unique facts (about athleteplaysforteam/2) so far and found 53.070 duplications.
+%     Have precomputed a total of 280.000 unique facts (about athleteplaysforteam/2) so far and found 56.730 duplications.
+%     Have precomputed a total of 290.000 unique facts (about athleteplaysforteam/2) so far and found 57.645 duplications.
+%     Have precomputed a total of 300.000 unique facts (about athleteplaysforteam/2) so far and found 57.645 duplications.
+%     Have precomputed a total of 310.000 unique facts (about athleteplaysforteam/2) so far and found 62.220 duplications.
+%     Have precomputed a total of 320.000 unique facts (about athleteplaysforteam/2) so far and found 65.880 duplications.
+%     Have precomputed a total of 330.000 unique facts (about athleteplaysforteam/2) so far and found 67.710 duplications.
+%     Have precomputed a total of 340.000 unique facts (about athleteplaysforteam/2) so far and found 70.455 duplications.
+%     Have precomputed a total of 350.000 unique facts (about athleteplaysforteam/2) so far and found 71.370 duplications.
+%     Have precomputed a total of 360.000 unique facts (about athleteplaysforteam/2) so far and found 71.370 duplications.
+%     Have precomputed a total of 370.000 unique facts (about athleteplaysforteam/2) so far and found 73.200 duplications.
+%     Have precomputed a total of 380.000 unique facts (about athleteplaysforteam/2) so far and found 74.115 duplications.
+%     Have precomputed a total of 390.000 unique facts (about athleteplaysforteam/2) so far and found 76.860 duplications.
+%     Have precomputed a total of 400.000 unique facts (about athleteplaysforteam/2) so far and found 78.630 duplications.
+%     Have precomputed a total of 410.000 unique facts (about athleteplaysforteam/2) so far and found 79.605 duplications.
+%     Have precomputed a total of 420.000 unique facts (about athleteplaysforteam/2) so far and found 81.379 duplications.
+%     Have precomputed a total of 430.000 unique facts (about athleteplaysforteam/2) so far and found 84.180 duplications.
+%     Have precomputed a total of 440.000 unique facts (about athleteplaysforteam/2) so far and found 85.095 duplications.
+%     Have precomputed a total of 450.000 unique facts (about athleteplaysforteam/2) so far and found 86.010 duplications.
+%     Have precomputed a total of 460.000 unique facts (about athleteplaysforteam/2) so far and found 86.010 duplications.
+%     Have precomputed a total of 470.000 unique facts (about athleteplaysforteam/2) so far and found 87.840 duplications.
+%     Have precomputed a total of 480.000 unique facts (about athleteplaysforteam/2) so far and found 89.670 duplications.
+%     Have precomputed a total of 490.000 unique facts (about athleteplaysforteam/2) so far and found 91.500 duplications.
+%     Have precomputed a total of 500.000 unique facts (about athleteplaysforteam/2) so far and found 92.415 duplications.
+%     Have precomputed a total of 510.000 unique facts (about athleteplaysforteam/2) so far and found 92.415 duplications.
+%     Have precomputed a total of 520.000 unique facts (about athleteplaysforteam/2) so far and found 93.330 duplications.
+%     Have precomputed a total of 530.000 unique facts (about athleteplaysforteam/2) so far and found 94.245 duplications.
+%     Have precomputed a total of 540.000 unique facts (about athleteplaysforteam/2) so far and found 96.075 duplications.
+%     Have precomputed a total of 550.000 unique facts (about athleteplaysforteam/2) so far and found 96.075 duplications.
+%     Have precomputed a total of 560.000 unique facts (about athleteplaysforteam/2) so far and found 96.990 duplications.
+%     Have precomputed a total of 570.000 unique facts (about athleteplaysforteam/2) so far and found 98.820 duplications.
+%     Have precomputed a total of 580.000 unique facts (about athleteplaysforteam/2) so far and found 100.650 duplications.
+%     Have precomputed a total of 590.000 unique facts (about athleteplaysforteam/2) so far and found 104.310 duplications.
+%     Have precomputed a total of 600.000 unique facts (about athleteplaysforteam/2) so far and found 105.507 duplications.
+%     Have precomputed a total of 610.000 unique facts (about athleteplaysforteam/2) so far and found 108.474 duplications.
+%     Have precomputed a total of 620.000 unique facts (about athleteplaysforteam/2) so far and found 113.742 duplications.
+%     Have precomputed a total of 630.000 unique facts (about athleteplaysforteam/2) so far and found 116.487 duplications.
+%     Have precomputed a total of 640.000 unique facts (about athleteplaysforteam/2) so far and found 120.147 duplications.
+%     Have precomputed a total of 650.000 unique facts (about athleteplaysforteam/2) so far and found 121.977 duplications.
+%     Have precomputed a total of 660.000 unique facts (about athleteplaysforteam/2) so far and found 124.722 duplications.
+%     Have precomputed a total of 670.000 unique facts (about athleteplaysforteam/2) so far and found 128.378 duplications.
+%     Have precomputed a total of 680.000 unique facts (about athleteplaysforteam/2) so far and found 129.297 duplications.
+%     Have precomputed a total of 690.000 unique facts (about athleteplaysforteam/2) so far and found 129.297 duplications.
+%     Have precomputed a total of 700.000 unique facts (about athleteplaysforteam/2) so far and found 129.297 duplications.
+%     Have precomputed a total of 710.000 unique facts (about athleteplaysforteam/2) so far and found 130.212 duplications.
+%     Have precomputed a total of 720.000 unique facts (about athleteplaysforteam/2) so far and found 130.212 duplications.
+%     Have precomputed a total of 730.000 unique facts (about athleteplaysforteam/2) so far and found 130.212 duplications.
+%     Have precomputed a total of 740.000 unique facts (about athleteplaysforteam/2) so far and found 131.127 duplications.
+%     Have precomputed a total of 750.000 unique facts (about athleteplaysforteam/2) so far and found 132.957 duplications.
+%     Have precomputed a total of 760.000 unique facts (about athleteplaysforteam/2) so far and found 132.957 duplications.
+%     Have precomputed a total of 770.000 unique facts (about athleteplaysforteam/2) so far and found 132.957 duplications.
+%     Have precomputed a total of 780.000 unique facts (about athleteplaysforteam/2) so far and found 133.872 duplications.
+%     Have precomputed a total of 790.000 unique facts (about athleteplaysforteam/2) so far and found 135.702 duplications.
+%     Have precomputed a total of 800.000 unique facts (about athleteplaysforteam/2) so far and found 135.702 duplications.
+%     Have precomputed a total of 810.000 unique facts (about athleteplaysforteam/2) so far and found 137.532 duplications.
+%     Have precomputed a total of 820.000 unique facts (about athleteplaysforteam/2) so far and found 140.277 duplications.
+%     Have precomputed a total of 830.000 unique facts (about athleteplaysforteam/2) so far and found 140.277 duplications.
+%     Have precomputed a total of 840.000 unique facts (about athleteplaysforteam/2) so far and found 141.192 duplications.
+%     Have precomputed a total of 850.000 unique facts (about athleteplaysforteam/2) so far and found 143.022 duplications.
+%     Have precomputed a total of 860.000 unique facts (about athleteplaysforteam/2) so far and found 143.937 duplications.
+%     Have precomputed a total of 870.000 unique facts (about athleteplaysforteam/2) so far and found 147.879 duplications.
+%     Have precomputed a total of 880.000 unique facts (about athleteplaysforteam/2) so far and found 149.709 duplications.
+%     Have precomputed a total of 890.000 unique facts (about athleteplaysforteam/2) so far and found 151.539 duplications.
+%     Have precomputed a total of 900.000 unique facts (about athleteplaysforteam/2) so far and found 156.114 duplications.
+%     Have precomputed a total of 910.000 unique facts (about athleteplaysforteam/2) so far and found 158.859 duplications.
+%     Have precomputed a total of 920.000 unique facts (about athleteplaysforteam/2) so far and found 160.689 duplications.
+%     Have precomputed a total of 930.000 unique facts (about athleteplaysforteam/2) so far and found 162.519 duplications.
+%     Have precomputed a total of 940.000 unique facts (about athleteplaysforteam/2) so far and found 162.915 duplications.
+%     Have precomputed a total of 950.000 unique facts (about athleteplaysforteam/2) so far and found 164.349 duplications.
+%     Have precomputed a total of 960.000 unique facts (about athleteplaysforteam/2) so far and found 166.461 duplications.
+%     Have precomputed a total of 970.000 unique facts (about athleteplaysforteam/2) so far and found 168.291 duplications.
+%     Have precomputed a total of 980.000 unique facts (about athleteplaysforteam/2) so far and found 171.036 duplications.
+%     Have precomputed a total of 990.000 unique facts (about athleteplaysforteam/2) so far and found 173.781 duplications.
+%     Have precomputed a total of 1.000.000 unique facts (about athleteplaysforteam/2) so far and found 175.611 duplications.
+%     Have precomputed a total of 1.010.000 unique facts (about athleteplaysforteam/2) so far and found 175.611 duplications.
+%     Have precomputed a total of 1.020.000 unique facts (about athleteplaysforteam/2) so far and found 180.186 duplications.
+%     Have precomputed a total of 1.030.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.040.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.050.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.060.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.070.000 unique facts (about athleteplaysforteam/2) so far and found 182.016 duplications.
+%     Have precomputed a total of 1.080.000 unique facts (about athleteplaysforteam/2) so far and found 185.676 duplications.
+%     Have precomputed a total of 1.090.000 unique facts (about athleteplaysforteam/2) so far and found 185.676 duplications.
+%     Have precomputed a total of 1.100.000 unique facts (about athleteplaysforteam/2) so far and found 187.506 duplications.
+%     Have precomputed a total of 1.110.000 unique facts (about athleteplaysforteam/2) so far and found 189.336 duplications.
+%     Have precomputed a total of 1.120.000 unique facts (about athleteplaysforteam/2) so far and found 190.251 duplications.
+%     Have precomputed a total of 1.130.000 unique facts (about athleteplaysforteam/2) so far and found 191.166 duplications.
+%     Have precomputed a total of 1.140.000 unique facts (about athleteplaysforteam/2) so far and found 193.911 duplications.
+%     Have precomputed a total of 1.150.000 unique facts (about athleteplaysforteam/2) so far and found 194.826 duplications.
+%     Have precomputed a total of 1.160.000 unique facts (about athleteplaysforteam/2) so far and found 198.486 duplications.
+%     Have precomputed a total of 1.170.000 unique facts (about athleteplaysforteam/2) so far and found 199.401 duplications.
+%     Have precomputed a total of 1.180.000 unique facts (about athleteplaysforteam/2) so far and found 200.316 duplications.
+%     Have precomputed a total of 1.190.000 unique facts (about athleteplaysforteam/2) so far and found 200.316 duplications.
+%     Have precomputed a total of 1.200.000 unique facts (about athleteplaysforteam/2) so far and found 201.231 duplications.
+%     Have precomputed a total of 1.210.000 unique facts (about athleteplaysforteam/2) so far and found 203.976 duplications.
+%     Have precomputed a total of 1.220.000 unique facts (about athleteplaysforteam/2) so far and found 204.891 duplications.
+%     Have precomputed a total of 1.230.000 unique facts (about athleteplaysforteam/2) so far and found 208.551 duplications.
+%     Have precomputed a total of 1.240.000 unique facts (about athleteplaysforteam/2) so far and found 209.414 duplications.
+%     Have precomputed a total of 1.250.000 unique facts (about athleteplaysforteam/2) so far and found 211.296 duplications.
+
+// Precomputed a total of 1.259.817 facts (and found 211.296 duplications) from: 'athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D).'
+
+
+
+%%% Precomputed a total of 1.905.477 facts (and found 211.296 duplications).  Done at 0:07:24 4/25/18
+
+% Loading: precomputed.txt
+% Read an additional 1.905.477 facts from edu.wisc.cs.will.Utils.condor.CondorFileReader@506e6d5e.
+
+% Started collecting constants
+
+% Collecting the types of constants.
+
+%   *** WARNING ***  Constant 'cleveland_indians' is already marked as being of types = [athlete];
+%          type = 'sportsteam' may be added if not already known.
+%  PredicateName = 'teamalsoknownas', from 'teamalsoknownas(colorado_rockies, cleveland_indians)',
+%  which has types = [signature = [const, const], types = [+sportsteam, +sportsteam], signature = [const, const], types = [+sportsteam, -sportsteam], signature = [const, const], types = [-sportsteam, +sportsteam]]
+%   Other warnings with this predicate and this new type are not reported in order to keep this printout small.  Use dontComplainAboutMultipleTypes to override.
+
+%   *** WARNING ***  Constant 'ncaa' is already marked as being of types = [sportsleague];
+%          type = 'sportsteam' may be added if not already known.
+%  PredicateName = 'teamplaysinleague', from 'teamplaysinleague(ncaa, ncaa)',
+%  which has types = [signature = [const, const], types = [+sportsteam, +sportsleague], signature = [const, const], types = [+sportsteam, -sportsleague], signature = [const, const], types = [-sportsteam, +sportsleague]]
+%   Other warnings with this predicate and this new type are not reported in order to keep this printout small.  Use dontComplainAboutMultipleTypes to override.
+
+% Looking at the training examples to see if any types of new constants can be inferred.
+% Time to collect constants: 102 milliseconds
+% Time to collect examples: 0 seconds
+
+% Read 517 pos examples and 518 neg examples.
+% Time to init learnOneClause: 37 seconds
+% Old dirnull
+Setting model dir
+
+% Have 517 'raw' positive examples and kept 517.
+% Have 518 'raw' negative examples and kept 518.
+
+% processing backup's for athleteplaysforteam
+%  POS EX = 517
+%  NEG EX = 518
+
+% Memory usage by WILLSetup (just counts # targets?):
+%  |backupPosExamples| = 1
+%  |backupNegExamples| = 1
+%  |predicatesAsFacts| = 0
+%  |addedToFactBase|   = 0
+nell_pre_computed_incorrect/train/models/
+File: nell_pre_computed_incorrect/train/advice.txt doesnt exist.Hence no advice loaded
+% Learning 1 trees in this iteration for athleteplaysforteam
+
+% Learn model for: athleteplaysforteam
+% Kept 517 of the 517 positive examples.
+% Kept 518 of the 518 negative examples.
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1,797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1,797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.2499997666223249
+Set score:0.0025
+% Dataset size: 1.035
+Computing probabilities
+prob time:3 milliseconds
+No hidden examples for : athleteplaysforteam
+Time to build dataset: 6 milliseconds
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1,797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1,797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.2499997666223166
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 10 positive seeds: 7 108 175 190 377 389 433 495 754 833
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% LearnOneClause Parameters:
+%   Targets (3):
+%    athleteplaysforteam(+athlete, +sportsteam),
+%    athleteplaysforteam(+athlete, -sportsteam),
+%    athleteplaysforteam(-athlete, +sportsteam)
+%  Modes (58):
+%    male(+name),
+%    athleteledsportsteam(+athlete, +sportsteam),
+%    athleteledsportsteam(-athlete, +sportsteam),
+%    athleteledsportsteam(+athlete, -sportsteam),
+%    athleteplaysinleague(+athlete, +sportsleague),
+%    athleteplaysinleague(+athlete, -sportsleague),
+%    athleteplaysinleague(-athlete, +sportsleague),
+%    athleteplayssport(+athlete, +sport),
+%    athleteplayssport(+athlete, -sport),
+%    athleteplayssport(-athlete, +sport),
+%    teamalsoknownas(+sportsteam, +sportsteam),
+%    teamalsoknownas(+sportsteam, -sportsteam),
+%    teamalsoknownas(-sportsteam, +sportsteam),
+%    teamplaysagainstteam(+sportsteam, +sportsteam),
+%    teamplaysagainstteam(+sportsteam, -sportsteam),
+%    teamplaysagainstteam(-sportsteam, +sportsteam),
+%    teamplaysinleague(+sportsteam, +sportsleague),
+%    teamplaysinleague(+sportsteam, -sportsleague),
+%    teamplaysinleague(-sportsteam, +sportsleague),
+%    teamplayssport(+sportsteam, +sport),
+%    teamplayssport(+sportsteam, -sport),
+%    teamplayssport(-sportsteam, +sport),
+%    addList(+willList, #willNumber),
+%    multiplyList(+willList, #willNumber),
+%    abs(+willNumber, &willNumber),
+%    minus(+willNumber, &willNumber),
+%    minus(+willNumber, +willNumber, &willNumber),
+%    plus(+willNumber, +willNumber, &willNumber),
+%    mult(+willNumber, +willNumber, &willNumber),
+%    div(+willNumber, +willNumber, &willNumber),
+%    allNumbers(+willList),
+%    positiveNumber(+willNumber),
+%    negativeNumber(+willNumber),
+%    in0toDot001(+willNumber),
+%    in0toDot01(+willNumber),
+%    in0toDot1(+willNumber),
+%    in0to1(+willNumber),
+%    in0to10(+willNumber),
+%    in0to100(+willNumber),
+%    in0to1000(+willNumber),
+%    equalWithTolerance(+willNumber, +willNumber, &willNumber),
+%    greaterOrEqualDifference(+willNumber, +willNumber, &willNumber),
+%    smallerOrEqualDifference(+willNumber, +willNumber, &willNumber),
+%    isaEqualTolerance(+willNumber),
+%    lessThan(+willNumber, +willNumber),
+%    greaterThan(+willNumber, +willNumber),
+%    lessThanOrEqual(+willNumber, +willNumber),
+%    greaterThanOrEqual(+willNumber, +willNumber),
+%    inBetweenOO(+willNumber, +willNumber, +willNumber),
+%    inBetweenCO(+willNumber, +willNumber, +willNumber),
+%    inBetweenOC(+willNumber, +willNumber, +willNumber),
+%    inBetweenCC(+willNumber, +willNumber, +willNumber),
+%    memberOfList(+willAnything, +willList),
+%    firstInList(+willList, &willAnything),
+%    restOfList(+willList, &willList),
+%    positionInList(+willAnything, +willList, &willNumber),
+%    nthInList(+willNumber, +willList, &willAnything),
+%    lengthOfList(+willList, &willNumber)
+
+% target           = athleteplaysforteam(E, F)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  athleteplaysforteam(_, _).  [covers 1.035,0/1.035,0 pos, 0,0/0,0 neg]
+% Most-general root: athleteplaysforteam(_, _).  [covers 1.035,0/1.035,0 pos, 0,0/0,0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'athleteplaysforteam(_, _).  [covers 1.035,0/1.035,0 pos, 0,0/0,0 neg]' score=-Infinity
+% [ LazyGroundClauseIndex ]  Building full index for athleteledsportsteam/2 with 246 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for athleteledsportsteam/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for athleteledsportsteam/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for athleteplaysinleague/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for athleteplayssport/2.
+% [ LazyGroundClauseIndex ]  Building full index for teamalsoknownas/2 with 273 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for teamalsoknownas/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for teamalsoknownas/2.
+% [ LazyGroundClauseIndex ]  Building full index for teamplaysagainstteam/2 with 2.780 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for teamplaysagainstteam/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for teamplaysagainstteam/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for teamplaysinleague/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for teamplayssport/2.
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 6 variant children.  Sending 11 items to OPEN for evaluation and possible insertion.
+% Have created 11 valid-on-seeds descendants and have picked up 2 bad extensions.
+%     Score = -239,850171 (regressionFit = 239,850170, penalties=1.0200000000000002E-6) for clause:  athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -239,850171): athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -250,038825 (regressionFit = 250,038824, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 605,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -258,749679 (regressionFit = 258,749678, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 258,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -258,486958 (regressionFit = 258,486956, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplaysinleague(A, _).  [covers 502,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -258,070700 (regressionFit = 258,070698, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplayssport(A, _).  [covers 490,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -242,401475 (regressionFit = 242,401474, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 413,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -251,310873 (regressionFit = 251,310872, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(_, A).  [covers 323,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -254,821889 (regressionFit = 254,821887, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(A, _).  [covers 970,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -252,698339 (regressionFit = 252,698337, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 988,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -255,948871 (regressionFit = 255,948870, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysinleague(A, _).  [covers 954,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -252,071485 (regressionFit = 252,071484, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 936,0/1.035,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 0 with score = 1,797693e+308.
+% Will extend: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.01333089846603213 to score=0.0025 #egs=74.0
+Comparing variance: 0.2485574231663274 to score=0.0025 #egs=961.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 74,0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-0,013331)
+%         ILP node to extend: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -0,013331) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 961,0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-0,248557)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 1 and with score = -0,248557) into position #1 in the search queue (new size=2).
+
+% Time for loop #1: 180 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #1, the best clause found is:
+%      athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+% This clause covers 74 positive examples, of which 74 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Have these 10 positive seeds: 58 91 483 544 632 769 786 846 884 885
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = athleteplaysforteam(E, F)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  athleteplaysforteam(_, _).  [covers 961,0/961,0 pos, 0,0/0,0 neg]
+% Most-general root: athleteplaysforteam(_, _).  [covers 961,0/961,0 pos, 0,0/0,0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=0] 'athleteplaysforteam(_, _).  [covers 961,0/961,0 pos, 0,0/0,0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 6 variant children.  Sending 10 items to OPEN for evaluation and possible insertion.
+% Have created 10 valid-on-seeds descendants and have picked up 3 bad extensions.
+%     Score = -234,905165 (regressionFit = 234,905164, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 531,0/961,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -234,905165): athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 531,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -233,206201 (regressionFit = 233,206200, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 184,0/961,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -233,206201): athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 184,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -238,837073 (regressionFit = 238,837072, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplaysinleague(A, _).  [covers 447,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -238,790630 (regressionFit = 238,790629, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplayssport(A, _).  [covers 439,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -223,773089 (regressionFit = 223,773088, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -223,773089): athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -232,456003 (regressionFit = 232,456002, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(_, A).  [covers 292,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -236,061660 (regressionFit = 236,061659, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(A, _).  [covers 896,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -234,019811 (regressionFit = 234,019810, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 914,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -236,492016 (regressionFit = 236,492014, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysinleague(A, _).  [covers 883,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -233,719206 (regressionFit = 233,719204, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 863,0/961,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 1 with score = -0,249.
+% Will extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.23591822222222605 to score=0.0025 #egs=375.0
+Comparing variance: 0.23089377861128535 to score=0.0025 #egs=586.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 375,0
+%      addToQueueOfTreeStructuredLearningTasks (level=2; score=-0,235918)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 2 and with score = -0,235918) into position #1 in the search queue (new size=2).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 586,0
+%      addToQueueOfTreeStructuredLearningTasks (level=2; score=-0,230894)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 2 and with score = -0,230894) into position #2 in the search queue (new size=3).
+
+% Time for loop #2: 183 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #2, the best clause found is:
+%      athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+% This clause covers 375 positive examples, of which 375 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]'
+%     Score = -223,773089 (regressionFit = 223,773088, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+
+% Have these 10 positive seeds: 64 79 118 160 215 239 240 256 259 329
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #3, bodyLen=1] 'athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]' score=-223.773088829548
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 18 variant children.  Sending 20 items to OPEN for evaluation and possible insertion.
+% Have created 20 valid-on-seeds descendants and have picked up 6 bad extensions.
+%     Score = -87,824002 (regressionFit = 87,824000, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), athleteledsportsteam(_, A).  [covers 250,0/375,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -87,824002): athleteplaysforteam(_, A) :- teamalsoknownas(A, _), athleteledsportsteam(_, A).  [covers 250,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -87,929446 (regressionFit = 87,929444, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), athleteledsportsteam(_, B).  [covers 308,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -84,513494 (regressionFit = 84,513492, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, _), athleteledsportsteam(A, _).  [covers 60,0/375,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -84,513494): athleteplaysforteam(A, B) :- teamalsoknownas(B, _), athleteledsportsteam(A, _).  [covers 60,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,409831 (regressionFit = 88,409829, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, _), athleteplaysinleague(A, _).  [covers 180,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,157720 (regressionFit = 88,157718, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, _), athleteplayssport(A, _).  [covers 182,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,322923 (regressionFit = 88,322921, penalties=2.0300000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamalsoknownas(B, A).  [covers 167,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,449270 (regressionFit = 88,449268, penalties=2.1400000000000003E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamalsoknownas(B, _).  [covers 304,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,381895 (regressionFit = 88,381893, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamalsoknownas(_, A).  [covers 238,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamalsoknownas(_, B).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -84,075021 (regressionFit = 84,075019, penalties=2.1300000000000004E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -84,075021): athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -84,152068 (regressionFit = 84,152066, penalties=2.1300000000000004E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(B, A).  [covers 351,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -87,731622 (regressionFit = 87,731619, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplaysagainstteam(A, _).  [covers 362,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(B, _).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,223121 (regressionFit = 88,223118, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplaysagainstteam(_, A).  [covers 372,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(_, B).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,211571 (regressionFit = 88,211568, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplaysinleague(A, _).  [covers 368,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysinleague(B, _).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -87,150092 (regressionFit = 87,150090, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplayssport(A, _).  [covers 346,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplayssport(B, _).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 2 with score = -0,236.
+% Will extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.22714981070849524 to score=0.0025 #egs=344.0
+Comparing variance: 0.19146722164412083 to score=0.0025 #egs=31.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 344,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,227150)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 3 and with score = -0,227150) into position #2 in the search queue (new size=3).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 31,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,191467)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 3 and with score = -0,191467) into position #3 in the search queue (new size=4).
+
+% Time for loop #3: 118 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #3, the best clause found is:
+%      athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+% This clause covers 344 positive examples, of which 344 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Have these 10 positive seeds: 2 40 67 139 155 169 194 219 254 423
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = athleteplaysforteam(E, F)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  athleteplaysforteam(_, _).  [covers 586,0/586,0 pos, 0,0/0,0 neg]
+% Most-general root: athleteplaysforteam(_, _).  [covers 586,0/586,0 pos, 0,0/0,0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #4, bodyLen=0] 'athleteplaysforteam(_, _).  [covers 586,0/586,0 pos, 0,0/0,0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 6 variant children.  Sending 9 items to OPEN for evaluation and possible insertion.
+% Have created 9 valid-on-seeds descendants and have picked up 3 bad extensions.
+%     Score = -134,262366 (regressionFit = 134,262365, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 281,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -134,262366): athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 281,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -133,864929 (regressionFit = 133,864928, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 124,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -133,864929): athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 124,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -135,286277 (regressionFit = 135,286276, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplaysinleague(A, _).  [covers 267,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -135,194187 (regressionFit = 135,194186, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplayssport(A, _).  [covers 257,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -135,260026 (regressionFit = 135,260025, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(_, A).  [covers 54,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -134,324403 (regressionFit = 134,324402, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(A, _).  [covers 534,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -132,886616 (regressionFit = 132,886615, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 542,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -132,886616): athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 542,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -134,785616 (regressionFit = 134,785615, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysinleague(A, _).  [covers 515,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -132,543606 (regressionFit = 132,543604, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -132,543606): athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 2 with score = -0,231.
+% Will extend: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.23719644280161484 to score=0.0025 #egs=517.0
+Comparing variance: 0.14366729678638887 to score=0.0025 #egs=69.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 517,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,237196)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 3 and with score = -0,237196) into position #1 in the search queue (new size=4).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 69,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,143667)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 3 and with score = -0,143667) into position #4 in the search queue (new size=5).
+
+% Time for loop #4: 40 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #4, the best clause found is:
+%      athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+% This clause covers 517 positive examples, of which 517 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]'
+%     Score = -132,543606 (regressionFit = 132,543604, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+
+% Have these 9 positive seeds: 1 43 58 126 128 175 287 297 387
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #5, bodyLen=1] 'athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]' score=-132.5436056366957
+% [ LazyGroundClauseIndex ]  Building full index for athleteplayssport/2 with 1.899 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for athleteplayssport/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for teamplayssport/2.
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 8 variant children.  Sending 10 items to OPEN for evaluation and possible insertion.
+% Have created 10 valid-on-seeds descendants and have picked up 3 bad extensions.
+%     Score = -122,328871 (regressionFit = 122,328868, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), athleteledsportsteam(_, A).  [covers 276,0/517,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -122,328871): athleteplaysforteam(_, A) :- teamplayssport(A, _), athleteledsportsteam(_, A).  [covers 276,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -121,429036 (regressionFit = 121,429034, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteledsportsteam(A, _).  [covers 109,0/517,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -121,429036): athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteledsportsteam(A, _).  [covers 109,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,617046 (regressionFit = 122,617043, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteplaysinleague(A, _).  [covers 237,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -111,845334 (regressionFit = 111,845332, penalties=2.0300000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -111,845334): athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,622042 (regressionFit = 122,622040, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteplayssport(A, _).  [covers 225,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, B), athleteplayssport(_, B).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,494360 (regressionFit = 122,494358, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamplaysagainstteam(A, _).  [covers 486,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,027293 (regressionFit = 122,027290, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamplaysagainstteam(_, A).  [covers 513,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,317697 (regressionFit = 122,317695, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamplaysinleague(A, _).  [covers 463,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, B), teamplayssport(_, B).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 3 with score = -0,237.
+% Will extend: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.20181439619274189 to score=0.0025 #egs=82.0
+Comparing variance: 0.21907253269917046 to score=0.0025 #egs=435.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 82,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,201814)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,201814) into position #2 in the search queue (new size=5).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 435,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,219073)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,219073) into position #2 in the search queue (new size=6).
+
+% Time for loop #5: 263 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #5, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+% This clause covers 82 positive examples, of which 82 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]'
+%     Score = -84,075021 (regressionFit = 84,075019, penalties=2.1300000000000004E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+
+% Have these 7 positive seeds: 3 120 121 191 208 234 322
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #6, bodyLen=2] 'athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]' score=-84.0750208846901
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 16 variant children.  Sending 19 items to OPEN for evaluation and possible insertion.
+% Have created 19 valid-on-seeds descendants and have picked up 6 bad extensions.
+%     Score = -77,806913 (regressionFit = 77,806910, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), athleteledsportsteam(_, A).  [covers 235,0/344,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -77,806913): athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), athleteledsportsteam(_, A).  [covers 235,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,105872 (regressionFit = 78,105869, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), athleteledsportsteam(_, B).  [covers 293,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -75,183820 (regressionFit = 75,183816, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -75,183820): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -77,980531 (regressionFit = 77,980527, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteplaysinleague(A, _).  [covers 170,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -77,953492 (regressionFit = 77,953488, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteplayssport(A, _).  [covers 172,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -77,885552 (regressionFit = 77,885549, penalties=3.0300000000000002E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(B, A).  [covers 148,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(A, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,136972 (regressionFit = 78,136969, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(B, _).  [covers 277,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,115072 (regressionFit = 78,115068, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(_, A).  [covers 219,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(_, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.0300000000000002E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(B, A).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(A, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(B, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(_, A).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(_, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysinleague(A, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysinleague(B, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,137049 (regressionFit = 78,137046, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplayssport(A, _).  [covers 333,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplayssport(B, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 3 with score = -0,227.
+% Will extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.24563901744393138 to score=0.0025 #egs=53.0
+Comparing variance: 0.2136252524179026 to score=0.0025 #egs=291.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 53,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,245639)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,245639) into position #1 in the search queue (new size=6).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 291,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,213625)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,213625) into position #3 in the search queue (new size=7).
+
+% Time for loop #6: 103 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #6, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+% This clause covers 53 positive examples, of which 53 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]'
+%     Score = -75,183820 (regressionFit = 75,183816, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+
+% Have these 10 positive seeds: 0 5 10 11 21 22 23 25 26 32
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #7, bodyLen=3] 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]' score=-75.18381951813802
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 36 variant children.  Sending 30 items to OPEN for evaluation and possible insertion.
+% Have created 30 valid-on-seeds descendants and have picked up 11 bad extensions.
+%     Score = -12,963496 (regressionFit = 12,963492, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteledsportsteam(_, B).  [covers 35,0/53,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -12,963496): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteledsportsteam(_, B).  [covers 35,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,965120 (regressionFit = 12,965116, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteledsportsteam(_, C).  [covers 43,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteledsportsteam(_, D).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,535465 (regressionFit = 12,535461, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplaysinleague(A, _).  [covers 47,0/53,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -12,535465): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplaysinleague(A, _).  [covers 47,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -10,097565 (regressionFit = 10,097561, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -10,097565): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,796300 (regressionFit = 12,796296, penalties=4.040000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(C, B).  [covers 27,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,986671 (regressionFit = 12,986667, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(C, D).  [covers 3,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,986671 (regressionFit = 12,986667, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(D, C).  [covers 3,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(B, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,450221 (regressionFit = 12,450216, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(C, _).  [covers 42,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,766258 (regressionFit = 12,766254, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(D, _).  [covers 19,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,830773 (regressionFit = 12,830769, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(_, B).  [covers 40,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(_, C).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,812285 (regressionFit = 12,812281, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(_, D).  [covers 15,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,586739 (regressionFit = 12,586735, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(B, D).  [covers 4,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.040000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(C, B).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -13,004655 (regressionFit = 13,004651, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(C, D).  [covers 10,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -13,004655 (regressionFit = 13,004651, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(D, C).  [covers 10,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(B, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(C, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(D, _).  [covers 52,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(_, B).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(_, C).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(_, D).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysinleague(B, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysinleague(C, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysinleague(D, _).  [covers 51,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplayssport(B, _).  [covers 52,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplayssport(C, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,279171 (regressionFit = 12,279167, penalties=4.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplayssport(D, _).  [covers 48,0/53,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 4 with score = -0,246.
+% Will extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.24628197501487328 to score=0.0025 #egs=41.0
+Comparing variance: -1.1564823173178714E-17 to score=0.0025 #egs=12.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 41,0
+%      addToQueueOfTreeStructuredLearningTasks (level=5; score=-0,246282)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 5 and with score = -0,246282) into position #1 in the search queue (new size=7).
+%   Creating a FALSE-branch leaf because good enough fit since score < 0.0025
+
+% Time for loop #7: 77 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #7, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+% This clause covers 41 positive examples, of which 41 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]'
+%     Score = -10,097565 (regressionFit = 10,097561, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+
+% Have these 10 positive seeds: 2 3 6 7 8 14 17 18 19 23
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #8, bodyLen=4] 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]' score=-10.097565225609804
+% [ LazyGroundClauseIndex ]  Building full index for teamplayssport/2 with 340 assertions.
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 42 variant children.  Sending 33 items to OPEN for evaluation and possible insertion.
+% Have created 33 valid-on-seeds descendants and have picked up 12 bad extensions.
+%     Score = -10,089086 (regressionFit = 10,089080, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, B).  [covers 29,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -10,089086): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, B).  [covers 29,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,899165 (regressionFit = 9,899160, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, C).  [covers 34,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -9,899165): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, C).  [covers 34,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), athleteledsportsteam(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteplaysinleague(A, _).  [covers 40,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), athleteplayssport(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,788100 (regressionFit = 9,788095, penalties=5.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(C, B).  [covers 21,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -9,788100): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(C, B).  [covers 21,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,841941 (regressionFit = 9,841935, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(C, _).  [covers 31,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -10,075986 (regressionFit = 10,075980, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamalsoknownas(D, _).  [covers 17,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,841941 (regressionFit = 9,841935, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(_, B).  [covers 31,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(_, C).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -10,095243 (regressionFit = 10,095238, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamalsoknownas(_, D).  [covers 14,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,939194 (regressionFit = 9,939189, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(B, D).  [covers 4,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(C, B).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,940977 (regressionFit = 9,940972, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(C, D).  [covers 9,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -10,061409 (regressionFit = 10,061404, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(D, B).  [covers 3,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,940977 (regressionFit = 9,940972, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(D, C).  [covers 9,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(C, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(D, _).  [covers 40,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(_, B).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(_, C).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysinleague(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysinleague(C, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysinleague(D, _).  [covers 39,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -7,601654 (regressionFit = 7,601648, penalties=5.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -7,601654): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,160005 (regressionFit = 9,160000, penalties=5.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(C, D).  [covers 16,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -8,434788 (regressionFit = 8,434783, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, E), teamplayssport(D, E).  [covers 18,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplayssport(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplayssport(C, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,772227 (regressionFit = 9,772222, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplayssport(D, _).  [covers 36,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 5 with score = -0,246.
+% Will extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.07100591715976314 to score=0.0025 #egs=13.0
+Comparing variance: 0.23852040816326484 to score=0.0025 #egs=28.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 13,0
+%      addToQueueOfTreeStructuredLearningTasks (level=6; score=-0,071006)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 6 and with score = -0,071006) into position #6 in the search queue (new size=7).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 28,0
+%      addToQueueOfTreeStructuredLearningTasks (level=6; score=-0,238520)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 6 and with score = -0,238520) into position #1 in the search queue (new size=8).
+
+% Time for loop #8: 93 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #8, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+% This clause covers 13 positive examples, of which 13 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% ******************************************
+
+% Have stopped ILP's outer loop because have reached the maximum number of learned clauses (8).
+
+% ******************************************
+Created a leaf under (athleteplaysforteam(E, F) :- teamplayssport(F, Anon2831))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteplayssport(E, Anon1969))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteledsportsteam(E, Anon2415))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteplayssport(E, Anon1969))
+Created a leaf under (athleteplaysforteam(E, F) :- teamplaysagainstteam(F, Anon1333))
+Created a leaf under (athleteplaysforteam(E, F) :- teamplayssport(F, Anon1969))
+Created a leaf under (athleteplaysforteam(E, F) :- teamplayssport(F, Anon2831))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteledsportsteam(E, F))
+
+%%%%%  WILL-Produced Tree #1 @ 0:07:37 4/25/18.  [Using 625.616.120 memory cells.]  %%%%%
+
+
+% FOR athleteplaysforteam(A, B):
+%   if ( athleteledsportsteam(A, B) )
+%   then return 0.8446354215859994;  // std dev = 0,115, 74,000 (wgt'ed) examples reached here.  /* #neg=1 #pos=73 */
+%   else if ( teamalsoknownas(B, C) )
+%   | then if ( teamplaysagainstteam(B, C) )
+%   | | then if ( athleteledsportsteam(A, D) )
+%   | | | then if ( athleteplayssport(A, E) )
+%   | | | | then if ( teamplayssport(B, E) )
+%   | | | | | then return 0.7812258581764353;  // std dev = 0,266, 13,000 (wgt'ed) examples reached here.  /* #neg=1 #pos=12 */
+%   | | | | | else return 0.2510060779566552;  // std dev = 0,488, 28,000 (wgt'ed) examples reached here.  /* #neg=17 #pos=11 */
+%   | | | | else return -0.1418510649004878;  // std dev = 0,000, 12,000 (wgt'ed) examples reached here.  /* #neg=12 */
+%   | | | else return 0.5488705845840446;  // std dev = 0,462, 291,000 (wgt'ed) examples reached here.  /* #neg=90 #pos=201 */
+%   | | else return 0.11621345122854462;  // std dev = 0,438, 31,000 (wgt'ed) examples reached here.  /* #neg=23 #pos=8 */
+%   | else if ( teamplayssport(B, F) )
+%   | | then if ( athleteplayssport(A, F) )
+%   | | | then return 0.5776611302214641;  // std dev = 0,449, 82,000 (wgt'ed) examples reached here.  /* #neg=23 #pos=59 */
+%   | | | else return 0.1822868661339908;  // std dev = 0,468, 435,000 (wgt'ed) examples reached here.  /* #neg=294 #pos=141 */
+%   | | else return 0.032061978577773244;  // std dev = 0,379, 69,000 (wgt'ed) examples reached here.  /* #neg=57 #pos=12 */
+
+
+% Clauses:
+
+athleteplaysforteam(A, B, 0.8446354215859994) :- 
+     athleteledsportsteam(A, B), 
+     !. // Clause #1.
+
+athleteplaysforteam(A, B, 0.7812258581764353) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     athleteledsportsteam(A, D), 
+     athleteplayssport(A, E), 
+     teamplayssport(B, E), 
+     !. // Clause #2.
+
+athleteplaysforteam(A, B, 0.2510060779566552) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     athleteledsportsteam(A, D), 
+     athleteplayssport(A, E), 
+     !. // Clause #3.
+
+athleteplaysforteam(A, B, -0.1418510649004878) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     athleteledsportsteam(A, D), 
+     !. // Clause #4.
+
+athleteplaysforteam(A, B, 0.5488705845840446) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     !. // Clause #5.
+
+athleteplaysforteam(A, B, 0.11621345122854462) :- 
+     teamalsoknownas(B, C), 
+     !. // Clause #6.
+
+athleteplaysforteam(A, B, 0.5776611302214641) :- 
+     teamplayssport(B, C), 
+     athleteplayssport(A, C), 
+     !. // Clause #7.
+
+athleteplaysforteam(A, B, 0.1822868661339908) :- 
+     teamplayssport(B, C), 
+     !. // Clause #8.
+
+athleteplaysforteam(A, B, 0.032061978577773244) :- !. // Clause #9.
+
+
+% The flattened versions of these clauses:
+
+flattened_athleteplaysforteam(a, b, 0.8446354215859994) :-  /* #neg=1 #pos=73 */ 
+   athleteledsportsteam(a, b),
+   !. // Flattened version of clause #1.
+
+flattened_athleteplaysforteam(a, b, 0.7812258581764353) :-  /* #neg=1 #pos=12 */ 
+   teamalsoknownas(b, uniqueVar1),
+   teamplaysagainstteam(b, uniqueVar1),
+   athleteledsportsteam(a, underscore),
+   athleteplayssport(a, uniqueVar2),
+   teamplayssport(b, uniqueVar2),
+   !. // Flattened version of clause #2.
+
+flattened_athleteplaysforteam(a, b, 0.2510060779566552) :-  /* #neg=17 #pos=11 */ 
+   teamalsoknownas(b, uniqueVar3),
+   teamplaysagainstteam(b, uniqueVar3),
+   athleteledsportsteam(a, underscore),
+   athleteplayssport(a, underscore),
+   !. // Flattened version of clause #3.
+
+flattened_athleteplaysforteam(a, b, -0.1418510649004878) :-  /* #neg=12 */ 
+   teamalsoknownas(b, uniqueVar4),
+   teamplaysagainstteam(b, uniqueVar4),
+   athleteledsportsteam(a, underscore),
+   !. // Flattened version of clause #4.
+
+flattened_athleteplaysforteam(underscore, a, 0.5488705845840446) :-  /* #neg=90 #pos=201 */ 
+   teamalsoknownas(a, uniqueVar5),
+   teamplaysagainstteam(a, uniqueVar5),
+   !. // Flattened version of clause #5.
+
+flattened_athleteplaysforteam(underscore, a, 0.11621345122854462) :-  /* #neg=23 #pos=8 */ 
+   teamalsoknownas(a, underscore),
+   !. // Flattened version of clause #6.
+
+flattened_athleteplaysforteam(a, b, 0.5776611302214641) :-  /* #neg=23 #pos=59 */ 
+   teamplayssport(b, uniqueVar6),
+   athleteplayssport(a, uniqueVar6),
+   !. // Flattened version of clause #7.
+
+flattened_athleteplaysforteam(underscore, a, 0.1822868661339908) :-  /* #neg=294 #pos=141 */ 
+   teamplayssport(a, underscore),
+   !. // Flattened version of clause #8.
+
+flattened_athleteplaysforteam(underscore, underscore, 0.032061978577773244) :-  /* #neg=57 #pos=12 */ 
+   !. // Flattened version of clause #9.
+
+
+% The unique flattened literals:
+%   teamalsoknownas(a, underscore)
+%   teamplayssport(b, uniqueVar2)
+%   athleteplayssport(a, uniqueVar6)
+%   teamalsoknownas(a, uniqueVar5)
+%   teamplaysagainstteam(a, uniqueVar5)
+%   teamplayssport(b, uniqueVar6)
+%   athleteledsportsteam(a, underscore)
+%   teamalsoknownas(b, uniqueVar4)
+%   teamplaysagainstteam(b, uniqueVar3)
+%   teamplaysagainstteam(b, uniqueVar4)
+%   teamalsoknownas(b, uniqueVar1)
+%   teamplayssport(a, underscore)
+%   athleteledsportsteam(a, b)
+%   teamalsoknownas(b, uniqueVar3)
+%   athleteplayssport(a, uniqueVar2)
+%   teamplaysagainstteam(b, uniqueVar1)
+%   athleteplayssport(a, underscore)
+
+% Saving model in: nell_pre_computed_incorrect/train/models/bRDNs/athleteplaysforteam.model.ckpt
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for athleteplaysforteam.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+
+logPrior(-1.8).
+athleteplaysforteam(E, F, Total) :- // A general accessor. 
+   athleteplaysforteam(E, F, 1000000, Total), !.
+athleteplaysforteam(E, F, Total) :- waitHere("This should not fail", athleteplaysforteam(E, F, Total)).
+
+athleteplaysforteam(E, F, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_athleteplaysforteam_tree1(E, F, TreesToUse, Total1),
+   Total is LogPrior + Total1,
+   !.
+athleteplaysforteam(E, F, TreesToUse, Total) :- waitHere("This should not fail", athleteplaysforteam(E, F, TreesToUse, Total)).
+
+getScore_athleteplaysforteam_tree1(E, F, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_athleteplaysforteam_tree1(E, F, TreesToUse, Total1) :- athleteplaysforteam_tree1(E, F, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(athleteplaysforteam, 17, [
+   teamalsoknownas(a, underscore),
+   teamplayssport(b, uniqueVar2),
+   athleteplayssport(a, uniqueVar6),
+   teamalsoknownas(a, uniqueVar5),
+   teamplaysagainstteam(a, uniqueVar5),
+   teamplayssport(b, uniqueVar6),
+   athleteledsportsteam(a, underscore),
+   teamalsoknownas(b, uniqueVar4),
+   teamplaysagainstteam(b, uniqueVar3),
+   teamplaysagainstteam(b, uniqueVar4),
+   teamalsoknownas(b, uniqueVar1),
+   teamplayssport(a, underscore),
+   athleteledsportsteam(a, b),
+   teamalsoknownas(b, uniqueVar3),
+   athleteplayssport(a, uniqueVar2),
+   teamplaysagainstteam(b, uniqueVar1),
+   athleteplayssport(a, underscore)]).
+%      addToQueueOfTreeStructuredLearningTasks (level=0; score=1,797693135e+308)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 0 and with score = 1,797693135e+308) into the LAST position (#1) in the search queue.
+Variance:0.2499997666223166
+Set score:0.0025
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Have these 10 positive seeds: 15 26 39 47 67 153 647 787 927 953
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = athleteplaysforteam(E, F)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  athleteplaysforteam(_, _).  [covers 1.035,0/1.035,0 pos, 0,0/0,0 neg]
+% Most-general root: athleteplaysforteam(_, _).  [covers 1.035,0/1.035,0 pos, 0,0/0,0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #1, bodyLen=0] 'athleteplaysforteam(_, _).  [covers 1.035,0/1.035,0 pos, 0,0/0,0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 6 variant children.  Sending 11 items to OPEN for evaluation and possible insertion.
+% Have created 11 valid-on-seeds descendants and have picked up 2 bad extensions.
+%     Score = -239,850171 (regressionFit = 239,850170, penalties=1.0200000000000002E-6) for clause:  athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -239,850171): athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -250,038825 (regressionFit = 250,038824, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 605,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -258,749679 (regressionFit = 258,749678, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 258,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -258,486958 (regressionFit = 258,486956, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplaysinleague(A, _).  [covers 502,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -258,070700 (regressionFit = 258,070698, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplayssport(A, _).  [covers 490,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -242,401475 (regressionFit = 242,401474, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 413,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -251,310873 (regressionFit = 251,310872, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(_, A).  [covers 323,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -254,821889 (regressionFit = 254,821887, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(A, _).  [covers 970,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -252,698339 (regressionFit = 252,698337, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 988,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -255,948871 (regressionFit = 255,948870, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysinleague(A, _).  [covers 954,0/1.035,0 pos, 0,0/0,0 neg]
+%     Score = -252,071485 (regressionFit = 252,071484, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 936,0/1.035,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 0 with score = 1,797693e+308.
+% Will extend: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.01333089846603213 to score=0.0025 #egs=74.0
+Comparing variance: 0.2485574231663274 to score=0.0025 #egs=961.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 74,0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-0,013331)
+%         ILP node to extend: athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 1 and with score = -0,013331) into the LAST position (#1) in the search queue.
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 961,0
+%      addToQueueOfTreeStructuredLearningTasks (level=1; score=-0,248557)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 1 and with score = -0,248557) into position #1 in the search queue (new size=2).
+
+% Time for loop #1: 69 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #1, the best clause found is:
+%      athleteplaysforteam(A, B) :- athleteledsportsteam(A, B).  [covers 74,0/1.035,0 pos, 0,0/0,0 neg]
+% This clause covers 74 positive examples, of which 74 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Have these 10 positive seeds: 126 178 360 526 538 674 680 718 732 794
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = athleteplaysforteam(E, F)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  athleteplaysforteam(_, _).  [covers 961,0/961,0 pos, 0,0/0,0 neg]
+% Most-general root: athleteplaysforteam(_, _).  [covers 961,0/961,0 pos, 0,0/0,0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #2, bodyLen=0] 'athleteplaysforteam(_, _).  [covers 961,0/961,0 pos, 0,0/0,0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 6 variant children.  Sending 10 items to OPEN for evaluation and possible insertion.
+% Have created 10 valid-on-seeds descendants and have picked up 3 bad extensions.
+%     Score = -234,905165 (regressionFit = 234,905164, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 531,0/961,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -234,905165): athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 531,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -233,206201 (regressionFit = 233,206200, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 184,0/961,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -233,206201): athleteplaysforteam(A, _) :- athleteledsportsteam(A, _).  [covers 184,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -238,837073 (regressionFit = 238,837072, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplaysinleague(A, _).  [covers 447,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -238,790630 (regressionFit = 238,790629, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplayssport(A, _).  [covers 439,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -223,773089 (regressionFit = 223,773088, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -223,773089): athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -232,456003 (regressionFit = 232,456002, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(_, A).  [covers 292,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -236,061660 (regressionFit = 236,061659, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(A, _).  [covers 896,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -234,019811 (regressionFit = 234,019810, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 914,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -236,492016 (regressionFit = 236,492014, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysinleague(A, _).  [covers 883,0/961,0 pos, 0,0/0,0 neg]
+%     Score = -233,719206 (regressionFit = 233,719204, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 863,0/961,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 1 with score = -0,249.
+% Will extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.23591822222222605 to score=0.0025 #egs=375.0
+Comparing variance: 0.23089377861128535 to score=0.0025 #egs=586.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 375,0
+%      addToQueueOfTreeStructuredLearningTasks (level=2; score=-0,235918)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 2 and with score = -0,235918) into position #1 in the search queue (new size=2).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 586,0
+%      addToQueueOfTreeStructuredLearningTasks (level=2; score=-0,230894)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 2 and with score = -0,230894) into position #2 in the search queue (new size=3).
+
+% Time for loop #2: 37 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #2, the best clause found is:
+%      athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/961,0 pos, 0,0/0,0 neg]
+% This clause covers 375 positive examples, of which 375 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]'
+%     Score = -223,773089 (regressionFit = 223,773088, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+
+% Have these 7 positive seeds: 59 92 135 228 266 275 290
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #3, bodyLen=1] 'athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]' score=-223.773088829548
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 18 variant children.  Sending 19 items to OPEN for evaluation and possible insertion.
+% Have created 19 valid-on-seeds descendants and have picked up 6 bad extensions.
+%     Score = -87,824002 (regressionFit = 87,824000, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), athleteledsportsteam(_, A).  [covers 250,0/375,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -87,824002): athleteplaysforteam(_, A) :- teamalsoknownas(A, _), athleteledsportsteam(_, A).  [covers 250,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -87,929446 (regressionFit = 87,929444, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), athleteledsportsteam(_, B).  [covers 308,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,409831 (regressionFit = 88,409829, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, _), athleteplaysinleague(A, _).  [covers 180,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,157720 (regressionFit = 88,157718, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, _), athleteplayssport(A, _).  [covers 182,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,322923 (regressionFit = 88,322921, penalties=2.0300000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamalsoknownas(B, A).  [covers 167,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,449270 (regressionFit = 88,449268, penalties=2.1400000000000003E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamalsoknownas(B, _).  [covers 304,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,381895 (regressionFit = 88,381893, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamalsoknownas(_, A).  [covers 238,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamalsoknownas(_, B).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -84,075021 (regressionFit = 84,075019, penalties=2.1300000000000004E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -84,075021): athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -84,152068 (regressionFit = 84,152066, penalties=2.1300000000000004E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(B, A).  [covers 351,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -87,731622 (regressionFit = 87,731619, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplaysagainstteam(A, _).  [covers 362,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(B, _).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,223121 (regressionFit = 88,223118, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplaysagainstteam(_, A).  [covers 372,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(_, B).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -88,211571 (regressionFit = 88,211568, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplaysinleague(A, _).  [covers 368,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysinleague(B, _).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -87,150092 (regressionFit = 87,150090, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, _), teamplayssport(A, _).  [covers 346,0/375,0 pos, 0,0/0,0 neg]
+%     Score = -86,784438 (regressionFit = 86,784435, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplayssport(B, _).  [covers 363,0/375,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 2 with score = -0,236.
+% Will extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.22714981070849524 to score=0.0025 #egs=344.0
+Comparing variance: 0.19146722164412083 to score=0.0025 #egs=31.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 344,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,227150)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 3 and with score = -0,227150) into position #2 in the search queue (new size=3).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 31,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,191467)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, _).  [covers 375,0/375,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 3 and with score = -0,191467) into position #3 in the search queue (new size=4).
+
+% Time for loop #3: 64 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #3, the best clause found is:
+%      athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/375,0 pos, 0,0/0,0 neg]
+% This clause covers 344 positive examples, of which 344 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Have these 9 positive seeds: 25 88 91 115 184 190 220 247 575
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% target           = athleteplaysforteam(E, F)
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.2E-7) for clause:  athleteplaysforteam(_, _).  [covers 586,0/586,0 pos, 0,0/0,0 neg]
+% Most-general root: athleteplaysforteam(_, _).  [covers 586,0/586,0 pos, 0,0/0,0 neg]  score = -Infinity
+
+% Consider expanding [#1 of outerLoop #4, bodyLen=0] 'athleteplaysforteam(_, _).  [covers 586,0/586,0 pos, 0,0/0,0 neg]' score=-Infinity
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 6 variant children.  Sending 8 items to OPEN for evaluation and possible insertion.
+% Have created 8 valid-on-seeds descendants and have picked up 3 bad extensions.
+%     Score = -134,262366 (regressionFit = 134,262365, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 281,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -134,262366): athleteplaysforteam(_, A) :- athleteledsportsteam(_, A).  [covers 281,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -135,286277 (regressionFit = 135,286276, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplaysinleague(A, _).  [covers 267,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -135,194187 (regressionFit = 135,194186, penalties=1.23E-6) for clause:  athleteplaysforteam(A, _) :- athleteplayssport(A, _).  [covers 257,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -135,260026 (regressionFit = 135,260025, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(_, A).  [covers 54,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -134,324403 (regressionFit = 134,324402, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(A, _).  [covers 534,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -132,886616 (regressionFit = 132,886615, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 542,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -132,886616): athleteplaysforteam(_, A) :- teamplaysagainstteam(_, A).  [covers 542,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -134,785616 (regressionFit = 134,785615, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplaysinleague(A, _).  [covers 515,0/586,0 pos, 0,0/0,0 neg]
+%     Score = -132,543606 (regressionFit = 132,543604, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -132,543606): athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 2 with score = -0,231.
+% Will extend: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.23719644280161484 to score=0.0025 #egs=517.0
+Comparing variance: 0.14366729678638887 to score=0.0025 #egs=69.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 517,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,237196)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 3 and with score = -0,237196) into position #1 in the search queue (new size=4).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 69,0
+%      addToQueueOfTreeStructuredLearningTasks (level=3; score=-0,143667)
+%         ILP node to extend: null
+%      Insert tree-structured search node (@ level = 3 and with score = -0,143667) into position #4 in the search queue (new size=5).
+
+% Time for loop #4: 20 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #4, the best clause found is:
+%      athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/586,0 pos, 0,0/0,0 neg]
+% This clause covers 517 positive examples, of which 517 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]'
+%     Score = -132,543606 (regressionFit = 132,543604, penalties=1.23E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+
+% Have these 8 positive seeds: 71 100 214 359 413 440 466 492
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #5, bodyLen=1] 'athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]' score=-132.5436056366957
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 8 variant children.  Sending 11 items to OPEN for evaluation and possible insertion.
+% Have created 11 valid-on-seeds descendants and have picked up 3 bad extensions.
+%     Score = -122,328871 (regressionFit = 122,328868, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), athleteledsportsteam(_, A).  [covers 276,0/517,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -122,328871): athleteplaysforteam(_, A) :- teamplayssport(A, _), athleteledsportsteam(_, A).  [covers 276,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -121,429036 (regressionFit = 121,429034, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteledsportsteam(A, _).  [covers 109,0/517,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -121,429036): athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteledsportsteam(A, _).  [covers 109,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,617046 (regressionFit = 122,617043, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteplaysinleague(A, _).  [covers 237,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -111,845334 (regressionFit = 111,845332, penalties=2.0300000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -111,845334): athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,622042 (regressionFit = 122,622040, penalties=2.24E-6) for clause:  athleteplaysforteam(A, B) :- teamplayssport(B, _), athleteplayssport(A, _).  [covers 225,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.24E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, B), athleteplayssport(_, B).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,630312 (regressionFit = 122,630310, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamalsoknownas(_, A).  [covers 54,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,494360 (regressionFit = 122,494358, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamplaysagainstteam(A, _).  [covers 486,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,027293 (regressionFit = 122,027290, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamplaysagainstteam(_, A).  [covers 513,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -122,317697 (regressionFit = 122,317695, penalties=2.3400000000000005E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, _), teamplaysinleague(A, _).  [covers 463,0/517,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=2.1400000000000003E-6) for clause:  athleteplaysforteam(_, A) :- teamplayssport(A, B), teamplayssport(_, B).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 3 with score = -0,237.
+% Will extend: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.20181439619274189 to score=0.0025 #egs=82.0
+Comparing variance: 0.21907253269917046 to score=0.0025 #egs=435.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 82,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,201814)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,201814) into position #2 in the search queue (new size=5).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 435,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,219073)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamplayssport(A, _).  [covers 517,0/517,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,219073) into position #2 in the search queue (new size=6).
+
+% Time for loop #5: 82 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #5, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, C).  [covers 82,0/517,0 pos, 0,0/0,0 neg]
+% This clause covers 82 positive examples, of which 82 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]'
+%     Score = -84,075021 (regressionFit = 84,075019, penalties=2.1300000000000004E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+
+% Have these 10 positive seeds: 77 87 89 101 135 214 294 295 302 336
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #6, bodyLen=2] 'athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]' score=-84.0750208846901
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 16 variant children.  Sending 19 items to OPEN for evaluation and possible insertion.
+% Have created 19 valid-on-seeds descendants and have picked up 6 bad extensions.
+%     Score = -77,806913 (regressionFit = 77,806910, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), athleteledsportsteam(_, A).  [covers 235,0/344,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -77,806913): athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), athleteledsportsteam(_, A).  [covers 235,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,105872 (regressionFit = 78,105869, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), athleteledsportsteam(_, B).  [covers 293,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -75,183820 (regressionFit = 75,183816, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -75,183820): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -77,980531 (regressionFit = 77,980527, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteplaysinleague(A, _).  [covers 170,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -77,953492 (regressionFit = 77,953488, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteplayssport(A, _).  [covers 172,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -77,885552 (regressionFit = 77,885549, penalties=3.0300000000000002E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(B, A).  [covers 148,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(A, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,136972 (regressionFit = 78,136969, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(B, _).  [covers 277,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,115072 (regressionFit = 78,115068, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(_, A).  [covers 219,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamalsoknownas(_, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.0300000000000002E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(B, A).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(A, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(B, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(_, A).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.1400000000000013E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysagainstteam(_, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysinleague(A, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplaysinleague(B, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -78,137049 (regressionFit = 78,137046, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplayssport(A, _).  [covers 333,0/344,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=3.240000000000001E-6) for clause:  athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B), teamplayssport(B, _).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 3 with score = -0,227.
+% Will extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.24563901744393138 to score=0.0025 #egs=53.0
+Comparing variance: 0.2136252524179026 to score=0.0025 #egs=291.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 53,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,245639)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,245639) into position #1 in the search queue (new size=6).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 291,0
+%      addToQueueOfTreeStructuredLearningTasks (level=4; score=-0,213625)
+%         ILP node to extend: athleteplaysforteam(_, A) :- teamalsoknownas(A, B), teamplaysagainstteam(A, B).  [covers 344,0/344,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 4 and with score = -0,213625) into position #3 in the search queue (new size=7).
+
+% Time for loop #6: 55 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #6, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/344,0 pos, 0,0/0,0 neg]
+% This clause covers 53 positive examples, of which 53 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]'
+%     Score = -75,183820 (regressionFit = 75,183816, penalties=3.1400000000000004E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+
+% Have these 10 positive seeds: 1 7 10 13 24 25 27 29 32 33
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #7, bodyLen=3] 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]' score=-75.18381951813802
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 36 variant children.  Sending 31 items to OPEN for evaluation and possible insertion.
+% Have created 31 valid-on-seeds descendants and have picked up 10 bad extensions.
+%     Score = -12,963496 (regressionFit = 12,963492, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteledsportsteam(_, B).  [covers 35,0/53,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -12,963496): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteledsportsteam(_, B).  [covers 35,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,965120 (regressionFit = 12,965116, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteledsportsteam(_, C).  [covers 43,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteledsportsteam(_, D).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,535465 (regressionFit = 12,535461, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplaysinleague(A, _).  [covers 47,0/53,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -12,535465): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplaysinleague(A, _).  [covers 47,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -10,097565 (regressionFit = 10,097561, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -10,097565): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,796300 (regressionFit = 12,796296, penalties=4.040000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(C, B).  [covers 27,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,986671 (regressionFit = 12,986667, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(C, D).  [covers 3,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,986671 (regressionFit = 12,986667, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(D, C).  [covers 3,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(B, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,450221 (regressionFit = 12,450216, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(C, _).  [covers 42,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,766258 (regressionFit = 12,766254, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(D, _).  [covers 19,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,830773 (regressionFit = 12,830769, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(_, B).  [covers 40,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamalsoknownas(_, C).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,812285 (regressionFit = 12,812281, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamalsoknownas(_, D).  [covers 15,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,586739 (regressionFit = 12,586735, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(B, D).  [covers 4,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.040000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(C, B).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -13,004655 (regressionFit = 13,004651, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(C, D).  [covers 10,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,846671 (regressionFit = 12,846667, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(D, B).  [covers 3,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -13,004655 (regressionFit = 13,004651, penalties=3.940000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(D, C).  [covers 10,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(B, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(C, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(D, _).  [covers 52,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(_, B).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysagainstteam(_, C).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.05E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysagainstteam(_, D).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysinleague(B, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplaysinleague(C, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplaysinleague(D, _).  [covers 51,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplayssport(B, _).  [covers 52,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), teamplayssport(C, _).  [covers 53,0/53,0 pos, 0,0/0,0 neg]
+%     Score = -12,279171 (regressionFit = 12,279167, penalties=4.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), teamplayssport(D, _).  [covers 48,0/53,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 4 with score = -0,246.
+% Will extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.24628197501487328 to score=0.0025 #egs=41.0
+Comparing variance: -1.1564823173178714E-17 to score=0.0025 #egs=12.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 41,0
+%      addToQueueOfTreeStructuredLearningTasks (level=5; score=-0,246282)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 5 and with score = -0,246282) into position #1 in the search queue (new size=7).
+%   Creating a FALSE-branch leaf because good enough fit since score < 0.0025
+
+% Time for loop #7: 38 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #7, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/53,0 pos, 0,0/0,0 neg]
+% This clause covers 41 positive examples, of which 41 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% Working on expanding this node: 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]'
+%     Score = -10,097565 (regressionFit = 10,097561, penalties=4.250000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+
+% Have these 10 positive seeds: 0 18 22 23 25 30 31 36 37 39
+% [AdviceProcessor]  Generated 0 clauses at relevance level STRONGLY_IRRELEVANT.
+
+% Consider expanding [#1 of outerLoop #8, bodyLen=4] 'athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]' score=-10.097565225609804
+%  At # nodes expanded = 1, |OPEN| = 0.  Pruned 42 variant children.  Sending 33 items to OPEN for evaluation and possible insertion.
+% Have created 33 valid-on-seeds descendants and have picked up 12 bad extensions.
+%     Score = -10,089086 (regressionFit = 10,089080, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, B).  [covers 29,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -10,089086): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, B).  [covers 29,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,899165 (regressionFit = 9,899160, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, C).  [covers 34,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -9,899165): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteledsportsteam(_, C).  [covers 34,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), athleteledsportsteam(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), athleteplaysinleague(A, _).  [covers 40,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), athleteplayssport(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,788100 (regressionFit = 9,788095, penalties=5.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(C, B).  [covers 21,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -9,788100): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(C, B).  [covers 21,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,841941 (regressionFit = 9,841935, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(C, _).  [covers 31,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -10,075986 (regressionFit = 10,075980, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamalsoknownas(D, _).  [covers 17,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,841941 (regressionFit = 9,841935, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(_, B).  [covers 31,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamalsoknownas(_, C).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -10,095243 (regressionFit = 10,095238, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamalsoknownas(_, D).  [covers 14,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,939194 (regressionFit = 9,939189, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(B, D).  [covers 4,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.150000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(C, B).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,940977 (regressionFit = 9,940972, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(C, D).  [covers 9,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -10,061409 (regressionFit = 10,061404, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(D, B).  [covers 3,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,940977 (regressionFit = 9,940972, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(D, C).  [covers 9,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(C, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(D, _).  [covers 40,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(_, B).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysagainstteam(_, C).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.160000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysagainstteam(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysinleague(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplaysinleague(C, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplaysinleague(D, _).  [covers 39,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -7,601654 (regressionFit = 7,601648, penalties=5.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+% Gleaner: New best node found (score = -7,601654): athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,160005 (regressionFit = 9,160000, penalties=5.15E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(C, D).  [covers 16,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -8,434788 (regressionFit = 8,434783, penalties=5.050000000000001E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, E), teamplayssport(D, E).  [covers 18,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplayssport(B, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.36E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _), teamplayssport(C, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -9,772227 (regressionFit = 9,772222, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, D), athleteplayssport(A, _), teamplayssport(D, _).  [covers 36,0/41,0 pos, 0,0/0,0 neg]
+%     Score = -Infinity (regressionFit = Infinity, penalties=5.2600000000000005E-6) for clause:  athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(_, D).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+
+% The best node found: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+
+% Expanding node at Level 5 with score = -0,246.
+% Will extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+Comparing variance: 0.07100591715976314 to score=0.0025 #egs=13.0
+Comparing variance: 0.23852040816326484 to score=0.0025 #egs=28.0
+%   Creating a TRUE-branch interior node with wgtedCountTrueBranchPos = 13,0
+%      addToQueueOfTreeStructuredLearningTasks (level=6; score=-0,071006)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 6 and with score = -0,071006) into position #6 in the search queue (new size=7).
+%   Creating a FALSE-branch interior node with wgtedCountFalseBranchPos = 28,0
+%      addToQueueOfTreeStructuredLearningTasks (level=6; score=-0,238520)
+%         ILP node to extend: athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, _).  [covers 41,0/41,0 pos, 0,0/0,0 neg]
+%      Insert tree-structured search node (@ level = 6 and with score = -0,238520) into position #1 in the search queue (new size=8).
+
+% Time for loop #8: 70 milliseconds.
+% Internal node max length = 1
+% Max tree depth in lits   = 12
+% Max tree depth in nodes  = 6
+% Max number of clauses    = 8
+
+% On cycle #8, the best clause found is:
+%      athleteplaysforteam(A, B) :- teamalsoknownas(B, C), teamplaysagainstteam(B, C), athleteledsportsteam(A, _), athleteplayssport(A, D), teamplayssport(B, D).  [covers 13,0/41,0 pos, 0,0/0,0 neg]
+% This clause covers 13 positive examples, of which 13 are newly covered.
+% It also covers 0 negative examples, of which 0 are newly covered.
+
+% ******************************************
+
+% Have stopped ILP's outer loop because have reached the maximum number of learned clauses (8).
+
+% ******************************************
+Created a leaf under (athleteplaysforteam(E, F) :- teamplayssport(F, Anon6321))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteplayssport(E, Anon5461))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteledsportsteam(E, Anon5905))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteplayssport(E, Anon5461))
+Created a leaf under (athleteplaysforteam(E, F) :- teamplaysagainstteam(F, Anon4849))
+Created a leaf under (athleteplaysforteam(E, F) :- teamplayssport(F, Anon5461))
+Created a leaf under (athleteplaysforteam(E, F) :- teamplayssport(F, Anon6321))
+Created a leaf under (athleteplaysforteam(E, F) :- athleteledsportsteam(E, F))
+
+%%%%%  WILL-Produced Tree Combined @ 0:07:39 4/25/18.  [Using 625.685.128 memory cells.]  %%%%%
+
+
+% FOR athleteplaysforteam(A, B):
+%   if ( athleteledsportsteam(A, B) )
+%   then return 0.8446354215859994;  // std dev = 0,115, 74,000 (wgt'ed) examples reached here.  /* #neg=1 #pos=73 */
+%   else if ( teamalsoknownas(B, C) )
+%   | then if ( teamplaysagainstteam(B, C) )
+%   | | then if ( athleteledsportsteam(A, D) )
+%   | | | then if ( athleteplayssport(A, E) )
+%   | | | | then if ( teamplayssport(B, E) )
+%   | | | | | then return 0.7812258581764353;  // std dev = 0,266, 13,000 (wgt'ed) examples reached here.  /* #neg=1 #pos=12 */
+%   | | | | | else return 0.2510060779566552;  // std dev = 0,488, 28,000 (wgt'ed) examples reached here.  /* #neg=17 #pos=11 */
+%   | | | | else return -0.1418510649004878;  // std dev = 0,000, 12,000 (wgt'ed) examples reached here.  /* #neg=12 */
+%   | | | else return 0.5488705845840446;  // std dev = 0,462, 291,000 (wgt'ed) examples reached here.  /* #neg=90 #pos=201 */
+%   | | else return 0.11621345122854462;  // std dev = 0,438, 31,000 (wgt'ed) examples reached here.  /* #neg=23 #pos=8 */
+%   | else if ( teamplayssport(B, F) )
+%   | | then if ( athleteplayssport(A, F) )
+%   | | | then return 0.5776611302214641;  // std dev = 0,449, 82,000 (wgt'ed) examples reached here.  /* #neg=23 #pos=59 */
+%   | | | else return 0.1822868661339908;  // std dev = 0,468, 435,000 (wgt'ed) examples reached here.  /* #neg=294 #pos=141 */
+%   | | else return 0.032061978577773244;  // std dev = 0,379, 69,000 (wgt'ed) examples reached here.  /* #neg=57 #pos=12 */
+
+
+% Clauses:
+
+athleteplaysforteam(A, B, 0.8446354215859994) :- 
+     athleteledsportsteam(A, B), 
+     !. // Clause #1.
+
+athleteplaysforteam(A, B, 0.7812258581764353) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     athleteledsportsteam(A, D), 
+     athleteplayssport(A, E), 
+     teamplayssport(B, E), 
+     !. // Clause #2.
+
+athleteplaysforteam(A, B, 0.2510060779566552) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     athleteledsportsteam(A, D), 
+     athleteplayssport(A, E), 
+     !. // Clause #3.
+
+athleteplaysforteam(A, B, -0.1418510649004878) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     athleteledsportsteam(A, D), 
+     !. // Clause #4.
+
+athleteplaysforteam(A, B, 0.5488705845840446) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     !. // Clause #5.
+
+athleteplaysforteam(A, B, 0.11621345122854462) :- 
+     teamalsoknownas(B, C), 
+     !. // Clause #6.
+
+athleteplaysforteam(A, B, 0.5776611302214641) :- 
+     teamplayssport(B, C), 
+     athleteplayssport(A, C), 
+     !. // Clause #7.
+
+athleteplaysforteam(A, B, 0.1822868661339908) :- 
+     teamplayssport(B, C), 
+     !. // Clause #8.
+
+athleteplaysforteam(A, B, 0.032061978577773244) :- !. // Clause #9.
+
+
+% The flattened versions of these clauses:
+
+flattened_athleteplaysforteam(a, b, 0.8446354215859994) :-  /* #neg=1 #pos=73 */ 
+   athleteledsportsteam(a, b),
+   !. // Flattened version of clause #1.
+
+flattened_athleteplaysforteam(a, b, 0.7812258581764353) :-  /* #neg=1 #pos=12 */ 
+   teamalsoknownas(b, uniqueVar7),
+   teamplaysagainstteam(b, uniqueVar7),
+   athleteledsportsteam(a, underscore),
+   athleteplayssport(a, uniqueVar8),
+   teamplayssport(b, uniqueVar8),
+   !. // Flattened version of clause #2.
+
+flattened_athleteplaysforteam(a, b, 0.2510060779566552) :-  /* #neg=17 #pos=11 */ 
+   teamalsoknownas(b, uniqueVar9),
+   teamplaysagainstteam(b, uniqueVar9),
+   athleteledsportsteam(a, underscore),
+   athleteplayssport(a, underscore),
+   !. // Flattened version of clause #3.
+
+flattened_athleteplaysforteam(a, b, -0.1418510649004878) :-  /* #neg=12 */ 
+   teamalsoknownas(b, uniqueVar10),
+   teamplaysagainstteam(b, uniqueVar10),
+   athleteledsportsteam(a, underscore),
+   !. // Flattened version of clause #4.
+
+flattened_athleteplaysforteam(underscore, a, 0.5488705845840446) :-  /* #neg=90 #pos=201 */ 
+   teamalsoknownas(a, uniqueVar11),
+   teamplaysagainstteam(a, uniqueVar11),
+   !. // Flattened version of clause #5.
+
+flattened_athleteplaysforteam(underscore, a, 0.11621345122854462) :-  /* #neg=23 #pos=8 */ 
+   teamalsoknownas(a, underscore),
+   !. // Flattened version of clause #6.
+
+flattened_athleteplaysforteam(a, b, 0.5776611302214641) :-  /* #neg=23 #pos=59 */ 
+   teamplayssport(b, uniqueVar12),
+   athleteplayssport(a, uniqueVar12),
+   !. // Flattened version of clause #7.
+
+flattened_athleteplaysforteam(underscore, a, 0.1822868661339908) :-  /* #neg=294 #pos=141 */ 
+   teamplayssport(a, underscore),
+   !. // Flattened version of clause #8.
+
+flattened_athleteplaysforteam(underscore, underscore, 0.032061978577773244) :-  /* #neg=57 #pos=12 */ 
+   !. // Flattened version of clause #9.
+
+
+% The unique flattened literals:
+%   teamalsoknownas(a, underscore)
+%   athleteplayssport(a, uniqueVar12)
+%   teamalsoknownas(a, uniqueVar11)
+%   teamalsoknownas(b, uniqueVar10)
+%   teamplaysagainstteam(b, uniqueVar10)
+%   teamplayssport(b, uniqueVar8)
+%   teamplaysagainstteam(b, uniqueVar7)
+%   teamplayssport(b, uniqueVar12)
+%   athleteledsportsteam(a, underscore)
+%   teamalsoknownas(b, uniqueVar7)
+%   teamplayssport(a, underscore)
+%   athleteplayssport(a, uniqueVar8)
+%   teamalsoknownas(b, uniqueVar9)
+%   athleteledsportsteam(a, b)
+%   teamplaysagainstteam(a, uniqueVar11)
+%   teamplaysagainstteam(b, uniqueVar9)
+%   athleteplayssport(a, underscore)
+
+% Time taken to learn model for 'athleteplaysforteam': 4,521 seconds.
+% Saving model in: nell_pre_computed_incorrect/train/models/bRDNs/athleteplaysforteam.model
+cached groundings hit: 0
+Misses: 0
+
+% Total learning time (1 trees): 42,229 seconds.

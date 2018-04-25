@@ -1,0 +1,35 @@
+//Parameters
+//useStdLogicVariables: true.
+//usePrologVariables: true.
+setParam: maxTreeDepth=6.
+setParam: nodeSize=1.
+setParam: numOfClauses=8.
+//Modes
+mode: male(+name).
+mode: athleteledsportsteam(+athlete,+sportsteam).
+mode: athleteledsportsteam(-athlete,+sportsteam).
+mode: athleteledsportsteam(+athlete,-sportsteam).
+mode: athleteplaysforteam(+athlete,+sportsteam).
+mode: athleteplaysforteam(+athlete,-sportsteam).
+mode: athleteplaysforteam(-athlete,+sportsteam).
+mode: athleteplaysinleague(+athlete,+sportsleague).
+mode: athleteplaysinleague(+athlete,-sportsleague).
+mode: athleteplaysinleague(-athlete,+sportsleague).
+mode: athleteplayssport(+athlete,+sport).
+mode: athleteplayssport(+athlete,-sport).
+mode: athleteplayssport(-athlete,+sport).
+mode: teamalsoknownas(+sportsteam,+sportsteam).
+mode: teamalsoknownas(+sportsteam,-sportsteam).
+mode: teamalsoknownas(-sportsteam,+sportsteam).
+mode: teamplaysagainstteam(+sportsteam,+sportsteam).
+mode: teamplaysagainstteam(+sportsteam,-sportsteam).
+mode: teamplaysagainstteam(-sportsteam,+sportsteam).
+mode: teamplaysinleague(+sportsteam,+sportsleague).
+mode: teamplaysinleague(+sportsteam,-sportsleague).
+mode: teamplaysinleague(-sportsteam,+sportsleague).
+mode: teamplayssport(+sportsteam,+sport).
+mode: teamplayssport(+sportsteam,-sport).
+mode: teamplayssport(-sportsteam,+sport).
+//usePrologVariables: true.
+//precompute:
+//athleteplaysforteam(A,B) :- 

@@ -1,0 +1,396 @@
+% Running on host: rodrigo-ubuntu
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+
+% Calling ILPouterLoop from createRegressionOuterLooper.
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/test/test_pos.txt, nell_pre_computed_incorrect/test/test_neg.txt, nell_pre_computed_incorrect/test/test_bk.txt, nell_pre_computed_incorrect/test/test_facts.txt]
+%  for N=0: args[N]=nell_pre_computed_incorrect/test/test_pos.txt
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/test/test_pos.txt, nell_pre_computed_incorrect/test/test_neg.txt, nell_pre_computed_incorrect/test/test_bk.txt, nell_pre_computed_incorrect/test/test_facts.txt]
+%  for N=1: args[N]=nell_pre_computed_incorrect/test/test_neg.txt
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/test/test_pos.txt, nell_pre_computed_incorrect/test/test_neg.txt, nell_pre_computed_incorrect/test/test_bk.txt, nell_pre_computed_incorrect/test/test_facts.txt]
+%  for N=2: args[N]=nell_pre_computed_incorrect/test/test_bk.txt
+
+% getInputArgWithDefaultValue: args=[nell_pre_computed_incorrect/test/test_pos.txt, nell_pre_computed_incorrect/test/test_neg.txt, nell_pre_computed_incorrect/test/test_bk.txt, nell_pre_computed_incorrect/test/test_facts.txt]
+%  for N=3: args[N]=nell_pre_computed_incorrect/test/test_facts.txt
+
+% Welcome to the WILL ILP/SRL systems.
+
+
+% Switching to VarIndicator = uppercase.
+
+% Unset'ing VarIndicator.
+% Reading background theory from dir: null
+% Load '../background.txt'.
+
+% Switching to VarIndicator = uppercase.
+
+***** Warning: % Since this is the first setting of the notation for variables, will keep:
+%   variableIndicator = uppercase *****
+
+  loadThisFile: i=0 newName=precomputed.txt sents=[(athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D)), (athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B)), (athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D))]
+
+***** Warning: % Since this is the first setting of the notation for variables, will keep:
+%   variableIndicator = uppercase *****
+
+% [ LazyGroundClauseIndex ]  Building full index for mode/1 with 1 assertions.
+% LoadAllModes() called.  Currently loaded modes: []
+% [ LazyGroundClauseIndex ]  Building full index for sameAs/2 with 2 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 1:  Building full index for exp/3.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for log/3.
+% LoadAllLibraries() called.  Currently loaded libraries: [listsInLogic, differentInLogic, modes_arithmeticInLogic, inlines_comparisonInLogic, modes_listsInLogic, inlines_differentInLogic, modes_differentInLogic, arithmeticInLogic, inlines_listsInLogic, modes_comparisonInLogic, comparisonInLogic, inlines_arithmeticInLogic]
+
+%  Read the facts.
+%  Have read 7.964 facts.
+% Have read 174 examples from 'nell_pre_computed_incorrect/test' [nell_pre_computed_incorrect/test/test*].
+% Have read 174 examples from 'nell_pre_computed_incorrect/test' [nell_pre_computed_incorrect/test/test*].
+
+%  LearnOneClause initialized.
+
+% The outer looper has been created.
+
+% Initializing the ILP inner looper.
+
+% NEW target:                 athleteplaysforteam(E, F)
+%  targetPred:                athleteplaysforteam/2
+%  targetArgTypes:            signature = [const, const], types = [+athlete, +sportsteam]
+%  targets:                   [athleteplaysforteam(E, F)]
+%  targetPredicates:          [athleteplaysforteam/2]
+%  targetArgSpecs:            [[E[+athlete], F[+sportsteam]]]
+%  variablesInTargets:        [[E, F]]
+
+% Precompute #0's requests: 'precomputed.txt'
+%   athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D)
+%   athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B)
+%   athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D)
+% Processing precompute file: precomputed.txt
+Writing to file: /home/rodrigoazs/Projetos/BoostSRL/precomputed.txt
+
+% Precomputing 'precomputed.txt'.
+
+%%% Precomputing 1 predicates.
+
+% Saving all provable instances of 'athleteplaysforteam'
+% using clause:   athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D)
+
+%  Found 645.660 proofs of 'athleteplaysforteam(A, B)'.
+%     Have precomputed a total of 10.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 20.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 30.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 40.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 50.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 60.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 70.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 80.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 90.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 100.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 110.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 120.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 130.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 140.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 150.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 160.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 170.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 180.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 190.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 200.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 210.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 220.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 230.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 240.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 250.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 260.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 270.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 280.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 290.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 300.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 310.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 320.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 330.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 340.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 350.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 360.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 370.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 380.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 390.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 400.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 410.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 420.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 430.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 440.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 450.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 460.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 470.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 480.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 490.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 500.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 510.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 520.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 530.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 540.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 550.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 560.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 570.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 580.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 590.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 600.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 610.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 620.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 630.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+%     Have precomputed a total of 640.000 unique facts (about athleteplaysforteam/2) so far and found 0 duplications.
+
+// Precomputed a total of 645.660 facts (and found 0 duplications) from: 'athleteplaysforteam(A, B) :- teamplayssport(B, C), athleteplayssport(A, D).'
+
+% using clause:   athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B)
+
+%  Found 0 proofs of 'athleteplaysforteam(A, B)'.
+
+// Precomputed a total of 0 facts (and found 0 duplications) from: 'athleteplaysforteam(A, B) :- athleteplayssport(A, D), teamplaysagainstteam(B, B).'
+
+/* *** NOTE THAT NOTHING WAS FOUND FOR 'athleteplaysforteam(A, B)'. *** */
+// Possibly a typo?  If not, add to a BK file:   okIfUnknown: athleteplaysforteam/2.
+// NOTE: if the head of this rule appears in other rules, this error report might be incorrect.
+
+% Skipping over this 'waitHere': Fix the above?
+% using clause:   athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D)
+
+%  Found 1.471.113 proofs of 'athleteplaysforteam(A, B)'.
+%     Have precomputed a total of 10.000 unique facts (about athleteplaysforteam/2) so far and found 2.745 duplications.
+%     Have precomputed a total of 20.000 unique facts (about athleteplaysforteam/2) so far and found 10.980 duplications.
+%     Have precomputed a total of 30.000 unique facts (about athleteplaysforteam/2) so far and found 14.640 duplications.
+%     Have precomputed a total of 40.000 unique facts (about athleteplaysforteam/2) so far and found 18.300 duplications.
+%     Have precomputed a total of 50.000 unique facts (about athleteplaysforteam/2) so far and found 21.045 duplications.
+%     Have precomputed a total of 60.000 unique facts (about athleteplaysforteam/2) so far and found 22.875 duplications.
+%     Have precomputed a total of 70.000 unique facts (about athleteplaysforteam/2) so far and found 24.705 duplications.
+%     Have precomputed a total of 80.000 unique facts (about athleteplaysforteam/2) so far and found 25.620 duplications.
+%     Have precomputed a total of 90.000 unique facts (about athleteplaysforteam/2) so far and found 25.620 duplications.
+%     Have precomputed a total of 100.000 unique facts (about athleteplaysforteam/2) so far and found 25.620 duplications.
+%     Have precomputed a total of 110.000 unique facts (about athleteplaysforteam/2) so far and found 28.365 duplications.
+%     Have precomputed a total of 120.000 unique facts (about athleteplaysforteam/2) so far and found 31.110 duplications.
+%     Have precomputed a total of 130.000 unique facts (about athleteplaysforteam/2) so far and found 32.940 duplications.
+%     Have precomputed a total of 140.000 unique facts (about athleteplaysforteam/2) so far and found 33.855 duplications.
+%     Have precomputed a total of 150.000 unique facts (about athleteplaysforteam/2) so far and found 35.685 duplications.
+%     Have precomputed a total of 160.000 unique facts (about athleteplaysforteam/2) so far and found 36.600 duplications.
+%     Have precomputed a total of 170.000 unique facts (about athleteplaysforteam/2) so far and found 41.175 duplications.
+%     Have precomputed a total of 180.000 unique facts (about athleteplaysforteam/2) so far and found 43.005 duplications.
+%     Have precomputed a total of 190.000 unique facts (about athleteplaysforteam/2) so far and found 44.835 duplications.
+%     Have precomputed a total of 200.000 unique facts (about athleteplaysforteam/2) so far and found 44.835 duplications.
+%     Have precomputed a total of 210.000 unique facts (about athleteplaysforteam/2) so far and found 44.835 duplications.
+%     Have precomputed a total of 220.000 unique facts (about athleteplaysforteam/2) so far and found 45.750 duplications.
+%     Have precomputed a total of 230.000 unique facts (about athleteplaysforteam/2) so far and found 47.580 duplications.
+%     Have precomputed a total of 240.000 unique facts (about athleteplaysforteam/2) so far and found 50.325 duplications.
+%     Have precomputed a total of 250.000 unique facts (about athleteplaysforteam/2) so far and found 52.155 duplications.
+%     Have precomputed a total of 260.000 unique facts (about athleteplaysforteam/2) so far and found 52.155 duplications.
+%     Have precomputed a total of 270.000 unique facts (about athleteplaysforteam/2) so far and found 53.070 duplications.
+%     Have precomputed a total of 280.000 unique facts (about athleteplaysforteam/2) so far and found 56.730 duplications.
+%     Have precomputed a total of 290.000 unique facts (about athleteplaysforteam/2) so far and found 57.645 duplications.
+%     Have precomputed a total of 300.000 unique facts (about athleteplaysforteam/2) so far and found 57.645 duplications.
+%     Have precomputed a total of 310.000 unique facts (about athleteplaysforteam/2) so far and found 62.220 duplications.
+%     Have precomputed a total of 320.000 unique facts (about athleteplaysforteam/2) so far and found 65.880 duplications.
+%     Have precomputed a total of 330.000 unique facts (about athleteplaysforteam/2) so far and found 67.710 duplications.
+%     Have precomputed a total of 340.000 unique facts (about athleteplaysforteam/2) so far and found 70.455 duplications.
+%     Have precomputed a total of 350.000 unique facts (about athleteplaysforteam/2) so far and found 71.370 duplications.
+%     Have precomputed a total of 360.000 unique facts (about athleteplaysforteam/2) so far and found 71.370 duplications.
+%     Have precomputed a total of 370.000 unique facts (about athleteplaysforteam/2) so far and found 73.200 duplications.
+%     Have precomputed a total of 380.000 unique facts (about athleteplaysforteam/2) so far and found 74.115 duplications.
+%     Have precomputed a total of 390.000 unique facts (about athleteplaysforteam/2) so far and found 76.860 duplications.
+%     Have precomputed a total of 400.000 unique facts (about athleteplaysforteam/2) so far and found 78.630 duplications.
+%     Have precomputed a total of 410.000 unique facts (about athleteplaysforteam/2) so far and found 79.605 duplications.
+%     Have precomputed a total of 420.000 unique facts (about athleteplaysforteam/2) so far and found 81.379 duplications.
+%     Have precomputed a total of 430.000 unique facts (about athleteplaysforteam/2) so far and found 84.180 duplications.
+%     Have precomputed a total of 440.000 unique facts (about athleteplaysforteam/2) so far and found 85.095 duplications.
+%     Have precomputed a total of 450.000 unique facts (about athleteplaysforteam/2) so far and found 86.010 duplications.
+%     Have precomputed a total of 460.000 unique facts (about athleteplaysforteam/2) so far and found 86.010 duplications.
+%     Have precomputed a total of 470.000 unique facts (about athleteplaysforteam/2) so far and found 87.840 duplications.
+%     Have precomputed a total of 480.000 unique facts (about athleteplaysforteam/2) so far and found 89.670 duplications.
+%     Have precomputed a total of 490.000 unique facts (about athleteplaysforteam/2) so far and found 91.500 duplications.
+%     Have precomputed a total of 500.000 unique facts (about athleteplaysforteam/2) so far and found 92.415 duplications.
+%     Have precomputed a total of 510.000 unique facts (about athleteplaysforteam/2) so far and found 92.415 duplications.
+%     Have precomputed a total of 520.000 unique facts (about athleteplaysforteam/2) so far and found 93.330 duplications.
+%     Have precomputed a total of 530.000 unique facts (about athleteplaysforteam/2) so far and found 94.245 duplications.
+%     Have precomputed a total of 540.000 unique facts (about athleteplaysforteam/2) so far and found 96.075 duplications.
+%     Have precomputed a total of 550.000 unique facts (about athleteplaysforteam/2) so far and found 96.075 duplications.
+%     Have precomputed a total of 560.000 unique facts (about athleteplaysforteam/2) so far and found 96.990 duplications.
+%     Have precomputed a total of 570.000 unique facts (about athleteplaysforteam/2) so far and found 98.820 duplications.
+%     Have precomputed a total of 580.000 unique facts (about athleteplaysforteam/2) so far and found 100.650 duplications.
+%     Have precomputed a total of 590.000 unique facts (about athleteplaysforteam/2) so far and found 104.310 duplications.
+%     Have precomputed a total of 600.000 unique facts (about athleteplaysforteam/2) so far and found 105.507 duplications.
+%     Have precomputed a total of 610.000 unique facts (about athleteplaysforteam/2) so far and found 108.474 duplications.
+%     Have precomputed a total of 620.000 unique facts (about athleteplaysforteam/2) so far and found 113.742 duplications.
+%     Have precomputed a total of 630.000 unique facts (about athleteplaysforteam/2) so far and found 116.487 duplications.
+%     Have precomputed a total of 640.000 unique facts (about athleteplaysforteam/2) so far and found 120.147 duplications.
+%     Have precomputed a total of 650.000 unique facts (about athleteplaysforteam/2) so far and found 121.977 duplications.
+%     Have precomputed a total of 660.000 unique facts (about athleteplaysforteam/2) so far and found 124.722 duplications.
+%     Have precomputed a total of 670.000 unique facts (about athleteplaysforteam/2) so far and found 128.378 duplications.
+%     Have precomputed a total of 680.000 unique facts (about athleteplaysforteam/2) so far and found 129.297 duplications.
+%     Have precomputed a total of 690.000 unique facts (about athleteplaysforteam/2) so far and found 129.297 duplications.
+%     Have precomputed a total of 700.000 unique facts (about athleteplaysforteam/2) so far and found 129.297 duplications.
+%     Have precomputed a total of 710.000 unique facts (about athleteplaysforteam/2) so far and found 130.212 duplications.
+%     Have precomputed a total of 720.000 unique facts (about athleteplaysforteam/2) so far and found 130.212 duplications.
+%     Have precomputed a total of 730.000 unique facts (about athleteplaysforteam/2) so far and found 130.212 duplications.
+%     Have precomputed a total of 740.000 unique facts (about athleteplaysforteam/2) so far and found 131.127 duplications.
+%     Have precomputed a total of 750.000 unique facts (about athleteplaysforteam/2) so far and found 132.957 duplications.
+%     Have precomputed a total of 760.000 unique facts (about athleteplaysforteam/2) so far and found 132.957 duplications.
+%     Have precomputed a total of 770.000 unique facts (about athleteplaysforteam/2) so far and found 132.957 duplications.
+%     Have precomputed a total of 780.000 unique facts (about athleteplaysforteam/2) so far and found 133.872 duplications.
+%     Have precomputed a total of 790.000 unique facts (about athleteplaysforteam/2) so far and found 135.702 duplications.
+%     Have precomputed a total of 800.000 unique facts (about athleteplaysforteam/2) so far and found 135.702 duplications.
+%     Have precomputed a total of 810.000 unique facts (about athleteplaysforteam/2) so far and found 137.532 duplications.
+%     Have precomputed a total of 820.000 unique facts (about athleteplaysforteam/2) so far and found 140.277 duplications.
+%     Have precomputed a total of 830.000 unique facts (about athleteplaysforteam/2) so far and found 140.277 duplications.
+%     Have precomputed a total of 840.000 unique facts (about athleteplaysforteam/2) so far and found 141.192 duplications.
+%     Have precomputed a total of 850.000 unique facts (about athleteplaysforteam/2) so far and found 143.022 duplications.
+%     Have precomputed a total of 860.000 unique facts (about athleteplaysforteam/2) so far and found 143.937 duplications.
+%     Have precomputed a total of 870.000 unique facts (about athleteplaysforteam/2) so far and found 147.879 duplications.
+%     Have precomputed a total of 880.000 unique facts (about athleteplaysforteam/2) so far and found 149.709 duplications.
+%     Have precomputed a total of 890.000 unique facts (about athleteplaysforteam/2) so far and found 151.539 duplications.
+%     Have precomputed a total of 900.000 unique facts (about athleteplaysforteam/2) so far and found 156.114 duplications.
+%     Have precomputed a total of 910.000 unique facts (about athleteplaysforteam/2) so far and found 158.859 duplications.
+%     Have precomputed a total of 920.000 unique facts (about athleteplaysforteam/2) so far and found 160.689 duplications.
+%     Have precomputed a total of 930.000 unique facts (about athleteplaysforteam/2) so far and found 162.519 duplications.
+%     Have precomputed a total of 940.000 unique facts (about athleteplaysforteam/2) so far and found 162.915 duplications.
+%     Have precomputed a total of 950.000 unique facts (about athleteplaysforteam/2) so far and found 164.349 duplications.
+%     Have precomputed a total of 960.000 unique facts (about athleteplaysforteam/2) so far and found 166.461 duplications.
+%     Have precomputed a total of 970.000 unique facts (about athleteplaysforteam/2) so far and found 168.291 duplications.
+%     Have precomputed a total of 980.000 unique facts (about athleteplaysforteam/2) so far and found 171.036 duplications.
+%     Have precomputed a total of 990.000 unique facts (about athleteplaysforteam/2) so far and found 173.781 duplications.
+%     Have precomputed a total of 1.000.000 unique facts (about athleteplaysforteam/2) so far and found 175.611 duplications.
+%     Have precomputed a total of 1.010.000 unique facts (about athleteplaysforteam/2) so far and found 175.611 duplications.
+%     Have precomputed a total of 1.020.000 unique facts (about athleteplaysforteam/2) so far and found 180.186 duplications.
+%     Have precomputed a total of 1.030.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.040.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.050.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.060.000 unique facts (about athleteplaysforteam/2) so far and found 181.101 duplications.
+%     Have precomputed a total of 1.070.000 unique facts (about athleteplaysforteam/2) so far and found 182.016 duplications.
+%     Have precomputed a total of 1.080.000 unique facts (about athleteplaysforteam/2) so far and found 185.676 duplications.
+%     Have precomputed a total of 1.090.000 unique facts (about athleteplaysforteam/2) so far and found 185.676 duplications.
+%     Have precomputed a total of 1.100.000 unique facts (about athleteplaysforteam/2) so far and found 187.506 duplications.
+%     Have precomputed a total of 1.110.000 unique facts (about athleteplaysforteam/2) so far and found 189.336 duplications.
+%     Have precomputed a total of 1.120.000 unique facts (about athleteplaysforteam/2) so far and found 190.251 duplications.
+%     Have precomputed a total of 1.130.000 unique facts (about athleteplaysforteam/2) so far and found 191.166 duplications.
+%     Have precomputed a total of 1.140.000 unique facts (about athleteplaysforteam/2) so far and found 193.911 duplications.
+%     Have precomputed a total of 1.150.000 unique facts (about athleteplaysforteam/2) so far and found 194.826 duplications.
+%     Have precomputed a total of 1.160.000 unique facts (about athleteplaysforteam/2) so far and found 198.486 duplications.
+%     Have precomputed a total of 1.170.000 unique facts (about athleteplaysforteam/2) so far and found 199.401 duplications.
+%     Have precomputed a total of 1.180.000 unique facts (about athleteplaysforteam/2) so far and found 200.316 duplications.
+%     Have precomputed a total of 1.190.000 unique facts (about athleteplaysforteam/2) so far and found 200.316 duplications.
+%     Have precomputed a total of 1.200.000 unique facts (about athleteplaysforteam/2) so far and found 201.231 duplications.
+%     Have precomputed a total of 1.210.000 unique facts (about athleteplaysforteam/2) so far and found 203.976 duplications.
+%     Have precomputed a total of 1.220.000 unique facts (about athleteplaysforteam/2) so far and found 204.891 duplications.
+%     Have precomputed a total of 1.230.000 unique facts (about athleteplaysforteam/2) so far and found 208.551 duplications.
+%     Have precomputed a total of 1.240.000 unique facts (about athleteplaysforteam/2) so far and found 209.414 duplications.
+%     Have precomputed a total of 1.250.000 unique facts (about athleteplaysforteam/2) so far and found 211.296 duplications.
+
+// Precomputed a total of 1.259.817 facts (and found 211.296 duplications) from: 'athleteplaysforteam(A, B) :- teamplaysinleague(B, C), athleteplaysinleague(A, D).'
+
+
+
+%%% Precomputed a total of 1.905.477 facts (and found 211.296 duplications).  Done at 0:12:14 4/25/18
+
+
+***** Warning: Both regular and gzip'ed versions of this file exist; will use NEWER one:
+ precomputed.txt *****
+
+
+***** Warning: Both regular and gzip'ed versions of this file exist; will read NEWER one:
+ precomputed.txt *****
+
+% Loading: precomputed.txt
+% Read an additional 1.905.477 facts from edu.wisc.cs.will.Utils.condor.CondorFileReader@506e6d5e.
+
+% Started collecting constants
+
+% Collecting the types of constants.
+
+%   *** WARNING ***  Constant 'cleveland_indians' is already marked as being of types = [athlete];
+%          type = 'sportsteam' may be added if not already known.
+%  PredicateName = 'teamalsoknownas', from 'teamalsoknownas(colorado_rockies, cleveland_indians)',
+%  which has types = [signature = [const, const], types = [+sportsteam, +sportsteam], signature = [const, const], types = [+sportsteam, -sportsteam], signature = [const, const], types = [-sportsteam, +sportsteam]]
+%   Other warnings with this predicate and this new type are not reported in order to keep this printout small.  Use dontComplainAboutMultipleTypes to override.
+
+%   *** WARNING ***  Constant 'ncaa' is already marked as being of types = [sportsleague];
+%          type = 'sportsteam' may be added if not already known.
+%  PredicateName = 'teamplaysinleague', from 'teamplaysinleague(ncaa, ncaa)',
+%  which has types = [signature = [const, const], types = [+sportsteam, +sportsleague], signature = [const, const], types = [+sportsteam, -sportsleague], signature = [const, const], types = [-sportsteam, +sportsleague]]
+%   Other warnings with this predicate and this new type are not reported in order to keep this printout small.  Use dontComplainAboutMultipleTypes to override.
+
+% Looking at the training examples to see if any types of new constants can be inferred.
+% Time to collect constants: 93 milliseconds
+% Time to collect examples: 0 seconds
+
+% Read 174 pos examples and 174 neg examples.
+% Time to init learnOneClause: 41 seconds
+% Old dirnell_pre_computed_incorrect/train/models/
+
+% Have 174 'raw' positive examples and kept 174.
+% Have 174 'raw' negative examples and kept 174.
+
+% processing backup's for athleteplaysforteam
+%  POS EX = 174
+%  NEG EX = 174
+
+% Memory usage by WILLSetup (just counts # targets?):
+%  |backupPosExamples| = 1
+%  |backupNegExamples| = 1
+%  |predicatesAsFacts| = 0
+%  |addedToFactBase|   = 0
+
+% Getting bRDN's target predicates.
+% Did not learn a model for 'athleteplaysforteam' this run.
+%   loadModel (#0): nell_pre_computed_incorrect/train/models/bRDNs/Trees/athleteplaysforteamTree0.tree
+%  Done loading 1 models.
+File: nell_pre_computed_incorrect/test/advice.txt doesnt exist.Hence no advice loaded
+
+% for athleteplaysforteam |lookupPos| = 174
+% for athleteplaysforteam |lookupNeg| = 174
+% getJointExamples: |pos| = 174, |neg| = 174
+
+% Starting inference in bRDN.
+
+% Skipping over this 'waitHere': Changing type for athleteplaysforteam(athlete,sportsteam) from QUERY to COMPUTED
+% Trees = 1
+
+% Starting getMarginalProbabilities.
+% [ LazyGroundClauseIndex ]  Building full index for athleteledsportsteam/2 with 246 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for teamalsoknownas/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for teamplayssport/2.
+% [ LazyGroundClauseIndex ]  Building full index for athleteplayssport/2 with 1.899 assertions.
+% [ LazyGroundClauseIndex ]  Building full index for teamplaysagainstteam/2 with 2.780 assertions.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for athleteledsportsteam/2.
+% [ LazyGroundNthArgumentClauseIndex ]  Argument 0:  Building full index for athleteplayssport/2.
+% [ LazyGroundClauseIndex ]  Building full index for teamplayssport/2 with 340 assertions.
+% No Gibbs sampling needed during inference.
+ (Arithmetic) Mean Probability Assigned to Correct Output Class: 180,011/348,00 = 0,517274
+
+ The weighted count of positive examples = 174,000 and the weighted count of negative examples = 174,000
+
+printExamples: Writing out predictions (for Tuffy?) on 348 examples for 'athleteplaysforteam' to:
+  nell_pre_computed_incorrect/test/results_athleteplaysforteam.db
+ and to:
+  nell_pre_computed_incorrect/test/query_athleteplaysforteam.db
+%    No need to compress since small: nell_pre_computed_incorrect/test/query_athleteplaysforteam.db
+
+% Computing Area Under Curves.
+%Pos=174
+%Neg=174
+%LL:-270.1095621847016
+%LL:-304.96200601067073
+
+% Running command: java -jar ../WILL/src/edu/wisc/cs/will/DataSetUtils/auc.jar nell_pre_computed_incorrect/test/AUC/aucTemp.txt list 0.0
+% WAITING FOR command: java -jar ../WILL/src/edu/wisc/cs/will/DataSetUtils/auc.jar nell_pre_computed_incorrect/test/AUC/aucTemp.txt list 0.0
+% DONE WAITING FOR command: java -jar ../WILL/src/edu/wisc/cs/will/DataSetUtils/auc.jar nell_pre_computed_incorrect/test/AUC/aucTemp.txt list 0.0
+% F1 = 1.0
+% Threshold = 0.15565972102867165
+
+%   AUC ROC   = 0,742783
+%   AUC PR    = 0,758337
+%   CLL	      = -0,876328
+%   Precision = NaN at threshold = 0,500
+%   Recall    = 0,000000
+%   F1        = NaN
+
+% Total inference time (1 trees): 1 minutes and 5,868 seconds.

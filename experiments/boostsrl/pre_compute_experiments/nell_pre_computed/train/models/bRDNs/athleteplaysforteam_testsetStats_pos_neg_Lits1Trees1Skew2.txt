@@ -1,0 +1,22 @@
+useLeadingQuestionMarkVariables: true.
+
+// (Arithmetic) Mean Probability Assigned to Correct Output Class: 179,651/348,00 = 0,516237
+testsetLikelihood(sum(179,651), countOfExamples(348,00), mean(0,516237)).
+
+// The weighted count of positive examples = 174,000 and the weighted count of negative examples = 174,000
+weightedSumPos(174,000).
+weightedSumNeg(174,000).
+
+//  AUC ROC   = 0,737168
+//  AUC PR    = 0,752795
+//  CLL       = -0,880277
+aucROC(athleteplaysforteam, 0,737168).
+aucPR( athleteplaysforteam, 0,752795).
+
+//   Precision = NaN at threshold = 0,500
+//   Recall    = 0,000000
+//   F1        = NaN
+precision(athleteplaysforteam, NaN, usingThreshold(0.5)).
+recall(   athleteplaysforteam, 0,000000, usingThreshold(0.5)).
+F1(       athleteplaysforteam, NaN, usingThreshold(0.5)).
+

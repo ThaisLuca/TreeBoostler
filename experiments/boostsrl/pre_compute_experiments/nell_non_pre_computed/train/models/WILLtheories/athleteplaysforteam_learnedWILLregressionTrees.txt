@@ -1,0 +1,294 @@
+usePrologVariables: true.
+
+% maxTreeDepthInNodes                 = 6
+% maxTreeDepthInLiterals              = 12
+% maxNumberOfLiteralsAtAnInteriorNode = 1
+% maxFreeBridgersInBody               = 1
+% maxNumberOfClauses                  = 8
+% maxNodesToConsider                  = 10
+% maxNodesToCreate                    = 10.000
+% maxAcceptableNodeScoreToStop        = 0,003
+% negPosRatio                         = 2,000
+% testNegPosRatio                     = -1,000
+% # of pos examples                   = 1.035
+% # of neg examples                   = 0
+
+
+
+%%%%%  WILL-Produced Tree #1 @ 23:44:37 4/24/18.  [Using 6.877.720 memory cells.]  %%%%%
+
+% FOR athleteplaysforteam(A, B):
+%   if ( teamalsoknownas(B, C) )
+%   then if ( teamplaysagainstteam(B, C) )
+%   | then return 0.5431883051782483;  // std dev = 0,465, 381,000 (wgt'ed) examples reached here.  /* #neg=120 #pos=261 */
+%   | else return 0.13939893509951237;  // std dev = 0,450, 32,000 (wgt'ed) examples reached here.  /* #neg=23 #pos=9 */
+%   else if ( athleteledsportsteam(A, B) )
+%   | then return 0.8303711573217337;  // std dev = 0,164, 36,000 (wgt'ed) examples reached here.  /* #neg=1 #pos=35 */
+%   | else if ( teamplayssport(B, D) )
+%   | | then if ( athleteledsportsteam(A, E) )
+%   | | | then return 0.15172691675088706;  // std dev = 0,455, 109,000 (wgt'ed) examples reached here.  /* #neg=77 #pos=32 */
+%   | | | else if ( athleteplayssport(A, D) )
+%   | | | | then return 0.6167696247546849;  // std dev = 0,428, 58,000 (wgt'ed) examples reached here.  /* #neg=14 #pos=44 */
+%   | | | | else if ( athleteplayssport(A, F) )
+%   | | | | | then return 0.0268236338946931;  // std dev = 0,374, 83,000 (wgt'ed) examples reached here.  /* #neg=69 #pos=14 */
+%   | | | | | else if ( athleteledsportsteam(G, B) )
+%   | | | | | | then return 0.2361016910050248;  // std dev = 5,464, 127,000 (wgt'ed) examples reached here.  /* #neg=79 #pos=48 */
+%   | | | | | | else return 0.30100607795665635;  // std dev = 5,877, 140,000 (wgt'ed) examples reached here.  /* #neg=78 #pos=62 */
+%   | | else return 0.032061978577773244;  // std dev = 0,379, 69,000 (wgt'ed) examples reached here.  /* #neg=57 #pos=12 */
+
+
+% Clauses:
+
+athleteplaysforteam(A, B, 0.5431883051782483) :- 
+     teamalsoknownas(B, C), 
+     teamplaysagainstteam(B, C), 
+     !. // Clause #1.
+
+athleteplaysforteam(A, B, 0.13939893509951237) :- 
+     teamalsoknownas(B, C), 
+     !. // Clause #2.
+
+athleteplaysforteam(A, B, 0.8303711573217337) :- 
+     athleteledsportsteam(A, B), 
+     !. // Clause #3.
+
+athleteplaysforteam(A, B, 0.15172691675088706) :- 
+     teamplayssport(B, C), 
+     athleteledsportsteam(A, D), 
+     !. // Clause #4.
+
+athleteplaysforteam(A, B, 0.6167696247546849) :- 
+     teamplayssport(B, C), 
+     athleteplayssport(A, C), 
+     !. // Clause #5.
+
+athleteplaysforteam(A, B, 0.0268236338946931) :- 
+     teamplayssport(B, C), 
+     athleteplayssport(A, D), 
+     !. // Clause #6.
+
+athleteplaysforteam(A, B, 0.2361016910050248) :- 
+     teamplayssport(B, C), 
+     athleteledsportsteam(D, B), 
+     !. // Clause #7.
+
+athleteplaysforteam(A, B, 0.30100607795665635) :- 
+     teamplayssport(B, C), 
+     !. // Clause #8.
+
+athleteplaysforteam(A, B, 0.032061978577773244) :- !. // Clause #9.
+
+
+% The flattened versions of these clauses:
+
+flattened_athleteplaysforteam(underscore, a, 0.5431883051782483) :-  /* #neg=120 #pos=261 */ 
+   teamalsoknownas(a, uniqueVar1),
+   teamplaysagainstteam(a, uniqueVar1),
+   !. // Flattened version of clause #1.
+
+flattened_athleteplaysforteam(underscore, a, 0.13939893509951237) :-  /* #neg=23 #pos=9 */ 
+   teamalsoknownas(a, underscore),
+   !. // Flattened version of clause #2.
+
+flattened_athleteplaysforteam(a, b, 0.8303711573217337) :-  /* #neg=1 #pos=35 */ 
+   athleteledsportsteam(a, b),
+   !. // Flattened version of clause #3.
+
+flattened_athleteplaysforteam(a, b, 0.15172691675088706) :-  /* #neg=77 #pos=32 */ 
+   teamplayssport(b, underscore),
+   athleteledsportsteam(a, underscore),
+   !. // Flattened version of clause #4.
+
+flattened_athleteplaysforteam(a, b, 0.6167696247546849) :-  /* #neg=14 #pos=44 */ 
+   teamplayssport(b, uniqueVar2),
+   athleteplayssport(a, uniqueVar2),
+   !. // Flattened version of clause #5.
+
+flattened_athleteplaysforteam(a, b, 0.0268236338946931) :-  /* #neg=69 #pos=14 */ 
+   teamplayssport(b, underscore),
+   athleteplayssport(a, underscore),
+   !. // Flattened version of clause #6.
+
+flattened_athleteplaysforteam(underscore, a, 0.2361016910050248) :-  /* #neg=79 #pos=48 */ 
+   teamplayssport(a, underscore),
+   athleteledsportsteam(underscore, a),
+   !. // Flattened version of clause #7.
+
+flattened_athleteplaysforteam(underscore, a, 0.30100607795665635) :-  /* #neg=78 #pos=62 */ 
+   teamplayssport(a, underscore),
+   !. // Flattened version of clause #8.
+
+flattened_athleteplaysforteam(underscore, underscore, 0.032061978577773244) :-  /* #neg=57 #pos=12 */ 
+   !. // Flattened version of clause #9.
+
+
+% The unique flattened literals:
+%   teamplayssport(b, underscore)
+%   teamalsoknownas(a, underscore)
+%   athleteplayssport(a, underscore)
+%   teamplayssport(a, underscore)
+%   athleteledsportsteam(underscore, a)
+%   teamalsoknownas(a, uniqueVar1)
+%   athleteledsportsteam(a, underscore)
+%   athleteledsportsteam(a, b)
+%   teamplayssport(b, uniqueVar2)
+%   athleteplayssport(a, uniqueVar2)
+%   teamplaysagainstteam(a, uniqueVar1)
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%  Final call for computing score for athleteplaysforteam.  %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+stepLength_tree1(1.0).
+
+logPrior(-1.8).
+athleteplaysforteam(D, E, Total) :- // A general accessor. 
+   athleteplaysforteam(D, E, 1000000, Total), !.
+athleteplaysforteam(D, E, Total) :- waitHere("This should not fail", athleteplaysforteam(D, E, Total)).
+
+athleteplaysforteam(D, E, TreesToUse, Total) :- // A tree-limited accessor (e.g., for tuning the number of trees to use).
+   logPrior(LogPrior),
+   getScore_athleteplaysforteam_tree1(D, E, TreesToUse, Total1),
+   Total is LogPrior + Total1,
+   !.
+athleteplaysforteam(D, E, TreesToUse, Total) :- waitHere("This should not fail", athleteplaysforteam(D, E, TreesToUse, Total)).
+
+getScore_athleteplaysforteam_tree1(D, E, TreesToUse, 0.0) :- 1 > TreesToUse, !.
+getScore_athleteplaysforteam_tree1(D, E, TreesToUse, Total1) :- athleteplaysforteam_tree1(D, E, Total), stepLength_tree1(StepLen), Total1 is Total * StepLen.
+
+flattenedLiteralsInThisSetOfTrees(athleteplaysforteam, 11, [
+   teamplayssport(b, underscore),
+   teamalsoknownas(a, underscore),
+   athleteplayssport(a, underscore),
+   teamplayssport(a, underscore),
+   athleteledsportsteam(underscore, a),
+   teamalsoknownas(a, uniqueVar1),
+   athleteledsportsteam(a, underscore),
+   athleteledsportsteam(a, b),
+   teamplayssport(b, uniqueVar2),
+   athleteplayssport(a, uniqueVar2),
+   teamplaysagainstteam(a, uniqueVar1)]).
+
+%%%%%  WILL-Produced Tree Combined @ 23:44:37 4/24/18.  [Using 6.833.688 memory cells.]  %%%%%
+
+% FOR athleteplaysforteam(A, B):
+%   if ( teamalsoknownas(B, C) )
+%   then return 0.5119019617338907;  // std dev = 0,476, 413,000 (wgt'ed) examples reached here.  /* #neg=143 #pos=270 */
+%   else if ( teamplayssport(B, D) )
+%   | then if ( athleteplayssport(A, D) )
+%   | | then return 0.6304261628222838;  // std dev = 0,419, 101,000 (wgt'ed) examples reached here.  /* #neg=23 #pos=78 */
+%   | | else if ( athleteplayssport(A, E) )
+%   | | | then return 0.06903328884100794;  // std dev = 0,408, 147,000 (wgt'ed) examples reached here.  /* #neg=116 #pos=31 */
+%   | | | else if ( athleteledsportsteam(A, B) )
+%   | | | | then return 0.7812258581764353;  // std dev = 0,266, 13,000 (wgt'ed) examples reached here.  /* #neg=1 #pos=12 */
+%   | | | | else if ( athleteledsportsteam(F, B) )
+%   | | | | | then if ( teamalsoknownas(G, B) )
+%   | | | | | | then return 0.03206197857777315;  // std dev = 1,818, 23,000 (wgt'ed) examples reached here.  /* #neg=19 #pos=4 */
+%   | | | | | | else return 0.25310691829279025;  // std dev = 5,333, 119,000 (wgt'ed) examples reached here.  /* #neg=72 #pos=47 */
+%   | | | | | else if ( athleteledsportsteam(A, H) )
+%   | | | | | | then return -0.04185106490048778;  // std dev = 0,949, 10,000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | | | | | else return 0.30100607795665635;  // std dev = 5,877, 140,000 (wgt'ed) examples reached here.  /* #neg=78 #pos=62 */
+%   | else return 0.032061978577773244;  // std dev = 0,379, 69,000 (wgt'ed) examples reached here.  /* #neg=57 #pos=12 */
+
+
+% Clauses:
+
+athleteplaysforteam(A, B, 0.5119019617338907) :- 
+     teamalsoknownas(B, C), 
+     !. // Clause #1.
+
+athleteplaysforteam(A, B, 0.6304261628222838) :- 
+     teamplayssport(B, C), 
+     athleteplayssport(A, C), 
+     !. // Clause #2.
+
+athleteplaysforteam(A, B, 0.06903328884100794) :- 
+     teamplayssport(B, C), 
+     athleteplayssport(A, D), 
+     !. // Clause #3.
+
+athleteplaysforteam(A, B, 0.7812258581764353) :- 
+     teamplayssport(B, C), 
+     athleteledsportsteam(A, B), 
+     !. // Clause #4.
+
+athleteplaysforteam(A, B, 0.03206197857777315) :- 
+     teamplayssport(B, C), 
+     athleteledsportsteam(D, B), 
+     teamalsoknownas(E, B), 
+     !. // Clause #5.
+
+athleteplaysforteam(A, B, 0.25310691829279025) :- 
+     teamplayssport(B, C), 
+     athleteledsportsteam(D, B), 
+     !. // Clause #6.
+
+athleteplaysforteam(A, B, -0.04185106490048778) :- 
+     teamplayssport(B, C), 
+     athleteledsportsteam(A, D), 
+     !. // Clause #7.
+
+athleteplaysforteam(A, B, 0.30100607795665635) :- 
+     teamplayssport(B, C), 
+     !. // Clause #8.
+
+athleteplaysforteam(A, B, 0.032061978577773244) :- !. // Clause #9.
+
+
+% The flattened versions of these clauses:
+
+flattened_athleteplaysforteam(underscore, a, 0.5119019617338907) :-  /* #neg=143 #pos=270 */ 
+   teamalsoknownas(a, underscore),
+   !. // Flattened version of clause #1.
+
+flattened_athleteplaysforteam(a, b, 0.6304261628222838) :-  /* #neg=23 #pos=78 */ 
+   teamplayssport(b, uniqueVar3),
+   athleteplayssport(a, uniqueVar3),
+   !. // Flattened version of clause #2.
+
+flattened_athleteplaysforteam(a, b, 0.06903328884100794) :-  /* #neg=116 #pos=31 */ 
+   teamplayssport(b, underscore),
+   athleteplayssport(a, underscore),
+   !. // Flattened version of clause #3.
+
+flattened_athleteplaysforteam(a, b, 0.7812258581764353) :-  /* #neg=1 #pos=12 */ 
+   teamplayssport(b, underscore),
+   athleteledsportsteam(a, b),
+   !. // Flattened version of clause #4.
+
+flattened_athleteplaysforteam(underscore, a, 0.03206197857777315) :-  /* #neg=19 #pos=4 */ 
+   teamplayssport(a, underscore),
+   athleteledsportsteam(underscore, a),
+   teamalsoknownas(underscore, a),
+   !. // Flattened version of clause #5.
+
+flattened_athleteplaysforteam(underscore, a, 0.25310691829279025) :-  /* #neg=72 #pos=47 */ 
+   teamplayssport(a, underscore),
+   athleteledsportsteam(underscore, a),
+   !. // Flattened version of clause #6.
+
+flattened_athleteplaysforteam(a, b, -0.04185106490048778) :-  /* #neg=9 #pos=1 */ 
+   teamplayssport(b, underscore),
+   athleteledsportsteam(a, underscore),
+   !. // Flattened version of clause #7.
+
+flattened_athleteplaysforteam(underscore, a, 0.30100607795665635) :-  /* #neg=78 #pos=62 */ 
+   teamplayssport(a, underscore),
+   !. // Flattened version of clause #8.
+
+flattened_athleteplaysforteam(underscore, underscore, 0.032061978577773244) :-  /* #neg=57 #pos=12 */ 
+   !. // Flattened version of clause #9.
+
+
+% The unique flattened literals:
+%   teamplayssport(b, underscore)
+%   teamalsoknownas(a, underscore)
+%   athleteplayssport(a, underscore)
+%   teamplayssport(a, underscore)
+%   athleteledsportsteam(underscore, a)
+%   athleteplayssport(a, uniqueVar3)
+%   athleteledsportsteam(a, underscore)
+%   athleteledsportsteam(a, b)
+%   teamalsoknownas(underscore, a)
+%   teamplayssport(b, uniqueVar3)
