@@ -4,6 +4,7 @@
 """
 
 from gensim.models import Word2Vec
+from gensim import matutils
 from sklearn.decomposition import PCA
 from matplotlib import pyplot
 import numpy as np
@@ -61,21 +62,53 @@ class REmbedding(object):
         self.model = Word2Vec(self.sentences, **kwargs)
         
     def centroid(self):
-        X = self.model[self.model.wv.vocab]
-        return np.mean(X, axis=0)
+        return np.mean(self.model[self.model.wv.vocab], axis=0)
+    
+    def type_centroid(self):
+        typ = {}
+        for word in list(self.model.wv.vocab):
+            s = word.split('_')
+            if len(s) > 1 and len(s[0]) > 0:
+                if s[0] not in typ:
+                    typ[s[0]] = []
+                typ[s[0]].append(self.model[word])
+        for t in typ:
+            typ[t] = np.mean(typ[t], axis=0)
+        return typ
+    
+    def most_similar_predicate(self, vector):
+        #self.model.wv.similarity()
+        top = self.model.wv.similar_by_vector(vector, topn=len(self.model.wv.vocab))
+        real = []
+        for t in top:
+            s = t[0].split('_')
+            if len(s) <= 1 or len(s[0]) == 0:
+                real.append(t)
+        return real
+    
+    def most_similar_type(self, vector):
+        types = self.type_centroid()
+        distances = []
+        for t in types:
+            distances.append((t, np.dot(matutils.unitvec(vector), matutils.unitvec(types[t]))))
+        distances = sorted(distances, key=lambda x: x[1], reverse=True)
+        return distances
         
     def plot_2d(self, color={}, plot_centroid=False):
         X = self.model[self.model.wv.vocab]
-        print(X)
         pca = PCA(n_components=2)
         result = pca.fit_transform(X)
-        # create a scatter plot of the projection
         words = list(self.model.wv.vocab)
-        fig = pyplot.figure(figsize=(10,10))
-        fi = {}
+        pyplot.figure(figsize=(10,10))
         if plot_centroid:
-            c = pca.transform(np.array(self.centroid()))
-            pyplot.scatter(c[i, 0], c[i, 1], marker='x')
+            c = pca.transform(np.array([self.centroid()]))
+            pyplot.scatter(c[0, 0], c[0, 1], marker='x')
+            centroids = self.type_centroid()
+            for cen in centroids:
+                c = pca.transform(np.array([centroids[cen]]))
+                pyplot.scatter(c[0, 0], c[0, 1], marker='x', c=color[cen])
+                pyplot.annotate(cen, xy=(c[0, 0], c[0, 1]))
+        fi = {}
         for i, word in enumerate(words):
             spl = word.split('_')
             if len(spl) == 1 or len(spl[0]) == 0:
@@ -88,9 +121,22 @@ class REmbedding(object):
                     fi[key] = 1
                 else:
                     pyplot.scatter(result[i, 0], result[i, 1], c=color[key])
+                #pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
         pyplot.legend()
         pyplot.show()
         
+    def plot_2d_vectors(self, vectors):
+        pca = PCA(n_components=2)
+        pca.fit(self.model[self.model.wv.vocab])
+        X = [value for key, value in vectors.items()]
+        result = pca.transform(X)
+        words = list(vectors)
+        pyplot.figure(figsize=(10,10))
+        for i, word in enumerate(words):
+            pyplot.scatter(result[i, 0], result[i, 1])
+            pyplot.annotate(word, xy=(result[i, 0], result[i, 1]))
+        pyplot.legend()
+        pyplot.show()
 
     class Graph(object):
         def __init__(self):
@@ -124,80 +170,3 @@ class REmbedding(object):
                 
             def __eq__(self, other):
                 return str(self) == str(other)
-        
-settings = '''parent(person,person).
-male(person).
-grandmother(person,person).'''
-   
-data = '''parent(bart,stijn).
-parent(bart,pieter).
-parent(luc,soetkin).
-parent(willem,lieve).
-parent(willem,katleen).
-parent(rene,willem).
-parent(rene,lucy).
-parent(leon,rose).
-parent(etienne,luc).
-parent(etienne,an).
-parent(prudent,esther).
-
-parent(katleen,stijn).
-parent(katleen,pieter).
-parent(lieve,soetkin).
-parent(esther,lieve).
-parent(esther,katleen).
-parent(yvonne,willem).
-parent(yvonne,lucy).
-parent(alice,rose).
-parent(rose,luc).
-parent(rose,an).
-parent(laura,esther).
-
-male(bart).
-male(etienne).
-male(leon).
-male(luc).
-male(pieter).
-male(prudent).
-male(rene).
-male(stijn).
-male(willem).
-
-grandmother(esther,soetkin).
-grandmother(esther,stijn).
-grandmother(esther,pieter).
-grandmother(yvonne,lieve).
-grandmother(yvonne,katleen).
-grandmother(alice,luc).
-grandmother(alice,an).
-grandmother(rose,soetkin).
-grandmother(laura,lieve).
-grandmother(laura,katleen).'''
-
-rembedd = REmbedding()
-
-import re
-lines = settings.split('\n')
-s = {}
-for line in lines:
-    m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
-    if m:
-        relation = m.group(1).replace(' ', '')
-        entities = m.group(2).replace(' ', '').split(',')
-        s[relation] = entities
-
-rembedd.load_settings(s)
-
-lines = data.split('\n')
-s = []
-for line in lines:
-    m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
-    if m:
-        relation = m.group(1).replace(' ', '')
-        entities = m.group(2).replace(' ', '').split(',')
-        s.append((relation, entities))
-        
-rembedd.load_dataset(s)
-rembedd.generate_sentences(n_sentences=10000)
-rembedd.run_embedding()
-rembedd.plot_2d(color={'person': 'r'}, plot_centroid=True)
