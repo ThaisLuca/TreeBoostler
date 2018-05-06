@@ -15,16 +15,22 @@ class REmbedding(object):
         self.dataset = []
         self.settings = []
         self.sentences = []
+        self.types = set()
+        self.predicates = set()
         self.graph = self.Graph()
 
     # {'parent': ['person', 'person'] }
     def load_settings(self, st):
+        for s in st:
+            for i in st[s]:
+                self.types.add(i)
         self.settings = st
     
     # [('parent', ['alexis','rodrigo'])]
     def load_dataset(self, st):
         self.dataset = st
         for tupl in self.dataset:
+            self.predicates.add(tupl[0])
             type1 = self.settings[tupl[0]][0]
             type2 = self.settings[tupl[0]][1] if len(tupl[1]) > 1 else self.settings[tupl[0]][0]
             sub = type1 + '_' + tupl[1][0]

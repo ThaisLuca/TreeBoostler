@@ -69,8 +69,8 @@ with open('uwcselearn.pl') as f:
             
 target.load_dataset(s)
 
-source.generate_sentences(n_sentences=10000000)
-target.generate_sentences(n_sentences=10000000)
+source.generate_sentences(n_sentences=1000000)
+target.generate_sentences(n_sentences=1000000)
 source.run_embedding()
 target.run_embedding()
 source.plot_2d(color={'person': 'r', 'movie': 'b', 'genre':'g'}, plot_centroid=True)
