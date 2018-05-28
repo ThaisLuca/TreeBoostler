@@ -141,17 +141,17 @@ with open('uwcse/test/test_bk.txt', 'w') as file:
 with open('uwcse/background.txt', 'w') as file:    
     file.write('//Parameters\n')
     file.write('setParam: maxTreeDepth=8.\n')
-    file.write('setParam: nodeSize=1.\n')
+    file.write('setParam: nodeSize=3.\n')
     file.write('setParam: numOfClauses=8.\n')
     file.write('//Modes\n')
-    file.write('mode: professor(+name).\n')
-    file.write('mode: student(+name).\n')
-    file.write('mode: advisedby(+title,+person).\n'),
-    file.write('mode: advisedby(+title,-person).\n'),
-    file.write('mode: advisedby(-title,+person).\n'),
-    file.write('mode: tempadvisedby(+title,+person).\n'),
-    file.write('mode: tempadvisedby(+title,-person).\n'),
-    file.write('mode: tempadvisedby(-title,+person).\n'),
+    file.write('mode: professor(+person).\n')
+    file.write('mode: student(+person).\n')
+    file.write('mode: advisedby(+person,+person).\n'),
+    file.write('mode: advisedby(+person,-person).\n'),
+    file.write('mode: advisedby(-person,+person).\n'),
+    file.write('mode: tempadvisedby(+person,+person).\n'),
+    file.write('mode: tempadvisedby(+person,-person).\n'),
+    file.write('mode: tempadvisedby(-person,+person).\n'),
     file.write('mode: taughtby(+course,+person).\n'),
     file.write('mode: taughtby(+course,-person).\n'),
     file.write('mode: taughtby(-course,+person).\n'),
