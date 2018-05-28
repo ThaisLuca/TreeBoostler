@@ -90,12 +90,12 @@ for i in range(len(positives)): #-1):
         text = '\n'.join(negatives[i][target])
         train_neg += text + '\n'
 
-#i = len(positives)-1
-#for target in targets:
-#    text = '\n'.join(positives[i][target])
-#    test_pos += text + '\n'
-#    text = '\n'.join(negatives[i][target])
-#    test_neg += text + '\n'  
+i = len(positives)-1
+for target in targets:
+    text = '\n'.join(positives[i][target])
+    test_pos += text + '\n'
+    text = '\n'.join(negatives[i][target])
+    test_neg += text + '\n'  
 
 train_facts = '' #open('uwcse/train/train_facts.txt', 'w')
 test_facts = '' # open('uwcse/test/test_facts.txt', 'w')
@@ -106,10 +106,10 @@ for i in range(len(positives)): #-1):
         text = '\n'.join(positives[i][fact])
         train_facts += text + '\n'
         
-#i = len(positives)-1
-#for fact in facts:
-#    text = '\n'.join(positives[i][fact])
-#    test_facts += text + '\n'
+i = len(positives)-1
+for fact in facts:
+    text = '\n'.join(positives[i][fact])
+    test_facts += text + '\n'
 
 with open('uwcse/train/train_pos.txt', 'w') as file:
     file.write(train_pos)
