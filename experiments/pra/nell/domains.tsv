@@ -1,8 +1,0 @@
-athleteledsportsteam	athlete
-teamalsoknownas	sportsteam
-athleteplaysforteam	athlete
-athleteplayssport	athlete
-teamplaysagainstteam	sportsteam
-athleteplaysinleague	athlete
-teamplayssport	sportsteam
-teamplaysinleague	sportsteam

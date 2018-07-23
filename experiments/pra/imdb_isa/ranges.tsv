@@ -1,7 +1,0 @@
-actor	person
-director	person
-isa	type
-genre	genre
-movie	person
-workedunder	person
-female	person
