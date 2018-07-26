@@ -1,13 +1,63 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 19 13:55:49 2018
+'''
+   Functions to handle revision theory
+   Name:         revision.py
+   Author:       Rodrigo Azevedo
+   Updated:      July 22, 2018
+   License:      GPLv3
+'''
 
-@author: rodrigoazs
-"""
+import shutil
+import os
 
-import re
+def delete_train_files():
+    try:
+        shutil.rmtree('boostsrl/train')
+    except:
+        pass
+    try:
+        os.remove('boostsrl/train_output.txt')
+    except:
+        pass
 
+def delete_test_files():
+    try:
+        shutil.rmtree('boostsrl/test')
+    except:
+        pass
+    try:
+        os.remove('boostsrl/test_output.txt')
+    except:
+        pass
+    
+def delete_model_files():
+    delete_train_files()
+    delete_test_files()
+    
+def save_model_files():
+    try:
+        shutil.rmtree('boostsrl/best')
+    except:
+        pass
+    os.mkdir('boostsrl/best')
+    shutil.move('boostsrl/train', 'boostsrl/best')
+    shutil.move('boostsrl/test', 'boostsrl/best')
+    shutil.move('boostsrl/train_output.txt', 'boostsrl/best')
+    shutil.move('boostsrl/test_output.txt', 'boostsrl/best')
+
+def get_saved_model_files():
+    shutil.move('boostsrl/best/train', 'boostsrl')
+    shutil.move('boostsrl/best/test', 'boostsrl')
+    shutil.move('boostsrl/best/train_output.txt', 'boostsrl')
+    shutil.move('boostsrl/best/test_output.txt', 'boostsrl')
+    try:
+        shutil.rmtree('boostsrl/best')
+    except:
+        pass
+    
+def print_will_produced_tree(will):
+    for w in will:
+        print(w)
+    
 def bad_leaf(value, threshold):
     return True if max(value[1:])/sum(value[1:]) < threshold else False
 
@@ -72,59 +122,3 @@ def get_refine_file(struct, forceLearningIn=None):
         branchFalse = 'true' if get_branch_with(path, 'false') in nodes else 'true' if forceLearningIn == get_branch_with(path, 'false') else 'false'
         refine.append(';'.join([path, node, branchTrue, branchFalse]))
     return refine
-    
-def get_will_produced_tree(target):
-    '''Return the WILL-Produced Tree #1'''
-    with open(target + '_learnedWILLregressionTrees.txt', 'r') as f:
-        text = f.read()
-    line = re.findall(r'%%%%%  WILL-Produced Tree #1 .* %%%%%[\s\S]*% Clauses:', text)
-    splitline = (line[0].split('\n'))[2:]
-    for i in range(len(splitline)):
-        if splitline[i] == '% Clauses:':
-            return splitline[:i-2]
-
-def get_structured_tree(target):
-    '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
-       and returns it as objects with nodes, std devs and number of examples reached.'''
-    def get_results(groups):
-        #std dev, neg, pos
-        ret = [float(groups[0].replace(',','.')), 0, 0]
-        match = re.findall(r'\#pos=(\d*).*', groups[1])
-        if match:
-            ret[2] = int(match[0].replace('.',''))
-        match = re.findall(r'\#neg=(\d*)', groups[1])
-        if match:
-            ret[1] = int(match[0].replace('.',''))
-        return ret
-
-    lines = get_will_produced_tree(target)
-    current = []
-    stack = []
-    target = None
-    nodes = {}
-    leaves = {}
-    
-    for line in lines:
-        if not target:
-            match = re.match('\s*\%\s*FOR\s*(\w+\([\w,\s]*\)):', line)
-            if match:
-                target = match.group(1)
-        match = re.match('.*if\s*\(\s*([\w\(\),\s]*)\s*\).*', line)
-        if match:
-            nodes[','.join(current)] = match.group(1).strip()
-            stack.append(current+['false'])
-            current.append('true')
-        match = re.match('.*then return [\d.-]*;\s*\/\/\s*std dev\s*=\s*([\d,.\-e]*),.*\/\*\s*(.*)\s*\*\/.*', line)
-        if match:
-            leaves[','.join(current)] = get_results(match.groups()) #float(match.group(1))
-            if len(stack):
-                current = stack.pop()
-        match = re.match('.*else return [\d.-]*;\s*\/\/\s*std dev\s*=\s*([\d,.\-e]*),.*\/\*\s*(.*)\s*\*\/.*', line)
-        if match:
-            leaves[','.join(current)] = get_results(match.groups()) #float(match.group(1))
-            if len(stack):
-                current = stack.pop()
-    return [target, nodes, leaves]
-
-get_structured_tree('advisedby')
-get_refine_file(get_structured_tree('advisedby'))
