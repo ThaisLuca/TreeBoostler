@@ -59,7 +59,10 @@ def print_will_produced_tree(will):
         print(w)
     
 def bad_leaf(value, threshold):
-    return True if max(value[1:])/sum(value[1:]) < threshold else False
+    '''if leaf has 0 pos and 0 neg examples keeps it. What should be done?'''
+    if sum(value[1:]) == 0:
+        return False
+    return max(value[1:])/sum(value[1:]) < threshold
 
 def get_bad_leaves(struct, threshold):
     leaves = struct[2]
