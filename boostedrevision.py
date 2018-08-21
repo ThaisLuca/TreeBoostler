@@ -1,5 +1,5 @@
 '''
-   Functions to handle revision theory of boosted combined trees or single trees
+   Functions to handle revision theory of boosted trees
    Name:         revision.py
    Author:       Rodrigo Azevedo
    Updated:      July 22, 2018
@@ -84,10 +84,17 @@ def is_bad_leaf(value, threshold):
         return False
     return max(value[1:])/sum(value[1:]) < threshold
 
+def get_bad_leaf_value(value):
+    '''Defines if given leaf is bad or not (revision point).
+    If leaf has 0 pos and 0 neg examples keeps it. What should be done?'''
+    if sum(value[1:]) == 0:
+        return None
+    return max(value[1:])/sum(value[1:])
+               
 def get_bad_leaves(struct, threshold):
     '''Get revision points (bad leaves)'''
     leaves = struct[2]
-    bad_leaves = set()
+    bad_leaves = {}
     for path, value in leaves.items():
         falseBranch = get_branch_last_level(path, 'false')
         trueBranch = get_branch_last_level(path, 'true')
@@ -95,23 +102,28 @@ def get_bad_leaves(struct, threshold):
         if falseBranch in leaves and trueBranch in leaves:
             # one or both can be bad
             if is_bad_leaf(leaves[falseBranch], threshold) and is_bad_leaf(leaves[trueBranch], threshold):
-                bad_leaves.add(';'.join([trueBranch,falseBranch]))
+                bad_leaves[(';'.join([trueBranch,falseBranch]))] = (get_bad_leaf_value(leaves[falseBranch]) + get_bad_leaf_value(leaves[trueBranch]))/2 
+                if falseBranch in bad_leaves:
+                    del bad_leaves[falseBranch]
+                if trueBranch in bad_leaves:
+                    del bad_leaves[trueBranch]
                 continue
         # there is only one leaf in the same node or only one of them is bad
         # if it is a bad leaf, add it to bad_leaves
-        if is_bad_leaf(value, threshold):
-            bad_leaves.add(path)
-    return list(bad_leaves)
+        if is_bad_leaf(value, threshold) and (';'.join([trueBranch,falseBranch])) not in bad_leaves :
+            bad_leaves[path] = get_bad_leaf_value(value)
+    ret = [(path, value) for path, value in bad_leaves.items()]
+    ret.sort(key=lambda x: x[1])
+    return ret
 
-def get_cantidates_and_rp(struct, threshold):
-    '''Get candidates from revision points'''
+def get_candidate(struct, threshold, treenumber=1):
+    '''Get candidate refining every revision point in a tree'''
     target = struct[0]
     nodes = struct[1]
     leaves = struct[2]
-    candidates = []
-    revision_points = []
-    bad_leaves = get_bad_leaves(struct, threshold) 
-    for bad_leaf in bad_leaves:
+    bad_leaves = get_bad_leaves(struct, threshold)
+    if len(bad_leaves) > 0:
+        bad_leaf = bad_leaves[0][0] # get the worst revision point
         new_nodes = nodes.copy()
         bad_leaf = bad_leaf.split(';')
         # two leaves in a node are bad ones
@@ -120,16 +132,17 @@ def get_cantidates_and_rp(struct, threshold):
             b = bad_leaf[0].split(',')
             b = ','.join(b[:-1])
             new_nodes.pop(b, None)
-            candidates.append(get_refine_file([target, new_nodes, leaves]))
-            #candidates.append([get_refine_file([target, new_nodes, leaves]), bad_leaf, get_clause(struct, bad_leaf[0]), [bad_leaf_value(leaves[bad_leaf[0]], threshold), bad_leaf_value(leaves[bad_leaf[1]], threshold)]])
-            #revision_points.append('Remove node of clause ' + get_clause(struct, bad_leaf[0]) + ' from ' + str(bad_leaf))
-            revision_points.append((bad_leaf, get_clause(struct, bad_leaf[0]), [leaves[bad_leaf[0]], leaves[bad_leaf[1]]]))
+            return get_refine_file([target, new_nodes, leaves], treenumber=treenumber)
         else:
-            candidates.append(get_refine_file([target, nodes, leaves], bad_leaf[0]))
-            #candidates.append([get_refine_file([target, nodes, leaves], bad_leaf[0]), bad_leaf[0], get_clause(struct, bad_leaf[0]), bad_leaf_value(bad_leaf[0], threshold)])
-            #revision_points.append('Allow learning subtree in ' + get_clause(struct, bad_leaf[0]) + ' from ' + str(bad_leaf[0]))
-            revision_points.append(([bad_leaf[0]], get_clause(struct, bad_leaf[0]), [leaves[bad_leaf[0]]]))
-    return (candidates, revision_points)
+            return get_refine_file([target, nodes, leaves], bad_leaf[0], treenumber=treenumber)
+    else:
+        return get_refine_file([target, nodes, leaves], treenumber=treenumber)
+    
+def get_boosted_candidate(structs, threshold):
+    refine = []
+    for i in range(len(structs)):
+        refine += get_candidate(structs[i], threshold, i+1)
+    return refine        
 
 def get_branch_with(branch, next_branch):
     '''Append next_branch at branch'''
@@ -159,28 +172,28 @@ def get_refine_file(struct, forceLearningIn=None, treenumber=1):
         refine.append(';'.join([str(tree), path, node, branchTrue, branchFalse]))
     return refine
 
-def learn_test_model(background, boostsrl, target, train_pos, train_neg, facts, test_pos, test_neg, refine=None, show_tree=False, trees=1, verbose=True):
+def get_boosted_refine_file(structs, forceLearningIn=None):
+    refine = []
+    for i in range(len(structs)):
+        refine += get_refine_file(structs[i], treenumber=i+1, forceLearningIn=None if forceLearningIn == None else forceLearningIn[i])
+    return refine
+
+def learn_test_model(background, boostsrl, target, train_pos, train_neg, facts, test_pos, test_neg, refine=None, trees=10, verbose=True):
     '''Train and test a boosted or single tree'''
     delete_model_files()
     model = boostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
+    will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
+    if verbose:
+        for i in will:
+            print(i)
     learning_time = model.traintime()
-    will = model.get_will_produced_tree()
-    structured = model.get_structured_tree().copy()
-    # if it is using boosted trees
-    # do inference with the combined one
-    if trees > 1:
-        os.rename('boostsrl/train/models/bRDNs/Trees/'+ target +'Tree0.tree', 'boostsrl/train/models/bRDNs/Trees/'+ target +'Tree0_temp.tree')
-        os.rename('boostsrl/train/models/bRDNs/Trees/CombinedTreesTreeFile'+ target +'.tree', 'boostsrl/train/models/bRDNs/Trees/'+ target +'Tree0.tree')
-    results = boostsrl.test(model, test_pos, test_neg, facts, trees=1)
+    structured = []
+    for i in range(trees):
+        structured.append(model.get_structured_tree(treenumber=i+1).copy())
+    results = boostsrl.test(model, test_pos, test_neg, facts, trees=trees)
     inference_time = results.testtime()
     t_results = results.summarize_results()
-    #if trees > 1:
-    #    os.rename('boostsrl/train/models/bRDNs/Trees/'+ target +'Tree0.tree', 'boostsrl/train/models/bRDNs/Trees/CombinedTreesTreeFile'+ target +'.tree')
-    #    os.rename('boostsrl/train/models/bRDNs/Trees/'+ target +'Tree0_temp.tree', 'boostsrl/train/models/bRDNs/Trees/'+ target +'Tree0.tree')
     if verbose:
-        print('WILL-Produced Tree:')
-        print_will_produced_tree(will)
-        print('\n')
         print('Results')
         print('   AUC ROC   = %s' % t_results['AUC ROC'])
         print('   AUC PR    = %s' % t_results['AUC PR'])
@@ -193,12 +206,9 @@ def learn_test_model(background, boostsrl, target, train_pos, train_neg, facts, 
         print('Total inference time: %s seconds' % inference_time)
         print('AUC ROC: %s' % t_results['AUC ROC'])
         print('\n')
-        if show_tree:
-            print('Tree:')
-            model.tree(0, target, image=True)
-    return [model, learning_time, inference_time, t_results, structured]
+    return [model, learning_time, inference_time, t_results, structured, will]
 
-def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, test_pos, test_neg, revision_threshold, structured_tree, max_revision_iterations=10, verbose=True):
+def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, test_pos, test_neg, revision_threshold, structured_tree, trees=10, max_revision_iterations=10, verbose=True):
     '''Function responsible for starting the theory revision process'''
     total_revision_time = 0
     best_aucroc = 0
@@ -209,11 +219,19 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
         print('******************************************')
         print('Performing Parameter Learning')
         print('******************************************')
-    [model, learning_time, inference_time, t_results, structured] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, refine=get_refine_file(structured_tree), verbose=verbose)
+        print('Refine')
+        print(get_boosted_refine_file(structured_tree))
+    [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, refine=get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
+    # saving performed parameter learning will
+    boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
+    boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
     total_revision_time += learning_time + inference_time
 
     best_aucroc = t_results['AUC ROC']
     best_structured = structured.copy()
+    if verbose:
+        print('Structure after Parameter Learning')
+        print(best_structured)
     save_model_files()
 
     if verbose:
@@ -226,30 +244,25 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
             print('Refining iteration %s' % str(i+1))
             print('********************************')
         found_better = False
-        crp = get_cantidates_and_rp(best_structured, revision_threshold)
-        candidates = crp[0]
-        revision_points = crp[1]
-        for j in range(len(candidates)):
-            candidate = candidates[j]
-            revision_point = revision_points[j]
-            if verbose:
-                print('Refining candidate %s of %s' % (str(j+1), len(candidates)))
-                print('***************************')
-                print('\n')
-                print('Revision point')
-                print('Branch: %s' % revision_point[0])
-                print('Clause: %s' % revision_point[1])
-                for rv_values in revision_point[2]:
-                    #print(rv_values)
-                    print('std dev=%s, neg=%s, pos=%s, max/total=%.3f' % (rv_values[0], rv_values[1], rv_values[2], max(rv_values[1:])/sum(rv_values[1:])))
-                print('\n')
-            [model, learning_time, inference_time, t_results, structured] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, refine=candidate, verbose=verbose)
-            total_revision_time += learning_time + inference_time
-            if t_results['AUC ROC'] > best_aucroc:
-                found_better = True
-                best_aucroc = t_results['AUC ROC']
-                best_structured = structured.copy()
-                save_model_files()
+        candidate = get_boosted_candidate(best_structured.copy(), revision_threshold)
+        if verbose:
+            print('Candidate for revision')
+            print(candidate)
+        boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
+        if verbose:
+            print('Refining candidate')
+            print('***************************')
+            print('Revision points found')
+            for i in range(trees):
+                print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i], revision_threshold))))
+            print('\n')
+        [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, trees=trees, refine=candidate, verbose=verbose)
+        total_revision_time += learning_time + inference_time
+        if t_results['AUC ROC'] > best_aucroc:
+            found_better = True
+            best_aucroc = t_results['AUC ROC']
+            best_structured = structured.copy()
+            save_model_files()
         if verbose:
             print('Best model AUC ROC so far: %s' % best_aucroc)
             print('\n')
@@ -268,14 +281,10 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
         print('Total revision time: %s' % total_revision_time)
         print('Best validation AUC ROC: %s' % best_aucroc)
         print('\n')
-    will = model.get_will_produced_tree()
-    results = boostsrl.test(model, test_pos, test_neg, facts)
+    results = boostsrl.test(model, test_pos, test_neg, facts, trees=trees)
     inference_time = results.testtime()
     t_results = results.summarize_results()
     if verbose:
-        print('WILL-Produced Tree:')
-        print_will_produced_tree(will)
-        print('\n')
         print('Results')
         print('   AUC ROC   = %s' % t_results['AUC ROC'])
         print('   AUC PR    = %s' % t_results['AUC PR'])
