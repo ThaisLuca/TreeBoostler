@@ -297,3 +297,59 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
         print('AUC ROC: %s' % t_results['AUC ROC'])
     
     return [model, total_revision_time, inference_time, t_results, structured]
+
+def get_graph(lines):
+    '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
+       and returns it as objects with nodes, std devs and number of examples reached.'''
+    def get_match(match):
+        return '%.3f(%s)' % (float(match[0]), match[1].strip().replace('#', ''))
+       
+    lines = lines.split('\n')
+    current = []
+    stack = []
+    target = None
+    nodes = {}
+    leaves = {}
+    ids = {}
+    last_id = 1
+    graph = ''
+   
+    for line in lines:
+        if not target:
+            match = re.match('\s*\%\s*FOR\s*(\w+\([\w,\s]*\)):', line)
+            if match:
+                target = match.group(1)
+        match = re.match('.*if\s*\(\s*([\w\(\),\s]*)\s*\).*', line)
+        if match:
+            nodes[','.join(current)] = match.group(1).strip()
+            stack.append(current+['false'])
+            current.append('true')
+        match = re.match('.*[then|else] return ([\d.-]*);\s*\/\/\s*std dev\s*=\s*[\d,.\-e]*,.*\/\*\s*(.*)\s*\*\/.*', line)
+        if match:
+            leaves[','.join(current)] = get_match(match.groups()) #float(match.group(1))
+            if len(stack):
+                current = stack.pop()
+        else:
+            match = re.match('.*[then|else] return ([\d.-]*);\s*\/\/\s*.*', line)
+            if match:
+                leaves[','.join(current)] = get_match(match.groups()) #float(match.group(1))
+                if len(stack):
+                    current = stack.pop()
+                   
+    for key, value in nodes.items():
+        ids[key] = last_id
+        graph += str(last_id) + '[label = "[' + value + ']"];\n'
+        last_id += 1
+    for key, value in leaves.items():
+        ids[key] = last_id
+        graph += str(last_id) + '[shape = box,label = "' + value + '"];\n'
+        last_id += 1
+    for key, value in nodes.items():
+        t = key.split(',')
+        t = [] if len(t) == 1 and t[0] == '' else t
+        current = ids[key]
+        to = ids[','.join(t + ['true'])]
+        graph += str(current) + ' -> ' + str(to) + '[label="True"];\n'
+        to = ids[','.join(t + ['false'])]
+        graph += str(current) + ' -> ' + str(to) + '[label="False"];\n'
+    return 'digraph G{\n' + graph + '}'
