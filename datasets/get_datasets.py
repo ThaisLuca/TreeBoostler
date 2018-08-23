@@ -30,27 +30,37 @@ genre(person,acrime)
 genre(person,acomedy)
 genre(person,amystery)
 genre(person,aromance)'''  
-def get_imdb_dataset(target, acceptedPredicates=None):
+def get_imdb_dataset(target, acceptedPredicates=None, folds=False):
     facts = []
     positives = []
     negatives = []
+    i = -1
     with open(os.path.join(__location__, 'files/imdb.pl')) as f:
         for line in f:
+            b = re.search('^begin\(model\([0-9\w]*\)\).$', line)
             n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)               
             m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
+            if b:
+                i += 1
+                facts.append([])
+                positives.append([])
+                negatives.append([])
             if m:
                 relation = m.group(1).replace(' ', '')
                 entities = m.group(2).replace(' ', '').replace('_','').split(',')
                 if relation == target:
-                    positives.append(relation + '(' + ','.join(entities) + ').')
+                    positives[i].append(relation + '(' + ','.join(entities) + ').')
                 elif not acceptedPredicates or relation in acceptedPredicates:
-                    facts.append(relation + '(' + ','.join(entities) + ').')
+                    facts[i].append(relation + '(' + ','.join(entities) + ').')
             if n:
                 relation = n.group(1).replace(' ', '')
                 entities = n.group(2).replace(' ', '').replace('_','').split(',')
                 if relation == target:
-                    negatives.append(relation + '(' + ','.join(entities) + ').')
-    return [facts, positives, negatives]
+                    negatives[i].append(relation + '(' + ','.join(entities) + ').')
+    if folds:
+        return [facts, positives, negatives]
+    else:
+        return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
 
 '''
 professor(person)
@@ -69,10 +79,13 @@ projectmember(project, person)
 sameproject(project, project)
 samecourse(course, course)
 sameperson(person, person)'''                  
-def get_uwcse_dataset(target, acceptedPredicates=None):
+def get_uwcse_dataset(target, acceptedPredicates=None, folds=False):
     facts = []
     positives = []
     negatives = []
+    fold = {}
+    fold_i = 0
+    i = 0
     with open(os.path.join(__location__, 'files/uwcselearn.pl')) as f:
         for line in f:
             n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)               
@@ -80,18 +93,39 @@ def get_uwcse_dataset(target, acceptedPredicates=None):
             if m:
                 relation = m.group(1).replace(' ', '')
                 entities = m.group(2).replace(' ', '').replace('_','').split(',')
+                if entities[0] not in fold:
+                    fold[entities[0]] = fold_i
+                    i = fold_i
+                    positives.append([])
+                    facts.append([])
+                    negatives.append([])
+                    fold_i += 1
+                else:
+                    i = fold[entities[0]]
                 entities= entities[1:]
                 if relation == target:
-                    positives.append(relation + '(' + ','.join(entities) + ').')
+                    positives[i].append(relation + '(' + ','.join(entities) + ').')
                 elif not acceptedPredicates or relation in acceptedPredicates:
-                    facts.append(relation + '(' + ','.join(entities) + ').')
+                    facts[i].append(relation + '(' + ','.join(entities) + ').')
             if n:
                 relation = n.group(1).replace(' ', '')
                 entities = n.group(2).replace(' ', '').replace('_','').split(',')
+                if entities[0] not in fold:
+                    fold[entities[0]] = fold_i
+                    i = fold_i
+                    positives.append([])
+                    facts.append([])
+                    negatives.append([])
+                    fold_i += 1
+                else:
+                    i = fold[entities[0]]
                 entities= entities[1:]
                 if relation == target:
-                    negatives.append(relation + '(' + ','.join(entities) + ').')
-    return [facts, positives, negatives]
+                    negatives[i].append(relation + '(' + ','.join(entities) + ').')
+    if folds:
+        return [facts, positives, negatives]
+    else:
+        return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
 
 '''
 athleteledsportsteam(athlete,sportsteam)
