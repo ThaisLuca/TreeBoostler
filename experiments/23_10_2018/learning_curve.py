@@ -152,7 +152,7 @@ for dataset in ['imdb', 'uwcse', 'nell']:
     
     start = time.time()
     # separate train and test
-    kf = KFold(n_splits=10)
+    kf = KFold(10 if dataset != 'nell' else 5)
     fold = 0
     for train_index, test_index in kf.split(pos):
         train_pos, test_pos = pos[train_index], pos[test_index]
