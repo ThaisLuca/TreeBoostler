@@ -43,10 +43,6 @@ if firstRun:
     random.shuffle(pos)
     random.shuffle(neg)
     
-    #teste rapido
-    pos = pos[:100]
-    neg = neg[:100]
-    
     neg = neg[:len(pos)] # balanced   
     pos = np.array(pos)
     neg = np.array(neg)
