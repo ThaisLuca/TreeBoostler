@@ -21,15 +21,15 @@ import json
 
 firstRun = False
 
-if os.path.isfile(os.path.basename(__file__)[:-3] + '.json'):
-    with open(os.path.basename(__file__)[:-3] + '.json', 'r') as fp:
+if os.path.isfile('learning_curve_nell.json'):
+    with open('learning_curve_nell.json', 'r') as fp:
         results = json.load(fp)
 else:
     results = { 'data': {'nell': { 'small': {}, 'revision': {} }}, 'log': [], 'folds': [], 'runs': [], 'last_run': 0}
     firstRun = True
 
 def save(data):
-    with open(os.path.basename(__file__)[:-3] + '.json', 'w') as fp:
+    with open('learning_curve_nell.json', 'w') as fp:
         json.dump(data, fp)
 
 dataset = 'nell'
@@ -105,19 +105,19 @@ background = boostsrl.modes(bk, [target], useStdLogicVariables=False, treeDepth=
 start = time.time()
 
 while results['last_run'] < len(results['runs']):
-    train_pos = results['folds'][results['last_run']]['train_pos']
-    train_neg = results['folds'][results['last_run']]['train_neg']
-    test_pos = results['folds'][results['last_run']]['test_pos']
-    test_neg = results['folds'][results['last_run']]['test_neg']
+    small_train_size = results['runs'][results['last_run']][1]
+    fold = results['runs'][results['last_run']][0]
+
+    train_pos = results['folds'][fold]['train_pos']
+    train_neg = results['folds'][fold]['train_neg']
+    test_pos = results['folds'][fold]['test_pos']
+    test_neg = results['folds'][fold]['test_neg']
 
     # train set used in revision and validation set
     r_train_pos = train_pos[int(validation_size*len(train_pos)):]
     r_train_neg = train_neg[int(validation_size*len(train_neg)):]
     validation_pos = train_pos[:int(validation_size*len(train_pos))]
     validation_neg = train_neg[:int(validation_size*len(train_neg))]
-
-    small_train_size = results['runs'][results['last_run']][1]
-    fold = results['runs'][results['last_run']][0]
 
     # learn from scratch in a small dataset
     s_train_pos = r_train_pos[:int(small_train_size*len(r_train_pos))]
