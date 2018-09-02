@@ -15,6 +15,16 @@ import pandas as pd
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
+def get_kfold(test_number, folds):
+    train = []
+    test = []
+    for i in range(len(folds)):
+        if i == test_number:
+            test += folds[i]
+        else:
+            train += folds[i]
+    return (train, test)
+
 '''
 workedunder(person,person)
 genre(person,genre)
@@ -36,6 +46,50 @@ def get_imdb_dataset(target, acceptedPredicates=None, folds=False):
     negatives = []
     i = -1
     with open(os.path.join(__location__, 'files/imdb.pl')) as f:
+        for line in f:
+            b = re.search('^begin\(model\([0-9\w]*\)\).$', line)
+            n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)               
+            m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
+            if b:
+                i += 1
+                facts.append([])
+                positives.append([])
+                negatives.append([])
+            if m:
+                relation = m.group(1).replace(' ', '')
+                entities = m.group(2).replace(' ', '').replace('_','').split(',')
+                if relation == target:
+                    positives[i].append(relation + '(' + ','.join(entities) + ').')
+                elif not acceptedPredicates or relation in acceptedPredicates:
+                    facts[i].append(relation + '(' + ','.join(entities) + ').')
+            if n:
+                relation = n.group(1).replace(' ', '')
+                entities = n.group(2).replace(' ', '').replace('_','').split(',')
+                if relation == target:
+                    negatives[i].append(relation + '(' + ','.join(entities) + ').')
+    if folds:
+        return [facts, positives, negatives]
+    else:
+        return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
+
+'''
+samebib(class,class)
+sameauthor(author,author)
+sametitle(title,title)
+samevenue(venue,venue)
+author(class,author)
+title(class,title)
+venue(class,venue)
+haswordauthor(author,word)
+harswordtitle(title,word)
+haswordvenue(venue,word)
+'''  
+def get_cora_dataset(target, acceptedPredicates=None, folds=False):
+    facts = []
+    positives = []
+    negatives = []
+    i = -1
+    with open(os.path.join(__location__, 'files/coralearn.pl')) as f:
         for line in f:
             b = re.search('^begin\(model\([0-9\w]*\)\).$', line)
             n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)               
@@ -126,6 +180,50 @@ def get_uwcse_dataset(target, acceptedPredicates=None, folds=False):
         return [facts, positives, negatives]
     else:
         return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
+
+'''
+coursePage(page)
+facultyPage(page)
+studentPage(page)
+linkTo(id,page,page)
+researchProjectPage(page)
+has(word,page)
+hasAlphanumericWord(id)
+allWordsCapitalized(id)
+'''  
+def get_webkb_dataset(target, acceptedPredicates=None, folds=False):
+    facts = []
+    positives = []
+    negatives = []
+    i = -1
+    with open(os.path.join(__location__, 'files/webkb.pl')) as f:
+        for line in f:
+            b = re.search('^begin\(model\([0-9\w]*\)\).$', line)
+            n = re.search('^neg\((\w+)\(([\w, \'\:\/\.]+)*\)\).$', line)               
+            m = re.search('^(\w+)\(([\w, \'\:\/\.]+)*\).$', line)
+            if b:
+                i += 1
+                facts.append([])
+                positives.append([])
+                negatives.append([])
+            if m:
+                relation = re.sub('(http\:\/\/)|(www)|[ _\'\:\.\/]', '', m.group(1))
+                if relation not in ['output', 'inputcw', 'input', 'determination']:
+                    entities = re.sub('(http\:\/\/)|(www)|[ _\'\:\.\/]', '', m.group(2)).split(',')
+                    if relation == target:
+                        positives[i].append(relation + '(' + ','.join(entities) + ').')
+                    elif not acceptedPredicates or relation in acceptedPredicates:
+                        facts[i].append(relation + '(' + ','.join(entities) + ').')
+            if n:
+                relation = n.group(1).replace(' ', '')
+                entities = n.group(2).replace(' ', '').replace('_','').split(',')
+                if relation == target:
+                    negatives[i].append(relation + '(' + ','.join(entities) + ').')
+    if folds:
+        return [facts, positives, negatives]
+    else:
+        return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
+
 
 '''
 athleteledsportsteam(athlete,sportsteam)
