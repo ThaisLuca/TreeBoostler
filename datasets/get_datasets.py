@@ -24,6 +24,12 @@ def get_kfold(test_number, folds):
         else:
             train += folds[i]
     return (train, test)
+    
+def group_folds(folds):
+    train = []
+    for i in range(len(folds)):
+        train += folds[i]
+    return train
 
 '''
 workedunder(person,person)
