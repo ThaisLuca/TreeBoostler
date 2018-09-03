@@ -178,7 +178,7 @@ def get_boosted_refine_file(structs, forceLearningIn=None):
         refine += get_refine_file(structs[i], treenumber=i+1, forceLearningIn=None if forceLearningIn == None else forceLearningIn[i])
     return refine
 
-def learn_test_model(background, boostsrl, target, train_pos, train_neg, facts, test_pos, test_neg, refine=None, trees=10, verbose=True):
+def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, verbose=True):
     '''Train and test a boosted or single tree'''
     delete_model_files()
     model = boostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
@@ -190,7 +190,21 @@ def learn_test_model(background, boostsrl, target, train_pos, train_neg, facts, 
     structured = []
     for i in range(trees):
         structured.append(model.get_structured_tree(treenumber=i+1).copy())
-    results = boostsrl.test(model, test_pos, test_neg, facts, trees=trees)
+    return [model, learning_time, structured, will]
+    
+def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, trees=10, verbose=True):
+    '''Train and test a boosted or single tree'''
+    delete_model_files()
+    model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, trees=trees)
+    will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
+    if verbose:
+        for i in will:
+            print(i)
+    learning_time = model.traintime()
+    structured = []
+    for i in range(trees):
+        structured.append(model.get_structured_tree(treenumber=i+1).copy())
+    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
     inference_time = results.testtime()
     t_results = results.summarize_results()
     if verbose:
@@ -208,11 +222,13 @@ def learn_test_model(background, boostsrl, target, train_pos, train_neg, facts, 
         print('\n')
     return [model, learning_time, inference_time, t_results, structured, will]
 
-def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, test_pos, test_neg, revision_threshold, structured_tree, trees=10, max_revision_iterations=10, verbose=True):
+def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, test_pos, test_neg, test_facts, revision_threshold, structured_tree, trees=10, max_revision_iterations=10, verbose=True, testAfterPL=False):
     '''Function responsible for starting the theory revision process'''
     total_revision_time = 0
     best_aucroc = 0
     best_structured = None
+    pl_inference_time = 0
+    pl_t_results = 0
 
     # parameter learning
     if verbose:
@@ -221,11 +237,27 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
         print('******************************************')
         print('Refine')
         print(get_boosted_refine_file(structured_tree))
-    [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, refine=get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
+    [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, train_facts, refine=get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
     # saving performed parameter learning will
-    boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
-    boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
+    #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
+    #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
     total_revision_time += learning_time + inference_time
+    
+    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
+    if testAfterPL:
+        pl_inference_time = results.testtime()
+        pl_t_results = results.summarize_results()
+        if verbose:
+            print('Results in test set')
+            print('   AUC ROC   = %s' % t_results['AUC ROC'])
+            print('   AUC PR    = %s' % t_results['AUC PR'])
+            print('   CLL	      = %s' % t_results['CLL'])
+            print('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
+            print('   Recall    = %s' % t_results['Recall'])
+            print('   F1        = %s' % t_results['F1'])
+            print('\n')
+            print('Total inference time: %s seconds' % inference_time)
+            print('AUC ROC: %s' % t_results['AUC ROC'])
 
     best_aucroc = t_results['AUC ROC']
     best_structured = structured.copy()
@@ -256,7 +288,7 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
             for i in range(trees):
                 print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i], revision_threshold))))
             print('\n')
-        [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, facts, validation_pos, validation_neg, trees=trees, refine=candidate, verbose=verbose)
+        [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, train_facts, trees=trees, refine=candidate, verbose=verbose)
         total_revision_time += learning_time + inference_time
         if t_results['AUC ROC'] > best_aucroc:
             found_better = True
@@ -281,7 +313,7 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
         print('Total revision time: %s' % total_revision_time)
         print('Best validation AUC ROC: %s' % best_aucroc)
         print('\n')
-    results = boostsrl.test(model, test_pos, test_neg, facts, trees=trees)
+    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
     inference_time = results.testtime()
     t_results = results.summarize_results()
     if verbose:
@@ -296,7 +328,7 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, fact
         print('Total inference time: %s seconds' % inference_time)
         print('AUC ROC: %s' % t_results['AUC ROC'])
     
-    return [model, total_revision_time, inference_time, t_results, structured]
+    return [model, total_revision_time, inference_time, t_results, structured, pl_inference_time, pl_t_results]
 
 def get_graph(lines):
     '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1

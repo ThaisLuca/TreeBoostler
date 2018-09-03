@@ -240,4 +240,5 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
     results['save']['run'] += 1
     if results['save']['run'] >= n_runs:
         results['save']['experiment'] += 1
+        results['save']['run'] = 0
     save(results)
