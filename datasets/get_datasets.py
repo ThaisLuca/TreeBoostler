@@ -25,6 +25,16 @@ def get_kfold(test_number, folds):
             train += folds[i]
     return (train, test)
     
+def get_kfold_separated(test_number, folds):
+    train = []
+    test = []
+    for i in range(len(folds)):
+        if i == test_number:
+            test = folds[i]
+        else:
+            train.append(folds[i])
+    return (train, test)
+    
 def group_folds(folds):
     train = []
     for i in range(len(folds)):
