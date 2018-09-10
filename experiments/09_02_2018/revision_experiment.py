@@ -279,6 +279,7 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
         save(results)
     results['save']['fold_run'] = 0
     results['save']['run'] += 1
+    del results['save']['nell_seed']
     if results['save']['run'] >= n_runs:
         results['save']['experiment'] += 1
         results['save']['run'] = 0
