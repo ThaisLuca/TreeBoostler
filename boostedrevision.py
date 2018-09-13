@@ -312,7 +312,7 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, trai
             print('***************************')
             print('Revision points found')
             for i in range(trees):
-                print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i], revision_threshold))))
+                print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
             print('\n')
         [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, train_facts, trees=trees, refine=candidate, verbose=verbose)
         total_revision_time += learning_time + inference_time
