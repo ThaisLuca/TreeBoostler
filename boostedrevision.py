@@ -8,6 +8,8 @@
 
 import shutil
 import os
+import re
+import copy
 
 def delete_train_files():
     '''Remove files from train folder'''
@@ -58,12 +60,40 @@ def get_saved_model_files():
         shutil.rmtree('boostsrl/best')
     except:
         pass
+
+def get_tree(path, tree, nodes, leaves):
+    children = [None, None]
+    split = [] if path == '' else path.split(',')
+    left = ','.join(split+['true'])
+    right = ','.join(split+['false'])
+    print(left)
+    print(right)
+    if left in nodes:
+        children[0] = get_tree(left, tree, nodes, leaves)
+    if right in nodes:
+        children[1] = get_tree(right, tree, nodes, leaves)
+    if left in leaves:
+        children[0] = leaves[left]
+    if right in leaves:
+        children[1] = leaves[right]
+    return { nodes[path]: children }
     
 def print_will_produced_tree(will):
     '''Remove files from train folder'''
     for w in will:
         print(w)
-        
+
+def node_part_of(path, leaves):
+    if len(leaves) == 0:
+        return False
+    if path == '' and '' in leaves:
+        return True
+    split = path.split(',')
+    for i in range(len(split)):
+        if ','.join(split[:i+1]) in leaves:
+            return True
+    return False
+   
 def get_clause(struct, path):
     '''Get definite clause of given path'''
     target = struct[0]
@@ -77,71 +107,59 @@ def get_clause(struct, path):
             clauses.append(nodes[p])
     return target + ' :- ' + ', '.join(clauses) + '.'
     
-def is_bad_leaf(value, threshold):
+def is_bad_leaf(value):
     '''Defines if given leaf is bad or not (revision point).
     If leaf has 0 pos and 0 neg examples keeps it. What should be done?'''
     if sum(value[1:]) == 0:
-        return False
-    return max(value[1:])/sum(value[1:]) < threshold
+        return True
+    return max(value[1:])/sum(value[1:]) < 1.0
 
 def get_bad_leaf_value(value):
     '''Defines if given leaf is bad or not (revision point).
     If leaf has 0 pos and 0 neg examples keeps it. What should be done?'''
     if sum(value[1:]) == 0:
-        return None
+        return 0
     return max(value[1:])/sum(value[1:])
-               
-def get_bad_leaves(struct, threshold):
+
+def get_bad_leaves(struct):
     '''Get revision points (bad leaves)'''
     leaves = struct[2]
     bad_leaves = {}
     for path, value in leaves.items():
-        falseBranch = get_branch_last_level(path, 'false')
-        trueBranch = get_branch_last_level(path, 'true')
-        # there are two leaves in same node
-        if falseBranch in leaves and trueBranch in leaves:
-            # one or both can be bad
-            if is_bad_leaf(leaves[falseBranch], threshold) and is_bad_leaf(leaves[trueBranch], threshold):
-                bad_leaves[(';'.join([trueBranch,falseBranch]))] = (get_bad_leaf_value(leaves[falseBranch]) + get_bad_leaf_value(leaves[trueBranch]))/2 
-                if falseBranch in bad_leaves:
-                    del bad_leaves[falseBranch]
-                if trueBranch in bad_leaves:
-                    del bad_leaves[trueBranch]
-                continue
-        # there is only one leaf in the same node or only one of them is bad
         # if it is a bad leaf, add it to bad_leaves
-        if is_bad_leaf(value, threshold) and (';'.join([trueBranch,falseBranch])) not in bad_leaves :
+        if is_bad_leaf(value):
             bad_leaves[path] = get_bad_leaf_value(value)
     ret = [(path, value) for path, value in bad_leaves.items()]
     ret.sort(key=lambda x: x[1])
     return ret
 
-def get_candidate(struct, threshold, treenumber=1):
+def get_candidate(struct, treenumber=1):
     '''Get candidate refining every revision point in a tree'''
     target = struct[0]
     nodes = struct[1]
     leaves = struct[2]
-    bad_leaves = get_bad_leaves(struct, threshold)
+    bad_leaves = get_bad_leaves(struct)
+    set_bad_leaves = set([i[0] for i in bad_leaves])
     if len(bad_leaves) > 0:
         bad_leaf = bad_leaves[0][0] # get the worst revision point
-        new_nodes = nodes.copy()
-        bad_leaf = bad_leaf.split(';')
+        #new_nodes = copy.deepcopy(nodes)
+        # if leaf has no example reached, remove its node
+        if bad_leaves[0][1] == 0:
+            return get_refine_file([target, nodes, leaves], removeNode=[get_branch_to_last_level(bad_leaf)], treenumber=treenumber)
         # two leaves in a node are bad ones
-        if len(bad_leaf) == 2:
+        elif get_branch_last_level(bad_leaf, 'true') in set_bad_leaves and get_branch_last_level(bad_leaf, 'false') in set_bad_leaves:
             # remove its node
-            b = bad_leaf[0].split(',')
-            b = ','.join(b[:-1])
-            new_nodes.pop(b, None)
-            return get_refine_file([target, new_nodes, leaves], treenumber=treenumber)
+            return get_refine_file([target, nodes, leaves], removeNode=[get_branch_to_last_level(bad_leaf)], treenumber=treenumber)
         else:
-            return get_refine_file([target, nodes, leaves], bad_leaf[0], treenumber=treenumber)
+            # learn subtree
+            return get_refine_file([target, nodes, leaves], forceLearningIn=[bad_leaf], treenumber=treenumber)
     else:
         return get_refine_file([target, nodes, leaves], treenumber=treenumber)
     
-def get_boosted_candidate(structs, threshold):
+def get_boosted_candidate(structs):
     refine = []
     for i in range(len(structs)):
-        refine += get_candidate(structs[i], threshold, i+1)
+        refine += get_candidate(structs[i], i+1)
     return refine        
 
 def get_branch_with(branch, next_branch):
@@ -153,29 +171,38 @@ def get_branch_with(branch, next_branch):
     return ','.join(b)
     
 def get_branch_last_level(branch, new_branch):
-    '''Returns a branch last level'''
+    '''Returns a branch where last level has new path'''
     b = branch.split(',')
     b[-1] = new_branch
     return ','.join(b)
+
+def get_branch_to_last_level(branch):
+    '''Returns a branch without last level'''
+    b = branch.split(',')
+    return ','.join(b[:-1])
     
-def get_refine_file(struct, forceLearningIn=None, treenumber=1):
+def get_refine_file(struct, forceLearningIn=[], removeNode=[], treenumber=1):
     '''Generate the refine file from given tree structure'''
     target = struct[0]
     nodes = struct[1]
     #leaves = struct[2]
     tree = treenumber-1
     refine = []
+    # if first node shold be removed, then algorithm learns from scratch
+    if '' in removeNode:
+        return refine
     for path, value in nodes.items():
-        node = target + ' :- ' + value + '.' if not path else value + '.'
-        branchTrue = 'true' if get_branch_with(path, 'true') in nodes else 'true' if forceLearningIn == get_branch_with(path, 'true') else 'false'
-        branchFalse = 'true' if get_branch_with(path, 'false') in nodes else 'true' if forceLearningIn == get_branch_with(path, 'false') else 'false'
-        refine.append(';'.join([str(tree), path, node, branchTrue, branchFalse]))
+        if not node_part_of(path, removeNode):
+            node = target + ' :- ' + value + '.' if not path else value + '.'
+            branchTrue = 'false' if get_branch_with(path, 'true') in removeNode else 'true' if get_branch_with(path, 'true') in nodes else 'true' if get_branch_with(path, 'true') in forceLearningIn else 'false'
+            branchFalse = 'false' if get_branch_with(path, 'false') in removeNode else 'true' if get_branch_with(path, 'false') in nodes else 'true' if get_branch_with(path, 'false') in forceLearningIn else 'false'
+            refine.append(';'.join([str(tree), path, node, branchTrue, branchFalse]))
     return refine
 
-def get_boosted_refine_file(structs, forceLearningIn=None):
+def get_boosted_refine_file(structs, forceLearningIn=[], removeNode=[]):
     refine = []
     for i in range(len(structs)):
-        refine += get_refine_file(structs[i], treenumber=i+1, forceLearningIn=None if forceLearningIn == None else forceLearningIn[i])
+        refine += get_refine_file(structs[i], treenumber=i+1, forceLearningIn=[] if len(forceLearningIn) != len(structs) else forceLearningIn[i], removeNode=[] if len(removeNode) != len(structs) else removeNode[i])
     return refine
 
 def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, verbose=True):
