@@ -83,16 +83,15 @@ def print_will_produced_tree(will):
     for w in will:
         print(w)
 
-def node_part_of(path, leaves):
+def descendant_of(path, leaves):
     if len(leaves) == 0:
         return False
-    if path == '' and '' in leaves:
+    if '' in leaves:
         return True
     split = path.split(',')
-    for i in range(len(split)):
-        if ','.join(split[:i+1]) in leaves:
-            return True
-    return False
+    paths = set([','.join(split[:i+1]) for i in range(len(split))])
+    intsc = paths.intersection(set(leaves))
+    return True if len(intsc) else False
    
 def get_clause(struct, path):
     '''Get definite clause of given path'''
@@ -192,7 +191,7 @@ def get_refine_file(struct, forceLearningIn=[], removeNode=[], treenumber=1):
     if '' in removeNode:
         return refine
     for path, value in nodes.items():
-        if not node_part_of(path, removeNode):
+        if not descendant_of(path, removeNode):
             node = target + ' :- ' + value + '.' if not path else value + '.'
             branchTrue = 'false' if get_branch_with(path, 'true') in removeNode else 'true' if get_branch_with(path, 'true') in nodes else 'true' if get_branch_with(path, 'true') in forceLearningIn else 'false'
             branchFalse = 'false' if get_branch_with(path, 'false') in removeNode else 'true' if get_branch_with(path, 'false') in nodes else 'true' if get_branch_with(path, 'false') in forceLearningIn else 'false'
