@@ -302,7 +302,7 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, trai
             print('Refining iteration %s' % str(i+1))
             print('********************************')
         found_better = False
-        candidate = get_boosted_candidate(best_structured.copy(), revision_threshold)
+        candidate = get_boosted_candidate(best_structured)
         if verbose:
             print('Candidate for revision')
             print(candidate)
