@@ -248,7 +248,7 @@ def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_f
         print('\n')
     return [model, learning_time, inference_time, t_results, structured, will]
 
-def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, test_pos, test_neg, test_facts, revision_threshold, structured_tree, trees=10, max_revision_iterations=10, verbose=True, testAfterPL=False):
+def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, verbose=True, testAfterPL=False):
     '''Function responsible for starting the theory revision process'''
     total_revision_time = 0
     best_aucroc = 0

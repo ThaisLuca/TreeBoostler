@@ -114,3 +114,10 @@ def transfer(structured, mapping):
                     remove_nodes.append(key)
         struct[1] = new_nodes
     return copied
+    
+def get_transferred_target(structured):
+    '''Remove target from structured tree'''
+    target = structured[0][0]
+    match = re.match('([a-zA-Z_0-9]*)\s*\(([a-zA-Z_0-9,\s]*)\)', target)
+    if match:
+        return match.groups()[0]

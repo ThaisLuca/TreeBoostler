@@ -9,6 +9,7 @@
 import re
 import copy
 import random
+import time
 
 class KnowledgeGraph(object):
     def __init__(self):
@@ -24,10 +25,13 @@ class KnowledgeGraph(object):
         '''Load background of a dataset'''
         st = {}
         for line in lines:
-            m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
+            m = re.search('^(\w+)\(([\w, +\-\#]+)*\).$', line)
             if m:
-                relation = m.group(1).replace(' ', '')
-                entities = m.group(2).replace(' ', '').split(',')
+                relation = m.group(1)
+                relation = re.sub('[+\-\# ]', '', relation)
+                entities = m.group(2)
+                entities = re.sub('[+\-\# ]', '', entities)
+                entities = entities.split(',')
                 st[relation] = entities
                 for entity in entities:
                     self.types.add(entity)
@@ -199,25 +203,92 @@ class mapping:
                         rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             return rets
         
-    def get_best(srcPreds, tarPreds, srcFacts, tarFacts, n_sentences=50000):
+    def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000):
         '''Return best mapping found given source and target predicates and facts'''
+        srcPreds = sPreds
+        tarPreds = mapping.clean_preds(tPreds)
+        start = time.time()
+        results = {}
         source = KnowledgeGraph()
         source.background(srcPreds)
         source.facts(srcFacts)
         target = KnowledgeGraph()
         target.background(tarPreds)
         target.facts(tarFacts)
+        results['Knowledge compiling time'] = time.time() - start
+        new_start = time.time()
         source.generate_sentences(max_depth=4, n_sentences=n_sentences)
         target.generate_sentences(max_depth=4, n_sentences=n_sentences)
+        results['Generating paths time'] = time.time() - new_start
+        new_start = time.time()
         source_sentences = set([' '.join(i) for i in source.sentences if len(i) > 1])
         target_sentences = set([' '.join(i) for i in target.sentences if len(i) > 1])
         best = 0
         best_mapping = None
         possible_mappings = mapping.mapping(srcPreds, tarPreds)
+        results['Generating mappings time'] = time.time() - new_start
+        new_start = time.time()
+        results['Possible mappings'] = len(possible_mappings)
         for mapping_dict in possible_mappings:
             score = mapping.mapping_score(mapping_dict, source_sentences, target_sentences)
             if score > best:
                 best = score
                 best_mapping = mapping_dict
         #print('Best Score: %s, Mapping: %s' % (best, best_mapping))
-        return best_mapping
+        results['Finding best mapping'] = time.time() - new_start
+        results['Total time'] = time.time() - start
+        mapd = []
+        unaries = []
+        for srcPred in srcPreds:
+            s = mapping.get_types(srcPred)
+            if len(s[1]) == 1:
+                unaries.append(s[0])
+        for key, value in best_mapping.items():
+            if key in unaries:
+                string = key + '(A) -> ' + value + '(A)'
+            else:
+                string = key + '(A,B) -> ' + (value if value[0] != '_' else value[1:]) + ('(A,B)' if value[0] != '_' else '(B,A)')
+            mapd.append(string)
+        return (mapd, results)
+        
+    def get_preds(structured, p):
+        modes = mapping.clean_preds(p)
+        pattern = '([a-zA-Z_0-9]*)\s*\(([a-zA-Z_0-9,\\s]*)\)'
+        m = re.findall(pattern, structured[0][0])
+        if m:
+            preds = set()
+            target = m[0][0]
+            for struct in structured:
+                for node in struct[1].values():
+                    n = re.findall(pattern, node)
+                    if n:
+                        for p in n:
+                            if p[0] != target:
+                                preds.add(p[0])
+            preds_modes = set()
+            target_mode = None
+            for line in modes:
+                m = re.search('^(\w+)\(([\w, +\-\#]+)*\).$', line)
+                if m:
+                    relation = m.group(1)
+                    relation = re.sub('[+\-\# ]', '', relation)
+                    entities = m.group(2)
+                    entities = re.sub('[+\-\# ]', '', entities)
+                    if relation == target:
+                        target_mode = relation + '(' + entities + ').'
+                    if relation in preds:
+                        preds_modes.add(relation + '(' + entities + ').')
+            return [target_mode] + list(preds_modes)
+            
+    def clean_preds(preds):
+        '''Clean +/- from modes'''
+        ret = set()
+        for line in preds:
+            m = re.search('^(\w+)\(([\w, +\-\#]+)*\).$', line)
+            if m:
+                relation = m.group(1)
+                relation = re.sub('[+\-\# ]', '', relation)
+                entities = m.group(2)
+                entities = re.sub('[+\-\# ]', '', entities)
+                ret.add(relation + '(' + entities + ').')
+        return list(ret)
