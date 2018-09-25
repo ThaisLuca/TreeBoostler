@@ -189,19 +189,22 @@ class mapping:
                 rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             for tarPred in tarPreds:
                 tar = mapping.get_types(tarPred)
-                isCompatible = mapping.is_compatible(src[1], tar[1], typeConstraints)
-                if isCompatible[0]:
-                    newPredsMapping = copy.deepcopy(predsMapping)
-                    newPredsMapping[src[0]] = tar[0]
-                    newTypeConstraints = isCompatible[1]
-                    rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
-                if len(tar[1]) > 1:
-                    isCompatible = mapping.is_compatible(src[1], tar[1][::-1], typeConstraints)
+                # avoid multiple mapping to target predicate (recursion)
+                targetPred = mapping.get_types(srcPreds[0])
+                if targetPred[0] not in predsMapping or tar[0] != predsMapping[targetPred[0]].replace('_', ''): 
+                    isCompatible = mapping.is_compatible(src[1], tar[1], typeConstraints)
                     if isCompatible[0]:
                         newPredsMapping = copy.deepcopy(predsMapping)
-                        newPredsMapping[src[0]] = '_' + tar[0]
+                        newPredsMapping[src[0]] = tar[0]
                         newTypeConstraints = isCompatible[1]
                         rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
+                    if len(tar[1]) > 1:
+                        isCompatible = mapping.is_compatible(src[1], tar[1][::-1], typeConstraints)
+                        if isCompatible[0]:
+                            newPredsMapping = copy.deepcopy(predsMapping)
+                            newPredsMapping[src[0]] = '_' + tar[0]
+                            newTypeConstraints = isCompatible[1]
+                            rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             return rets
         
     def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000):
