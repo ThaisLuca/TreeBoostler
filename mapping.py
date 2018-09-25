@@ -183,9 +183,10 @@ class mapping:
             src = mapping.get_types(srcPred)
             rets = []
             # mapping to None
-            newPredsMapping = copy.deepcopy(predsMapping)
-            newTypeConstraints = copy.deepcopy(typeConstraints)
-            rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
+            if i > 0:
+                newPredsMapping = copy.deepcopy(predsMapping)
+                newTypeConstraints = copy.deepcopy(typeConstraints)
+                rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             for tarPred in tarPreds:
                 tar = mapping.get_types(tarPred)
                 isCompatible = mapping.is_compatible(src[1], tar[1], typeConstraints)
