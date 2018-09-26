@@ -296,7 +296,7 @@ def get_data(data, predicate, seed=None):
     return [bk, facts, pos, neg]
 
 firstRun = False
-n_runs = 1
+n_runs = 5
 verbose = True
 
 if os.path.isfile('total_transfer_experiment.json'):
