@@ -25,16 +25,16 @@ import math
 
 
 experiments = [
-            #{'source':'imdb', 'target':'uwcse', 'predicate':'workedunder'},
-            #{'source':'imdb', 'target':'uwcse', 'predicate':'movie'},
-            #{'source':'uwcse', 'target':'imdb', 'predicate':'advisedby'},
-            #{'source':'uwcse', 'target':'imdb', 'predicate':'publication'},
-            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder'},
-            #{'source':'imdb', 'target':'cora', 'predicate':'movie'},
-            #{'source':'uwcse', 'target':'cora', 'predicate':'advisedby'},
-            #{'source':'uwcse', 'target':'cora', 'predicate':'publication'},
-            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue'},
-            #{'source':'cora', 'target':'uwcse', 'predicate':'samevenue'},
+            {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder'},
+            {'source':'imdb', 'target':'uwcse', 'predicate':'movie'},
+            {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby'},
+            {'source':'uwcse', 'target':'imdb', 'predicate':'publication'},
+            {'source':'imdb', 'target':'cora', 'predicate':'workedunder'},
+            {'source':'imdb', 'target':'cora', 'predicate':'movie'},
+            {'source':'uwcse', 'target':'cora', 'predicate':'advisedby'},
+            {'source':'uwcse', 'target':'cora', 'predicate':'publication'},
+            {'source':'cora', 'target':'imdb', 'predicate':'samevenue'},
+            {'source':'cora', 'target':'uwcse', 'predicate':'samevenue'},
             {'source':'imdb', 'target':'nell', 'predicate':'workedunder'},
             {'source':'uwcse', 'target':'nell', 'predicate':'advisedby'},
             #{'source':'nell', 'target':'yago', 'predicate':'athleteplaysforteam'},
@@ -260,18 +260,18 @@ def get_data(data, predicate, seed=None):
         if predicate:
             [facts, pos, neg] = datasets.target_examples(predicate, uwcse_data)
         else:
-            facts = imdb_data[0]
-            pos = imdb_data[1]
-            neg = imdb_data[2]
+            facts = uwcse_data[0]
+            pos = uwcse_data[1]
+            neg = uwcse_data[2]
         bk = uwcse_bk
     # cora
     elif data == 'cora':
         if predicate:
             [facts, pos, neg] = datasets.target_examples(predicate, cora_data)
         else:
-            facts = imdb_data[0]
-            pos = imdb_data[1]
-            neg = imdb_data[2]
+            facts = cora_data[0]
+            pos = cora_data[1]
+            neg = cora_data[2]
         bk = cora_bk
     # nell
     elif data == 'nell':
@@ -382,8 +382,10 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
             tar_test_facts = tar_facts
         [tar_train_pos, tar_test_pos] = datasets.get_kfold(i, tar_pos)
         [tar_train_neg, tar_test_neg] = datasets.get_kfold(i, tar_neg)
-        random.shuffle(tar_neg)
-        tar_neg = tar_neg[:len(tar_pos)]
+        random.shuffle(tar_train_neg)
+        random.shuffle(tar_test_neg)
+        tar_train_neg = tar_train_neg[:len(tar_train_pos)]
+        tar_test_neg = tar_test_neg[:len(tar_test_pos)]
         
         # validation (10% of training set)
         random.seed(results['save']['seed'])
@@ -395,7 +397,7 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
         validation_neg = validation_neg[:int(0.1*len(validation_neg))]
         
         # transfer and revision theory
-        background = boostsrl.modes(bk, [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
+        background = boostsrl.modes(tar_bk, [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
         [model, total_revision_time, inference_time, t_results, structured, pl_inference_time, pl_t_results] = theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, validation_pos, validation_neg, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, testAfterPL=True, verbose=verbose)
         t_results['Learning time'] = total_revision_time
         t_results['Inference time'] = inference_time
