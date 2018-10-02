@@ -271,8 +271,10 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, trai
     
     results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
     if testAfterPL:
-        pl_inference_time = results.testtime()
+        #pl_inference_time = results.testtime()
         pl_t_results = results.summarize_results()
+        pl_t_results['Learning time'] = learning_time
+        pl_t_results['Inference time'] = results.testtime()
         if verbose:
             print('Results in test set')
             print('   AUC ROC   = %s' % t_results['AUC ROC'])
@@ -354,7 +356,7 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, trai
         print('Total inference time: %s seconds' % inference_time)
         print('AUC ROC: %s' % t_results['AUC ROC'])
     
-    return [model, total_revision_time, inference_time, t_results, structured, pl_inference_time, pl_t_results]
+    return [model, total_revision_time, inference_time, t_results, structured, pl_t_results]
 
 def get_graph(lines):
     '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1

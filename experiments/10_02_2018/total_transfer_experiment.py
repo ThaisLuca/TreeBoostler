@@ -296,7 +296,7 @@ def get_data(data, predicate, seed=None):
     return [bk, facts, pos, neg]
 
 firstRun = False
-n_runs = 5
+n_runs = 1
 verbose = True
 
 if os.path.isfile('total_transfer_experiment.json'):
@@ -335,6 +335,11 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
     src_neg = datasets.group_folds(src_neg)
     random.shuffle(src_neg)
     src_neg = src_neg[:len(src_pos)]
+                
+    if verbose:
+        print('\n')
+        print('Start learning from source dataset')
+        print('\n')
                        
     # learning from source dataset
     background = boostsrl.modes(src_bk, [predicate], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
@@ -347,9 +352,9 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
         print('Source structured tree: %s \n' % source_structured)
     
     # Load total target dataset
-    [tar_bk, tar_facts, tar_pos, tar_neg] = get_data(target, None, seed=results['save']['seed'])
+    [total_tar_bk, total_tar_facts, total_tar_pos, total_tar_neg] = get_data(target, None, seed=results['save']['seed'])
         
-    n_folds = len(tar_pos)
+    n_folds = len(total_tar_pos)
     while results['save']['fold_run'] < n_folds:
         
         i = results['save']['fold_run']
@@ -358,10 +363,10 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
         if i not in results['results'][experiment]['transfer']:
             results['results'][experiment]['transfer'][i] = []
                 
-        [tar_train_pos, tar_test_pos] = datasets.get_kfold(i, tar_pos)
+        [tar_train_pos, tar_test_pos] = datasets.get_kfold(i, total_tar_pos)
         
         # transfer
-        mapping_rules, mapping_results = mapping.get_best(preds, tar_bk, src_facts+src_pos, tar_train_pos)
+        mapping_rules, mapping_results = mapping.get_best(preds, total_tar_bk, src_facts+src_pos, tar_train_pos)
         transferred_structured = transfer(source_structured, mapping_rules)
         new_target = get_transferred_target(transferred_structured)
         if verbose:
@@ -398,15 +403,19 @@ while results['save']['experiment'] < len(experiments) and results['save']['run'
         
         # transfer and revision theory
         background = boostsrl.modes(tar_bk, [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
-        [model, total_revision_time, inference_time, t_results, structured, pl_inference_time, pl_t_results] = theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, validation_pos, validation_neg, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, testAfterPL=True, verbose=verbose)
+        [model, total_revision_time, inference_time, t_results, structured, pl_t_results] = theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, validation_pos, validation_neg, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, testAfterPL=True, verbose=verbose)
         t_results['Learning time'] = total_revision_time
         t_results['Inference time'] = inference_time
-        t_results['Mapping Results'] = mapping_results
-        t_results['Parameter Learning Results'] = pl_t_results
-        t_results['Parameter Learning Inference Time'] = pl_inference_time
+        t_results['Mapping results'] = mapping_results
+        t_results['Parameter Learning results'] = pl_t_results
         results['results'][experiment]['transfer'][i].append(t_results)
         print('Dataset: %s, Run: %s, Fold: %s, Type: %s, Time: %s' % (experiment, run+1, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
         print(t_results)
+        
+        if verbose:
+            print('\n')
+            print('Start learning from scratch in target domain')
+            print('\n')
         
         # learning from scratch
         [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, verbose=verbose)
