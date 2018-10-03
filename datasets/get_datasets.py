@@ -278,7 +278,6 @@ class datasets:
         else:
             return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
     
-    
     '''
     athleteledsportsteam(athlete,sportsteam)
     athleteplaysforteam(athlete,sportsteam)
@@ -392,3 +391,71 @@ class datasets:
             negatives.append(relation + '(' + ','.join(entities) + ').')
         random.seed(None)
         return [facts, positives, negatives]
+    
+    '''
+    accounttype(account,+type)
+    tweets(account,+word)
+    follows(account,account)'''  
+    def get_twitter_dataset(acceptedPredicates=None):
+        facts = [[],[]]
+        for i in range(2):
+            with open(os.path.join(__location__, 'files/twitter-fold' + str(i+1) + '.db')) as f:
+                for line in f:
+                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
+                    if m:
+                        relation = m.group(1)
+                        entities = m.group(2)
+                        entities = re.sub('[ _"-]', '', entities)
+                        entities = entities.split(',')
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            facts[i].append(relation + '(' + ','.join(entities) + ').')
+        return facts
+    
+    '''
+    location(protein,loc)
+    interaction(protein,protein)
+    proteinclass(protein,class)
+    enzyme(protein,enz)
+    function(protein,+fun)
+    complex(protein,com)
+    phenotype(protein,phe)'''  
+    def get_yeast_dataset(acceptedPredicates=None):
+        facts = [[],[],[],[]]
+        for i in range(4):
+            with open(os.path.join(__location__, 'files/yeast-fold' + str(i+1) + '.db')) as f:
+                for line in f:
+                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
+                    if m:
+                        relation = m.group(1)
+                        relation = re.sub('[_]', '', relation)
+                        entities = m.group(2)
+                        entities = re.sub('[ _"-]', '', entities)
+                        entities = entities.split(',')
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            facts[i].append(relation + '(' + ','.join(entities) + ').')
+        return facts
+    
+    '''
+    countryhascompanyoffice(country,company)
+    companyeconomicsector(company,sector)
+    companyceo(company,person)
+    companyalsoknownas(company,company)
+    cityhascompanyoffice(city,company)
+    '''
+    def get_nell_finances_dataset(acceptedPredicates=None):
+        def clearCharacters(value):
+            value = value.lower()
+            value = re.sub('[^a-z]', '', value)
+            return value
+
+        facts = []
+        dataset = pd.read_csv(os.path.join(__location__, 'files/NELL.finances.08m.1115.small.csv'))
+        for data in dataset.values:
+            entity = clearCharacters((data[1].split(':'))[2])
+            relation = clearCharacters((data[4].split(':'))[1])
+            value = clearCharacters((data[5].split(':'))[2])
+            
+            if entity and relation and value:
+                if not acceptedPredicates or relation in acceptedPredicates:
+                    facts.append(relation + '(' + ','.join([entity, value]) + ').')
+        return facts
