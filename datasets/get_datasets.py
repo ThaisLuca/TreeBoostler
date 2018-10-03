@@ -392,3 +392,46 @@ class datasets:
             negatives.append(relation + '(' + ','.join(entities) + ').')
         random.seed(None)
         return [facts, positives, negatives]
+    
+    '''
+    accounttype(account,+type)
+    tweets(account,+word)
+    follows(account,account)'''  
+    def get_twitter_dataset(acceptedPredicates=None):
+        facts = [[],[]]
+        for i in range(2):
+            with open(os.path.join(__location__, 'files/twitter-fold' + str(i+1) + '.db')) as f:
+                for line in f:
+                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
+                    if m:
+                        relation = m.group(1)
+                        entities = m.group(2)
+                        entities = re.sub('[ _"-]', '', entities)
+                        entities = entities.split(',')
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            facts[i].append(relation + '(' + ','.join(entities) + ').')
+        return facts
+    
+    '''
+    location(protein,loc)
+    interaction(protein,protein)
+    proteinclass(protein,class)
+    enzyme(protein,enz)
+    function(protein,+fun)
+    complex(protein,com)
+    phenotype(protein,phe)'''  
+    def get_yeast_dataset(acceptedPredicates=None):
+        facts = [[],[],[],[]]
+        for i in range(4):
+            with open(os.path.join(__location__, 'files/yeast-fold' + str(i+1) + '.db')) as f:
+                for line in f:
+                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
+                    if m:
+                        relation = m.group(1)
+                        relation = re.sub('[_]', '', relation)
+                        entities = m.group(2)
+                        entities = re.sub('[ _"-]', '', entities)
+                        entities = entities.split(',')
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            facts[i].append(relation + '(' + ','.join(entities) + ').')
+        return facts
