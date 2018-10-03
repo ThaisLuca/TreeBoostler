@@ -278,7 +278,6 @@ class datasets:
         else:
             return [[j for i in facts for j in i], [j for i in positives for j in i], [j for i in negatives for j in i]]
     
-    
     '''
     athleteledsportsteam(athlete,sportsteam)
     athleteplaysforteam(athlete,sportsteam)
@@ -434,4 +433,29 @@ class datasets:
                         entities = entities.split(',')
                         if not acceptedPredicates or relation in acceptedPredicates:
                             facts[i].append(relation + '(' + ','.join(entities) + ').')
+        return facts
+    
+    '''
+    countryhascompanyoffice(country,company)
+    companyeconomicsector(company,sector)
+    companyceo(company,person)
+    companyalsoknownas(company,company)
+    cityhascompanyoffice(city,company)
+    '''
+    def get_nell_finances_dataset(acceptedPredicates=None):
+        def clearCharacters(value):
+            value = value.lower()
+            value = re.sub('[^a-z]', '', value)
+            return value
+
+        facts = []
+        dataset = pd.read_csv(os.path.join(__location__, 'files/NELL.finances.08m.1115.small.csv'))
+        for data in dataset.values:
+            entity = clearCharacters((data[1].split(':'))[2])
+            relation = clearCharacters((data[4].split(':'))[1])
+            value = clearCharacters((data[5].split(':'))[2])
+            
+            if entity and relation and value:
+                if not acceptedPredicates or relation in acceptedPredicates:
+                    facts.append(relation + '(' + ','.join([entity, value]) + ').')
         return facts
