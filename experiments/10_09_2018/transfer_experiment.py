@@ -20,12 +20,16 @@ import numpy as np
 import random
 import json
 
+firstRun = False
+verbose = True
+n_runs = 1
+
 experiments = [
             {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder'},
             {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby'},
             {'source':'imdb', 'target':'cora', 'predicate':'workedunder'},
             {'source':'cora', 'target':'imdb', 'predicate':'samevenue'},
-            {'source':'yeast', 'target':'twitter', 'predicate':'accounttype'},
+            {'source':'yeast', 'target':'twitter', 'predicate':'proteinclass'},
             {'source':'twitter', 'target':'yeast', 'predicate':'accounttype'},
             #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport'},
             #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector'},
@@ -34,6 +38,19 @@ experiments = [
             #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
             #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
             ]
+            
+def nextExperiment(results, experiments, nMax):
+    count = []
+    for i in range(len(experiments)):
+        experiment_title = experiments[i]['source'] + '->' + experiments[i]['target']
+        l = 0 if experiment_title not in results['results'] else len(results['results'][experiment_title])
+        count.append((i, l))
+    count = sorted(count, key=lambda x: x[1])
+    print(count)
+    for i in range(len(count)):
+        if count[i][1] < nMax:
+            return count[i][0]
+    return None
 
 bk = {
       'imdb': ['workedunder(+person,+person).',
@@ -275,9 +292,6 @@ bk = {
     'wrotemusicfor(-person,+media).']
       }
 
-firstRun = False
-verbose = True
-
 if os.path.isfile('transfer_experiment.json'):
     with open('transfer_experiment.json', 'r') as fp:
         results = json.load(fp)
@@ -293,102 +307,109 @@ if firstRun:
     results['save'] = {'experiment': 0, 'seed': random.randint(111111,999999) }
 
 start = time.time()
-while results['save']['experiment'] < len(experiments):
-    experiment = results['save']['experiment']
-    experiment_title = experiments[experiment]['source'] + '->' + experiments[experiment]['target']
-    if experiment not in results['results']:
-        results['results'][experiment_title] = []
-
-    source = experiments[experiment]['source']
-    target = experiments[experiment]['target']
-    predicate = experiments[experiment]['predicate']
+#while results['save']['experiment'] < len(experiments):
+while nextExperiment(results, experiments, n_runs) != None:
+    experiment = nextExperiment(results, experiments, n_runs)
+    try:
+        #experiment = results['save']['experiment']
+        experiment_title = experiments[experiment]['source'] + '->' + experiments[experiment]['target']
+        if experiment not in results['results']:
+            results['results'][experiment_title] = []
     
-    # Load source dataset
-    src_total_data = datasets.load(source, bk[source])
-    src_data = datasets.target(predicate, src_total_data)
-    src_data = datasets.neg(src_data, seed=results['save']['seed'])
+        source = experiments[experiment]['source']
+        target = experiments[experiment]['target']
+        predicate = experiments[experiment]['predicate']
         
-    # Group and shuffle
-    src_facts = datasets.group_folds(src_data[0])
-    src_pos = datasets.group_folds(src_data[1])
-    src_neg = datasets.group_folds(src_data[2])
-                
-    if verbose:
-        print('\n')
-        print('Start learning from source dataset')
-        print('\n')
-                       
-    # learning from source dataset
-    background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
-    [model, total_revision_time, source_structured, will] = learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, verbose=verbose)
-    
-    preds = mapping.get_preds(source_structured, bk[source])
-    if verbose:
-        print('\n')
-        print('Predicates from source: %s \n' % preds)
-        print('Source structured tree: %s \n' % source_structured)
-    
-    # Load total target dataset
-    tar_total_data = datasets.load(target, bk[target])
-        
-    n_folds = len(tar_total_data[0])
-    results_save = []
-    for i in range(n_folds):     
-
-        [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
-        
-        # transfer
-        mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos)
-        transferred_structured = transfer(source_structured, mapping_rules)
-        new_target = get_transferred_target(transferred_structured)
-        if verbose:
-            print('\n')
-            print('Best mapping found: %s \n' % mapping_rules)
-            print('Tranferred structured tree: %s \n' % transferred_structured)
-            print('Transferred target predicate: %s \n' % new_target)
-        
-        # Load new predicate target dataset
-        tar_data = datasets.target(new_target, tar_total_data)
-        tar_data = datasets.neg(tar_data, seed=results['save']['seed'])
-        
+        # Load source dataset
+        src_total_data = datasets.load(source, bk[source])
+        src_data = datasets.target(predicate, src_total_data)
+        src_data = datasets.neg(src_data, seed=results['save']['seed'])
+            
         # Group and shuffle
-        [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
-        [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
-        [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
-        
-        # validation (10% of training set)
-        random.seed(results['save']['seed'])
-        validation_pos = tar_train_pos[:]
-        validation_neg = tar_train_neg[:]
-        random.shuffle(validation_pos)
-        random.shuffle(validation_neg)
-        validation_pos = validation_pos[:int(0.1*len(validation_pos))]
-        validation_neg = validation_neg[:int(0.1*len(validation_neg))]
-        
-        # transfer and revision theory
-        background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
-        [model, total_revision_time, inference_time, t_results, structured, pl_t_results] = theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, validation_pos, validation_neg, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, testAfterPL=True, verbose=verbose)
-        t_results['Learning time'] = total_revision_time
-        t_results['Inference time'] = inference_time
-        t_results['Mapping results'] = mapping_results
-        t_results['Parameter Learning results'] = pl_t_results
-        results['results'][experiment]['transfer'][i].append(t_results)
-        print('Dataset: %s, Run: %s, Fold: %s, Type: %s, Time: %s' % (experiment, run+1, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-        print(t_results)
-        
+        src_facts = datasets.group_folds(src_data[0])
+        src_pos = datasets.group_folds(src_data[1])
+        src_neg = datasets.group_folds(src_data[2])
+                    
         if verbose:
             print('\n')
-            print('Start learning from scratch in target domain')
+            print('Start learning from source dataset')
             print('\n')
+                           
+        # learning from source dataset
+        background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
+        [model, total_revision_time, source_structured, will] = learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, verbose=verbose)
         
-        # learning from scratch
-        [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, verbose=verbose)
-        t_results['Learning time'] = learning_time
-        t_results['Inference time'] = inference_time
-        results['results'][experiment]['scratch'][i].append(t_results)
-        print('Dataset: %s, Run: %s, Fold: %s, Type: %s, Time: %s' % (experiment, run+1, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-        print(t_results)
-        results_save.append({'scratch': [], 'transfer': []})
-    results['results'][experiment_title].append(results_save)
-    results['save']['experiment'] += 1
+        preds = mapping.get_preds(source_structured, bk[source])
+        if verbose:
+            print('\n')
+            print('Predicates from source: %s \n' % preds)
+            print('Source structured tree: %s \n' % source_structured)
+        
+        # Load total target dataset
+        tar_total_data = datasets.load(target, bk[target])
+            
+        n_folds = len(tar_total_data[0])
+        results_save = []
+        for i in range(n_folds):     
+            ob_save = {}
+            [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
+            
+            # transfer
+            mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos)
+            transferred_structured = transfer(source_structured, mapping_rules)
+            new_target = get_transferred_target(transferred_structured)
+            if verbose:
+                print('\n')
+                print('Best mapping found: %s \n' % mapping_rules)
+                print('Tranferred structured tree: %s \n' % transferred_structured)
+                print('Transferred target predicate: %s \n' % new_target)
+            
+            # Load new predicate target dataset
+            tar_data = datasets.target(new_target, tar_total_data)
+            tar_data = datasets.neg(tar_data, seed=results['save']['seed'])
+            
+            # Group and shuffle
+            [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
+            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
+            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
+            
+            # validation (10% of training set)
+            random.seed(results['save']['seed'])
+            validation_pos = tar_train_pos[:]
+            validation_neg = tar_train_neg[:]
+            random.shuffle(validation_pos)
+            random.shuffle(validation_neg)
+            validation_pos = validation_pos[:int(0.3*len(validation_pos))]
+            validation_neg = validation_neg[:int(0.3*len(validation_neg))]
+            
+            # transfer and revision theory
+            background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=3, numOfClauses=8)
+            [model, total_revision_time, inference_time, t_results, structured, pl_t_results] = theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, validation_pos, validation_neg, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, testAfterPL=True, verbose=verbose)
+            t_results['Learning time'] = total_revision_time
+            t_results['Inference time'] = inference_time
+            t_results['Mapping results'] = mapping_results
+            t_results['Parameter Learning results'] = pl_t_results
+            ob_save['transfer'] = t_results
+            print('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print(t_results)
+            
+            if verbose:
+                print('\n')
+                print('Start learning from scratch in target domain')
+                print('\n')
+            
+            # learning from scratch
+            [model, learning_time, inference_time, t_results, structured, will] = learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, verbose=verbose)
+            t_results['Learning time'] = learning_time
+            t_results['Inference time'] = inference_time
+            ob_save['scratch'] = t_results
+            print('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print(t_results)
+            
+            results_save.append(ob_save)
+        results['results'][experiment_title].append(results_save)
+    except:
+        print('Error in experiment of ' + experiment_title)
+        pass
+    #results['save']['experiment'] += 1
     save(results)
