@@ -22,7 +22,7 @@ import json
 
 firstRun = False
 verbose = True
-n_runs = 1
+n_runs = 10
 
 experiments = [
             {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder'},
@@ -46,7 +46,6 @@ def nextExperiment(results, experiments, nMax):
         l = 0 if experiment_title not in results['results'] else len(results['results'][experiment_title])
         count.append((i, l))
     count = sorted(count, key=lambda x: x[1])
-    print(count)
     for i in range(len(count)):
         if count[i][1] < nMax:
             return count[i][0]
