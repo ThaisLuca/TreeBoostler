@@ -71,6 +71,12 @@ class datasets:
         ret.append(temp)
         return ret
     
+    def neg(data, seed=None):
+        if len(data[2][0]) == 0:
+            return datasets.generate_neg(data, seed=seed)
+        else:
+            return datasets.balance_neg(data, seed=seed)
+        
     def balance_neg(data, seed=None):
         '''Receives [facts, pos, neg] and balance neg according to pos'''
         facts = copy.deepcopy(data[0])
@@ -129,6 +135,7 @@ class datasets:
             for example in data[0][i]:
                 m = re.search(pattern, example)
                 if m:
+                    
                     relation = m.group(1)
                     if relation == target:
                         pos[i].append(example)
@@ -146,7 +153,7 @@ class datasets:
     
     def get_json_dataset(dataset):
         '''Load dataset from json'''
-        with open('files/json/' + dataset + '.json') as data_file:
+        with open(os.path.join(__location__, 'files/json/' + dataset + '.json')) as data_file:
             data_loaded = json.load(data_file)
         return data_loaded
     
@@ -306,14 +313,14 @@ class datasets:
         return [facts, negatives]
     
     '''
-    coursePage(page)
-    facultyPage(page)
-    studentPage(page)
-    linkTo(id,page,page)
-    researchProjectPage(page)
+    coursepage(page)
+    facultypage(page)
+    studentpage(page)
+    researchprojectpage(page)
+    linkto(id,page,page)
     has(word,page)
-    hasAlphanumericWord(id)
-    allWordsCapitalized(id)
+    hasalphanumericword(id)
+    allwordscapitalized(id)
     '''  
     def get_webkb_dataset(acceptedPredicates=None):       
         facts = []
@@ -365,6 +372,83 @@ class datasets:
                         if not acceptedPredicates or relation in acceptedPredicates:
                             facts[i].append(relation + '(' + ','.join(entities) + ').')
                     continue
+        return [facts, negatives]
+    
+    '''
+    coursepage(page)
+    facultypage(page)
+    studentpage(page)
+    researchprojectpage(page)
+    linkto(id,page,page)
+    has(word,page)
+    hasalphanumericword(id)
+    allwordscapitalized(id)
+    instructorsof(page,page)
+    hasanchor(word,page)
+    membersofproject(page,page)
+    departmentof(page,page)
+    pageclass(page,class)
+    '''   
+    def get_webkb2_dataset(acceptedPredicates=None):       
+        facts = [[],[],[],[]]
+        negatives = [[],[],[],[]]
+        pages = {}
+        count = {'id' : 1}
+        i = -1
+        
+        def getPageId(page):
+            if page not in pages:
+                pages[page] = 'page' + str(count['id'])
+                count['id'] += 1
+            return pages[page]
+        
+        def cleanEntity(entity):
+            m = re.search('^(http|https|ftp|mail|file)\:', entity)
+            if m:
+                return getPageId(entity)
+            else:
+                return entity
+            
+        def getCleanEntities(entities):
+            new_entities = list(entities)
+            return [cleanEntity(entity) for entity in new_entities]
+        
+        classes = ['course', 'department', 'faculty', 'person', 'student', 'researchproject', 'staff']
+        folds = ['cornell', 'texas', 'washington', 'wisconsin']
+        files = ['background/anchor-words', 'background/common', 'background/page-classes',
+                 'background/page-words', 'target/course', 'target/department-of', 'target/faculty', 'target/instructors-of',
+                 'target/members-of-project', 'target/research.project', 'target/student']
+        
+        for i in range(len(folds)):
+            fold = folds[i]
+            for file in files:
+                with open(os.path.join(__location__, 'files/webkb/' + file + '.' + fold + '.db')) as f:
+                    for line in f:
+                        #n = re.search('^!(\w+)\((.*)\)$', line.lower()) 
+                        m = re.search('^(\w+)\((.*)\)$', line.lower())
+#                        if n:
+#                            relation = re.sub('[\'"]', '', n.group(1))
+#                            entities = re.sub('[\'"]', '', n.group(2)).split(',')
+#                            entities = getCleanEntities(entities)
+#                            if not acceptedPredicates or relation in acceptedPredicates:
+#                                if relation in classes:
+#                                    entities += [relation]
+#                                    negatives[i].append('pageclass(' + ','.join(entities) + ').')
+#                                else:
+#                                    
+#                                    negatives[i].append(relation + '(' + ','.join(entities) + ').')
+#                            continue
+                        if m:
+                            relation = re.sub('[\'"]', '', m.group(1))
+                            entities = re.sub('[\'"]', '', m.group(2)).split(',')
+                            entities = getCleanEntities(entities)
+                            if not acceptedPredicates or relation in acceptedPredicates:
+                                if relation in classes:
+                                    entities += [relation]
+                                    facts[i].append('pageclass(' + ','.join(entities) + ').')
+                                else:
+                                    facts[i].append(relation + '(' + ','.join(entities) + ').')
+                            continue
         return [facts, negatives]
     
     '''
@@ -485,17 +569,35 @@ class datasets:
 
 #import time 
 #start = time.time()
-#data = datasets.get_yago2s_dataset()
+#data = datasets.get_webkb2_dataset()
 #print(time.time() - start)
 #
 #import json
-#with open('files/json/yago2s.json', 'w') as outfile:
+#with open('files/json/webkb.json', 'w') as outfile:
 #    json.dump(data, outfile)
         
 #import time 
 #start = time.time()
-#data = datasets.get_json_dataset('uwcse')
+#data = datasets.get_json_dataset('webkb')
 #print(time.time() - start) 
+#
+#start = time.time()
+#data2 = datasets.target('advisedby', data)
+#print(time.time() - start) 
+        
+#start = time.time()
+#data = datasets.load('webkb', ['coursepage(page).',
+#    'facultypage(page).',
+#    'studentpage(page).',
+#    'researchprojectpage(page).',
+#    'linkto(id,page,page).',
+#    'has(word,page).',
+#    'hasalphanumericword(id).',
+#    'allwordscapitalized(id).',
+#    'departmentof(page,page).',
+#    'pageclass(page,class).'])
+#print(time.time() - start) 
+
 #
 #start = time.time()
 #data2 = datasets.load('uwcse', ['professor(person).',
