@@ -132,6 +132,7 @@ class datasets:
         for i in range(len(data[0])):
             facts.append([])
             pos.append([])
+            neg.append([])
             for example in data[0][i]:
                 m = re.search(pattern, example)
                 if m:
@@ -142,7 +143,6 @@ class datasets:
                     else:
                         facts[i].append(example)
         for i in range(len(data[1])):
-            neg.append([])
             for example in data[1][i]:
                 m = re.search(pattern, example)
                 if m:
@@ -540,7 +540,7 @@ class datasets:
                         entities = entities.split(',')
                         if not acceptedPredicates or relation in acceptedPredicates:
                             facts[i].append(relation + '(' + ','.join(entities) + ').')
-        return [facts, []]
+        return [facts, [[],[],[],[]]]
     
     '''
     countryhascompanyoffice(country,company)
