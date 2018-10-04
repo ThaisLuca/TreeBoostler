@@ -14,11 +14,14 @@ import math
 import random
 import pandas as pd
 import json
+import copy
 
 __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
 
 class datasets:
     def get_kfold(test_number, folds):
+        '''Separate examples into train and test set.
+        It uses k-1 folds for training and 1 single fold for testing'''
         train = []
         test = []
         for i in range(len(folds)):
@@ -38,13 +41,27 @@ class datasets:
                 train.append(folds[i])
         return (train, test)
     
+    def get_kfold_small(train_number, folds):
+        '''Separate examples into train and test set.
+        It uses 1 single fold for training and k-1 folds for testing'''
+        train = []
+        test = []
+        for i in range(len(folds)):
+            if i == train_number:
+                train += folds[i]
+            else:
+                test += folds[i]
+        return (train, test)
+    
     def group_folds(folds):
+        '''Group folds in a single one'''
         train = []
         for i in range(len(folds)):
             train += folds[i]
         return train
     
     def split_into_folds(examples, n_folds=5):
+        '''For datasets as nell and yago that have only 1 mega-example'''
         temp = list(examples)
         s = math.ceil(len(examples)/n_folds)
         ret = []
@@ -54,34 +71,44 @@ class datasets:
         ret.append(temp)
         return ret
     
-    def target(target, data, seed=None):
-        facts = []
-        pos = []
-        neg = []
+    def balance_neg(data, seed=None):
+        '''Receives [facts, pos, neg] and balance neg according to pos'''
+        facts = copy.deepcopy(data[0])
+        pos = copy.deepcopy(data[1])
+        neg = copy.deepcopy(data[2])
+        random.seed(seed)
+        for i in range(len(neg)):
+            random.shuffle(neg[i])
+            neg[i] = neg[i][:len(pos[i])]
+        random.seed(None)
+        return [facts, pos, neg]
+    
+    def generate_neg(data, seed=None):
+        '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
+        facts = copy.deepcopy(data[0])
+        pos = copy.deepcopy(data[1])
+        neg = copy.deepcopy(data[2])
         pattern = '^(\w+)\(([\w, ]+)*\).$'
-        for i in range(len(data)):
-            facts.append([])
-            pos.append([])
-            neg.append([])
+        target = None
+        for i in range(len(pos)):
             objects = set()
             subjects = {}
-            for example in data[i]:
+            for example in pos[i]:
                 m = re.search(pattern, example)
                 if m:
-                    relation = m.group(1)
+                    target = m.group(1)
                     entities = m.group(2).split(',')
-                    if relation == target:
-                        if entities[0] not in subjects:
-                            subjects[entities[0]] = set()
-                        subjects[entities[0]].add(entities[1])
-                        objects.add(entities[1])
-                        pos[i].append(example)
-                    else:
-                        facts[i].append(example)
+                    if entities[0] not in subjects:
+                        subjects[entities[0]] = set()
+                    subjects[entities[0]].add(entities[1])
+                    objects.add(entities[1])
             random.seed(seed)
             target_objects = list(objects)
-            for key, value in subjects.items():
-                for j in range(len(value)):
+            for example in pos[i]:
+                m = re.search(pattern, example)
+                if m:
+                    entities = m.group(2).split(',')
+                    key = entities[0]
                     for tr in range(10):
                         r = random.randint(0, len(target_objects)-1)
                         if target_objects[r] not in subjects[key]:
@@ -90,36 +117,60 @@ class datasets:
             random.seed(None)
         return [facts, pos, neg]
     
-    def target_examples(target, data):
+    def target(target, data):
+        '''Receives [facts, neg] and returns [facts, pos, neg] with pos and neg containing only target predicates'''
         facts = []
         pos = []
         neg = []
         pattern = '^(\w+)\(([\w, ]+)*\).$'
-        for i in range(len(data[1])):
+        for i in range(len(data[0])):
             facts.append([])
             pos.append([])
-            for example in data[1][i]:
+            for example in data[0][i]:
                 m = re.search(pattern, example)
                 if m:
-                    relation = m.group(1).replace(' ', '')
+                    relation = m.group(1)
                     if relation == target:
                         pos[i].append(example)
                     else:
                         facts[i].append(example)
-        for i in range(len(data[2])):
+        for i in range(len(data[1])):
             neg.append([])
-            for example in data[2][i]:
+            for example in data[1][i]:
                 m = re.search(pattern, example)
                 if m:
-                    relation = m.group(1).replace(' ', '')
+                    relation = m.group(1)
                     if relation == target:
                         neg[i].append(example)
         return [facts, pos, neg]
     
     def get_json_dataset(dataset):
+        '''Load dataset from json'''
         with open('files/json/' + dataset + '.json') as data_file:
             data_loaded = json.load(data_file)
         return data_loaded
+    
+    def load(dataset, bk):
+        '''Load dataset from json and accept only predicates presented in bk'''
+        pattern = '^(\w+)\(.*\).$'
+        accepted = set()
+        for line in bk:
+            m = re.search(pattern, line)
+            if m:
+                relation = re.sub('[ _]', '', m.group(1))
+                accepted.add(relation)
+        data = datasets.get_json_dataset(dataset)
+        n_data = [[], []]
+        for t in range(len(data)): #positives, negatives
+            for i in range(len(data[t])):
+                n_data[t].append([])
+                for example in data[t][i]:
+                    m = re.search(pattern, example)
+                    if m:
+                        relation = m.group(1)
+                        if relation in accepted:
+                            n_data[t][i].append(example)
+        return n_data
 
     '''
     workedunder(person,person)
@@ -440,3 +491,21 @@ class datasets:
 #import json
 #with open('files/json/yago2s.json', 'w') as outfile:
 #    json.dump(data, outfile)
+        
+#import time 
+#start = time.time()
+#data = datasets.get_json_dataset('uwcse')
+#print(time.time() - start) 
+#
+#start = time.time()
+#data2 = datasets.load('uwcse', ['professor(person).',
+#    'student(person).',
+#    'advisedby(person,person)'
+#    'tempadvisedby(person,person).',
+#    'hasposition(person,faculty).',
+#    'publication(title,person).',
+#    'inphase(person, pre_quals).',
+#    'courselevel(course,#level).',
+#    'yearsinprogram(person,#year).',
+#    'projectmember(project, person).'])
+#print(time.time() - start) 
