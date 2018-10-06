@@ -22,15 +22,15 @@ import json
 
 firstRun = False
 verbose = True
-n_runs = 10
+n_runs = 40
 
 experiments = [
             {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder'},
             {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby'},
             {'source':'imdb', 'target':'cora', 'predicate':'workedunder'},
             {'source':'cora', 'target':'imdb', 'predicate':'samevenue'},
-            {'source':'yeast', 'target':'twitter', 'predicate':'proteinclass'},
-            {'source':'twitter', 'target':'yeast', 'predicate':'accounttype'},
+            #{'source':'yeast', 'target':'twitter', 'predicate':'proteinclass'},
+            #{'source':'twitter', 'target':'yeast', 'predicate':'accounttype'},
             #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport'},
             #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
@@ -39,18 +39,6 @@ experiments = [
             #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
             ]
             
-def nextExperiment(results, experiments, nMax):
-    count = []
-    for i in range(len(experiments)):
-        experiment_title = experiments[i]['source'] + '->' + experiments[i]['target']
-        l = 0 if experiment_title not in results['results'] else len(results['results'][experiment_title])
-        count.append((i, l))
-    count = sorted(count, key=lambda x: x[1])
-    for i in range(len(count)):
-        if count[i][1] < nMax:
-            return count[i][0]
-    return None
-
 bk = {
       'imdb': ['workedunder(+person,+person).',
               'workedunder(+person,-person).',
@@ -303,12 +291,12 @@ def save(data):
         json.dump(data, fp)
         
 if firstRun:
-    results['save'] = {'experiment': 0, 'seed': random.randint(111111,999999) }
+    results['save'] = {'experiment': 0, 'n_runs': 0, 'seed': random.randint(111111,999999) }
 
 start = time.time()
 #while results['save']['experiment'] < len(experiments):
-while nextExperiment(results, experiments, n_runs) != None:
-    experiment = nextExperiment(results, experiments, n_runs)
+while results['save']['n_runs'] < n_runs:
+    experiment = results['save']['experiment'] if results['save']['experiment'] > len(experiments) else 0
     try:
         #experiment = results['save']['experiment']
         experiment_title = experiments[experiment]['source'] + '->' + experiments[experiment]['target']
@@ -410,5 +398,6 @@ while nextExperiment(results, experiments, n_runs) != None:
     except:
         print('Error in experiment of ' + experiment_title)
         pass
-    #results['save']['experiment'] += 1
+    results['save']['experiment'] += 1
+    results['save']['n_runs'] += 1
     save(results)
