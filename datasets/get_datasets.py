@@ -77,79 +77,40 @@ class datasets:
         else:
             return datasets.balance_neg(data, seed=seed)
         
-    def balance_neg(data, seed=None):
+    def balance_neg(target, data, size, seed=None):
         '''Receives [facts, pos, neg] and balance neg according to pos'''
-        facts = copy.deepcopy(data[0])
-        pos = copy.deepcopy(data[1])
-        neg = copy.deepcopy(data[2])
-        random.seed(seed)
-        for i in range(len(neg)):
-            random.shuffle(neg[i])
-            neg[i] = neg[i][:len(pos[i])]
-        random.seed(None)
-        return [facts, pos, neg]
-    
-    def generate_neg(data, seed=None):
-        '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
-        facts = copy.deepcopy(data[0])
-        pos = copy.deepcopy(data[1])
-        neg = copy.deepcopy(data[2])
-        pattern = '^(\w+)\(([\w, ]+)*\).$'
-        target = None
-        for i in range(len(pos)):
-            objects = set()
-            subjects = {}
-            for example in pos[i]:
-                m = re.search(pattern, example)
-                if m:
-                    target = m.group(1)
-                    entities = m.group(2).split(',')
-                    if entities[0] not in subjects:
-                        subjects[entities[0]] = set()
-                    subjects[entities[0]].add(entities[1])
-                    objects.add(entities[1])
-            random.seed(seed)
-            target_objects = list(objects)
-            for example in pos[i]:
-                m = re.search(pattern, example)
-                if m:
-                    entities = m.group(2).split(',')
-                    key = entities[0]
-                    for tr in range(10):
-                        r = random.randint(0, len(target_objects)-1)
-                        if target_objects[r] not in subjects[key]:
-                            neg[i].append(target + '(' + ','.join([key, target_objects[r]]) + ').')
-                            break
-            random.seed(None)
-        return [facts, pos, neg]
-    
-    def target(target, data):
-        '''Receives [facts, neg] and returns [facts, pos, neg] with pos and neg containing only target predicates'''
-        facts = []
-        pos = []
+        ret = copy.deepcopy(data)
         neg = []
-        pattern = '^(\w+)\(([\w, ]+)*\).$'
-        for i in range(len(data[0])):
-            facts.append([])
-            pos.append([])
-            neg.append([])
-            for example in data[0][i]:
-                m = re.search(pattern, example)
-                if m:
-                    
-                    relation = m.group(1)
-                    if relation == target:
-                        pos[i].append(example)
-                    else:
-                        facts[i].append(example)
-        for i in range(len(data[1])):
-            for example in data[1][i]:
-                m = re.search(pattern, example)
-                if m:
-                    relation = m.group(1)
-                    if relation == target:
-                        neg[i].append(example)
-        return [facts, pos, neg]
+        random.seed(seed)
+        random.shuffle(ret)
+        ret = ret[:size]
+        random.seed(None)
+        for entities in ret:
+            neg.append(target + '(' + ','.join(entities) + ').')
+        return neg
+    
+    def generate_neg(target, data, seed=None):
+        '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
+        pos = copy.deepcopy(data)
+        neg = []
+        objects = set()
+        subjects = {}
+        for entities in pos:
+            if entities[0] not in subjects:
+                subjects[entities[0]] = set()
+            subjects[entities[0]].add(entities[1])
+            objects.add(entities[1])
+        random.seed(seed)
+        target_objects = list(objects)
+        for entities in pos:
+            key = entities[0]
+            for tr in range(10):
+                r = random.randint(0, len(target_objects)-1)
+                if target_objects[r] not in subjects[key]:
+                    neg.append(target + '(' + ','.join([key, target_objects[r]]) + ').')
+                    break
+        random.seed(None)
+        return neg
     
     def get_json_dataset(dataset):
         '''Load dataset from json'''
@@ -157,7 +118,7 @@ class datasets:
             data_loaded = json.load(data_file)
         return data_loaded
     
-    def load(dataset, bk):
+    def load(dataset, bk, target=None, seed=None):
         '''Load dataset from json and accept only predicates presented in bk'''
         pattern = '^(\w+)\(.*\).$'
         accepted = set()
@@ -167,18 +128,87 @@ class datasets:
                 relation = re.sub('[ _]', '', m.group(1))
                 accepted.add(relation)
         data = datasets.get_json_dataset(dataset)
-        n_data = [[], []]
-        for t in range(len(data)): #positives, negatives
-            for i in range(len(data[t])):
-                n_data[t].append([])
-                for example in data[t][i]:
-                    m = re.search(pattern, example)
-                    if m:
-                        relation = m.group(1)
-                        if relation in accepted:
-                            n_data[t][i].append(example)
-        return n_data
+        facts = []
+        pos = []
+        neg = []
+        for i in range(len(data[0])): #positives
+            facts.append([])
+            pos.append([])
+            neg.append([])
+            for relation, value in data[0][i].items():
+                if relation in accepted:
+                    if relation == target:
+                        for example in value:
+                            pos[i].append(relation + '(' + ','.join(example)+ ').')
+                    else:
+                        for example in value:
+                            facts[i].append(relation + '(' + ','.join(example)+ ').')
+        if target:
+            for i in range(len(data[1])): #negatives
+                if target in data[1][i]:
+                    value = data[1][i][target]
+                    neg[i] = datasets.balance_neg(target, value, len(data[0][i][target]), seed=seed)
+                else:
+                    value = data[0][i][target]
+                    neg[i] = datasets.generate_neg(target, value, seed=seed)                                
+        return [facts, pos, neg]
 
+    def save():
+        import time 
+        start = time.time()
+        data = datasets.get_imdb_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'imdb'))
+        with open('files/json/imdb.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_cora_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'cora'))
+        with open('files/json/cora.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_uwcse_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'uwcse'))
+        with open('files/json/uwcse.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_webkb2_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'webkb'))
+        with open('files/json/webkb.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_nell_sports_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'nell_sports'))
+        with open('files/json/nell_sports.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_nell_finances_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'nell_finances'))
+        with open('files/json/nell_finances.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_yago2s_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'yago2s'))
+        with open('files/json/yago2s.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_twitter_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'twitter'))
+        with open('files/json/twitter.json', 'w') as outfile:
+            json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_yeast_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'yeast'))
+        with open('files/json/yeast.json', 'w') as outfile:
+            json.dump(data, outfile)
+        
     '''
     workedunder(person,person)
     genre(person,genre)
@@ -205,18 +235,22 @@ class datasets:
                 n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)
                 if b:
                     i += 1
-                    facts.append([])
-                    negatives.append([])               
+                    facts.append({})
+                    negatives.append({})               
                 if m:
                     relation = re.sub('[ _]', '', m.group(1))
                     entities = re.sub('[ _]', '', m.group(2)).split(',')
                     if not acceptedPredicates or relation in acceptedPredicates:
-                        facts[i].append(relation + '(' + ','.join(entities) + ').')
+                        if relation not in facts[i]:
+                            facts[i][relation] = []
+                        facts[i][relation].append(entities)
                 if n:
                     relation = re.sub('[ _]', '', n.group(1))
                     entities = re.sub('[ _]', '', n.group(2)).split(',')
                     if not acceptedPredicates or relation in acceptedPredicates:
-                        negatives[i].append(relation + '(' + ','.join(entities) + ').')
+                        if relation not in negatives[i]:
+                            negatives[i][relation] = []
+                        negatives[i][relation].append(entities)
         return [facts, negatives]
 
     '''
@@ -242,18 +276,22 @@ class datasets:
                 m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
                 if b:
                     i += 1
-                    facts.append([])
-                    negatives.append([])
+                    facts.append({})
+                    negatives.append({})
                 if m:
                     relation = re.sub('[ _]', '', m.group(1))
                     entities = re.sub('[ _]', '', m.group(2)).split(',')
                     if not acceptedPredicates or relation in acceptedPredicates:
-                        facts[i].append(relation + '(' + ','.join(entities) + ').')
+                        if relation not in facts[i]:
+                            facts[i][relation] = []
+                        facts[i][relation].append(entities)
                 if n:
                     relation = re.sub('[ _]', '', n.group(1))
                     entities = re.sub('[ _]', '', n.group(2)).split(',')
                     if not acceptedPredicates or relation in acceptedPredicates:
-                        negatives[i].append(relation + '(' + ','.join(entities) + ').')
+                        if relation not in negatives[i]:
+                            negatives[i][relation] = []
+                        negatives[i][relation].append(entities)
         return [facts, negatives]
 
     '''
@@ -288,28 +326,32 @@ class datasets:
                     if entities[0] not in fold:
                         fold[entities[0]] = fold_i
                         i = fold_i
-                        facts.append([])
-                        negatives.append([])
+                        facts.append({})
+                        negatives.append({})
                         fold_i += 1
                     else:
                         i = fold[entities[0]]
                     entities = entities[1:]
                     if not acceptedPredicates or relation in acceptedPredicates:
-                        facts[i].append(relation + '(' + ','.join(entities) + ').')
+                        if relation not in facts[i]:
+                            facts[i][relation] = []
+                        facts[i][relation].append(entities)
                 if n:
                     relation = re.sub('[ _]', '', n.group(1))
                     entities = re.sub('[ _]', '', n.group(2)).split(',')
                     if entities[0] not in fold:
                         fold[entities[0]] = fold_i
                         i = fold_i
-                        facts.append([])
-                        negatives.append([])
+                        facts.append({})
+                        negatives.append({})
                         fold_i += 1
                     else:
                         i = fold[entities[0]]
                     entities = entities[1:]
                     if not acceptedPredicates or relation in acceptedPredicates:
-                        negatives[i].append(relation + '(' + ','.join(entities) + ').')
+                        if relation not in negatives[i]:
+                            negatives[i][relation] = []
+                        negatives[i][relation].append(entities)
         return [facts, negatives]
     
     '''
@@ -353,8 +395,8 @@ class datasets:
                 m = re.search('^(\w+)\((.*)\).$', line.lower())
                 if b:
                     i += 1
-                    facts.append([])
-                    negatives.append([])
+                    facts.append({})
+                    negatives.append({})
                     continue
                 if n:
                     relation = re.sub('[\']', '', n.group(1))
@@ -362,7 +404,9 @@ class datasets:
                         entities = re.sub('[\']', '', n.group(2)).split(',')
                         entities = getCleanEntities(entities)
                         if not acceptedPredicates or relation in acceptedPredicates:
-                            negatives[i].append(relation + '(' + ','.join(entities) + ').')
+                            if relation not in negatives[i]:
+                                negatives[i][relation] = []
+                            negatives[i][relation].append(entities)
                     continue
                 if m:
                     relation = re.sub('[\']', '', m.group(1))
@@ -370,7 +414,9 @@ class datasets:
                         entities = re.sub('[\']', '', m.group(2)).split(',')
                         entities = getCleanEntities(entities)
                         if not acceptedPredicates or relation in acceptedPredicates:
-                            facts[i].append(relation + '(' + ','.join(entities) + ').')
+                            if relation not in facts[i]:
+                                facts[i][relation] = []
+                            facts[i][relation].append(entities)
                     continue
         return [facts, negatives]
     
@@ -390,8 +436,8 @@ class datasets:
     pageclass(page,class)
     '''   
     def get_webkb2_dataset(acceptedPredicates=None):       
-        facts = [[],[],[],[]]
-        negatives = [[],[],[],[]]
+        facts = [{},{},{},{}]
+        negatives = [{},{},{},{}]
         pages = {}
         count = {'id' : 1}
         i = -1
@@ -441,13 +487,17 @@ class datasets:
                         if m:
                             relation = re.sub('[\'"]', '', m.group(1))
                             entities = re.sub('[\'"]', '', m.group(2)).split(',')
-                            entities = getCleanEntities(entities)
+                            entities = getCleanEntities(entities)                          
                             if not acceptedPredicates or relation in acceptedPredicates:
                                 if relation in classes:
+                                    if 'pageclass' not in facts[i]:
+                                        facts[i]['pageclass'] = []
                                     entities += [relation]
-                                    facts[i].append('pageclass(' + ','.join(entities) + ').')
+                                    facts[i]['pageclass'].append(entities)
                                 else:
-                                    facts[i].append(relation + '(' + ','.join(entities) + ').')
+                                    if relation not in facts[i]:
+                                        facts[i][relation] = []
+                                    facts[i][relation].append(entities)
                             continue
         return [facts, negatives]
     
@@ -467,7 +517,7 @@ class datasets:
             value = re.sub('[^a-z]', '', value)
             return value
        
-        facts = []
+        facts = [{}]
         dataset = pd.read_csv(os.path.join(__location__, 'files/NELL.sports.08m.1070.small.csv'))
         for data in dataset.values:
             entity = clearCharacters((data[1].split(':'))[2])
@@ -476,72 +526,11 @@ class datasets:
             
             if entity and relation and value:
                 if not acceptedPredicates or relation in acceptedPredicates:
-                    facts.append(relation + '(' + ','.join([entity, value]) + ').')
-        return [[facts], [[]]]
-    
-    def get_yago2s_dataset(acceptedPredicates=None):
-        def clearCharacters(value):
-            value = value.lower()
-            value = unidecode.unidecode(value)
-            value = re.sub('[^a-z]', '', value)
-            return value
+                    if relation not in facts[0]:
+                        facts[0][relation] = []
+                    facts[0][relation].append([entity, value])
+        return [facts, [{}]]
         
-        facts = []
-        with open(os.path.join(__location__, 'files/yago2s.tsv'), encoding='utf8') as f:
-            f = csv.reader(f, delimiter='\t')
-            for row in f:
-                for i in range(len(row)):
-                    row[i] = clearCharacters(row[i])
-                if row[0] and row[2]:
-                    if not acceptedPredicates or row[1] in acceptedPredicates:
-                        relation = row[1]
-                        entities = [row[0], row[2]]
-                        facts.append(relation + '(' + ','.join(entities) + ').')
-        return [[facts], [[]]]
-    
-    '''
-    accounttype(account,+type)
-    tweets(account,+word)
-    follows(account,account)'''  
-    def get_twitter_dataset(acceptedPredicates=None):
-        facts = [[],[]]
-        for i in range(2):
-            with open(os.path.join(__location__, 'files/twitter-fold' + str(i+1) + '.db')) as f:
-                for line in f:
-                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
-                    if m:
-                        relation = m.group(1)
-                        entities = m.group(2)
-                        entities = re.sub('[ _"-]', '', entities)
-                        entities = entities.split(',')
-                        if not acceptedPredicates or relation in acceptedPredicates:
-                            facts[i].append(relation + '(' + ','.join(entities) + ').')
-        return [facts, [[],[]]]
-    
-    '''
-    location(protein,loc)
-    interaction(protein,protein)
-    proteinclass(protein,class)
-    enzyme(protein,enz)
-    function(protein,+fun)
-    complex(protein,com)
-    phenotype(protein,phe)'''  
-    def get_yeast_dataset(acceptedPredicates=None):
-        facts = [[],[],[],[]]
-        for i in range(4):
-            with open(os.path.join(__location__, 'files/yeast-fold' + str(i+1) + '.db')) as f:
-                for line in f:
-                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
-                    if m:
-                        relation = m.group(1)
-                        relation = re.sub('[_]', '', relation)
-                        entities = m.group(2)
-                        entities = re.sub('[ _"-]', '', entities)
-                        entities = entities.split(',')
-                        if not acceptedPredicates or relation in acceptedPredicates:
-                            facts[i].append(relation + '(' + ','.join(entities) + ').')
-        return [facts, [[],[],[],[]]]
-    
     '''
     countryhascompanyoffice(country,company)
     companyeconomicsector(company,sector)
@@ -555,7 +544,7 @@ class datasets:
             value = re.sub('[^a-z]', '', value)
             return value
 
-        facts = []
+        facts = [{}]
         dataset = pd.read_csv(os.path.join(__location__, 'files/NELL.finances.08m.1115.small.csv'))
         for data in dataset.values:
             entity = clearCharacters((data[1].split(':'))[2])
@@ -564,8 +553,79 @@ class datasets:
             
             if entity and relation and value:
                 if not acceptedPredicates or relation in acceptedPredicates:
-                    facts.append(relation + '(' + ','.join([entity, value]) + ').')
-        return [[facts], [[]]]
+                    if relation not in facts[0]:
+                        facts[0][relation] = []
+                    facts[0][relation].append([entity, value])
+        return [facts, [{}]]
+    
+    def get_yago2s_dataset(acceptedPredicates=None):
+        def clearCharacters(value):
+            value = value.lower()
+            value = unidecode.unidecode(value)
+            value = re.sub('[^a-z]', '', value)
+            return value
+        
+        facts = [{}]
+        with open(os.path.join(__location__, 'files/yago2s.tsv'), encoding='utf8') as f:
+            f = csv.reader(f, delimiter='\t')
+            for row in f:
+                for i in range(len(row)):
+                    row[i] = clearCharacters(row[i])
+                if row[0] and row[2]:
+                    if not acceptedPredicates or row[1] in acceptedPredicates:
+                        relation = row[1]
+                        entities = [row[0], row[2]]
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        facts[0][relation].append(entities)
+        return [facts, [{}]]
+    
+    '''
+    accounttype(account,+type)
+    tweets(account,+word)
+    follows(account,account)'''  
+    def get_twitter_dataset(acceptedPredicates=None):
+        facts = [{},{}]
+        for i in range(2):
+            with open(os.path.join(__location__, 'files/twitter-fold' + str(i+1) + '.db')) as f:
+                for line in f:
+                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
+                    if m:
+                        relation = m.group(1)
+                        entities = m.group(2)
+                        entities = re.sub('[ _"-]', '', entities)
+                        entities = entities.split(',')
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            if relation not in facts[i]:
+                                facts[i][relation] = []
+                            facts[i][relation].append(entities)
+        return [facts, [{},{}]]
+    
+    '''
+    location(protein,loc)
+    interaction(protein,protein)
+    proteinclass(protein,class)
+    enzyme(protein,enz)
+    function(protein,+fun)
+    complex(protein,com)
+    phenotype(protein,phe)'''  
+    def get_yeast_dataset(acceptedPredicates=None):
+        facts = [{},{},{},{}]
+        for i in range(4):
+            with open(os.path.join(__location__, 'files/yeast-fold' + str(i+1) + '.db')) as f:
+                for line in f:
+                    m = re.search('^([\w_]+)\(([\w, "_-]+)*\)$', line.lower())
+                    if m:
+                        relation = m.group(1)
+                        relation = re.sub('[_]', '', relation)
+                        entities = m.group(2)
+                        entities = re.sub('[ _"-]', '', entities)
+                        entities = entities.split(',')
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            if relation not in facts[i]:
+                                facts[i][relation] = []
+                            facts[i][relation].append(entities)
+        return [facts, [{},{},{},{}]]
 
 #import time 
 #start = time.time()
@@ -595,19 +655,18 @@ class datasets:
 #    'hasalphanumericword(id).',
 #    'allwordscapitalized(id).',
 #    'departmentof(page,page).',
-#    'pageclass(page,class).'])
+#    'pageclass(page,class).'], target='pageclass')
 #print(time.time() - start) 
 
-#
-#start = time.time()
-#data2 = datasets.load('uwcse', ['professor(person).',
-#    'student(person).',
-#    'advisedby(person,person)'
-#    'tempadvisedby(person,person).',
-#    'hasposition(person,faculty).',
-#    'publication(title,person).',
-#    'inphase(person, pre_quals).',
-#    'courselevel(course,#level).',
-#    'yearsinprogram(person,#year).',
-#    'projectmember(project, person).'])
-#print(time.time() - start) 
+start = time.time()
+data2 = datasets.load('uwcse', ['professor(person).',
+    'student(person).',
+    'advisedby(person,person)'
+    'tempadvisedby(person,person).',
+    'hasposition(person,faculty).',
+    'publication(title,person).',
+    'inphase(person, pre_quals).',
+    'courselevel(course,#level).',
+    'yearsinprogram(person,#year).',
+    'projectmember(project, person).'], target='projectmember')
+print(time.time() - start) 
