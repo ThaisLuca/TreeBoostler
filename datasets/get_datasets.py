@@ -70,12 +70,6 @@ class datasets:
             temp = temp[s:]
         ret.append(temp)
         return ret
-    
-    def neg(data, seed=None):
-        if len(data[2][0]) == 0:
-            return datasets.generate_neg(data, seed=seed)
-        else:
-            return datasets.balance_neg(data, seed=seed)
         
     def balance_neg(target, data, size, seed=None):
         '''Receives [facts, pos, neg] and balance neg according to pos'''
@@ -658,15 +652,15 @@ class datasets:
 #    'pageclass(page,class).'], target='pageclass')
 #print(time.time() - start) 
 
-start = time.time()
-data2 = datasets.load('uwcse', ['professor(person).',
-    'student(person).',
-    'advisedby(person,person)'
-    'tempadvisedby(person,person).',
-    'hasposition(person,faculty).',
-    'publication(title,person).',
-    'inphase(person, pre_quals).',
-    'courselevel(course,#level).',
-    'yearsinprogram(person,#year).',
-    'projectmember(project, person).'], target='projectmember')
-print(time.time() - start) 
+#import time
+#start = time.time()
+#data2 = datasets.load('uwcse', ['professor(person).',
+#    'student(person).',
+#    'advisedby(person,person)'
+#    'tempadvisedby(person,person).',
+#    'hasposition(person,faculty).',
+#    'publication(title,person).',
+#    'inphase(person, pre_quals).',
+#    'courselevel(course,#level).',
+#    'yearsinprogram(person,#year).'], target='advisedby')
+#print(time.time() - start) 
