@@ -60,15 +60,18 @@ class datasets:
             train += folds[i]
         return train
     
-    def split_into_folds(examples, n_folds=5):
+    def split_into_folds(examples, n_folds=5, seed=None):
         '''For datasets as nell and yago that have only 1 mega-example'''
         temp = list(examples)
+        random.seed(seed)
+        random.shuffle(temp)
         s = math.ceil(len(examples)/n_folds)
         ret = []
         for i in range(n_folds-1):
             ret.append(temp[:s])
             temp = temp[s:]
         ret.append(temp)
+        random.seed(None)
         return ret
         
     def balance_neg(target, data, size, seed=None):
