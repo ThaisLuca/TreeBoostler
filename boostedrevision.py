@@ -109,7 +109,7 @@ def generalize_tree(tree):
     ntree = copy.deepcopy(tree)
     return generalize_tree_helper(ntree)
 
-def get_structure_from_tree_helper(path, root, nodes, leaves):
+def get_structured_from_tree_helper(path, root, nodes, leaves):
     if isinstance(root, list):
         leaves[path] = root
     elif isinstance(root, dict):
@@ -120,14 +120,14 @@ def get_structure_from_tree_helper(path, root, nodes, leaves):
         left = ','.join(split+['true'])
         right = ','.join(split+['false'])
         nodes[path] = i
-        get_structure_from_tree_helper(left, children[0], nodes, leaves)
-        get_structure_from_tree_helper(right, children[1], nodes, leaves)
+        get_structured_from_tree_helper(left, children[0], nodes, leaves)
+        get_structured_from_tree_helper(right, children[1], nodes, leaves)
     
-def get_structure_from_tree(tree):
+def get_structured_from_tree(target, tree):
     nodes = {}
     leaves = {}
-    get_structure_from_tree_helper('', tree, nodes, leaves)
-    return [nodes, leaves]
+    get_structured_from_tree_helper('', tree, nodes, leaves)
+    return [target, nodes, leaves]
     
 def print_will_produced_tree(will):
     '''Remove files from train folder'''
@@ -183,33 +183,22 @@ def get_bad_leaves(struct):
     ret.sort(key=lambda x: x[1])
     return ret
 
-def get_candidate(struct, treenumber=1):
+def get_candidate(struct, variances, treenumber=1):
     '''Get candidate refining every revision point in a tree'''
     target = struct[0]
     nodes = struct[1]
     leaves = struct[2]
-    bad_leaves = get_bad_leaves(struct)
-    set_bad_leaves = set([i[0] for i in bad_leaves])
-    if len(bad_leaves) > 0:
-        bad_leaf = bad_leaves[0][0] # get the worst revision point
-        #new_nodes = copy.deepcopy(nodes)
-        # if leaf has no example reached, remove its node
-        if bad_leaves[0][1] == 0:
-            return get_refine_file([target, nodes, leaves], removeNode=[get_branch_to_last_level(bad_leaf)], treenumber=treenumber)
-        # two leaves in a node are bad ones
-        elif get_branch_last_level(bad_leaf, 'true') in set_bad_leaves and get_branch_last_level(bad_leaf, 'false') in set_bad_leaves:
-            # remove its node
-            return get_refine_file([target, nodes, leaves], removeNode=[get_branch_to_last_level(bad_leaf)], treenumber=treenumber)
-        else:
-            # learn subtree
-            return get_refine_file([target, nodes, leaves], forceLearningIn=[bad_leaf], treenumber=treenumber)
-    else:
-        return get_refine_file([target, nodes, leaves], treenumber=treenumber)
+    if '' not in nodes:
+        return []
+    tree = get_tree(nodes, leaves, variances)
+    gen = generalize_tree(tree)
+    new_struct = get_structured_from_tree(target, gen)
+    return get_refine_file(new_struct, forceLearning=True, treenumber=treenumber)
     
-def get_boosted_candidate(structs):
+def get_boosted_candidate(structs, variances):
     refine = []
     for i in range(len(structs)):
-        refine += get_candidate(structs[i], i+1)
+        refine += get_candidate(structs[i], variances[i], i+1)
     return refine        
 
 def get_branch_with(branch, next_branch):
@@ -231,28 +220,24 @@ def get_branch_to_last_level(branch):
     b = branch.split(',')
     return ','.join(b[:-1])
     
-def get_refine_file(struct, forceLearningIn=[], removeNode=[], treenumber=1):
+def get_refine_file(struct, forceLearning=False, treenumber=1):
     '''Generate the refine file from given tree structure'''
     target = struct[0]
     nodes = struct[1]
     #leaves = struct[2]
     tree = treenumber-1
     refine = []
-    # if first node shold be removed, then algorithm learns from scratch
-    if '' in removeNode:
-        return refine
     for path, value in nodes.items():
-        if not descendant_of(path, removeNode):
-            node = target + ' :- ' + value + '.' if not path else value + '.'
-            branchTrue = 'false' if get_branch_with(path, 'true') in removeNode else 'true' if get_branch_with(path, 'true') in nodes else 'true' if get_branch_with(path, 'true') in forceLearningIn else 'false'
-            branchFalse = 'false' if get_branch_with(path, 'false') in removeNode else 'true' if get_branch_with(path, 'false') in nodes else 'true' if get_branch_with(path, 'false') in forceLearningIn else 'false'
-            refine.append(';'.join([str(tree), path, node, branchTrue, branchFalse]))
+        node = target + ' :- ' + value + '.' if not path else value + '.'
+        branchTrue = 'true' if get_branch_with(path, 'true') in nodes or forceLearning else 'false'
+        branchFalse = 'true' if get_branch_with(path, 'false') in nodes or forceLearning else 'false'
+        refine.append(';'.join([str(tree), path, node, branchTrue, branchFalse]))
     return refine
 
-def get_boosted_refine_file(structs, forceLearningIn=[], removeNode=[]):
+def get_boosted_refine_file(structs, forceLearning=False):
     refine = []
     for i in range(len(structs)):
-        refine += get_refine_file(structs[i], treenumber=i+1, forceLearningIn=[] if len(forceLearningIn) != len(structs) else forceLearningIn[i], removeNode=[] if len(removeNode) != len(structs) else removeNode[i])
+        refine += get_refine_file(structs[i], treenumber=i+1, forceLearning=forceLearning)
     return refine
 
 def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, verbose=True):
@@ -286,6 +271,8 @@ def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_f
     results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
     inference_time = results.testtime()
     t_results = results.summarize_results()
+    t_results['Learning time'] = learning_time
+    t_results['Inference time'] = inference_time
     if verbose:
         print('Results')
         print('   AUC ROC   = %s' % t_results['AUC ROC'])
@@ -299,14 +286,13 @@ def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_f
         print('Total inference time: %s seconds' % inference_time)
         print('AUC ROC: %s' % t_results['AUC ROC'])
         print('\n')
-    return [model, learning_time, inference_time, t_results, structured, will, variances]
+    return [model, t_results, structured, will, variances]
 
-def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, verbose=True, testAfterPL=False):
+def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, verbose=True):
     '''Function responsible for starting the theory revision process'''
     total_revision_time = 0
     best_aucroc = 0
     best_structured = None
-    pl_inference_time = 0
     pl_t_results = 0
 
     # parameter learning
@@ -317,31 +303,13 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, trai
         print('Refine')
         for item in get_boosted_refine_file(structured_tree):
             print(item)
-    [model, learning_time, inference_time, t_results, structured, will, variances] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, train_facts, refine=get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
+    [model, t_results, structured, will, variances] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
     # saving performed parameter learning will
     #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
     #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
-    total_revision_time += learning_time + inference_time
-    
-#    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
-#    if testAfterPL:
-#        #pl_inference_time = results.testtime()
-#        pl_t_results = results.summarize_results()
-#        pl_t_results['Learning time'] = learning_time
-#        pl_t_results['Inference time'] = results.testtime()
-#        if verbose:
-#            print('Results in test set')
-#            print('   AUC ROC   = %s' % t_results['AUC ROC'])
-#            print('   AUC PR    = %s' % t_results['AUC PR'])
-#            print('   CLL	      = %s' % t_results['CLL'])
-#            print('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
-#            print('   Recall    = %s' % t_results['Recall'])
-#            print('   F1        = %s' % t_results['F1'])
-#            print('\n')
-#            print('Total inference time: %s seconds' % inference_time)
-#            print('AUC ROC: %s' % t_results['AUC ROC'])
+    pl_t_results = t_results
 
-    best_aucroc = t_results['AUC ROC']
+    #best_aucroc = t_results['AUC ROC']
     best_structured = structured.copy()
     if verbose:
         print('Structure after Parameter Learning')
@@ -349,71 +317,59 @@ def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, trai
             print(item)
         for item in variances:
             print(item)
-    save_model_files()
+    #save_model_files()
 
+    if verbose:
+        print('******************************************')
+        print('Performing Theory Revision')
+        print('******************************************')
+    # refine candidates
+    #for i in range(max_revision_iterations):
 #    if verbose:
-#        print('******************************************')
-#        print('Performing Theory Revision')
-#        print('******************************************')
-#    # refine candidates
-#    for i in range(max_revision_iterations):
-#        if verbose:
-#            print('Refining iteration %s' % str(i+1))
-#            print('********************************')
-#        found_better = False
-#        candidate = get_boosted_candidate(best_structured)
-#        if verbose:
-#            print('Candidate for revision')
-#            print(candidate)
-#        boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
-#        if verbose:
-#            print('Refining candidate')
-#            print('***************************')
-#            print('Revision points found')
-#            for i in range(trees):
-#                print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
-#            print('\n')
-#        [model, learning_time, inference_time, t_results, structured, will, variances] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, validation_pos, validation_neg, train_facts, trees=trees, refine=candidate, verbose=verbose)
-#        total_revision_time += learning_time + inference_time
-#        if t_results['AUC ROC'] > best_aucroc:
-#            found_better = True
-#            best_aucroc = t_results['AUC ROC']
-#            best_structured = structured.copy()
-#            save_model_files()
-#        if verbose:
-#            print('Best model AUC ROC so far: %s' % best_aucroc)
-#            print('\n')
-#        if found_better == False:
-#            break
+#        print('Refining iteration %s' % str(i+1))
+#        print('********************************')
+#    found_better = False
+    candidate = get_boosted_candidate(best_structured, variances)
+    if not len(candidate):
+        raise(Exception('Transfer was not sufficient.'))
+    if verbose:
+        print('Candidate for revision')
+        print(candidate)
+    #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
+    if verbose:
+        print('Refining candidate')
+        print('***************************')
+        #print('Revision points found')
+        #for i in range(trees):
+        #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
+        #print('\n')
+    [model, t_results, structured, will, variances] = learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, verbose=verbose)
+    t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
+    #if t_results['AUC ROC'] > best_aucroc:
+    #    found_better = True
+    #    best_aucroc = t_results['AUC ROC']
+    #    best_structured = structured.copy()
+    #    save_model_files()
+    if verbose:
+        print('Refined model AUC ROC: %s' % t_results['AUC ROC'])
+        print('\n')
+    #if found_better == False:
+    #    break
 
     # test best model
-    if verbose:
-        print('******************************************')
-        print('Best model found')
-        print('******************************************')
-    delete_model_files()
-    get_saved_model_files()
-    delete_test_files()
-    if verbose:
-        print('Total revision time: %s' % total_revision_time)
-        print('Best validation AUC ROC: %s' % best_aucroc)
-        print('\n')
-    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
-    inference_time = results.testtime()
-    t_results = results.summarize_results()
-    if verbose:
-        print('Results')
-        print('   AUC ROC   = %s' % t_results['AUC ROC'])
-        print('   AUC PR    = %s' % t_results['AUC PR'])
-        print('   CLL	      = %s' % t_results['CLL'])
-        print('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
-        print('   Recall    = %s' % t_results['Recall'])
-        print('   F1        = %s' % t_results['F1'])
-        print('\n')
-        print('Total inference time: %s seconds' % inference_time)
-        print('AUC ROC: %s' % t_results['AUC ROC'])
+    #if verbose:
+    #    print('******************************************')
+    #    print('Best model found')
+    #    print('******************************************')
+    #delete_model_files()
+    #get_saved_model_files()
+    #delete_test_files()
+    #if verbose:
+    #    print('Total revision time: %s' % total_revision_time)
+    #    print('Best validation AUC ROC: %s' % best_aucroc)
+    #    print('\n')
     
-    return [model, total_revision_time, inference_time, t_results, structured, pl_t_results]
+    return [model, t_results, structured, pl_t_results]
 
 def get_graph(lines):
     '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
