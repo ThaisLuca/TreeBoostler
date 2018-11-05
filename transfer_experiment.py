@@ -7,7 +7,7 @@
 '''
 
 import os
-#import sys
+import sys
 import time
 #sys.path.append('../..')
 
@@ -19,11 +19,27 @@ from boostsrl import boostsrl
 import numpy as np
 import random
 import json
+import logging
+from logging import FileHandler
+from logging import Formatter
 
 firstRun = False
-verbose = True
-n_runs = 10
+n_runs = 40
 
+if not os.path.exists('log'):
+    os.makedirs('log')
+
+def setup_logger(name, log_file, level=logging.DEBUG):
+    formatter = logging.Formatter('%(message)s')
+    
+    handler = logging.FileHandler(log_file)        
+    handler.setFormatter(formatter)
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+    logger.addHandler(handler)
+
+    return logger
     
 #def print(message):
 #    global experiment_title
@@ -32,13 +48,13 @@ n_runs = 10
 #        builtins.print(message)
 
 experiments = [
-            #{'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
-            #{'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
-            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
-            #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
+            {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
+            {'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            {'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
+            {'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            {'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            {'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
             {'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
@@ -321,110 +337,108 @@ if firstRun:
 start = time.time()
 #while results['save']['experiment'] < len(experiments):
 while results['save']['n_runs'] < n_runs:
+    print('Run: ' + str(results['save']['n_runs']))
     experiment = results['save']['experiment'] % len(experiments)
-    #try:
-    #experiment = results['save']['experiment']
-    experiment_title = experiments[experiment]['source'] + '->' + experiments[experiment]['target']
-    if experiment_title not in results['results']:
-        results['results'][experiment_title] = []
+    try:
+        #experiment = results['save']['experiment']
+        experiment_title = experiments[experiment]['source'] + '->' + experiments[experiment]['target']
+        if experiment_title not in results['results']:
+            results['results'][experiment_title] = []
+            
+        logger = setup_logger('logger_' + experiment_title, 'log/' + experiment_title + '.log')
+        
+        nbr = len(results['results'][experiment_title])
+        logger.info('Starting experiment #' + str(nbr+1) + ' for ' + experiment_title+ '\n')
     
-    nbr = len(results['results'][experiment_title])
-    print('Starting experiment #' + str(nbr+1) + ' for ' + experiment_title+ '\n')
-
-    source = experiments[experiment]['source']
-    target = experiments[experiment]['target']
-    predicate = experiments[experiment]['predicate']
-    to_predicate = experiments[experiment]['to_predicate']
-    
-    # Load source dataset
-    src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-    src_data = datasets.load(source, bk[source], target=predicate, seed=results['save']['seed'])
+        source = experiments[experiment]['source']
+        target = experiments[experiment]['target']
+        predicate = experiments[experiment]['predicate']
+        to_predicate = experiments[experiment]['to_predicate']
         
-    # Group and shuffle
-    src_facts = datasets.group_folds(src_data[0])
-    src_pos = datasets.group_folds(src_data[1])
-    src_neg = datasets.group_folds(src_data[2])
-                
-    if verbose:
-        print('Start learning from source dataset\n')
-                       
-    # learning from source dataset
-    background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=2, numOfClauses=8)
-    [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, verbose=verbose)
-    
-    preds = mapping.get_preds(source_structured, bk[source])
-    if verbose:
-        print('Predicates from source: %s' % preds + '\n')
-        #print('Source structured tree: %s \n' % source_structured)
-    
-    # Load total target dataset
-    tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
-        
-    n_folds = len(tar_total_data[0])
-    results_save = []
-    for i in range(n_folds):
-        
-        print('Starting fold ' + str(i+1) + '\n')
-        
-        ob_save = {}
-        
-        if target not in ['nell_sports', 'nell_finances', 'yago2s']:
-            [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
-        else:
-            t_total_data = datasets.load(target, bk[target], target=to_predicate, seed=results['save']['seed'])
-            tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=3, seed=results['save']['seed'])[i] + t_total_data[0][0]
-        
-        # transfer
-        mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate)
-        transferred_structured = transfer.transfer(source_structured, mapping_rules)
-        #new_target = transfer.get_transferred_target(transferred_structured)
-        new_target = to_predicate
-        if verbose:
-            print('Best mapping found: %s \n' % mapping_rules)
-            #print('Tranferred structured tree: %s \n' % transferred_structured)
-            print('Transferred target predicate: %s \n' % new_target)
-        
-        # Load new predicate target dataset
-        tar_data = datasets.load(target, bk[target], target=new_target, seed=results['save']['seed'])
-        
+        # Load source dataset
+        src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
+        src_data = datasets.load(source, bk[source], target=predicate, seed=results['save']['seed'])
+            
         # Group and shuffle
-        if target not in ['nell_sports', 'nell_finances', 'yago2s']:
-            [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
-            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
-            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
-        else:
-            [tar_train_facts, tar_test_facts] =  [tar_data[0][0], tar_data[0][0]]
-            to_folds_pos = datasets.split_into_folds(tar_data[1][0], n_folds=3, seed=results['save']['seed'])
-            to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=3, seed=results['save']['seed'])
-            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, to_folds_pos)
-            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
-
-        # transfer and revision theory
-        background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=2, numOfClauses=8)
-        [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, verbose=verbose)
-        t_results['Mapping results'] = mapping_results
-        t_results['Parameter Learning results'] = pl_t_results
-        ob_save['transfer'] = t_results
-        print('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-        print(t_results)
-        print('\n')
+        src_facts = datasets.group_folds(src_data[0])
+        src_pos = datasets.group_folds(src_data[1])
+        src_neg = datasets.group_folds(src_data[2])
+                    
+        logger.info('Start learning from source dataset\n')
+                           
+        # learning from source dataset
+        background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=2, numOfClauses=8)
+        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, logger=logger)
         
-        if verbose:
-            print('Start learning from scratch in target domain\n')
+        preds = mapping.get_preds(source_structured, bk[source])
+        logger.info('Predicates from source: %s' % preds + '\n')
+            #print('Source structured tree: %s \n' % source_structured)
         
-        # learning from scratch
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, verbose=verbose)
-        ob_save['scratch'] = t_results
-        print('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-        print(t_results)
-        print('\n')
-        
-        results_save.append(ob_save)
-    results['results'][experiment_title].append(results_save)
-    #except Exception as e:
-    #    print(e)
-    #    print('Error in experiment of ' + experiment_title)
-    #    pass
+        # Load total target dataset
+        tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
+            
+        n_folds = len(tar_total_data[0])
+        results_save = []
+        for i in range(n_folds):
+            logger.info('Starting fold ' + str(i+1) + '\n')
+            
+            ob_save = {}
+            
+            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+                [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
+            else:
+                t_total_data = datasets.load(target, bk[target], target=to_predicate, seed=results['save']['seed'])
+                tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=3, seed=results['save']['seed'])[i] + t_total_data[0][0]
+            
+            # transfer
+            mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate)
+            transferred_structured = transfer.transfer(source_structured, mapping_rules)
+            #new_target = transfer.get_transferred_target(transferred_structured)
+            new_target = to_predicate
+            logger.info('Best mapping found: %s \n' % mapping_rules)
+            #logger.info('Tranferred structured tree: %s \n' % transferred_structured)
+            logger.info('Transferred target predicate: %s \n' % new_target)
+            
+            # Load new predicate target dataset
+            tar_data = datasets.load(target, bk[target], target=new_target, seed=results['save']['seed'])
+            
+            # Group and shuffle
+            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+                [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
+                [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
+                [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
+            else:
+                [tar_train_facts, tar_test_facts] =  [tar_data[0][0], tar_data[0][0]]
+                to_folds_pos = datasets.split_into_folds(tar_data[1][0], n_folds=3, seed=results['save']['seed'])
+                to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=3, seed=results['save']['seed'])
+                [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, to_folds_pos)
+                [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
+    
+            # transfer and revision theory
+            background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=8, nodeSize=2, numOfClauses=8)
+            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, logger=logger)
+            t_results['Mapping results'] = mapping_results
+            t_results['Parameter Learning results'] = pl_t_results
+            ob_save['transfer'] = t_results
+            logger.info('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            logger.info(t_results)
+            logger.info('\n')
+            
+            logger.info('Start learning from scratch in target domain\n')
+            
+            # learning from scratch
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, logger=logger)
+            ob_save['scratch'] = t_results
+            logger.info('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            logger.info(t_results)
+            logger.info('\n')
+            
+            results_save.append(ob_save)
+        results['results'][experiment_title].append(results_save)
+    except Exception as e:
+        logger.info(e)
+        logger.info('Error in experiment of ' + experiment_title)
+        pass
     results['save']['experiment'] += 1
     results['save']['n_runs'] += 1
     save(results)
