@@ -531,9 +531,15 @@ class datasets:
     '''
     countryhascompanyoffice(country,company)
     companyeconomicsector(company,sector)
+    economicsectorcompany(sector,company)
     companyceo(company,person)
     companyalsoknownas(company,company)
     cityhascompanyoffice(city,company)
+    acquired(company,company)
+    ceoof(person,company)
+    bankbankincountry(company,company)
+    bankboughtbank(company,company)
+    bankchiefexecutiveceo(company,person)
     '''
     def get_nell_finances_dataset(acceptedPredicates=None):
         def clearCharacters(value):

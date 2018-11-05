@@ -123,6 +123,16 @@ class mapping:
             entities = m.group(2).replace(' ', '').split(',')
             return (relation, entities)
         return None
+        
+    def find_pred(pred, preds):
+        '''Find a predicate and its types given a predicate name'''
+        for p in preds:
+            m = re.search('^(\w+)\(([\w, ]+)*\).$', p)
+            if m:
+                relation = m.group(1).replace(' ', '')
+                if relation == pred:
+                    return p
+        return None
     
     def invert(predicate):
         '''Get the inverse relation of a predicate'''
@@ -168,13 +178,13 @@ class mapping:
         else:
             return (False, typeConstraints)
 
-    def mapping(srcPreds, tarPreds):
+    def mapping(srcPreds, tarPreds, forceHead=None):
         '''Generate all possible mappings that are type consistent'''
         result = []
-        result += mapping.mapping_recursive(srcPreds, tarPreds, {}, {}, 0)
+        result += mapping.mapping_recursive(srcPreds, tarPreds, {}, {}, 0, forceHead=forceHead)
         return result
     
-    def mapping_recursive(srcPreds, tarPreds, predsMapping, typeConstraints, i):
+    def mapping_recursive(srcPreds, tarPreds, predsMapping, typeConstraints, i, forceHead=None):
         '''Recursive function for generating possible mappings'''
         if i >= len(srcPreds):
             return [predsMapping]
@@ -187,7 +197,9 @@ class mapping:
                 newPredsMapping = copy.deepcopy(predsMapping)
                 newTypeConstraints = copy.deepcopy(typeConstraints)
                 rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
-            for tarPred in tarPreds:
+            # make source head clause maps to a target head clause (or inverse)
+            tPreds = tarPreds if i > 0 or not forceHead else [forceHead]
+            for tarPred in tPreds:
                 tar = mapping.get_types(tarPred)
                 # avoid multiple mapping to target predicate (recursion)
                 targetPred = mapping.get_types(srcPreds[0])
@@ -207,7 +219,7 @@ class mapping:
                             rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             return rets
         
-    def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000):
+    def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000, forceHead=None):
         '''Return best mapping found given source and target predicates and facts'''
         srcPreds = sPreds
         tarPreds = mapping.clean_preds(tPreds)
@@ -229,7 +241,11 @@ class mapping:
         target_sentences = set([' '.join(i) for i in target.sentences if len(i) > 1])
         best = 0
         best_mapping = None
-        possible_mappings = mapping.mapping(srcPreds, tarPreds)
+        fHead = None if not forceHead else mapping.find_pred(forceHead, tarPreds)
+        possible_mappings = mapping.mapping(srcPreds, tarPreds, forceHead=fHead)
+        # return None if incompatible forceHead is defined
+        if not len(possible_mappings):
+            return ({}, None)
         results['Generating mappings time'] = time.time() - new_start
         new_start = time.time()
         results['Possible mappings'] = len(possible_mappings)

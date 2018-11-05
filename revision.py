@@ -184,7 +184,7 @@ class revision:
         ret.sort(key=lambda x: x[1])
         return ret
     
-    def get_candidate(struct, variances, treenumber=1):
+    def get_candidate(struct, variances, treenumber=1, no_pruning=False):
         '''Get candidate refining every revision point in a tree'''
         target = struct[0]
         nodes = struct[1]
@@ -192,14 +192,14 @@ class revision:
         if '' not in nodes:
             return []
         tree = revision.get_tree(nodes, leaves, variances)
-        gen = revision.generalize_tree(tree)
+        gen = revision.generalize_tree(tree) if not no_pruning else tree
         new_struct = revision.get_structured_from_tree(target, gen)
         return revision.get_refine_file(new_struct, forceLearning=True, treenumber=treenumber)
         
-    def get_boosted_candidate(structs, variances):
+    def get_boosted_candidate(structs, variances, no_pruning=False):
         refine = []
         for i in range(len(structs)):
-            refine += revision.get_candidate(structs[i], variances[i], i+1)
+            refine += revision.get_candidate(structs[i], variances[i], i+1, no_pruning=no_pruning)
         return refine        
     
     def get_branch_with(branch, next_branch):
@@ -336,7 +336,9 @@ class revision:
     #    found_better = False
         candidate = revision.get_boosted_candidate(best_structured, variances)
         if not len(candidate):
-            return [model, copy.deepcopy(t_results), structured, pl_t_results]
+            #return [model, copy.deepcopy(t_results), structured, pl_t_results]
+            # Perform revision without pruning
+            candidate = revision.get_boosted_candidate(best_structured, variances, no_pruning=True)
         if verbose:
             print('Candidate for revision')
             print(candidate)
