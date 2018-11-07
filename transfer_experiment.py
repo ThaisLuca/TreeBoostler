@@ -25,7 +25,7 @@ import json
 
 verbose=True
 firstRun = False
-n_runs = 50
+n_runs = 40
 
 #if not os.path.exists('log'):
 #    os.makedirs('log')
@@ -49,23 +49,23 @@ n_runs = 50
 #        builtins.print(message)
 
 experiments = [
-            #{'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
-            #{'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
-            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
-            #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
-            #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
+            {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
+            {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
+            {'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            {'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
+            {'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            {'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            {'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            {'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
             #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
             #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
-            {'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'ismarriedto'},
-            {'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'imports'},
-            {'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
-            {'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
-            {'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
+            #{'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'ismarriedto'},
+            #{'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'imports'},
+            #{'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
+            #{'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
+            #{'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
             ]
             
 bk = {
@@ -401,6 +401,17 @@ while results['save']['n_runs'] < n_runs:
             
             # transfer
             mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate)
+            
+            if verbose:
+                print('Mapping Results')
+                print('   Knowledge compiling time   = %s' % mapping_results['Knowledge compiling time'])
+                print('   Generating paths time   = %s' % mapping_results['Generating paths time'])
+                print('   Generating mappings time   = %s' % mapping_results['Generating mappings time'])
+                print('   Possible mappings   = %s' % mapping_results['Possible mappings'])
+                print('   Finding best mapping   = %s' % mapping_results['Finding best mapping'])
+                print('   Total time   = %s' % mapping_results['Total time'])
+                print('\n')
+            
             transferred_structured = transfer.transfer(source_structured, mapping_rules)
             #new_target = transfer.get_transferred_target(transferred_structured)
             new_target = to_predicate
