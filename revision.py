@@ -63,16 +63,16 @@ class revision:
         except:
             pass
     
-    def get_tree_helper(path, nodes, leaves, variances):
+    def get_tree_helper(path, nodes, leaves, variances, no_variances=False):
         children = [None, None]
         split = [] if path == '' else path.split(',')
         left = ','.join(split+['true'])
         right = ','.join(split+['false'])
-        varc = variances[path]
+        varc = variances[path] if not no_variances else []
         if left in nodes:
-            children[0] = revision.get_tree_helper(left, nodes, leaves, variances)
+            children[0] = revision.get_tree_helper(left, nodes, leaves, variances, no_variances=no_variances)
         if right in nodes:
-            children[1] = revision.get_tree_helper(right, nodes, leaves, variances)
+            children[1] = revision.get_tree_helper(right, nodes, leaves, variances, no_variances=no_variances)
         if left in leaves:
             children[0] = leaves[left] # { 'type': 'leaf', 'std_dev': leaves[left][0], 'neg': leaves[left][1], 'pos': leaves[left][2] } 
         if right in leaves:
@@ -80,8 +80,8 @@ class revision:
         return { nodes[path]: [varc, children] }
         # { 'type': 'node', 'literals': nodes[path], 'children': children, 'variavarc] }
         
-    def get_tree(nodes, leaves, variances):
-        return revision.get_tree_helper('', nodes, leaves, variances)
+    def get_tree(nodes, leaves, variances, no_variances=False):
+        return revision.get_tree_helper('', nodes, leaves, variances, no_variances=no_variances)
     
     def generalize_tree_helper(root):
         if isinstance(root, list):
@@ -414,23 +414,45 @@ class revision:
                     leaves[','.join(current)] = get_match(match.groups()) #float(match.group(1))
                     if len(stack):
                         current = stack.pop()
-                       
-        for key, value in nodes.items():
-            ids[key] = last_id
-            graph += str(last_id) + '[label = "[' + value + ']"];\n'
-            last_id += 1
-        for key, value in leaves.items():
-            ids[key] = last_id
-            graph += str(last_id) + '[shape = box,label = "' + value + '"];\n'
-            last_id += 1
-        for key, value in nodes.items():
-            t = key.split(',')
-            t = [] if len(t) == 1 and t[0] == '' else t
-            current = ids[key]
-            to = ids[','.join(t + ['true'])]
-            graph += str(current) + ' -> ' + str(to) + '[label="True"];\n'
-            to = ids[','.join(t + ['false'])]
-            graph += str(current) + ' -> ' + str(to) + '[label="False"];\n'
+                        
+        tree = revision.get_tree(nodes, leaves, [], no_variances=True)
+        stack = [(1, tree)]
+        last_id = 1
+        
+        while len(stack):
+            t = stack.pop()
+            current_id = t[0]
+            root = t[1]
+            if isinstance(root, str):
+                graph += str(current_id) + '[shape = box,label = "' + root + '"];\n'
+            elif isinstance(root, dict):
+                i = list(root.keys())[0]
+                value = root[i]
+                children = value[1]
+                true_child = children[0]
+                false_child = children[1]
+                last_id += 2
+                stack.append((last_id, false_child))
+                stack.append((last_id-1, true_child))
+                graph += str(current_id) + '[label = "[' + i + ']"];\n'
+                graph += str(current_id) + ' -> ' + str(last_id-1) + '[label="True"];\n'
+                graph += str(current_id) + ' -> ' + str(last_id) + '[label="False"];\n'          
+#        for key, value in nodes.items():
+#            ids[key] = last_id
+#            graph += str(last_id) + '[label = "[' + value + ']"];\n'
+#            last_id += 1
+#        for key, value in leaves.items():
+#            ids[key] = last_id
+#            graph += str(last_id) + '[shape = box,label = "' + value + '"];\n'
+#            last_id += 1
+#        for key, value in nodes.items():
+#            t = key.split(',')
+#            t = [] if len(t) == 1 and t[0] == '' else t
+#            current = ids[key]
+#            to = ids[','.join(t + ['true'])]
+#            graph += str(current) + ' -> ' + str(to) + '[label="True"];\n'
+#            to = ids[','.join(t + ['false'])]
+#            graph += str(current) + ' -> ' + str(to) + '[label="False"];\n'
         return 'digraph G{\n' + graph + '}'
 
 #structured = ['interaction(A, B)', {'': 'proteinclass(B, C), proteinclass(A, C)', 'false,false,true': 'proteinclass(B, I)', 'false': 'proteinclass(A, E)', 'false,true': 'enzyme(A, F), enzyme(B, F)', 'false,false,false': 'proteinclass(B, J)', 'false,false': 'enzyme(A, H), enzyme(B, H)', 'false,true,false': 'proteinclass(B, G)', 'true': 'enzyme(A, D), enzyme(B, D)'}, {'false,false,true,false': [0.0, 0, 11], 'false,true,true': [0.0, 0, 0], 'false,false,false,false': [25.636, 1306, 1323], 'false,true,false,true': [5.148, 53, 53], 'false,false,false,true': [12.09, 307, 279], 'true,true': [0.0, 0, 4], 'true,false': [1.279, 2, 9], 'false,true,false,false': [10.986, 247, 236], 'false,false,true,true': [0.0, 0, 0]}]
