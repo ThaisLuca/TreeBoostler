@@ -100,7 +100,30 @@ class transfer:
         
     def get_transfer_tree(nodes, leaves):
         return transfer.get_transfer_tree_helper('', nodes, leaves)
-        
+    
+    def add_subtree_to_false(root, subtree):
+        if isinstance(root, list):
+            return root
+        elif isinstance(root, dict):
+            node_str = list(root.keys())[0]
+            value = root[node_str]
+            children = value
+            true_child = children[0]
+            false_child = transfer.add_subtree_to_false(children[1], subtree)
+            if isinstance(false_child, list):
+                return { node_str: [true_child, subtree] }
+            else:
+                return { node_str: [true_child, false_child] }
+            
+    def merge_subtrees(left, right):
+        left_str = list(left.keys())[0]
+        value = left[left_str]
+        children = value
+        true_child = children[0]
+        false_child = children[1]
+        new_true_child = transfer.add_subtree_to_false(true_child, false_child)
+        return { left_str: [new_true_child, right] }
+
     def transfer_tree_helper(root, mapping_struct):
         if isinstance(root, list):
             return root
@@ -110,7 +133,6 @@ class transfer:
             children = value
             true_child = transfer.transfer_tree_helper(children[0], mapping_struct)
             false_child = transfer.transfer_tree_helper(children[1], mapping_struct)
-            # nodes with no literals should be replaced by its false subtree
             match = re.findall('([a-zA-Z_0-9]*)\s*\(([a-zA-Z_0-9,\s]*)\)', node_str)
             new_clause = []
             if match:
@@ -122,7 +144,10 @@ class transfer:
                 new_key = ', '.join(new_clause)
                 return { new_key: [true_child, false_child] }
             else:
-                return false_child  
+                # nodes with no literals should be replaced by its false subtree
+                #return false_child 
+                # nodes with no literals are replaced by its true child and merge with false child
+                return transfer.merge_subtrees(true_child, false_child)
         
     def transfer_tree(tree, mapping_struct):
         ntree = copy.deepcopy(tree)
