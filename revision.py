@@ -307,7 +307,7 @@ class revision:
             for item in revision.get_boosted_refine_file(structured_tree):
                 print(item)
             print('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), trees=trees, verbose=False)
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
         # saving performed parameter learning will
         #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
         #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
@@ -317,10 +317,8 @@ class revision:
         best_structured = copy.deepcopy(structured)
         if verbose:
             print('Structure after Parameter Learning')
-            for item in best_structured:
-                print(item)
-            for item in variances:
-                print(item)
+            print(best_structured)
+            print(variances)
             print('\n')
         #save_model_files()
     
@@ -351,7 +349,7 @@ class revision:
             #for i in range(trees):
             #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
             #print('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, verbose=False)
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, verbose=verbose)
         t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
         #if t_results['AUC ROC'] > best_aucroc:
         #    found_better = True
