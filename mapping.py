@@ -59,21 +59,19 @@ class KnowledgeGraph(object):
         '''Generate random paths from random nodes in graph'''
         self.sentences = []
         for i in range(n_sentences):
-            node = self.graph.nodes[random.choice(list(self.graph.nodes))]
-            clauses = {}
+            node = self.graph.ids[random.randint(0, self.graph.n_nodes-1)] #self.graph.nodes[random.choice(list(self.graph.nodes))]
+            #clauses = {}
             sentence = [] #[str(node)]
             i_depth = 1
             while(i_depth < max_depth):
-                if node not in clauses:
-                    clauses[node] = set()
-                edg = node.edges.difference(clauses[node])
-                if len(edg) == 0:
+                edg = node.edges
+                if node.n_edges == 0:
                     break
-                edge = random.choice(list(edg))
-                if edge[1] not in clauses:
-                    clauses[edge[1]] = set()
-                clauses[node].add((edge[0], edge[1]))
-                clauses[edge[1]].add((edge[0][1:] if edge[0][:1] == '_' else '_' + edge[0], node))
+                edge = edg[random.randint(0, node.n_edges-1)] #random.choice(list(edg))
+                #if edge[1] not in clauses:
+                #    clauses[edge[1]] = set()
+                #clauses[node].add((edge[0], edge[1]))
+                #clauses[edge[1]].add((edge[0][1:] if edge[0][:1] == '_' else '_' + edge[0], node))
                 sentence.append(str(edge[0]))
                 #sentence.append(str(edge[1]))
                 node = edge[1]
@@ -84,18 +82,25 @@ class KnowledgeGraph(object):
         '''Knowledge compilation into a graph'''
         def __init__(self):
             self.nodes = {}
+            self.ids = {}
+            self.n_nodes = 0
     
         def add_relation(self, subject, relation, object_, symmetry=True):
             if subject not in self.nodes:
                 self.nodes[subject] = self.Node(subject)
+                self.ids[self.n_nodes] = self.nodes[subject]
+                self.n_nodes += 1
             if object_ not in self.nodes:
                 self.nodes[object_] = self.Node(object_)
+                self.ids[self.n_nodes] = self.nodes[object_]
+                self.n_nodes += 1
             self.nodes[subject].add_edge(relation, self.nodes[object_], symmetry)
             
         class Node(object):
             def __init__(self, name):
                 self.name = name
-                self.edges = set()
+                self.edges = []
+                self.n_edges = 0
             
             def add_edge(self, relation, node, symmetry=True):
                 self._add_edge(relation, node)
@@ -103,7 +108,8 @@ class KnowledgeGraph(object):
                     node._add_edge('_'+relation, self)
             
             def _add_edge(self, relation, node):
-                self.edges.add((relation, node))
+                self.edges.append((relation, node))
+                self.n_edges += 1
         
             def __str__(self):
                 return str(self.name)
