@@ -60,23 +60,38 @@ class KnowledgeGraph(object):
         self.sentences = []
         for i in range(n_sentences):
             node = self.graph.ids[random.randint(0, self.graph.n_nodes-1)] #self.graph.nodes[random.choice(list(self.graph.nodes))]
-            #clauses = {}
+            clauses = {}
             sentence = [] #[str(node)]
             i_depth = 1
             while(i_depth < max_depth):
+                if node not in clauses:
+                    clauses[node] = set()
+                #edg = set(node.edges).difference(clauses[node])
+                #if len(edg) == 0:
+                #    break
+                #edge = random.choice(list(edg))
                 edg = node.edges
                 if node.n_edges == 0:
                     break
-                edge = edg[random.randint(0, node.n_edges-1)] #random.choice(list(edg))
-                #if edge[1] not in clauses:
-                #    clauses[edge[1]] = set()
-                #clauses[node].add((edge[0], edge[1]))
-                #clauses[edge[1]].add((edge[0][1:] if edge[0][:1] == '_' else '_' + edge[0], node))
+                flag = False
+                for k in range(10):
+                    edge = edg[random.randint(0, node.n_edges-1)] #random.choice(list(edg))
+                    if edge not in clauses[node]:
+                        flag = True
+                        break
+                if not flag:
+                    break
+                if edge[1] not in clauses:
+                    clauses[edge[1]] = set()
+                clauses[node].add((edge[0], edge[1]))
+                clauses[edge[1]].add((edge[0][1:] if edge[0][:1] == '_' else '_' + edge[0], node))
                 sentence.append(str(edge[0]))
                 #sentence.append(str(edge[1]))
                 node = edge[1]
                 i_depth += 1
             self.sentences.append(sentence)
+            
+            
 
     class Graph(object):
         '''Knowledge compilation into a graph'''
