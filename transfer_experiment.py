@@ -25,7 +25,7 @@ import json
 
 verbose=True
 firstRun = False
-n_runs = 40
+n_runs = 5
 
 #if not os.path.exists('log'):
 #    os.makedirs('log')
@@ -49,23 +49,23 @@ n_runs = 40
 #        builtins.print(message)
 
 experiments = [
-            {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
-            {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
-            {'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            {'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
-            {'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            {'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            {'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
-            {'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
+            #{'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
+            #{'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
+            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
+            #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
             #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
             #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
-            #{'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'ismarriedto'},
-            #{'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'imports'},
-            #{'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
-            #{'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
-            #{'source':'cora', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
+            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'ismarriedto'},
+            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'imports'},
+            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
+            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
+            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
             ]
             
 bk = {
@@ -385,8 +385,12 @@ while results['save']['n_runs'] < n_runs:
         
         # Load total target dataset
         tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
-            
-        n_folds = len(tar_total_data[0])
+        
+        if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+            n_folds = 3
+        else:
+            n_folds = len(tar_total_data[0])
+
         results_save = []
         for i in range(n_folds):
             print('Starting fold ' + str(i+1) + '\n')
@@ -462,3 +466,4 @@ while results['save']['n_runs'] < n_runs:
     results['save']['experiment'] += 1
     results['save']['n_runs'] += 1
     save(results)
+
