@@ -241,32 +241,32 @@ class revision:
             refine += revision.get_refine_file(structs[i], treenumber=i+1, forceLearning=forceLearning)
         return refine
     
-    def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, verbose=False):
+    def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
         model = boostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
-        if verbose:
+        if print_function:
             for i in will:
-                print(i)
-            print('\n')
+                print_function(i)
+            print_function('\n')
         learning_time = model.traintime()
         structured = []
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
         return [model, learning_time, structured, will, variances]
         
-    def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, trees=10, verbose=False):
+    def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
         model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
-        if verbose:
+        if print_function:
             for i in will:
-                print(i)
-            print('\n')
+                print_function(i)
+            print_function('\n')
         learning_time = model.traintime()
         structured = []
         for i in range(trees):
@@ -276,22 +276,22 @@ class revision:
         t_results = results.summarize_results()
         t_results['Learning time'] = learning_time
         t_results['Inference time'] = inference_time
-        if verbose:
-            print('Results')
-            print('   AUC ROC   = %s' % t_results['AUC ROC'])
-            print('   AUC PR    = %s' % t_results['AUC PR'])
-            print('   CLL	      = %s' % t_results['CLL'])
-            print('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
-            print('   Recall    = %s' % t_results['Recall'])
-            print('   F1        = %s' % t_results['F1'])
-            print('\n')
-            print('Total learning time: %s seconds' % learning_time)
-            print('Total inference time: %s seconds' % inference_time)
-            print('AUC ROC: %s' % t_results['AUC ROC'])
-            print('\n')
+        if print_function:
+            print_function('Results')
+            print_function('   AUC ROC   = %s' % t_results['AUC ROC'])
+            print_function('   AUC PR    = %s' % t_results['AUC PR'])
+            print_function('   CLL	      = %s' % t_results['CLL'])
+            print_function('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
+            print_function('   Recall    = %s' % t_results['Recall'])
+            print_function('   F1        = %s' % t_results['F1'])
+            print_function('\n')
+            print_function('Total learning time: %s seconds' % learning_time)
+            print_function('Total inference time: %s seconds' % inference_time)
+            print_function('AUC ROC: %s' % t_results['AUC ROC'])
+            print_function('\n')
         return [model, t_results, structured, will, variances]
     
-    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, verbose=False):
+    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, print_function=None):
         '''Function responsible for starting the theory revision process'''
         #total_revision_time = 0
         #best_aucroc = 0
@@ -299,15 +299,15 @@ class revision:
         pl_t_results = 0
     
         # parameter learning
-        if verbose:
-            print('******************************************')
-            print('Performing Parameter Learning')
-            print('******************************************')
-            print('Refine')
+        if print_function:
+            print_function('******************************************')
+            print_function('Performing Parameter Learning')
+            print_function('******************************************')
+            print_function('Refine')
             for item in revision.get_boosted_refine_file(structured_tree):
-                print(item)
-            print('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), trees=trees, verbose=verbose)
+                print_function(item)
+            print_function('\n')
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), trees=trees, print_function=print_function)
         # saving performed parameter learning will
         #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
         #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
@@ -315,17 +315,17 @@ class revision:
     
         #best_aucroc = t_results['AUC ROC']
         best_structured = copy.deepcopy(structured)
-        if verbose:
-            print('Structure after Parameter Learning')
-            print(best_structured)
-            print(variances)
-            print('\n')
+        if print_function:
+            print_function('Structure after Parameter Learning')
+            print_function(best_structured)
+            print_function(variances)
+            print_function('\n')
         #save_model_files()
     
-        if verbose:
-            print('******************************************')
-            print('Performing Theory Revision')
-            print('******************************************')
+        if print_function:
+            print_function('******************************************')
+            print_function('Performing Theory Revision')
+            print_function('******************************************')
         # refine candidates
         #for i in range(max_revision_iterations):
     #    if verbose:
@@ -336,29 +336,30 @@ class revision:
         if not len(candidate):
             #return [model, copy.deepcopy(t_results), structured, pl_t_results]
             # Perform revision without pruning
+            print_function('Pruning resulted in null theory\n')
             candidate = revision.get_boosted_candidate(best_structured, variances, no_pruning=True)
-        if verbose:
-            print('Candidate for revision')
-            print(candidate)
-            print('\n')
+        if print_function:
+            print_function('Candidate for revision')
+            print_function(candidate)
+            print_function('\n')
         #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
-        if verbose:
-            print('Refining candidate')
-            print('***************************')
+        if print_function:
+            print_function('Refining candidate')
+            print_function('***************************')
             #print('Revision points found')
             #for i in range(trees):
             #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
             #print('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, verbose=verbose)
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
         t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
         #if t_results['AUC ROC'] > best_aucroc:
         #    found_better = True
         #    best_aucroc = t_results['AUC ROC']
         #    best_structured = structured.copy()
         #    save_model_files()
-        if verbose:
-            print('Refined model AUC ROC: %s' % t_results['AUC ROC'])
-            print('\n')
+        if print_function:
+            print_function('Refined model AUC ROC: %s' % t_results['AUC ROC'])
+            print_function('\n')
         #if found_better == False:
         #    break
     

@@ -23,12 +23,12 @@ import json
 #from logging import FileHandler
 #from logging import Formatter
 
-verbose=True
+#verbose=True
 firstRun = False
-n_runs = 5
+n_runs = 2
 
-#if not os.path.exists('log'):
-#    os.makedirs('log')
+if not os.path.exists('log'):
+    os.makedirs('log')
 
 #def setup_logger(name, log_file, level=logging.DEBUG):
 #    formatter = logging.Formatter('%(message)s')
@@ -42,15 +42,15 @@ n_runs = 5
 #
 #    return logger
     
-#def print(message):
-#    global experiment_title
-#    with open('log/' + experiment_title + '.txt', 'a') as f:
-#        builtins.print(message, file=f)
-#        builtins.print(message)
+def print_function(message):
+    global experiment_title
+    with open('log/' + experiment_title + '.txt', 'a') as f:
+        print(message, file=f)
+        print(message)
 
 experiments = [
-            #{'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
-            #{'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
+            {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
+            {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
             #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
             #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
             #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
@@ -61,11 +61,11 @@ experiments = [
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
             #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
             #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
-            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'ismarriedto'},
-            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'imports'},
-            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
-            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
-            {'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'ismarriedto'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'imports'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
             ]
             
 bk = {
@@ -357,7 +357,7 @@ while results['save']['n_runs'] < n_runs:
         #logger = setup_logger('logger_' + experiment_title, 'log/' + experiment_title + '.log')
         
         nbr = len(results['results'][experiment_title])
-        print('Starting experiment #' + str(nbr+1) + ' for ' + experiment_title+ '\n')
+        print_function('Starting experiment #' + str(nbr+1) + ' for ' + experiment_title+ '\n')
     
         source = experiments[experiment]['source']
         target = experiments[experiment]['target']
@@ -373,27 +373,27 @@ while results['save']['n_runs'] < n_runs:
         src_pos = datasets.group_folds(src_data[1])
         src_neg = datasets.group_folds(src_data[2])
                     
-        print('Start learning from source dataset\n')
+        print_function('Start learning from source dataset\n')
                            
         # learning from source dataset
         background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=8)
-        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, verbose=verbose)
+        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, print_function=print_function)
         
         preds = mapping.get_preds(source_structured, bk[source])
-        print('Predicates from source: %s' % preds + '\n')
+        print_function('Predicates from source: %s' % preds + '\n')
             #print('Source structured tree: %s \n' % source_structured)
         
         # Load total target dataset
         tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
         
-        if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+        if target in ['nell_sports', 'nell_finances', 'yago2s']:
             n_folds = 3
         else:
             n_folds = len(tar_total_data[0])
 
         results_save = []
         for i in range(n_folds):
-            print('Starting fold ' + str(i+1) + '\n')
+            print_function('Starting fold ' + str(i+1) + '\n')
             
             ob_save = {}
             
@@ -406,22 +406,22 @@ while results['save']['n_runs'] < n_runs:
             # transfer
             mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate)
             
-            if verbose:
-                print('Mapping Results')
-                print('   Knowledge compiling time   = %s' % mapping_results['Knowledge compiling time'])
-                print('   Generating paths time   = %s' % mapping_results['Generating paths time'])
-                print('   Generating mappings time   = %s' % mapping_results['Generating mappings time'])
-                print('   Possible mappings   = %s' % mapping_results['Possible mappings'])
-                print('   Finding best mapping   = %s' % mapping_results['Finding best mapping'])
-                print('   Total time   = %s' % mapping_results['Total time'])
-                print('\n')
+            if print_function:
+                print_function('Mapping Results')
+                print_function('   Knowledge compiling time   = %s' % mapping_results['Knowledge compiling time'])
+                print_function('   Generating paths time   = %s' % mapping_results['Generating paths time'])
+                print_function('   Generating mappings time   = %s' % mapping_results['Generating mappings time'])
+                print_function('   Possible mappings   = %s' % mapping_results['Possible mappings'])
+                print_function('   Finding best mapping   = %s' % mapping_results['Finding best mapping'])
+                print_function('   Total time   = %s' % mapping_results['Total time'])
+                print_function('\n')
             
             transferred_structured = transfer.transfer(source_structured, mapping_rules)
             #new_target = transfer.get_transferred_target(transferred_structured)
             new_target = to_predicate
-            print('Best mapping found: %s \n' % mapping_rules)
+            print_function('Best mapping found: %s \n' % mapping_rules)
             #print('Tranferred structured tree: %s \n' % transferred_structured)
-            print('Transferred target predicate: %s \n' % new_target)
+            print_function('Transferred target predicate: %s \n' % new_target)
             
             # Load new predicate target dataset
             tar_data = datasets.load(target, bk[target], target=new_target, seed=results['save']['seed'])
@@ -440,28 +440,28 @@ while results['save']['n_runs'] < n_runs:
     
             # transfer and revision theory
             background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=8)
-            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, verbose=verbose)
+            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, print_function=print_function)
             t_results['Mapping results'] = mapping_results
             t_results['Parameter Learning results'] = pl_t_results
             ob_save['transfer'] = t_results
-            print('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print(t_results)
-            print('\n')
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
             
-            print('Start learning from scratch in target domain\n')
+            print_function('Start learning from scratch in target domain\n')
             
             # learning from scratch
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, verbose=verbose)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, print_function=print_function)
             ob_save['scratch'] = t_results
-            print('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print(t_results)
-            print('\n')
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
             
             results_save.append(ob_save)
         results['results'][experiment_title].append(results_save)
     except Exception as e:
-        print(e)
-        print('Error in experiment of ' + experiment_title)
+        print_function(e)
+        print_function('Error in experiment of ' + experiment_title)
         pass
     results['save']['experiment'] += 1
     results['save']['n_runs'] += 1
