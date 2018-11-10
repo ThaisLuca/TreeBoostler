@@ -24,6 +24,7 @@ import json
 #from logging import Formatter
 
 #verbose=True
+balanced=True
 firstRun = False
 n_runs = 6
 
@@ -366,7 +367,7 @@ while results['save']['n_runs'] < n_runs:
     
     # Load source dataset
     src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-    src_data = datasets.load(source, bk[source], target=predicate, seed=results['save']['seed'])
+    src_data = datasets.load(source, bk[source], target=predicate, balanced=balanced, seed=results['save']['seed'])
         
     # Group and shuffle
     src_facts = datasets.group_folds(src_data[0])
@@ -400,7 +401,7 @@ while results['save']['n_runs'] < n_runs:
         if target not in ['nell_sports', 'nell_finances', 'yago2s']:
             [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
         else:
-            t_total_data = datasets.load(target, bk[target], target=to_predicate, seed=results['save']['seed'])
+            t_total_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
             tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=3, seed=results['save']['seed'])[i] + t_total_data[0][0]
         
         # transfer
@@ -425,7 +426,7 @@ while results['save']['n_runs'] < n_runs:
         transferred_structured = transfer.transfer(source_structured, mapping_rules)
         
         # Load new predicate target dataset
-        tar_data = datasets.load(target, bk[target], target=new_target, seed=results['save']['seed'])
+        tar_data = datasets.load(target, bk[target], target=new_target, balanced=balanced, seed=results['save']['seed'])
         
         # Group and shuffle
         if target not in ['nell_sports', 'nell_finances', 'yago2s']:

@@ -85,6 +85,14 @@ class datasets:
         for entities in ret:
             neg.append(target + '(' + ','.join(entities) + ').')
         return neg
+        
+    def get_neg(target, data):
+        '''Receives [facts, pos, neg] and return neg'''
+        ret = copy.deepcopy(data)
+        neg = []
+        for entities in ret:
+            neg.append(target + '(' + ','.join(entities) + ').')
+        return neg
     
     def generate_neg(target, data, seed=None):
         '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
@@ -115,7 +123,7 @@ class datasets:
             data_loaded = json.load(data_file)
         return data_loaded
     
-    def load(dataset, bk, target=None, seed=None):
+    def load(dataset, bk, target=None, seed=None, balanced=True):
         '''Load dataset from json and accept only predicates presented in bk'''
         pattern = '^(\w+)\(.*\).$'
         accepted = set()
@@ -144,7 +152,10 @@ class datasets:
             for i in range(len(data[1])): #negatives
                 if target in data[1][i]:
                     value = data[1][i][target]
-                    neg[i] = datasets.balance_neg(target, value, len(data[0][i][target]), seed=seed)
+                    if balanced:
+                        neg[i] = datasets.balance_neg(target, value, len(data[0][i][target]), seed=seed)
+                    else:
+                        neg[i] = datasets.get_neg(target, value)
                 else:
                     value = data[0][i][target]
                     neg[i] = datasets.generate_neg(target, value, seed=seed)                                

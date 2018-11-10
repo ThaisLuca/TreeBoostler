@@ -116,6 +116,10 @@ class transfer:
                 return { node_str: [true_child, false_child] }
             
     def merge_subtrees(left, right):
+        # if TRUE node is leaf then return FALSE node
+        if isinstance(left, list):
+            return right
+        # otherwise
         left_str = list(left.keys())[0]
         value = left[left_str]
         children = value
