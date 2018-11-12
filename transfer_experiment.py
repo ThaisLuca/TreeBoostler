@@ -26,7 +26,7 @@ import json
 #verbose=True
 balanced=True
 firstRun = False
-n_runs = 6
+n_runs = 40
 
 if not os.path.exists('log'):
     os.makedirs('log')
@@ -52,12 +52,12 @@ def print_function(message):
 experiments = [
             {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
             {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
-            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
-            #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
-            #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
+            {'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            {'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
+            {'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            {'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            {'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            {'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
             #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
@@ -205,9 +205,9 @@ bk = {
                         'companyeconomicsector(+company,+sector).',
                         'companyeconomicsector(+company,-sector).',
                         'companyeconomicsector(-company,+sector).',
-                        'economicsectorcompany(+company,+sector).',
-                        'economicsectorcompany(+company,-sector).',
-                        'economicsectorcompany(-company,+sector).',
+                        'economicsectorcompany(+sector,+company).',
+                        'economicsectorcompany(+sector,-company).',
+                        'economicsectorcompany(-sector,+company).',
                         'companyceo(+company,+person).',
                         'companyceo(+company,-person).',
                         'companyceo(-company,+person).',

@@ -213,11 +213,7 @@ class mapping:
             srcPred = srcPreds[i]
             src = mapping.get_types(srcPred)
             rets = []
-            # mapping to None
-            if i > 0:
-                newPredsMapping = copy.deepcopy(predsMapping)
-                newTypeConstraints = copy.deepcopy(typeConstraints)
-                rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
+            mapped_flag = False
             # make source head clause maps to a target head clause (or inverse)
             tPreds = tarPreds if i > 0 or not forceHead else [forceHead]
             for tarPred in tPreds:
@@ -227,6 +223,7 @@ class mapping:
                 if targetPred[0] not in predsMapping or tar[0] != predsMapping[targetPred[0]].replace('_', ''): 
                     isCompatible = mapping.is_compatible(src[1], tar[1], typeConstraints)
                     if isCompatible[0]:
+                        mapped_flag = True
                         newPredsMapping = copy.deepcopy(predsMapping)
                         newPredsMapping[src[0]] = tar[0]
                         newTypeConstraints = isCompatible[1]
@@ -234,10 +231,16 @@ class mapping:
                     if len(tar[1]) > 1:
                         isCompatible = mapping.is_compatible(src[1], tar[1][::-1], typeConstraints)
                         if isCompatible[0]:
+                            mapped_flag = True
                             newPredsMapping = copy.deepcopy(predsMapping)
                             newPredsMapping[src[0]] = '_' + tar[0]
                             newTypeConstraints = isCompatible[1]
                             rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
+            # mapping to None
+            if i > 0 or not mapped_flag:
+                newPredsMapping = copy.deepcopy(predsMapping)
+                newTypeConstraints = copy.deepcopy(typeConstraints)
+                rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             return rets
         
     def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000, forceHead=None):
@@ -270,11 +273,15 @@ class mapping:
         results['Generating mappings time'] = time.time() - new_start
         new_start = time.time()
         results['Possible mappings'] = len(possible_mappings)
+        #scores = []
         for mapping_dict in possible_mappings:
             score = mapping.mapping_score(mapping_dict, source_sentences, target_sentences)
+            #scores.append((score, mapping_dict))
             if score > best:
                 best = score
                 best_mapping = mapping_dict
+        #scores = sorted(scores, key=lambda tup: tup[0], reverse=True)
+        #print(scores)
         #print('Best Score: %s, Mapping: %s' % (best, best_mapping))
         results['Finding best mapping'] = time.time() - new_start
         results['Total time'] = time.time() - start
