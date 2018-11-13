@@ -94,7 +94,7 @@ class datasets:
             neg.append(target + '(' + ','.join(entities) + ').')
         return neg
     
-    def generate_neg(target, data, amount=1, seed=None):
+    def generate_neg(target, data, seed=None):
         '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
         pos = copy.deepcopy(data)
         neg = []
@@ -109,12 +109,11 @@ class datasets:
         target_objects = list(objects)
         for entities in pos:
             key = entities[0]
-            for j in range(amount):
-                for tr in range(10):
-                    r = random.randint(0, len(target_objects)-1)
-                    if target_objects[r] not in subjects[key]:
-                        neg.append(target + '(' + ','.join([key, target_objects[r]]) + ').')
-                        break
+            for tr in range(10):
+                r = random.randint(0, len(target_objects)-1)
+                if target_objects[r] not in subjects[key]:
+                    neg.append(target + '(' + ','.join([key, target_objects[r]]) + ').')
+                    break
         random.seed(None)
         return neg
     
@@ -124,7 +123,7 @@ class datasets:
             data_loaded = json.load(data_file)
         return data_loaded
     
-    def load(dataset, bk, target=None, seed=None, balanced=1):
+    def load(dataset, bk, target=None, seed=None, balanced=True):
         '''Load dataset from json and accept only predicates presented in bk'''
         pattern = '^(\w+)\(.*\).$'
         accepted = set()
@@ -154,12 +153,12 @@ class datasets:
                 if target in data[1][i]:
                     value = data[1][i][target]
                     if balanced:
-                        neg[i] = datasets.balance_neg(target, value, int(balanced * len(data[0][i][target])), seed=seed)
+                        neg[i] = datasets.balance_neg(target, value, len(data[0][i][target]), seed=seed)
                     else:
                         neg[i] = datasets.get_neg(target, value)
                 else:
                     value = data[0][i][target]
-                    neg[i] = datasets.generate_neg(target, value, amount=(2 if not balanced else balanced), seed=seed)                                
+                    neg[i] = datasets.generate_neg(target, value, seed=seed)                                
         return [facts, pos, neg]
 
     def save():
@@ -544,6 +543,7 @@ class datasets:
     countryhascompanyoffice(country,company)
     companyeconomicsector(company,sector)
     economicsectorcompany(sector,company)
+    ceoeconomicsector(person,sector)
     companyceo(company,person)
     companyalsoknownas(company,company)
     cityhascompanyoffice(city,company)
@@ -592,28 +592,6 @@ class datasets:
                 if 'ceoeconomicsector' not in facts[0]:
                     facts[0]['ceoeconomicsector'] = []
                 facts[0]['ceoeconomicsector'].append([value, companyeconomicsector[key]])
-        return [facts, [{}]]
-    
-    def get_yago2s_dataset(acceptedPredicates=None):
-        def clearCharacters(value):
-            value = value.lower()
-            value = unidecode.unidecode(value)
-            value = re.sub('[^a-z]', '', value)
-            return value
-        
-        facts = [{}]
-        with open(os.path.join(__location__, 'files/yago2s.tsv'), encoding='utf8') as f:
-            f = csv.reader(f, delimiter='\t')
-            for row in f:
-                for i in range(len(row)):
-                    row[i] = clearCharacters(row[i])
-                if row[0] and row[2]:
-                    if not acceptedPredicates or row[1] in acceptedPredicates:
-                        relation = row[1]
-                        entities = [row[0], row[2]]
-                        if relation not in facts[0]:
-                            facts[0][relation] = []
-                        facts[0][relation].append(entities)
         return [facts, [{}]]
     
     '''
