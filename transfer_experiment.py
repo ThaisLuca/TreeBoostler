@@ -24,9 +24,9 @@ import json
 #from logging import Formatter
 
 #verbose=True
-balanced=True
+balanced=False
 firstRun = False
-n_runs = 40
+n_runs = 20
 
 if not os.path.exists('log'):
     os.makedirs('log')
@@ -54,17 +54,17 @@ experiments = [
             {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
             {'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
             {'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
-            {'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            {'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            {'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
-            {'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
+            #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
             #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
             #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
             #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'ismarriedto'},
-            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'imports'},
-            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'exports'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'hasacademicadvisor'},
+            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'haschild'},
             #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
             #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
             ]
@@ -205,8 +205,8 @@ bk = {
                         'companyeconomicsector(+company,+sector).',
                         'companyeconomicsector(+company,-sector).',
                         'companyeconomicsector(-company,+sector).',
-                        'economicsectorcompany(+sector,+company).',
-                        'economicsectorcompany(+sector,-company).',
+                        #'economicsectorcompany(+sector,+company).',
+                        #'economicsectorcompany(+sector,-company).',
                         'economicsectorcompany(-sector,+company).',
                         'companyceo(+company,+person).',
                         'companyceo(+company,-person).',
