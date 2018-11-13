@@ -584,14 +584,14 @@ class datasets:
                     facts[0][relation].append([entity, value])
         for key, value in companyceo.items():
             if key in companyeconomicsector:
-                if 'economicsectorceo' not in facts[0]:
-                    facts[0]['economicsectorceo'] = []
-                facts[0]['economicsectorceo'].append([companyeconomicsector[key], value])
+                if 'ceoeconomicsector' not in facts[0]:
+                    facts[0]['ceoeconomicsector'] = []
+                facts[0]['ceoeconomicsector'].append([value, companyeconomicsector[key]])
         for key, value in bankchiefexecutiveceo.items():
             if key in companyeconomicsector:
-                if 'economicsectorceo' not in facts[0]:
-                    facts[0]['economicsectorceo'] = []
-                facts[0]['economicsectorceo'].append([companyeconomicsector[key], value])
+                if 'ceoeconomicsector' not in facts[0]:
+                    facts[0]['ceoeconomicsector'] = []
+                facts[0]['ceoeconomicsector'].append([value, companyeconomicsector[key]])
         return [facts, [{}]]
     
     def get_yago2s_dataset(acceptedPredicates=None):
