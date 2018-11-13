@@ -94,7 +94,7 @@ class datasets:
             neg.append(target + '(' + ','.join(entities) + ').')
         return neg
     
-    def generate_neg(target, data, seed=None):
+    def generate_neg(target, data, amount=1, seed=None):
         '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
         pos = copy.deepcopy(data)
         neg = []
@@ -109,11 +109,12 @@ class datasets:
         target_objects = list(objects)
         for entities in pos:
             key = entities[0]
-            for tr in range(10):
-                r = random.randint(0, len(target_objects)-1)
-                if target_objects[r] not in subjects[key]:
-                    neg.append(target + '(' + ','.join([key, target_objects[r]]) + ').')
-                    break
+            for j in range(amount):
+                for tr in range(10):
+                    r = random.randint(0, len(target_objects)-1)
+                    if target_objects[r] not in subjects[key]:
+                        neg.append(target + '(' + ','.join([key, target_objects[r]]) + ').')
+                        break
         random.seed(None)
         return neg
     
@@ -123,7 +124,7 @@ class datasets:
             data_loaded = json.load(data_file)
         return data_loaded
     
-    def load(dataset, bk, target=None, seed=None, balanced=True):
+    def load(dataset, bk, target=None, seed=None, balanced=1):
         '''Load dataset from json and accept only predicates presented in bk'''
         pattern = '^(\w+)\(.*\).$'
         accepted = set()
@@ -153,12 +154,12 @@ class datasets:
                 if target in data[1][i]:
                     value = data[1][i][target]
                     if balanced:
-                        neg[i] = datasets.balance_neg(target, value, len(data[0][i][target]), seed=seed)
+                        neg[i] = datasets.balance_neg(target, value, int(balanced * len(data[0][i][target])), seed=seed)
                     else:
                         neg[i] = datasets.get_neg(target, value)
                 else:
                     value = data[0][i][target]
-                    neg[i] = datasets.generate_neg(target, value, seed=seed)                                
+                    neg[i] = datasets.generate_neg(target, value, amount=(2 if not balanced else balanced), seed=seed)                                
         return [facts, pos, neg]
 
     def save():
