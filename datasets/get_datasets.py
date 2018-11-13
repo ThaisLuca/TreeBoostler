@@ -558,6 +558,9 @@ class datasets:
             value = re.sub('[^a-z]', '', value)
             return value
 
+        companyceo = {}
+        companyeconomicsector = {}
+        bankchiefexecutiveceo = {}
         facts = [{}]
         dataset = pd.read_csv(os.path.join(__location__, 'files/NELL.finances.08m.1115.small.csv'))
         for data in dataset.values:
@@ -565,11 +568,29 @@ class datasets:
             relation = clearCharacters((data[4].split(':'))[1])
             value = clearCharacters((data[5].split(':'))[2])
             
+            if entity and value:
+                if relation == 'companyceo':
+                    companyceo[entity] = value
+                elif relation == 'companyeconomicsector':
+                    companyeconomicsector[entity] = value
+                elif relation == 'bankchiefexecutiveceo':
+                    bankchiefexecutiveceo[entity] = value
+            
             if entity and relation and value:
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
                         facts[0][relation] = []
                     facts[0][relation].append([entity, value])
+        for key, value in companyceo.items():
+            if key in companyeconomicsector:
+                if 'economicsectorceo' not in facts[0]:
+                    facts[0]['economicsectorceo'] = []
+                facts[0]['economicsectorceo'].append([companyeconomicsector[key], value])
+        for key, value in bankchiefexecutiveceo.items():
+            if key in companyeconomicsector:
+                if 'economicsectorceo' not in facts[0]:
+                    facts[0]['economicsectorceo'] = []
+                facts[0]['economicsectorceo'].append([companyeconomicsector[key], value])
         return [facts, [{}]]
     
     def get_yago2s_dataset(acceptedPredicates=None):
