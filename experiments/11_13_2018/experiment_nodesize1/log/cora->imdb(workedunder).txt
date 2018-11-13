@@ -1,0 +1,53 @@
+Starting experiment #1 for cora->imdb(workedunder)
+
+Start learning from source dataset
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   return 0;  // std dev = 0,499, 5.757,000 (wgt'ed) examples reached here.  /* #neg=2.740 #pos=3.017 */
+
+
+Predicates from source: ['samevenue(venue,venue).']
+
+Starting fold 1
+
+Mapping Results
+   Knowledge compiling time   = 0.14205050468444824
+   Generating paths time   = 2.6701784133911133
+   Generating mappings time   = 0.03827214241027832
+   Possible mappings   = 2
+   Finding best mapping   = 9.202957153320312e-05
+   Total time   = 2.850597381591797
+
+
+Best mapping found: ['samevenue(A,B) -> workedunder(A,B)'] 
+
+Transferred target predicate: workedunder 
+
