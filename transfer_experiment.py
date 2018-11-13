@@ -24,9 +24,14 @@ import json
 #from logging import Formatter
 
 #verbose=True
-balanced=False
+balanced = True
 firstRun = False
-n_runs = 20
+n_runs = 1
+folds = 3
+
+nodeSize = 2
+numOfClauses = 8
+maxTreeDepth = 3
 
 if not os.path.exists('log'):
     os.makedirs('log')
@@ -50,13 +55,13 @@ def print_function(message):
         print(message)
 
 experiments = [
-            {'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
-            {'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
-            {'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            {'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
+            #{'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
+            #{'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
+            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
             #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
             #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            #{'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            {'id': '6', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
             #{'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
             #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
@@ -207,7 +212,10 @@ bk = {
                         'companyeconomicsector(-company,+sector).',
                         #'economicsectorcompany(+sector,+company).',
                         #'economicsectorcompany(+sector,-company).',
-                        'economicsectorcompany(-sector,+company).',
+                        #'economicsectorcompany(-sector,+company).',
+                        'ceoeconomicsector(+person,+sector).',
+                        'ceoeconomicsector(+person,-sector).',
+                        'ceoeconomicsector(-person,+sector).',
                         'companyceo(+company,+person).',
                         'companyceo(+company,-person).',
                         'companyceo(-company,+person).',
@@ -351,7 +359,7 @@ while results['save']['n_runs'] < n_runs:
     experiment = results['save']['experiment'] % len(experiments)
     #try:
     #experiment = results['save']['experiment']
-    experiment_title = experiments[experiment]['source'] + '->' + experiments[experiment]['target'] + '(' + experiments[experiment]['to_predicate'] + ')'
+    experiment_title = experiments[experiment]['id'] + '_' + experiments[experiment]['source'] + '_' + experiments[experiment]['target']
     if experiment_title not in results['results']:
         results['results'][experiment_title] = []
         
@@ -377,7 +385,7 @@ while results['save']['n_runs'] < n_runs:
     print_function('Start learning from source dataset\n')
                        
     # learning from source dataset
-    background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=8)
+    background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
     [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=10, print_function=print_function)
     
     preds = mapping.get_preds(source_structured, bk[source])
@@ -388,7 +396,7 @@ while results['save']['n_runs'] < n_runs:
     tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
     
     if target in ['nell_sports', 'nell_finances', 'yago2s']:
-        n_folds = 3
+        n_folds = folds
     else:
         n_folds = len(tar_total_data[0])
 
@@ -441,7 +449,7 @@ while results['save']['n_runs'] < n_runs:
             [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
 
         # transfer and revision theory
-        background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=8)
+        background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
         [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, print_function=print_function)
         t_results['Mapping results'] = mapping_results
         t_results['Parameter Learning results'] = pl_t_results
