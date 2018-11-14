@@ -479,20 +479,23 @@ class datasets:
             for file in files:
                 with open(os.path.join(__location__, 'files/webkb/' + file + '.' + fold + '.db')) as f:
                     for line in f:
-                        #n = re.search('^!(\w+)\((.*)\)$', line.lower()) 
+                        n = re.search('^!(\w+)\((.*)\)$', line.lower()) 
                         m = re.search('^(\w+)\((.*)\)$', line.lower())
-#                        if n:
-#                            relation = re.sub('[\'"]', '', n.group(1))
-#                            entities = re.sub('[\'"]', '', n.group(2)).split(',')
-#                            entities = getCleanEntities(entities)
-#                            if not acceptedPredicates or relation in acceptedPredicates:
-#                                if relation in classes:
-#                                    entities += [relation]
-#                                    negatives[i].append('pageclass(' + ','.join(entities) + ').')
-#                                else:
-#                                    
-#                                    negatives[i].append(relation + '(' + ','.join(entities) + ').')
-#                            continue
+                        if n:
+                            relation = re.sub('[\'"]', '', n.group(1))
+                            entities = re.sub('[\'"]', '', n.group(2)).split(',')
+                            entities = getCleanEntities(entities)
+                            if not acceptedPredicates or relation in acceptedPredicates:
+                                if relation in classes:
+                                    if 'pageclass' not in facts[i]:
+                                        negatives[i]['pageclass'] = []
+                                    entities += [relation]
+                                    negatives[i]['pageclass'].append(entities)
+                                else:
+                                    if relation not in facts[i]:
+                                        negatives[i][relation] = []
+                                    negatives[i][relation].append(entities)
+                            continue
                         if m:
                             relation = re.sub('[\'"]', '', m.group(1))
                             entities = re.sub('[\'"]', '', m.group(2)).split(',')
