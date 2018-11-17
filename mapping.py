@@ -263,7 +263,8 @@ class mapping:
         new_start = time.time()
         source_sentences = set([' '.join(i) for i in source.sentences if len(i) > 1])
         target_sentences = set([' '.join(i) for i in target.sentences if len(i) > 1])
-        best = 0
+        best = -1
+        best_mapping_size = 0
         best_mapping = None
         fHead = None if not forceHead else mapping.find_pred(forceHead, tarPreds)
         possible_mappings = mapping.mapping(srcPreds, tarPreds, forceHead=fHead)
@@ -277,8 +278,9 @@ class mapping:
         for mapping_dict in possible_mappings:
             score = mapping.mapping_score(mapping_dict, source_sentences, target_sentences)
             #scores.append((score, mapping_dict))
-            if score > best:
+            if score > best or len(mapping_dict) > best_mapping_size:
                 best = score
+                best_mapping_size = len(mapping_dict)
                 best_mapping = mapping_dict
         #scores = sorted(scores, key=lambda tup: tup[0], reverse=True)
         #print(scores)
