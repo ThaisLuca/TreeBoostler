@@ -25,12 +25,12 @@ class KnowledgeGraph(object):
         '''Load background of a dataset'''
         st = {}
         for line in lines:
-            m = re.search('^(\w+)\(([\w, +\-\#]+)*\).$', line)
+            m = re.search('^(\w+)\(([\w, +\-\#\`]+)*\).$', line)
             if m:
                 relation = m.group(1)
-                relation = re.sub('[+\-\# ]', '', relation)
+                relation = re.sub('[+\-\#\` ]', '', relation)
                 entities = m.group(2)
-                entities = re.sub('[+\-\# ]', '', entities)
+                entities = re.sub('[+\-\#\` ]', '', entities)
                 entities = entities.split(',')
                 st[relation] = entities
                 for entity in entities:
@@ -318,12 +318,12 @@ class mapping:
             preds_modes = set()
             target_mode = None
             for line in modes:
-                m = re.search('^(\w+)\(([\w, +\-\#]+)*\).$', line)
+                m = re.search('^(\w+)\(([\w, +\-\#\`]+)*\).$', line)
                 if m:
                     relation = m.group(1)
-                    relation = re.sub('[+\-\# ]', '', relation)
+                    relation = re.sub('[+\-\#\` ]', '', relation)
                     entities = m.group(2)
-                    entities = re.sub('[+\-\# ]', '', entities)
+                    entities = re.sub('[+\-\#\` ]', '', entities)
                     if relation == target:
                         target_mode = relation + '(' + entities + ').'
                     if relation in preds:
@@ -334,11 +334,11 @@ class mapping:
         '''Clean +/- from modes'''
         ret = set()
         for line in preds:
-            m = re.search('^(\w+)\(([\w, +\-\#]+)*\).$', line)
+            m = re.search('^(\w+)\(([\w, +\-\#\`]+)*\).$', line)
             if m:
                 relation = m.group(1)
-                relation = re.sub('[+\-\# ]', '', relation)
+                relation = re.sub('[+\-\#\` ]', '', relation)
                 entities = m.group(2)
-                entities = re.sub('[+\-\# ]', '', entities)
+                entities = re.sub('[+\-\#\` ]', '', entities)
                 ret.add(relation + '(' + entities + ').')
         return list(ret)

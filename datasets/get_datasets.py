@@ -616,6 +616,10 @@ class datasets:
                         if not acceptedPredicates or relation in acceptedPredicates:
                             if relation not in facts[i]:
                                 facts[i][relation] = []
+                            if relation == 'accounttype':
+                                if 'typeaccount' not in facts[i]:
+                                    facts[i]['typeaccount'] = []
+                                facts[i]['typeaccount'].append(entities[::-1])
                             facts[i][relation].append(entities)
         return [facts, [{},{}]]
     
@@ -642,6 +646,10 @@ class datasets:
                         if not acceptedPredicates or relation in acceptedPredicates:
                             if relation not in facts[i]:
                                 facts[i][relation] = []
+                            if relation == 'proteinclass':
+                                if 'classprotein' not in facts[i]:
+                                    facts[i]['classprotein'] = []
+                                facts[i]['classprotein'].append(entities[::-1])
                             facts[i][relation].append(entities)
         return [facts, [{},{},{},{}]]
 
