@@ -90,8 +90,6 @@ class KnowledgeGraph(object):
                 node = edge[1]
                 i_depth += 1
             self.sentences.append(sentence)
-            
-            
 
     class Graph(object):
         '''Knowledge compilation into a graph'''
@@ -213,7 +211,12 @@ class mapping:
             srcPred = srcPreds[i]
             src = mapping.get_types(srcPred)
             rets = []
-            mapped_flag = False
+            # mapping to None
+            if i > 0: # or not mapped_flag:
+                newPredsMapping = copy.deepcopy(predsMapping)
+                newTypeConstraints = copy.deepcopy(typeConstraints)
+                rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
+            #mapped_flag = False
             # make source head clause maps to a target head clause (or inverse)
             tPreds = tarPreds if i > 0 or not forceHead else [forceHead]
             for tarPred in tPreds:
@@ -223,7 +226,7 @@ class mapping:
                 if targetPred[0] not in predsMapping or tar[0] != predsMapping[targetPred[0]].replace('_', ''): 
                     isCompatible = mapping.is_compatible(src[1], tar[1], typeConstraints)
                     if isCompatible[0]:
-                        mapped_flag = True
+                        #mapped_flag = True
                         newPredsMapping = copy.deepcopy(predsMapping)
                         newPredsMapping[src[0]] = tar[0]
                         newTypeConstraints = isCompatible[1]
@@ -231,16 +234,11 @@ class mapping:
                     if len(tar[1]) > 1:
                         isCompatible = mapping.is_compatible(src[1], tar[1][::-1], typeConstraints)
                         if isCompatible[0]:
-                            mapped_flag = True
+                            #mapped_flag = True
                             newPredsMapping = copy.deepcopy(predsMapping)
                             newPredsMapping[src[0]] = '_' + tar[0]
                             newTypeConstraints = isCompatible[1]
                             rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
-            # mapping to None
-            if i > 0 or not mapped_flag:
-                newPredsMapping = copy.deepcopy(predsMapping)
-                newTypeConstraints = copy.deepcopy(typeConstraints)
-                rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             return rets
         
     def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000, forceHead=None):
@@ -259,13 +257,13 @@ class mapping:
         new_start = time.time()
         source.generate_sentences(max_depth=4, n_sentences=n_sentences)
         target.generate_sentences(max_depth=4, n_sentences=n_sentences)
-        results['Generating paths time'] = time.time() - new_start
-        new_start = time.time()
         source_sentences = set([' '.join(i) for i in source.sentences if len(i) > 1])
         target_sentences = set([' '.join(i) for i in target.sentences if len(i) > 1])
         best = -1
         best_mapping_size = 0
         best_mapping = None
+        results['Generating paths time'] = time.time() - new_start
+        new_start = time.time()
         fHead = None if not forceHead else mapping.find_pred(forceHead, tarPreds)
         possible_mappings = mapping.mapping(srcPreds, tarPreds, forceHead=fHead)
         # return None if incompatible forceHead is defined
