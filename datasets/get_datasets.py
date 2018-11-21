@@ -217,6 +217,12 @@ class datasets:
         print('%s seconds generating %s' % (time.time() - start, 'yeast'))
         with open('files/json/yeast.json', 'w') as outfile:
             json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_facebook_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'facebook'))
+        with open('files/json/facebook.json', 'w') as outfile:
+            json.dump(data, outfile)
         
     '''
     workedunder(person,person)
@@ -652,6 +658,76 @@ class datasets:
                                 facts[i]['classprotein'].append(entities[::-1])
                             facts[i][relation].append(entities)
         return [facts, [{},{},{},{}]]
+
+    '''
+    edge(person,person)
+    middlename(person,middlename)
+    lastname(person,lastname)
+    educationtype(person,educationtype)
+    workprojects(person,workprojects)
+    educationyear(person,educationyear)
+    educationwith(person,educationwith)
+    location(person,location)
+    workwith(person,workwith)
+    workenddate(person,workenddate)
+    languages(person,languages)
+    religion(person,religion)
+    political(person,political)
+    workemployer(person,workemployer)
+    hometown(person,hometown)
+    educationconcentration(person,educationconcentration)
+    workfrom(person,workfrom)
+    workstartdate(person,workstartdate)
+    worklocation(person,worklocation)
+    educationclasses(person,educationclasses)
+    workposition(person,workposition)
+    firstname(person,firstname)
+    birthday(person,birthday)
+    educationschool(person,educationschool)
+    name(person,name)
+    gender(person,gender)
+    educationdegree(person,educationdegree)
+    locale(person,locale)'''      
+    def get_facebook_dataset(acceptedPredicates=None):
+        folds_id = [0, 107, 348, 414, 686, 698, 1684, 1912, 3437, 3980]
+        facts = []
+        for fold in folds_id:
+            fc = {}
+            relation = 'edge'
+            if not acceptedPredicates or relation in acceptedPredicates:
+                if relation not in fc:
+                    fc[relation] = []
+                with open(os.path.join(__location__, 'files/facebook/' + str(fold) + '.edges')) as f:
+                    for line in f:
+                        data = line.split()
+                        fc[relation].append(['person' + str(data[0]), 'person' + str(data[1])])
+            featnames = []
+            featpredicates = []
+            with open(os.path.join(__location__, 'files/facebook/' + str(fold) + '.featnames')) as f:
+                for line in f:
+                    spl = line.split(';')
+                    if len(spl) == 2:
+                        pred = re.sub('[^a-z]', '', spl[0])
+                        name = re.sub('[^0-9]', '', spl[1])
+                    else:
+                        pred = re.sub('[^a-z]', '', spl[0]) + re.sub('[^a-z]', '', spl[1])
+                        pred = pred.replace('id', '')
+                        name = re.sub('[^0-9]', '', spl[-1])
+                    featnames.append(pred + name)
+                    featpredicates.append(pred)
+            with open(os.path.join(__location__, 'files/facebook/' + str(fold) + '.feat')) as f:
+                for line in f:
+                    spl = line.split()
+                    person_id = 'person' + str(spl[0])
+                    spl = spl[1:]
+                    for i in range(len(spl)):
+                        if int(spl[i]) == 1:
+                            relation = featpredicates[i]
+                            if relation not in fc:
+                                fc[relation] = []
+                            fc[relation].append([person_id, featnames[i]])
+            facts.append(fc)
+        return [facts, [{}]]
 
 #import time 
 #start = time.time()
