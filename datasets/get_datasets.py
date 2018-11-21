@@ -727,7 +727,7 @@ class datasets:
                                 fc[relation] = []
                             fc[relation].append([person_id, featnames[i]])
             facts.append(fc)
-        return [facts, [{}]]
+        return [facts, [{},{},{},{},{},{},{},{},{},{}]]
 
 #import time 
 #start = time.time()
