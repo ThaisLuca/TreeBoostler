@@ -196,17 +196,78 @@ class mapping:
             return (True, typeConstraints)
         else:
             return (False, typeConstraints)
+    
+#    def get_pattern(pred):
+#        '''Returns the type pattern'''
+#        mapp = {}
+#        count = 65
+#        types = mapping.get_types(pred)
+#        for j in range(len(types[1])):
+#            if types[1][j] not in mapp:
+#                mapp[types[1][j]] = chr(count)
+#                count += 1
+#            types[1][j] = mapp[types[1][j]]
+#        joined = ''.join(types[1])
+#        return joined
+            
+    def get_pattern(pred):
+        '''Returns the type pattern'''
+        types = mapping.get_types(pred)
+        return len(types[1])
+            
+#    def get_max_patterns(preds):
+#        '''Returns dictionary with number of predicates with the same type pattern'''
+#        patterns = {}
+#        for pred in preds:
+#            joined = mapping.get_pattern(pred)
+#            if joined not in patterns:
+#                patterns[joined] = 1 # it includes Null mapping
+#            patterns[joined] += 1
+#        return patterns
+        
+    def get_max_patterns(preds):
+        '''Returns dictionary with number of predicates with the same type pattern'''
+        patterns = {}
+        for pred in preds:
+            joined = mapping.get_pattern(pred)
+            if joined not in patterns:
+                patterns[joined] = 0
+            patterns[joined] += 1
+        return patterns
 
-    def mapping(srcPreds, tarPreds, forceHead=None):
+#    def get_max_mappings(srcPreds, tarPreds):
+#        '''Returns max possible mappings considering only type pattern'''
+#        tarPatterns = mapping.get_max_patterns(tarPreds)
+#        ret = 1
+#        for pred in srcPreds:
+#            p = mapping.get_pattern(pred)
+#            if p in tarPatterns:
+#                ret *= tarPatterns[p]
+#        return ret
+            
+    def get_max_mappings(srcPreds, tarPreds):
+        '''Returns max possible mappings considering only type pattern'''
+        tarPatterns = mapping.get_max_patterns(tarPreds)
+        ret = 1
+        for pred in srcPreds:
+            p = mapping.get_pattern(pred)
+            if p in tarPatterns:
+                ret *= (tarPatterns[p]+1) # it includes null mapping
+        return ret
+
+    def mapping(srcPreds, tarPreds, forceHead=None, predsMapping={}, typeConstraints={}, i=None):
         '''Generate all possible mappings that are type consistent'''
         result = []
-        result += mapping.mapping_recursive(srcPreds, tarPreds, {}, {}, 0, forceHead=forceHead)
+        if len(predsMapping):
+            result += mapping.mapping_recursive(srcPreds, tarPreds, predsMapping, typeConstraints, i, forceHead=forceHead)
+        else:
+            result += mapping.mapping_recursive(srcPreds, tarPreds, {}, {}, 0, forceHead=forceHead)
         return result
     
     def mapping_recursive(srcPreds, tarPreds, predsMapping, typeConstraints, i, forceHead=None):
         '''Recursive function for generating possible mappings'''
         if i >= len(srcPreds):
-            return [predsMapping]
+            return [(predsMapping, typeConstraints)]
         else:
             srcPred = srcPreds[i]
             src = mapping.get_types(srcPred)
@@ -241,11 +302,11 @@ class mapping:
                             rets += mapping.mapping_recursive(srcPreds, tarPreds, newPredsMapping, newTypeConstraints, i+1)
             return rets
         
-    def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000, forceHead=None):
+    def get_best(sPreds, tPreds, srcFacts, tarFacts, n_sentences=50000, forceHead=None, threshold=10**7):
         '''Return best mapping found given source and target predicates and facts'''
         srcPreds = sPreds
         tarPreds = mapping.clean_preds(tPreds)
-        start = time.time()
+        start_time = time.time()
         results = {}
         source = KnowledgeGraph()
         source.background(srcPreds)
@@ -253,38 +314,61 @@ class mapping:
         target = KnowledgeGraph()
         target.background(tarPreds)
         target.facts(tarFacts)
-        results['Knowledge compiling time'] = time.time() - start
+        results['Knowledge compiling time'] = time.time() - start_time
         new_start = time.time()
         source.generate_sentences(max_depth=4, n_sentences=n_sentences)
         target.generate_sentences(max_depth=4, n_sentences=n_sentences)
         source_sentences = set([' '.join(i) for i in source.sentences if len(i) > 1])
         target_sentences = set([' '.join(i) for i in target.sentences if len(i) > 1])
+        results['Generating paths time'] = time.time() - new_start
+        new_start = time.time()
         best = -1
         best_mapping_size = 0
         best_mapping = None
-        results['Generating paths time'] = time.time() - new_start
-        new_start = time.time()
         fHead = None if not forceHead else mapping.find_pred(forceHead, tarPreds)
-        possible_mappings = mapping.mapping(srcPreds, tarPreds, forceHead=fHead)
-        # return None if incompatible forceHead is defined
+        start = 0
+        end = len(srcPreds)
+        bestPredsMapping = {}
+        bestTypeConstraints = {}
+        n_mappings = []
+        mappings_end = []
+        results['Max mapping'] = mapping.get_max_mappings(srcPreds, tarPreds)
+        while start < len(srcPreds):
+            max_mappings = mapping.get_max_mappings(srcPreds[start:end], tarPreds)
+            while max_mappings > threshold:
+                end -= 1
+                max_mappings = mapping.get_max_mappings(srcPreds[start:end], tarPreds)
+            mappings_end.append(end - start)
+            possible_mappings = mapping.mapping(srcPreds[0:end], tarPreds, forceHead=fHead, predsMapping=bestPredsMapping, typeConstraints=bestTypeConstraints, i=start)
+            for possible_item in possible_mappings:
+                mapping_dict = possible_item[0]
+                type_constraints = possible_item[1]
+                score = mapping.mapping_score(mapping_dict, source_sentences, target_sentences)
+                #scores.append((score, mapping_dict))
+                if score > best or len(mapping_dict) > best_mapping_size:
+                    best = score
+                    best_mapping_size = len(mapping_dict)
+                    best_mapping = mapping_dict
+                    bestPredsMapping = mapping_dict
+                    bestTypeConstraints = type_constraints
+            # return None if incompatible forceHead is defined
+            #if not len(possible_mappings):
+                #return ({}, None)
+            start = end
+            end = len(srcPreds)
+            n_mappings.append(len(possible_mappings))
+        results['Generating mappings time'] = time.time() - new_start
         if not len(possible_mappings):
             return ({}, None)
-        results['Generating mappings time'] = time.time() - new_start
         new_start = time.time()
-        results['Possible mappings'] = len(possible_mappings)
+        results['Possible mappings'] = n_mappings
+        results['Numbers preds mapping'] = mappings_end
         #scores = []
-        for mapping_dict in possible_mappings:
-            score = mapping.mapping_score(mapping_dict, source_sentences, target_sentences)
-            #scores.append((score, mapping_dict))
-            if score > best or len(mapping_dict) > best_mapping_size:
-                best = score
-                best_mapping_size = len(mapping_dict)
-                best_mapping = mapping_dict
         #scores = sorted(scores, key=lambda tup: tup[0], reverse=True)
         #print(scores)
         #print('Best Score: %s, Mapping: %s' % (best, best_mapping))
         results['Finding best mapping'] = time.time() - new_start
-        results['Total time'] = time.time() - start
+        results['Total time'] = time.time() - start_time
         mapd = []
         unaries = []
         for srcPred in srcPreds:

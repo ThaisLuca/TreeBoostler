@@ -155,11 +155,18 @@ class datasets:
                     value = data[1][i][target]
                     if balanced:
                         neg[i] = datasets.balance_neg(target, value, int(balanced * len(data[0][i][target])), seed=seed)
+                        #if len(neg[i]) > len(data[0][i][target]):
+                        #    # NEW
+                        #    amnt = math.ceil((2 if not balanced else balanced))
+                        #    temp = datasets.generate_neg(target, data[0][i][target], amount=amnt, seed=seed)
+                        #    temp = neg[i] + temp
+                        #    temp = temp[:int(balanced * len(data[0][i][target]))]
+                        #    neg[i] = temp
                     else:
                         neg[i] = datasets.get_neg(target, value)
                 else:
                     value = data[0][i][target]
-                    neg[i] = datasets.generate_neg(target, value, amount=(2 if not balanced else balanced), seed=seed)                                
+                    neg[i] = datasets.generate_neg(target, value, amount=(1 if not balanced else balanced), seed=seed)                                
         return [facts, pos, neg]
 
     def save():
@@ -689,7 +696,7 @@ class datasets:
     educationdegree(person,educationdegree)
     locale(person,locale)'''      
     def get_facebook_dataset(acceptedPredicates=None):
-        folds_id = [0, 107, 348, 414, 686, 698, 1684, 1912, 3437, 3980]
+        folds_id = [0, 414, 686, 698, 3980] #[0, 107, 348, 414, 686, 698, 1684, 1912, 3437, 3980]
         facts = []
         for fold in folds_id:
             fc = {}
@@ -727,7 +734,7 @@ class datasets:
                                 fc[relation] = []
                             fc[relation].append([person_id, featnames[i]])
             facts.append(fc)
-        return [facts, [{},{},{},{},{},{},{},{},{},{}]]
+        return [facts, [{},{},{},{},{}]] # [facts, [{},{},{},{},{},{},{},{},{},{}]]
 
 #import time 
 #start = time.time()

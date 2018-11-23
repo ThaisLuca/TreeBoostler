@@ -24,9 +24,10 @@ import json
 #from logging import Formatter
 
 #verbose=True
-balanced = 2
+source_balanced = 1
+balanced = 1
 firstRun = False
-n_runs = 28
+n_runs = 2
 folds = 3
 
 nodeSize = 2
@@ -55,89 +56,54 @@ def print_function(message):
         print(message)
 
 experiments = [
-#            {'id': '1', 'source': 'imdb', 'target': 'nell_finances', 'predicate': 'workedunder', 'to_predicate': 'companyalsoknownas'},
-#            {'id': '2', 'source': 'imdb', 'target': 'nell_finances', 'predicate': 'workedunder', 'to_predicate': 'bankboughtbank'},
-#            {'id': '3', 'source': 'imdb', 'target': 'nell_finances', 'predicate': 'workedunder', 'to_predicate': 'acquired'},
-#            {'id': '4', 'source': 'uwcse', 'target': 'nell_finances', 'predicate': 'advisedby', 'to_predicate': 'companyalsoknownas'},
-#            {'id': '5', 'source': 'uwcse', 'target': 'nell_finances', 'predicate': 'advisedby', 'to_predicate': 'bankboughtbank'},
-#            {'id': '6', 'source': 'uwcse', 'target': 'nell_finances', 'predicate': 'advisedby', 'to_predicate': 'acquired'},
-#            {'id': '7', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'samevenue', 'to_predicate': 'companyalsoknownas'},
-#            {'id': '8', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'samevenue', 'to_predicate': 'bankboughtbank'},
-#            {'id': '9', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'samevenue', 'to_predicate': 'acquired'},
-#            {'id': '10', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'sameauthor', 'to_predicate': 'companyalsoknownas'},
-#            {'id': '11', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'sameauthor', 'to_predicate': 'bankboughtbank'},
-#            {'id': '12', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'sameauthor', 'to_predicate': 'acquired'},
-#            {'id': '13', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'samebib', 'to_predicate': 'companyalsoknownas'},
-#            {'id': '14', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'samebib', 'to_predicate': 'bankboughtbank'},
-#            {'id': '15', 'source': 'cora', 'target': 'nell_finances', 'predicate': 'samebib', 'to_predicate': 'acquired'},
-#            {'id': '19', 'source': 'uwcse', 'target': 'yago2s', 'predicate': 'advisedby', 'to_predicate': 'ismarriedto'},
-#            {'id': '20', 'source': 'uwcse', 'target': 'yago2s', 'predicate': 'advisedby', 'to_predicate': 'hasacademicadvisor'},
-#            {'id': '21', 'source': 'uwcse', 'target': 'yago2s', 'predicate': 'advisedby', 'to_predicate': 'haschild'},
-#            {'id': '22', 'source': 'cora', 'target': 'yago2s', 'predicate': 'samevenue', 'to_predicate': 'ismarriedto'},
-#            {'id': '23', 'source': 'cora', 'target': 'yago2s', 'predicate': 'samevenue', 'to_predicate': 'hasacademicadvisor'},
-#            {'id': '24', 'source': 'cora', 'target': 'yago2s', 'predicate': 'samevenue', 'to_predicate': 'haschild'},
-            #{'id': '25', 'source': 'cora', 'target': 'yago2s', 'predicate': 'sameauthor', 'to_predicate': 'ismarriedto'},
-#            {'id': '26', 'source': 'cora', 'target': 'yago2s', 'predicate': 'sameauthor', 'to_predicate': 'hasacademicadvisor'},
-#            {'id': '27', 'source': 'cora', 'target': 'yago2s', 'predicate': 'sameauthor', 'to_predicate': 'haschild'},
-#            {'id': '28', 'source': 'cora', 'target': 'yago2s', 'predicate': 'samebib', 'to_predicate': 'ismarriedto'},
-#            {'id': '29', 'source': 'cora', 'target': 'yago2s', 'predicate': 'samebib', 'to_predicate': 'hasacademicadvisor'},
-#            {'id': '30', 'source': 'cora', 'target': 'yago2s', 'predicate': 'samebib', 'to_predicate': 'haschild'},
-            #{'id': '31', 'source': 'webkb', 'target': 'yeast', 'predicate': 'pageclass', 'to_predicate': 'proteinclass'},
-            #{'id': '32', 'source': 'yeast', 'target': 'webkb', 'predicate': 'proteinclass', 'to_predicate': 'pageclass'},
-            
-            
-            {'id': '1', 'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
-            {'id': '2', 'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
-            {'id': '3', 'source':'imdb', 'target':'uwcse', 'predicate':'movie', 'to_predicate':'publication'},
-            {'id': '4', 'source':'uwcse', 'target':'imdb', 'predicate':'publication', 'to_predicate':'movie'},
-            {'id': '5', 'source':'imdb', 'target':'uwcse', 'predicate':'genre', 'to_predicate':'inphase'},
-            {'id': '6', 'source':'uwcse', 'target':'imdb', 'predicate':'inphase', 'to_predicate':'genre'},
-            {'id': '7', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            {'id': '8', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samebib'},
-            {'id': '9', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sameauthor'},
-            {'id': '10', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sametitle'},
-            {'id': '11', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samevenue'},
-            {'id': '12', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samebib'},
-            {'id': '13', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sameauthor'},
-            {'id': '14', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sametitle'},
-            {'id': '15', 'source':'yeast', 'target':'twitter', 'predicate':'proteinclass', 'to_predicate':'accounttype'},
-            {'id': '16', 'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            {'id': '17', 'source':'yeast', 'target':'twitter', 'predicate':'location', 'to_predicate':'tweets'},
-            {'id': '18', 'source':'yeast', 'target':'twitter', 'predicate':'enzyme', 'to_predicate':'tweets'},
-            {'id': '19', 'source':'yeast', 'target':'twitter', 'predicate':'function', 'to_predicate':'tweets'},
-            {'id': '20', 'source':'yeast', 'target':'twitter', 'predicate':'phenotype', 'to_predicate':'tweets'},
-            {'id': '21', 'source':'yeast', 'target':'twitter', 'predicate':'complex', 'to_predicate':'tweets'},
-            {'id': '22', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass'},
-            {'id': '23', 'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
-            {'id': '24', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'location'},
-            {'id': '25', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'enzyme'},
-            {'id': '26', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'function'},
-            {'id': '27', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'phenotype'},
-            {'id': '28', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'complex'},
-            
-            
-            
-            
-            
-            
-            #{'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
-            #{'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder'},
-            #{'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
-            #{'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'}
-            #{'id': '6', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
-            #{'id': '7', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
-            #{'source':'yeast', 'target':'webkb', 'predicate':'proteinclass'},
-            #{'source':'webkb', 'target':'yeast', 'predicate':'departmentof'},
-            #{'source':'twitter', 'target':'webkb', 'predicate':'accounttype'},
-            #{'source':'webkb', 'target':'twitter', 'predicate':'pageclass'},
-            #{'id': '12', 'source':'uwcse', 'target':'yago2s', 'predicate':'advisedby', 'to_predicate':'ismarriedto'},
-            #{'id': '13', 'source':'uwcse', 'target':'yago2s', 'predicate':'advisedby', 'to_predicate':'hasacademicadvisor'},
-            #{'id': '14', 'source':'uwcse', 'target':'yago2s', 'predicate':'advisedby', 'to_predicate':'haschild'},
-            #{'id': '15', 'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'ismarriedto'},
-            #{'id': '16', 'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'hasacademicadvisor'},
-            #{'id': '17', 'source':'cora', 'target':'yago2s', 'predicate':'samevenue', 'to_predicate':'haschild'},
-            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'influences'},
-            #{'source':'imdb', 'target':'yago2s', 'predicate':'workedunder', 'to_predicate':'wrotemusicfor'},
+            #{'id': '1', 'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
+            #{'id': '2', 'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder'},
+            #{'id': '3', 'source':'imdb', 'target':'uwcse', 'predicate':'movie', 'to_predicate':'publication'},
+            #{'id': '4', 'source':'uwcse', 'target':'imdb', 'predicate':'publication', 'to_predicate':'movie'},
+            #{'id': '5', 'source':'imdb', 'target':'uwcse', 'predicate':'genre', 'to_predicate':'inphase'},
+            #{'id': '6', 'source':'uwcse', 'target':'imdb', 'predicate':'inphase', 'to_predicate':'genre'},
+            #{'id': '7', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            #{'id': '8', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samebib'},
+            #{'id': '9', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sameauthor'},
+            #{'id': '10', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sametitle'},
+            #{'id': '11', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samevenue'},
+            #{'id': '12', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samebib'},
+            #{'id': '13', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sameauthor'},
+            #{'id': '14', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sametitle'},
+            #{'id': '15', 'source':'yeast', 'target':'twitter', 'predicate':'proteinclass', 'to_predicate':'accounttype'},
+            #{'id': '16', 'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            #{'id': '17', 'source':'yeast', 'target':'twitter', 'predicate':'location', 'to_predicate':'tweets'},
+            #{'id': '18', 'source':'yeast', 'target':'twitter', 'predicate':'enzyme', 'to_predicate':'tweets'},
+            #{'id': '19', 'source':'yeast', 'target':'twitter', 'predicate':'function', 'to_predicate':'tweets'},
+            #{'id': '20', 'source':'yeast', 'target':'twitter', 'predicate':'phenotype', 'to_predicate':'tweets'},
+            #{'id': '21', 'source':'yeast', 'target':'twitter', 'predicate':'complex', 'to_predicate':'tweets'},
+            #{'id': '22', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass'},
+            #{'id': '23', 'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            #{'id': '24', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'location'},
+            #{'id': '25', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'enzyme'},
+            #{'id': '26', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'function'},
+            #{'id': '27', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'phenotype'},
+            #{'id': '28', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'complex'},
+            #{'id': '29', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamalsoknownas', 'to_predicate':'companyalsoknownas'},
+            #{'id': '30', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplaysagainstteam', 'to_predicate':'companyalsoknownas'},
+            #{'id': '31', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplaysagainstteam', 'to_predicate':'acquired'},
+            #{'id': '32', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplaysagainstteam', 'to_predicate':'bankboughtbank'},
+            #{'id': '33', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplayssport', 'to_predicate':'companyceo'},
+            #{'id': '34', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplayssport', 'to_predicate':'bankchiefexecutiveceo'},
+            #{'id': '35', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplaysforteam', 'to_predicate':'bankchiefexecutiveceo'},
+            #{'id': '36', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplaysforteam', 'to_predicate':'companyceo'},
+            #{'id': '37', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            #{'id': '38', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyalsoknownas', 'to_predicate':'teamalsoknownas'},
+            #{'id': '39', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyalsoknownas', 'to_predicate':'teamplaysagainstteam'},
+            #{'id': '40', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'acquired', 'to_predicate':'teamplaysagainstteam'},
+            #{'id': '41', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'bankboughtbank', 'to_predicate':'teamplaysagainstteam'},
+            #{'id': '42', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyceo', 'to_predicate':'athleteplayssport'},
+            #{'id': '43', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'bankchiefexecutiveceo', 'to_predicate':'athleteplayssport'},
+            #{'id': '44', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'bankchiefexecutiveceo', 'to_predicate':'athleteplaysforteam'},
+            #{'id': '45', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyceo', 'to_predicate':'athleteplaysforteam'},
+            #{'id': '46', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
+            #{'id': '47', 'source':'yeast', 'target':'facebook', 'predicate':'interaction', 'to_predicate':'edge'},
+            #{'id': '48', 'source':'twitter', 'target':'facebook', 'predicate':'follows', 'to_predicate':'edge'}
             ]
             
 bk = {
@@ -214,9 +180,9 @@ bk = {
               'haswordauthor(+author,+word).',
               'haswordauthor(+author,-word).',
               'haswordauthor(-author,+word).',
-              'harswordtitle(+title,+word).',
-              'harswordtitle(+title,-word).',
-              'harswordtitle(-title,+word).',
+              'haswordtitle(+title,+word).',
+              'haswordtitle(+title,-word).',
+              'haswordtitle(-title,+word).',
               'haswordvenue(+venue,+word).',
               'haswordvenue(+venue,-word).',
               'haswordvenue(-venue,+word).'],
@@ -439,7 +405,91 @@ bk = {
     'edited(-person,+media).',
     'wrotemusicfor(+person,+media).',
     'wrotemusicfor(+person,-media).',
-    'wrotemusicfor(-person,+media).']
+    'wrotemusicfor(-person,+media).'],
+    'facebook': ['edge(+person,+person).',
+            'edge(+person,-person).',
+            'edge(-person,+person).',
+            'middlename(+person,+middlename).',
+            'middlename(+person,-middlename).',
+            'middlename(-person,+middlename).',
+            'lastname(+person,+lastname).',
+            'lastname(+person,-lastname).',
+            'lastname(-person,+lastname).',
+            'educationtype(+person,+educationtype).',
+            'educationtype(+person,-educationtype).',
+            'educationtype(-person,+educationtype).',
+            'workprojects(+person,+workprojects).',
+            'workprojects(+person,-workprojects).',
+            'workprojects(-person,+workprojects).',
+            'educationyear(+person,+educationyear).',
+            'educationyear(+person,-educationyear).',
+            'educationyear(-person,+educationyear).',
+            'educationwith(+person,+educationwith).',
+            'educationwith(+person,-educationwith).',
+            'educationwith(-person,+educationwith).',
+            'location(+person,+location).',
+            'location(+person,-location).',
+            'location(-person,+location).',
+            'workwith(+person,+workwith).',
+            'workwith(+person,-workwith).',
+            'workwith(-person,+workwith).',
+            'workenddate(+person,+workenddate).',
+            'workenddate(+person,-workenddate).',
+            'workenddate(-person,+workenddate).',
+            'languages(+person,+languages).',
+            'languages(+person,-languages).',
+            'languages(-person,+languages).',
+            'religion(+person,+religion).',
+            'religion(+person,-religion).',
+            'religion(-person,+religion).',
+            'political(+person,+political).',
+            'political(+person,-political).',
+            'political(-person,+political).',
+            'workemployer(+person,+workemployer).',
+            'workemployer(+person,-workemployer).',
+            'workemployer(-person,+workemployer).',
+            'hometown(+person,+hometown).',
+            'hometown(+person,-hometown).',
+            'hometown(-person,+hometown).',
+            'educationconcentration(+person,+educationconcentration).',
+            'educationconcentration(+person,-educationconcentration).',
+            'educationconcentration(-person,+educationconcentration).',
+            'workfrom(+person,+workfrom).',
+            'workfrom(+person,-workfrom).',
+            'workfrom(-person,+workfrom).',
+            'workstartdate(+person,+workstartdate).',
+            'workstartdate(+person,-workstartdate).',
+            'workstartdate(-person,+workstartdate).',
+            'worklocation(+person,+worklocation).',
+            'worklocation(+person,-worklocation).',
+            'worklocation(-person,+worklocation).',
+            'educationclasses(+person,+educationclasses).',
+            'educationclasses(+person,-educationclasses).',
+            'educationclasses(-person,+educationclasses).',
+            'workposition(+person,+workposition).',
+            'workposition(+person,-workposition).',
+            'workposition(-person,+workposition).',
+            'firstname(+person,+firstname).',
+            'firstname(+person,-firstname).',
+            'firstname(-person,+firstname).',
+            'birthday(+person,+birthday).',
+            'birthday(+person,-birthday).',
+            'birthday(-person,+birthday).',
+            'educationschool(+person,+educationschool).',
+            'educationschool(+person,-educationschool).',
+            'educationschool(-person,+educationschool).',
+            'name(+person,+name).',
+            'name(+person,-name).',
+            'name(-person,+name).',
+            'gender(+person,+gender).',
+            'gender(+person,-gender).',
+            'gender(-person,+gender).',
+            'educationdegree(+person,+educationdegree).',
+            'educationdegree(+person,-educationdegree).',
+            'educationdegree(-person,+educationdegree).',
+            'locale(+person,+locale).',
+            'locale(+person,-locale).',
+            'locale(-person,+locale).']
       }
 
 if os.path.isfile('transfer_experiment.json'):
@@ -454,7 +504,7 @@ def save(data):
         json.dump(data, fp)
         
 if firstRun:
-    results['save'] = {'experiment': 0, 'n_runs': 0, 'seed': random.randint(111111,999999) }
+    results['save'] = {'experiment': 0, 'n_runs': 0, 'seed': 441773 }
 
 start = time.time()
 #while results['save']['experiment'] < len(experiments):
@@ -479,7 +529,7 @@ while results['save']['n_runs'] < n_runs:
         
         # Load source dataset
         src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-        src_data = datasets.load(source, bk[source], target=predicate, balanced=balanced, seed=results['save']['seed'])
+        src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
             
         # Group and shuffle
         src_facts = datasets.group_folds(src_data[0])
@@ -487,6 +537,10 @@ while results['save']['n_runs'] < n_runs:
         src_neg = datasets.group_folds(src_data[2])
                     
         print_function('Start learning from source dataset\n')
+        
+        print_function('Source train facts examples: %s' % len(src_facts))
+        print_function('Source train pos examples: %s' % len(src_pos))
+        print_function('Source train neg examples: %s\n' % len(src_neg))
                            
         # learning from source dataset
         background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
@@ -517,7 +571,7 @@ while results['save']['n_runs'] < n_runs:
                 tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=n_folds, seed=results['save']['seed'])[i] + t_total_data[0][0]
             
             # transfer
-            print_function('Target predicate: %s \n' % to_predicate)
+            print_function('Target predicate: %s' % to_predicate)
             mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate)
             
             if print_function:
@@ -526,6 +580,8 @@ while results['save']['n_runs'] < n_runs:
                 print_function('   Generating paths time   = %s' % mapping_results['Generating paths time'])
                 print_function('   Generating mappings time   = %s' % mapping_results['Generating mappings time'])
                 print_function('   Possible mappings   = %s' % mapping_results['Possible mappings'])
+                print_function('   Max mapping   = %s' % mapping_results['Max mapping'])
+                print_function('   Numbers predicates mapping   = %s' % mapping_results['Numbers preds mapping'])
                 print_function('   Finding best mapping   = %s' % mapping_results['Finding best mapping'])
                 print_function('   Total time   = %s' % mapping_results['Total time'])
                 print_function('\n')
@@ -567,6 +623,13 @@ while results['save']['n_runs'] < n_runs:
             print_function('\n')
             
             print_function('Start learning from scratch in target domain\n')
+            
+            print_function('Target train facts examples: %s' % len(tar_train_facts))
+            print_function('Target train pos examples: %s' % len(tar_train_pos))
+            print_function('Target train neg examples: %s\n' % len(tar_train_neg))
+            print_function('Target test facts examples: %s' % len(tar_test_facts))
+            print_function('Target test pos examples: %s' % len(tar_test_pos))
+            print_function('Target test neg examples: %s\n' % len(tar_test_neg))
             
             # learning from scratch
             [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, print_function=print_function)
