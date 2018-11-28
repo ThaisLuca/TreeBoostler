@@ -118,6 +118,24 @@ class datasets:
         random.seed(None)
         return neg
     
+    def generate_all_neg(target, data):
+        '''Receives [facts, pos, neg] and generates neg examples in neg according to pos'''
+        pos = copy.deepcopy(data)
+        neg = []
+        objects = set()
+        subjects = {}
+        for entities in pos:
+            if entities[0] not in subjects:
+                subjects[entities[0]] = set()
+            subjects[entities[0]].add(entities[1])
+            objects.add(entities[1])
+        for entities in pos:
+            key = entities[0]
+            target_objects = objects.difference(subjects[key])
+            for objc in target_objects:
+                neg.append(target + '(' + ','.join([key, objc]) + ').')
+        return neg
+    
     def get_json_dataset(dataset):
         '''Load dataset from json'''
         with open(os.path.join(__location__, 'files/json/' + dataset + '.json')) as data_file:
@@ -166,7 +184,10 @@ class datasets:
                         neg[i] = datasets.get_neg(target, value)
                 else:
                     value = data[0][i][target]
-                    neg[i] = datasets.generate_neg(target, value, amount=(1 if not balanced else balanced), seed=seed)                                
+                    if balanced:
+                        neg[i] = datasets.generate_neg(target, value, amount=(1 if not balanced else balanced), seed=seed)
+                    else:
+                        neg[i] = datasets.generate_all_neg(target, value)                              
         return [facts, pos, neg]
 
     def save():
