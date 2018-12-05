@@ -382,6 +382,8 @@ class revision:
         '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
            and returns it as objects with nodes, std devs and number of examples reached.'''
         def get_match(match):
+            if len(match) == 1:
+                return '%.3f' % (float(match[0]))
             return '%.3f(%s)' % (float(match[0]), match[1].strip().replace('#', ''))
            
         lines = lines.split('\n')

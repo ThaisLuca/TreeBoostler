@@ -19,41 +19,51 @@ from boostsrl import boostsrl
 import numpy as np
 import random
 import json
-#import logging
-#from logging import FileHandler
-#from logging import Formatter
 
 #verbose=True
 source_balanced = 1
 balanced = 1
 firstRun = False
-n_runs = 2
+n_runs = 10
 folds = 3
 
 nodeSize = 2
 numOfClauses = 8
 maxTreeDepth = 3
 
-if not os.path.exists('log'):
-    os.makedirs('log')
-
-#def setup_logger(name, log_file, level=logging.DEBUG):
-#    formatter = logging.Formatter('%(message)s')
-#    
-#    handler = logging.FileHandler(log_file)        
-#    handler.setFormatter(formatter)
-#
-#    logger = logging.getLogger(name)
-#    logger.setLevel(level)
-#    logger.addHandler(handler)
-#
-#    return logger
+if not os.path.exists('experiments'):
+    os.makedirs('experiments')
     
 def print_function(message):
     global experiment_title
-    with open('log/' + experiment_title + '.txt', 'a') as f:
+    global nbr
+    if not os.path.exists('experiments/' + experiment_title):
+        os.makedirs('experiments/' + experiment_title)
+    with open('experiments/' + experiment_title + '/' + str(nbr) + '_' + experiment_title + '.txt', 'a') as f:
         print(message, file=f)
         print(message)
+
+def save_experiment(data):
+    if not os.path.exists('experiments/' + experiment_title):
+        os.makedirs('experiments/' + experiment_title)
+    results = []
+    if os.path.isfile('experiments/' + experiment_title + '/' + experiment_title + '.json'):
+        with open('experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
+            results = json.load(fp)
+    results.append(data)
+    with open('experiments/' + experiment_title + '/' + experiment_title + '.json', 'w') as fp:
+        json.dump(results, fp)
+        
+def get_number_experiment():
+    results = []
+    if os.path.isfile('experiments/' + experiment_title + '/' + experiment_title + '.json'):
+        with open('experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
+            results = json.load(fp)
+    return len(results)
+        
+def save(data):
+    with open('experiments/transfer_experiment.json', 'w') as fp:
+        json.dump(data, fp)
 
 experiments = [
             #{'id': '1', 'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby'},
@@ -62,7 +72,7 @@ experiments = [
             #{'id': '4', 'source':'uwcse', 'target':'imdb', 'predicate':'publication', 'to_predicate':'movie'},
             #{'id': '5', 'source':'imdb', 'target':'uwcse', 'predicate':'genre', 'to_predicate':'inphase'},
             #{'id': '6', 'source':'uwcse', 'target':'imdb', 'predicate':'inphase', 'to_predicate':'genre'},
-            #{'id': '7', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            {'id': '7', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
             #{'id': '8', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samebib'},
             #{'id': '9', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sameauthor'},
             #{'id': '10', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sametitle'},
@@ -103,7 +113,9 @@ experiments = [
             #{'id': '45', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyceo', 'to_predicate':'athleteplaysforteam'},
             #{'id': '46', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
             #{'id': '47', 'source':'yeast', 'target':'facebook', 'predicate':'interaction', 'to_predicate':'edge'},
-            #{'id': '48', 'source':'twitter', 'target':'facebook', 'predicate':'follows', 'to_predicate':'edge'}
+            #{'id': '48', 'source':'twitter', 'target':'facebook', 'predicate':'follows', 'to_predicate':'edge'},
+            #{'id': '49', 'source':'imdb', 'target':'facebook', 'predicate':'workedunder', 'to_predicate':'edge'},
+            #{'id': '50', 'source':'uwcse', 'target':'facebook', 'predicate':'advisedby', 'to_predicate':'edge'},
             ]
             
 bk = {
@@ -496,15 +508,21 @@ if os.path.isfile('transfer_experiment.json'):
     with open('transfer_experiment.json', 'r') as fp:
         results = json.load(fp)
 else:
-    results = { 'results': {}, 'save': { }}
+    results = { 'save': { }}
     firstRun = True
-
-def save(data):
-    with open('transfer_experiment.json', 'w') as fp:
-        json.dump(data, fp)
         
 if firstRun:
-    results['save'] = {'experiment': 0, 'n_runs': 0, 'seed': 441773 }
+    results['save'] = {
+        'experiment': 0,
+        'n_runs': 0,
+        'seed': 441773,
+        'source_balanced' : 1,
+        'balanced' : 1,
+        'folds' : 3,      
+        'nodeSize' : 2,
+        'numOfClauses' : 8,
+        'maxTreeDepth' : 3
+        }
 
 start = time.time()
 #while results['save']['experiment'] < len(experiments):
@@ -514,13 +532,13 @@ while results['save']['n_runs'] < n_runs:
     try:
         #experiment = results['save']['experiment']
         experiment_title = experiments[experiment]['id'] + '_' + experiments[experiment]['source'] + '_' + experiments[experiment]['target']
-        if experiment_title not in results['results']:
-            results['results'][experiment_title] = []
+        #if experiment_title not in results['results']:
+        #    results['results'][experiment_title] = []
             
         #logger = setup_logger('logger_' + experiment_title, 'log/' + experiment_title + '.log')
         
-        nbr = len(results['results'][experiment_title])
-        print_function('Starting experiment #' + str(nbr+1) + ' for ' + experiment_title+ '\n')
+        nbr = get_number_experiment() + 1 #len(results['results'][experiment_title]) + 1
+        print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
     
         source = experiments[experiment]['source']
         target = experiments[experiment]['target']
@@ -548,7 +566,10 @@ while results['save']['n_runs'] < n_runs:
         
         preds = mapping.get_preds(source_structured, bk[source])
         print_function('Predicates from source: %s' % preds + '\n')
-            #print('Source structured tree: %s \n' % source_structured)
+        
+        #critical_preds = mapping.get_critical_preds(source_structured, bk[source])
+        #print_function('Critical predicates from source: %s' % critical_preds + '\n')
+        #print('Source structured tree: %s \n' % source_structured)
         
         # Load total target dataset
         tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
@@ -572,7 +593,7 @@ while results['save']['n_runs'] < n_runs:
             
             # transfer
             print_function('Target predicate: %s' % to_predicate)
-            mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate)
+            mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate) #, forcePreds=critical_preds)
             
             if print_function:
                 print_function('Mapping Results')
@@ -611,35 +632,44 @@ while results['save']['n_runs'] < n_runs:
                 to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=n_folds, seed=results['save']['seed'])
                 [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, to_folds_pos)
                 [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
-    
-            # transfer and revision theory
-            background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, print_function=print_function)
-            t_results['Mapping results'] = mapping_results
-            t_results['Parameter Learning results'] = pl_t_results
-            ob_save['transfer'] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'transfer', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print_function(t_results)
-            print_function('\n')
-            
-            print_function('Start learning from scratch in target domain\n')
-            
+                
             print_function('Target train facts examples: %s' % len(tar_train_facts))
             print_function('Target train pos examples: %s' % len(tar_train_pos))
             print_function('Target train neg examples: %s\n' % len(tar_train_neg))
             print_function('Target test facts examples: %s' % len(tar_test_facts))
             print_function('Target test pos examples: %s' % len(tar_test_pos))
             print_function('Target test neg examples: %s\n' % len(tar_test_neg))
+    
+            # transfer and revision theory
+            background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, trees=10, max_revision_iterations=10, print_function=print_function)
+            t_results['Mapping results'] = mapping_results
+            t_results['parameter'] = pl_t_results
+            ob_save['transfer'] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
             
-            # learning from scratch
+            print_function('Start learning from scratch in target domain\n')
+            
+            # learning from scratch (RDN-B)
             [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=10, print_function=print_function)
-            ob_save['scratch'] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'scratch', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            ob_save['rdn_b'] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
+            
+            # learning from scratch (RDN)
+            background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
+            ob_save['rdn'] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
             print_function(t_results)
             print_function('\n')
             
             results_save.append(ob_save)
-        results['results'][experiment_title].append(results_save)
+        save_experiment(results_save)
+        #results['results'][experiment_title].append(results_save)
     except Exception as e:
         print_function(e)
         print_function('Error in experiment of ' + experiment_title)
@@ -647,4 +677,3 @@ while results['save']['n_runs'] < n_runs:
     results['save']['experiment'] += 1
     results['save']['n_runs'] += 1
     save(results)
-

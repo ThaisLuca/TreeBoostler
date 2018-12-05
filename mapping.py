@@ -61,9 +61,9 @@ class KnowledgeGraph(object):
         for i in range(n_sentences):
             node = self.graph.ids[random.randint(0, self.graph.n_nodes-1)] #self.graph.nodes[random.choice(list(self.graph.nodes))]
             clauses = {}
-            sentence = [] #[str(node)]
+            sentence = []
             i_depth = 1
-            while(i_depth < max_depth):
+            while(i_depth < max_depth): #max_depth
                 if node not in clauses:
                     clauses[node] = set()
                 #edg = set(node.edges).difference(clauses[node])
@@ -384,20 +384,23 @@ class mapping:
         return (mapd, results)
         
     def get_preds(structured, p):
+        '''Returns all predicates presented in boosted trees in order of nodes and trees'''
         modes = mapping.clean_preds(p)
         pattern = '([a-zA-Z_0-9]*)\s*\(([a-zA-Z_0-9,\\s]*)\)'
         m = re.findall(pattern, structured[0][0])
         if m:
-            preds = set()
+            preds_selected = set()
+            preds = []
             target = m[0][0]
             for struct in structured:
                 for node in struct[1].values():
                     n = re.findall(pattern, node)
                     if n:
                         for p in n:
-                            if p[0] != target:
-                                preds.add(p[0])
-            preds_modes = set()
+                            if p[0] != target and p[0] not in preds_selected:
+                                preds.append(p[0])
+                                preds_selected.add(p[0])
+            preds_modes = {}
             target_mode = None
             for line in modes:
                 m = re.search('^(\w+)\(([\w, +\-\#\`]+)*\).$', line)
@@ -408,9 +411,11 @@ class mapping:
                     entities = re.sub('[+\-\#\` ]', '', entities)
                     if relation == target:
                         target_mode = relation + '(' + entities + ').'
-                    if relation in preds:
-                        preds_modes.add(relation + '(' + entities + ').')
-            return [target_mode] + list(preds_modes)
+                    if relation in preds_selected:
+                        preds_modes[relation] = '(' + entities + ').'
+            for i in range(len(preds)):
+                preds[i] = preds[i] + preds_modes[preds[i]]
+            return [target_mode] + preds
             
     def clean_preds(preds):
         '''Clean +/- from modes'''
