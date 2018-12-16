@@ -340,7 +340,8 @@ class revision:
             candidate = revision.get_boosted_candidate(best_structured, variances, no_pruning=True)
         if print_function:
             print_function('Candidate for revision')
-            print_function(candidate)
+            for item in candidate:
+                print_function(item)
             print_function('\n')
         #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
         if print_function:
