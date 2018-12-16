@@ -221,3 +221,25 @@ class transfer:
         match = re.match('([a-zA-Z_0-9]*)\s*\(([a-zA-Z_0-9,\s]*)\)', target)
         if match:
             return match.groups()[0]
+            
+    def get_transfer_file(source_bk, target_bk, from_pred, to_pred, recursion=False, searchArgPermutation=False, searchEmpty=False, allowSameTargetMap=False):
+        srcSet = set()
+        for pred in source_bk:
+            a = re.sub('[\+\-\`]', '', pred)
+            srcSet.add(a)
+        tarSet = set()
+        for pred in target_bk:
+            a = re.sub('[\+\-\`]', '', pred)
+            tarSet.add(a)
+        tra = []
+        for item in srcSet:
+            tra.append('source: ' + item)
+        for item in tarSet:
+            tra.append('target: ' + item)
+        tra.append('setMap: ' + from_pred + '(A,B)=' + to_pred + '(A,B).')
+        if recursion:
+            tra.append('setMap: recursive_' + from_pred + '(A,B)=recursive_' + to_pred + '(A,B).')
+        tra.append('setParam: searchArgPermutation=' + str(searchArgPermutation).lower() + '.')
+        tra.append('setParam: searchEmpty=' + str(searchEmpty).lower() + '.')
+        tra.append('setParam: allowSameTargetMap=' + str(allowSameTargetMap).lower() + '.')
+        return tra

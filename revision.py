@@ -257,10 +257,10 @@ class revision:
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
         return [model, learning_time, structured, will, variances]
         
-    def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, trees=10, print_function=None):
+    def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
-        model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, trees=trees)
+        model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, transfer=transfer, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
@@ -291,7 +291,7 @@ class revision:
             print_function('\n')
         return [model, t_results, structured, will, variances]
     
-    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, print_function=None):
+    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, transfer=None, print_function=None):
         '''Function responsible for starting the theory revision process'''
         #total_revision_time = 0
         #best_aucroc = 0
@@ -307,7 +307,7 @@ class revision:
             for item in revision.get_boosted_refine_file(structured_tree):
                 print_function(item)
             print_function('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), trees=trees, print_function=print_function)
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), transfer=transfer, trees=trees, print_function=print_function)
         # saving performed parameter learning will
         #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
         #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
