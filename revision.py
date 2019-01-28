@@ -290,12 +290,30 @@ class revision:
             print_function('AUC ROC: %s' % t_results['AUC ROC'])
             print_function('\n')
         return [model, t_results, structured, will, variances]
+        
+    def score_model(model, boostsrl, test_pos, test_neg, test_facts, trees=10, print_function=None):
+        results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
+        inference_time = results.testtime()
+        t_results = results.summarize_results()
+        t_results['Inference time'] = inference_time
+        if print_function:
+            print_function('Results scoring model')
+            print_function('   AUC ROC   = %s' % t_results['AUC ROC'])
+            print_function('   AUC PR    = %s' % t_results['AUC PR'])
+            print_function('   CLL	      = %s' % t_results['CLL'])
+            print_function('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
+            print_function('   Recall    = %s' % t_results['Recall'])
+            print_function('   F1        = %s' % t_results['F1'])
+            print_function('\n')
+            print_function('Total scoring time: %s seconds' % inference_time)
+        return t_results
     
     def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, transfer=None, print_function=None):
         '''Function responsible for starting the theory revision process'''
-        #total_revision_time = 0
-        #best_aucroc = 0
+        total_revision_time = 0
+        best_cll = - float('inf')
         best_structured = None
+        best_model_results = None
         pl_t_results = 0
     
         # parameter learning
@@ -313,69 +331,83 @@ class revision:
         #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
         pl_t_results = t_results
     
-        #best_aucroc = t_results['AUC ROC']
+        # scoring model
+        scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
+        best_cll = scored_results['CLL']
+        best_model_results = t_results
+        total_revision_time = pl_t_results['Learning time'] + scored_results['Inference time']
+        if print_function:
+            print_function('Parameter learned model CLL: %s' % scored_results['CLL'])
+            print_function('\n' )
+        
         best_structured = copy.deepcopy(structured)
         if print_function:
             print_function('Structure after Parameter Learning')
             print_function(best_structured)
             print_function(variances)
             print_function('\n')
-        #save_model_files()
+        revision.save_model_files()
     
         if print_function:
             print_function('******************************************')
             print_function('Performing Theory Revision')
             print_function('******************************************')
         # refine candidates
-        #for i in range(max_revision_iterations):
-    #    if verbose:
-    #        print('Refining iteration %s' % str(i+1))
-    #        print('********************************')
-    #    found_better = False
-        candidate = revision.get_boosted_candidate(best_structured, variances)
-        if not len(candidate):
-            #return [model, copy.deepcopy(t_results), structured, pl_t_results]
-            # Perform revision without pruning
-            print_function('Pruning resulted in null theory\n')
-            candidate = revision.get_boosted_candidate(best_structured, variances, no_pruning=True)
-        if print_function:
-            print_function('Candidate for revision')
-            for item in candidate:
-                print_function(item)
-            print_function('\n')
-        #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
-        if print_function:
-            print_function('Refining candidate')
-            print_function('***************************')
-            #print('Revision points found')
-            #for i in range(trees):
-            #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
-            #print('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
-        t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
-        #if t_results['AUC ROC'] > best_aucroc:
-        #    found_better = True
-        #    best_aucroc = t_results['AUC ROC']
-        #    best_structured = structured.copy()
-        #    save_model_files()
-        if print_function:
-            print_function('Refined model AUC ROC: %s' % t_results['AUC ROC'])
-            print_function('\n')
-        #if found_better == False:
-        #    break
+        for i in range(max_revision_iterations):
+            if print_function:
+                print_function('Refining iteration %s' % str(i+1))
+                print_function('********************************')
+            found_better = False
+            candidate = revision.get_boosted_candidate(best_structured, variances)
+            if not len(candidate):
+                #return [model, copy.deepcopy(t_results), structured, pl_t_results]
+                # Perform revision without pruning
+                print_function('Pruning resulted in null theory\n')
+                candidate = revision.get_boosted_candidate(best_structured, variances, no_pruning=True)
+            if print_function:
+                print_function('Candidate for revision')
+                for item in candidate:
+                    print_function(item)
+                print_function('\n')
+            #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
+            if print_function:
+                print_function('Refining candidate')
+                print_function('***************************')
+                #print('Revision points found')
+                #for i in range(trees):
+                #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
+                #print('\n')
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
+            #t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
+            # scoring model
+            scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
+            total_revision_time = t_results['Learning time'] + scored_results['Inference time']
+            if scored_results['CLL'] > best_cll:
+                found_better = True
+                best_cll = scored_results['CLL']
+                best_structured = structured.copy()
+                best_model_results = t_results
+                revision.save_model_files()
+            if print_function:
+                print_function('Refined model CLL: %s' % scored_results['CLL'])
+                print_function('\n')
+            if found_better == False:
+                break
     
         # test best model
-        #if verbose:
-        #    print('******************************************')
-        #    print('Best model found')
-        #    print('******************************************')
+        if print_function:
+            print_function('******************************************')
+            print_function('Best model found')
+            print_function('******************************************')
         revision.delete_model_files()
         #get_saved_model_files()
         revision.delete_test_files()
-        #if verbose:
-        #    print('Total revision time: %s' % total_revision_time)
-        #    print('Best validation AUC ROC: %s' % best_aucroc)
-        #    print('\n')
+        if print_function:
+            print_function('Total revision time: %s' % total_revision_time)
+            print_function('Best scored revision CLL: %s' % best_cll)
+            print_function('\n')
+        # set total revision time to t_results learning time
+        t_results['Learning time'] = total_revision_time
         
         return [model, t_results, structured, pl_t_results]
     
