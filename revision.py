@@ -329,12 +329,12 @@ class revision:
         # saving performed parameter learning will
         #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
         #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
-        pl_t_results = t_results
+        pl_t_results = copy.deepcopy(t_results)
     
         # scoring model
         scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
         best_cll = scored_results['CLL']
-        best_model_results = t_results
+        best_model_results = copy.deepcopy(t_results)
         total_revision_time = pl_t_results['Learning time'] + scored_results['Inference time']
         if print_function:
             print_function('Parameter learned model CLL: %s' % scored_results['CLL'])
@@ -381,12 +381,12 @@ class revision:
             #t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
             # scoring model
             scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
-            total_revision_time = t_results['Learning time'] + scored_results['Inference time']
+            total_revision_time = total_revision_time + t_results['Learning time'] + scored_results['Inference time']
             if scored_results['CLL'] > best_cll:
                 found_better = True
                 best_cll = scored_results['CLL']
-                best_structured = structured.copy()
-                best_model_results = t_results
+                best_structured = copy.deepcopy(structured)
+                best_model_results = copy.deepcopy(t_results)
                 revision.save_model_files()
             if print_function:
                 print_function('Refined model CLL: %s' % scored_results['CLL'])
@@ -394,11 +394,24 @@ class revision:
             if found_better == False:
                 break
     
+        # set total revision time to t_results learning time
+        best_model_results['Learning time'] = total_revision_time
         # test best model
         if print_function:
             print_function('******************************************')
             print_function('Best model found')
             print_function('******************************************')
+            print_function('Results')
+            print_function('   AUC ROC   = %s' % best_model_results['AUC ROC'])
+            print_function('   AUC PR    = %s' % best_model_results['AUC PR'])
+            print_function('   CLL	      = %s' % best_model_results['CLL'])
+            print_function('   Precision = %s at threshold = %s' % (best_model_results['Precision'][0], best_model_results['Precision'][1]))
+            print_function('   Recall    = %s' % best_model_results['Recall'])
+            print_function('   F1        = %s' % best_model_results['F1'])
+            print_function('\n')
+            print_function('Total learning time: %s seconds' % best_model_results['Learning time'])
+            print_function('Total inference time: %s seconds' % best_model_results['Inference time'])
+            print_function('AUC ROC: %s' % best_model_results['AUC ROC'])
         revision.delete_model_files()
         #get_saved_model_files()
         revision.delete_test_files()
@@ -406,10 +419,8 @@ class revision:
             print_function('Total revision time: %s' % total_revision_time)
             print_function('Best scored revision CLL: %s' % best_cll)
             print_function('\n')
-        # set total revision time to t_results learning time
-        t_results['Learning time'] = total_revision_time
         
-        return [model, t_results, structured, pl_t_results]
+        return [model, best_model_results, structured, pl_t_results]
     
     def get_graph(lines):
         '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
