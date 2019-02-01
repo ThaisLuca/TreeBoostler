@@ -114,6 +114,7 @@ class datasets:
                     r = random.randint(0, len(target_objects)-1)
                     if target_objects[r] not in subjects[key]:
                         neg.append(target + '(' + ','.join([key, target_objects[r]]) + ').')
+                        subjects[key].add(target_objects[r])
                         break
         random.seed(None)
         return neg
@@ -164,6 +165,7 @@ class datasets:
                     if relation == target:
                         for example in value:
                             pos[i].append(relation + '(' + ','.join(example)+ ').')
+                            #facts[i].append('recursion_' + relation + '(' + ','.join(example)+ ').')
                     else:
                         for example in value:
                             facts[i].append(relation + '(' + ','.join(example)+ ').')
@@ -492,7 +494,7 @@ class datasets:
             return pages[page]
         
         def cleanEntity(entity):
-            m = re.search('^(http|https|ftp|mail|file)\:', entity)
+            m = re.search('(http|https|ftp|mail|file)', entity)
             if m:
                 return getPageId(entity)
             else:
@@ -516,8 +518,8 @@ class datasets:
                         n = re.search('^!(\w+)\((.*)\)$', line.lower()) 
                         m = re.search('^(\w+)\((.*)\)$', line.lower())
                         if n:
-                            relation = re.sub('[\'"]', '', n.group(1))
-                            entities = re.sub('[\'"]', '', n.group(2)).split(',')
+                            relation = n.group(1)
+                            entities = n.group(2).split(',')
                             entities = getCleanEntities(entities)
                             if not acceptedPredicates or relation in acceptedPredicates:
                                 if relation in classes:
@@ -531,8 +533,8 @@ class datasets:
                                     negatives[i][relation].append(entities)
                             continue
                         if m:
-                            relation = re.sub('[\'"]', '', m.group(1))
-                            entities = re.sub('[\'"]', '', m.group(2)).split(',')
+                            relation = m.group(1)
+                            entities = m.group(2).split(',')
                             entities = getCleanEntities(entities)                          
                             if not acceptedPredicates or relation in acceptedPredicates:
                                 if relation in classes:
