@@ -308,7 +308,7 @@ class revision:
             print_function('Total scoring time: %s seconds' % inference_time)
         return t_results
     
-    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=10, transfer=None, print_function=None):
+    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=1, transfer=None, print_function=None):
         '''Function responsible for starting the theory revision process'''
         total_revision_time = 0
         best_cll = - float('inf')

@@ -21,10 +21,10 @@ import random
 import json
 
 #verbose=True
-source_balanced = 1
-balanced = 1
+source_balanced = False
+balanced = False
 firstRun = False
-n_runs = 24
+n_runs = 6
 folds = 3
 
 nodeSize = 2
@@ -63,7 +63,7 @@ def get_number_experiment():
     return len(results)
         
 def save(data):
-    with open('experiments/transfer_experiment.json', 'w') as fp:
+    with open('experiments/learning_curve.json', 'w') as fp:
         json.dump(data, fp)
 
 experiments = [
@@ -75,24 +75,24 @@ experiments = [
             ##{'id': '3', 'source':'imdb', 'target':'uwcse', 'predicate':'movie', 'to_predicate':'publication'},
             #{'id': '4', 'source':'uwcse', 'target':'imdb', 'predicate':'publication', 'to_predicate':'movie'},
             #{'id': '5', 'source':'imdb', 'target':'uwcse', 'predicate':'genre', 'to_predicate':'inphase'},
-            {'id': '6', 'source':'uwcse', 'target':'imdb', 'predicate':'inphase', 'to_predicate':'genre'},
-            {'id': '7', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
+            ##{'id': '6', 'source':'uwcse', 'target':'imdb', 'predicate':'inphase', 'to_predicate':'genre'},
+            ##{'id': '7', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue'},
             #{'id': '8', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samebib'},
-            {'id': '9', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sameauthor'},
+            ##{'id': '9', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sameauthor'},
             #{'id': '10', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'sametitle'},
             #{'id': '11', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samevenue'},
-            {'id': '12', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samebib'},
-            {'id': '13', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sameauthor'},
+            ##{'id': '12', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'samebib'},
+            ##{'id': '13', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sameauthor'},
             #{'id': '14', 'source':'uwcse', 'target':'cora', 'predicate':'advisedby', 'to_predicate':'sametitle'},
             ##{'id': '15', 'source':'yeast', 'target':'twitter', 'predicate':'proteinclass', 'to_predicate':'accounttype'},
-            {'id': '16', 'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
+            ##{'id': '16', 'source':'yeast', 'target':'twitter', 'predicate':'interaction', 'to_predicate':'follows'},
             #{'id': '17', 'source':'yeast', 'target':'twitter', 'predicate':'location', 'to_predicate':'tweets'},
             #{'id': '18', 'source':'yeast', 'target':'twitter', 'predicate':'enzyme', 'to_predicate':'tweets'},
             #{'id': '19', 'source':'yeast', 'target':'twitter', 'predicate':'function', 'to_predicate':'tweets'},
             #{'id': '20', 'source':'yeast', 'target':'twitter', 'predicate':'phenotype', 'to_predicate':'tweets'},
             #{'id': '21', 'source':'yeast', 'target':'twitter', 'predicate':'complex', 'to_predicate':'tweets'},
             #{'id': '22', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass'},
-            {'id': '23', 'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
+            ##{'id': '23', 'source':'twitter', 'target':'yeast', 'predicate':'follows', 'to_predicate':'interaction'},
             #{'id': '24', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'location'},
             #{'id': '25', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'enzyme'},
             #{'id': '26', 'source':'twitter', 'target':'yeast', 'predicate':'tweets', 'to_predicate':'function'},
@@ -104,9 +104,9 @@ experiments = [
             #{'id': '32', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplaysagainstteam', 'to_predicate':'bankboughtbank'},
             #{'id': '33', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplayssport', 'to_predicate':'companyceo'},
             #{'id': '34', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplayssport', 'to_predicate':'bankchiefexecutiveceo'},
-            {'id': '35', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplaysforteam', 'to_predicate':'bankchiefexecutiveceo'},
+            ##{'id': '35', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplaysforteam', 'to_predicate':'bankchiefexecutiveceo'},
             #{'id': '36', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'athleteplaysforteam', 'to_predicate':'companyceo'},
-            {'id': '37', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
+            ##{'id': '37', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector'},
             #{'id': '38', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyalsoknownas', 'to_predicate':'teamalsoknownas'},
             #{'id': '39', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyalsoknownas', 'to_predicate':'teamplaysagainstteam'},
             #{'id': '40', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'acquired', 'to_predicate':'teamplaysagainstteam'},
@@ -116,7 +116,7 @@ experiments = [
             #{'id': '44', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'bankchiefexecutiveceo', 'to_predicate':'athleteplaysforteam'},
             #{'id': '45', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyceo', 'to_predicate':'athleteplaysforteam'},
             ##{'id': '46', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport'},
-            {'id': '47', 'source':'yeast', 'target':'facebook', 'predicate':'interaction', 'to_predicate':'edge'},
+            ##{'id': '47', 'source':'yeast', 'target':'facebook', 'predicate':'interaction', 'to_predicate':'edge'},
             ##{'id': '48', 'source':'twitter', 'target':'facebook', 'predicate':'follows', 'to_predicate':'edge'},
             ##{'id': '49', 'source':'imdb', 'target':'facebook', 'predicate':'workedunder', 'to_predicate':'edge'},
             ##{'id': '50', 'source':'uwcse', 'target':'facebook', 'predicate':'advisedby', 'to_predicate':'edge'},
@@ -512,8 +512,8 @@ bk = {
             'locale(-person,+locale).']
       }
 
-if os.path.isfile('transfer_experiment.json'):
-    with open('transfer_experiment.json', 'r') as fp:
+if os.path.isfile('learning_curve.json'):
+    with open('learning_curve.json', 'r') as fp:
         results = json.load(fp)
 else:
     results = { 'save': { }}
@@ -594,7 +594,7 @@ while results['save']['n_runs'] < n_runs:
         ob_save = {}
         
         if target not in ['nell_sports', 'nell_finances', 'yago2s']:
-            [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
+            [tar_train_pos, tar_test_pos] = datasets.get_kfold(i, tar_total_data[0])
         else:
             t_total_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
             tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=n_folds, seed=results['save']['seed'])[i] + t_total_data[0][0]
@@ -631,15 +631,15 @@ while results['save']['n_runs'] < n_runs:
         
         # Group and shuffle
         if target not in ['nell_sports', 'nell_finances', 'yago2s']:
-            [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
-            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
-            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
+            [tar_train_facts, tar_test_facts] =  datasets.get_kfold(i, tar_data[0])
+            [tar_train_pos, tar_test_pos] =  datasets.get_kfold(i, tar_data[1])
+            [tar_train_neg, tar_test_neg] =  datasets.get_kfold(i, tar_data[2])
         else:
             [tar_train_facts, tar_test_facts] =  [tar_data[0][0], tar_data[0][0]]
             to_folds_pos = datasets.split_into_folds(tar_data[1][0], n_folds=n_folds, seed=results['save']['seed'])
             to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=n_folds, seed=results['save']['seed'])
-            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, to_folds_pos)
-            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
+            [tar_train_pos, tar_test_pos] =  datasets.get_kfold(i, to_folds_pos)
+            [tar_train_neg, tar_test_neg] =  datasets.get_kfold(i, to_folds_neg)
             
         print_function('Target train facts examples: %s' % len(tar_train_facts))
         print_function('Target train pos examples: %s' % len(tar_train_pos))
@@ -653,32 +653,39 @@ while results['save']['n_runs'] < n_runs:
         tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
         new_target = to_predicate
 
-        # transfer and revision theory
-        background = boostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-        [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
-        #t_results['Mapping results'] = mapping_results
-        t_results['parameter'] = pl_t_results
-        ob_save['transfer'] = t_results
-        print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-        print_function(t_results)
-        print_function('\n')
-        
-        print_function('Start learning from scratch in target domain\n')
-        
-#        # learning from scratch (RDN-B)
-#        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
-#        ob_save['rdn_b'] = t_results
-#        print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-#        print_function(t_results)
-#        print_function('\n')
-#        
-#        # learning from scratch (RDN)
-#        background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
-#        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
-#        ob_save['rdn'] = t_results
-#        print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-#        print_function(t_results)
-#        print_function('\n')
+        random.shuffle(tar_train_pos)
+        random.shuffle(tar_train_neg)
+        for amount in [0.2, 0.4, 0.6, 0.8, 1.0]:
+            print_function('Amount of data: ' + str(amount))
+            part_tar_train_pos = tar_train_pos[:int(amount * len(tar_train_pos))]
+            part_tar_train_neg = tar_train_neg[:int(amount * len(tar_train_neg))]
+
+            # transfer and revision theory
+            background = boostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
+            #t_results['Mapping results'] = mapping_results
+            t_results['parameter_' + str(amount)] = pl_t_results
+            ob_save['transfer_' + str(amount)] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
+            
+            print_function('Start learning from scratch in target domain\n')
+            
+            # learning from scratch (RDN-B)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
+            ob_save['rdn_b_' + str(amount)] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
+            
+            # learning from scratch (RDN)
+            background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
+            ob_save['rdn_' + str(amount)] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
         
         results_save.append(ob_save)
     save_experiment(results_save)
