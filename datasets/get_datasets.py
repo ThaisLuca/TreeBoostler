@@ -255,6 +255,12 @@ class datasets:
         print('%s seconds generating %s' % (time.time() - start, 'facebook'))
         with open('files/json/facebook.json', 'w') as outfile:
             json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_movielens_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'movielens'))
+        with open('files/json/movielens.json', 'w') as outfile:
+            json.dump(data, outfile)
         
     '''
     workedunder(person,person)
@@ -770,10 +776,12 @@ class datasets:
     isenglish(movie)
     movie(movie,person)
     occupation(user,occupation)
-    rated(user,movie)
+    likes(user,movie)
     userfemale(user)
+    age(user,age)
     '''
     def get_movielens_dataset(acceptedPredicates=None):
+        import numpy as np
         def clearCharacters(value):
             value = value.lower()
             value = re.sub('[^a-z]', '', value)
@@ -850,15 +858,23 @@ class datasets:
                         facts[0][relation] = []
                     facts[0][relation].append([entity, value])
         dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/u2base.csv'), delimiter=',')
+        rates = {}
         for data in dataset.values:
             entity = 'user_' + str(data[0])
-            relation = 'rated'
+            value = int(data[2])
+            if entity not in rates:
+                rates[entity] = []
+            rates[entity].append(value)
+        for data in dataset.values:
+            entity = 'user_' + str(data[0])
+            relation = 'likes'
             value = 'movie_' + str(data[1])
             if entity and relation:
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
                         facts[0][relation] = []
-                    facts[0][relation].append([entity, value])
+                    if int(data[2]) > (np.array(rates[entity])).mean():
+                        facts[0][relation].append([entity, value])
         dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/users.csv'), delimiter=',')
         for data in dataset.values:
             entity = 'user_' + str(data[0])
@@ -871,6 +887,13 @@ class datasets:
                         facts[0][relation].append([entity])
             relation = 'occupation'
             value = 'occupation_' + str(data[3])
+            if entity and relation:
+                if not acceptedPredicates or relation in acceptedPredicates:
+                    if relation not in facts[0]:
+                        facts[0][relation] = []
+                    facts[0][relation].append([entity, value])
+            relation = 'age'
+            value = 'age_' + str(data[1])
             if entity and relation:
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
