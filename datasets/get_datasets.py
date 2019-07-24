@@ -788,41 +788,24 @@ class datasets:
             return value
        
         facts = [{}]
-        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/actors.csv'), delimiter=',')
-        for data in dataset.values:
-            entity = 'actor_' + str(data[0])
-            if data[1] == 'F':
-                relation = 'actorfemale'
-                if entity and relation:
-                    if not acceptedPredicates or relation in acceptedPredicates:
-                        if relation not in facts[0]:
-                            facts[0][relation] = []
-                        facts[0][relation].append([entity])
-            relation = 'actor'
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity])
-        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/directors.csv'), delimiter=',')
-        for data in dataset.values:
-            entity = 'director_' + str(data[0])
-            relation = 'director'
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity])
         dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/movies.csv'), delimiter=',')
+        movies = set()
         for data in dataset.values:
-            entity = 'movie_' + str(data[0])
-            if data[2] == 'T':
-                relation = 'isenglish'
-                if entity and relation:
-                    if not acceptedPredicates or relation in acceptedPredicates:
-                        if relation not in facts[0]:
-                            facts[0][relation] = []
-                        facts[0][relation].append([entity])
+            movies.add('movie' + str(data[0]))
+        movies = list(movies)
+        from random import shuffle
+        shuffle(movies)
+        movies = movies[:603]
+        for data in dataset.values:
+            entity = 'movie' + str(data[0])
+            if entity in movies:
+                if data[2] == 'T':
+                    relation = 'isenglish'
+                    if entity and relation:
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            if relation not in facts[0]:
+                                facts[0][relation] = []
+                            facts[0][relation].append([entity])
             relation = 'country'
             value = data[3]
             if entity and relation:
@@ -830,75 +813,115 @@ class datasets:
                     if relation not in facts[0]:
                         facts[0][relation] = []
                     facts[0][relation].append([entity, value])
+        person = set()
         dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/movies2actors.csv'), delimiter=',')
         for data in dataset.values:
-            entity = 'movie_' + str(data[0])
+            entity = 'movie' + str(data[0])
             relation = 'movie'
-            value = 'actor_' + str(data[1])
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity, value])
+            value = 'actor' + str(data[1])
+            if entity in movies:
+                person.add(value)
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        facts[0][relation].append([entity, value])
         dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/movies2directors.csv'), delimiter=',')
         for data in dataset.values:
-            entity = 'movie_' + str(data[0])
+            entity = 'movie' + str(data[0])
             relation = 'movie'
-            value = 'director_' + str(data[1])
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity, value])
-            relation = 'genre'
-            value = data[2]
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity, value])
-        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/u2base.csv'), delimiter=',')
-        rates = {}
-        for data in dataset.values:
-            entity = 'user_' + str(data[0])
-            value = int(data[2])
-            if entity not in rates:
-                rates[entity] = []
-            rates[entity].append(value)
-        for data in dataset.values:
-            entity = 'user_' + str(data[0])
-            relation = 'likes'
-            value = 'movie_' + str(data[1])
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    if int(data[2]) > (np.array(rates[entity])).mean():
+            value = 'director' + str(data[1])
+            if entity in movies:
+                person.add(value)
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
                         facts[0][relation].append([entity, value])
-        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/users.csv'), delimiter=',')
+                relation = 'genre'
+                value = data[2]
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        facts[0][relation].append([entity, value])
+        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/actors.csv'), delimiter=',')
         for data in dataset.values:
-            entity = 'user_' + str(data[0])
-            if data[2] == 'F':
-                relation = 'userfemale'
+            entity = 'actor' + str(data[0])
+            if entity in person:
+                if data[1] == 'F':
+                    relation = 'actorfemale'
+                    if entity and relation:
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            if relation not in facts[0]:
+                                facts[0][relation] = []
+                            facts[0][relation].append([entity])
+                relation = 'actor'
                 if entity and relation:
                     if not acceptedPredicates or relation in acceptedPredicates:
                         if relation not in facts[0]:
                             facts[0][relation] = []
                         facts[0][relation].append([entity])
-            relation = 'occupation'
-            value = 'occupation_' + str(data[3])
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity, value])
-            relation = 'age'
-            value = 'age_' + str(data[1])
-            if entity and relation:
-                if not acceptedPredicates or relation in acceptedPredicates:
-                    if relation not in facts[0]:
-                        facts[0][relation] = []
-                    facts[0][relation].append([entity, value])
+        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/directors.csv'), delimiter=',')
+        for data in dataset.values:
+            entity = 'director' + str(data[0])
+            relation = 'director'
+            if entity in person:
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        facts[0][relation].append([entity])
+        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/u2base.csv'), delimiter=',')
+        rates = {}
+        users = set()
+        for data in dataset.values:
+            users.add('user' + str(data[0]))
+        users = list(users)
+        shuffle(users)
+        users = users[:100]
+        for data in dataset.values:
+            entity = 'user' + str(data[0])
+            value = int(data[2])
+            if entity not in rates:
+                rates[entity] = []
+            rates[entity].append(value)
+        for data in dataset.values:
+            entity = 'user' + str(data[0])
+            relation = 'likes'
+            value = 'movie' + str(data[1])
+            if entity in users and value in movies:
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        if int(data[2]) > (np.array(rates[entity])).mean():
+                            facts[0][relation].append([entity, value])
+        dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/users.csv'), delimiter=',')
+        for data in dataset.values:
+            entity = 'user' + str(data[0])
+            if entity in users:
+                if data[2] == 'F':
+                    relation = 'userfemale'
+                    if entity and relation:
+                        if not acceptedPredicates or relation in acceptedPredicates:
+                            if relation not in facts[0]:
+                                facts[0][relation] = []
+                            facts[0][relation].append([entity])
+                relation = 'occupation'
+                value = 'occupation' + str(data[3])
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        facts[0][relation].append([entity, value])
+                relation = 'age'
+                value = 'age' + str(data[1])
+                if entity and relation:
+                    if not acceptedPredicates or relation in acceptedPredicates:
+                        if relation not in facts[0]:
+                            facts[0][relation] = []
+                        facts[0][relation].append([entity, value])
         return [facts, [{}]]
 
 #import time 
