@@ -261,6 +261,12 @@ class datasets:
         print('%s seconds generating %s' % (time.time() - start, 'movielens'))
         with open('files/json/movielens.json', 'w') as outfile:
             json.dump(data, outfile)
+            
+        start = time.time()
+        data = datasets.get_carcinogenesis_dataset()
+        print('%s seconds generating %s' % (time.time() - start, 'carcinogenesis'))
+        with open('files/json/carcinogenesis.json', 'w') as outfile:
+            json.dump(data, outfile)
         
     '''
     workedunder(person,person)
@@ -923,6 +929,93 @@ class datasets:
                             facts[0][relation] = []
                         facts[0][relation].append([entity, value])
         return [facts, [{}]]
+
+    '''
+    positive(drug)
+    atomtype(atom, type)
+    charge(atom, charge)
+    drug(atom, drug)
+    name(atom, name)
+    sbond_1_atom_1(drug, atom)
+    sbond_1_atom_2(drug, atom)
+    sbond_2_atom_1(drug, atom)
+    sbond_2_atom_2(drug, atom)
+    sbond_3_atom_1(drug, atom)
+    sbond_3_atom_2(drug, atom)
+    sbond_7_atom_1(drug, atom)
+    sbond_7_atom_2(drug, atom)
+    '''
+    def get_carcinogenesis_dataset(acceptedPredicates=None):
+        import numpy as np
+        def clearCharacters(value):
+            value = value.lower()
+            value = re.sub('[^a-z]', '', value)
+            return value
+       
+        facts = [{}]
+        negatives = [{}]
+        dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/atom.csv'), delimiter=',', header=0)
+        charge = {}
+        for data in dataset.values:
+            entity = str(data[0])
+            relation = 'drug'
+            value = str(data[1])
+            if not acceptedPredicates or relation in acceptedPredicates:
+                if relation not in facts[0]:
+                    facts[0][relation] = []
+                facts[0][relation].append([entity, value])
+            relation = 'atomtype'
+            value = 'type_' + str(data[2])
+            if not acceptedPredicates or relation in acceptedPredicates:
+                if relation not in facts[0]:
+                    facts[0][relation] = []
+                facts[0][relation].append([entity, value])
+            relation = 'charge'
+            value = str(data[3])
+            if value not in charge:
+                charge[value] = 'charge_' + str(len(charge) + 1)
+            value = charge[value]
+            if not acceptedPredicates or relation in acceptedPredicates:
+                if relation not in facts[0]:
+                    facts[0][relation] = []
+                facts[0][relation].append([entity, value])
+            relation = 'name'
+            value = 'name_' + str(data[4])
+            if not acceptedPredicates or relation in acceptedPredicates:
+                if relation not in facts[0]:
+                    facts[0][relation] = []
+                facts[0][relation].append([entity, value])
+        for sbond in ['1', '2', '3', '7']:
+            dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/sbond_' + sbond + '.csv'), delimiter=',', header=0)
+            for data in dataset.values:
+                entity = str(data[1])
+                relation = 'sbond_' + sbond + '_atom_1'
+                value = str(data[2])
+                if not acceptedPredicates or relation in acceptedPredicates:
+                    if relation not in facts[0]:
+                        facts[0][relation] = []
+                    facts[0][relation].append([entity, value])
+                entity = str(data[1])
+                relation = 'sbond_' + sbond + '_atom_2'
+                value = str(data[3])
+                if not acceptedPredicates or relation in acceptedPredicates:
+                    if relation not in facts[0]:
+                        facts[0][relation] = []
+                    facts[0][relation].append([entity, value])
+        dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/canc.csv'), delimiter=',', header=0)
+        for data in dataset.values:
+            entity = str(data[0])
+            relation = 'positive'
+            value = str(data[1])
+            if value == '1':
+                if relation not in facts[0]:
+                    facts[0][relation] = []
+                facts[0][relation].append([entity])
+            else:
+                if relation not in negatives[0]:
+                    negatives[0][relation] = []
+                negatives[0][relation].append([entity])
+        return [facts, negatives]
 
 #import time 
 #start = time.time()
