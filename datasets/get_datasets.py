@@ -30,7 +30,7 @@ class datasets:
             else:
                 train += folds[i]
         return (train, test)
-    
+
     def get_kfold_separated(test_number, folds):
         train = []
         test = []
@@ -40,7 +40,7 @@ class datasets:
             else:
                 train.append(folds[i])
         return (train, test)
-    
+
     def get_kfold_small(train_number, folds):
         '''Separate examples into train and test set.
         It uses 1 single fold for training and k-1 folds for testing'''
@@ -52,14 +52,14 @@ class datasets:
             else:
                 test += folds[i]
         return (train, test)
-    
+
     def group_folds(folds):
         '''Group folds in a single one'''
         train = []
         for i in range(len(folds)):
             train += folds[i]
         return train
-    
+
     def split_into_folds(examples, n_folds=5, seed=None):
         '''For datasets as nell and yago that have only 1 mega-example'''
         temp = list(examples)
@@ -73,7 +73,7 @@ class datasets:
         ret.append(temp)
         random.seed(None)
         return ret
-        
+
     def balance_neg(target, data, size, seed=None):
         '''Receives [facts, pos, neg] and balance neg according to pos'''
         ret = copy.deepcopy(data)
@@ -85,7 +85,7 @@ class datasets:
         for entities in ret:
             neg.append(target + '(' + ','.join(entities) + ').')
         return neg
-        
+
     def get_neg(target, data):
         '''Receives [facts, pos, neg] and return neg'''
         ret = copy.deepcopy(data)
@@ -93,7 +93,7 @@ class datasets:
         for entities in ret:
             neg.append(target + '(' + ','.join(entities) + ').')
         return neg
-    
+
     def generate_neg(target, data, amount=1, seed=None):
         '''Receives [facts, pos, neg] and generates balanced neg examples in neg according to pos'''
         pos = copy.deepcopy(data)
@@ -118,7 +118,7 @@ class datasets:
                         break
         random.seed(None)
         return neg
-    
+
     def generate_all_neg(target, data):
         '''Receives [facts, pos, neg] and generates neg examples in neg according to pos'''
         pos = copy.deepcopy(data)
@@ -138,13 +138,13 @@ class datasets:
             for objc in target_objects:
                 neg.append(target + '(' + ','.join([key, objc]) + ').')
         return neg
-    
+
     def get_json_dataset(dataset):
         '''Load dataset from json'''
         with open(os.path.join(__location__, 'files/json/' + dataset + '.json')) as data_file:
             data_loaded = json.load(data_file)
         return data_loaded
-    
+
     def load(dataset, bk, target=None, seed=None, balanced=1):
         '''Load dataset from json and accept only predicates presented in bk'''
         pattern = '^(\w+)\(.*\).$'
@@ -191,83 +191,83 @@ class datasets:
                     if balanced:
                         neg[i] = datasets.generate_neg(target, value, amount=(1 if not balanced else balanced), seed=seed)
                     else:
-                        neg[i] = datasets.generate_all_neg(target, value)                              
+                        neg[i] = datasets.generate_all_neg(target, value)
         return [facts, pos, neg]
 
     def save():
-        import time 
+        import time
         start = time.time()
         data = datasets.get_imdb_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'imdb'))
         with open('files/json/imdb.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_cora_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'cora'))
         with open('files/json/cora.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_uwcse_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'uwcse'))
         with open('files/json/uwcse.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_webkb2_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'webkb'))
         with open('files/json/webkb.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_nell_sports_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'nell_sports'))
         with open('files/json/nell_sports.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_nell_finances_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'nell_finances'))
         with open('files/json/nell_finances.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_yago2s_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'yago2s'))
         with open('files/json/yago2s.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_twitter_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'twitter'))
         with open('files/json/twitter.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_yeast_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'yeast'))
         with open('files/json/yeast.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_facebook_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'facebook'))
         with open('files/json/facebook.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_movielens_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'movielens'))
         with open('files/json/movielens.json', 'w') as outfile:
             json.dump(data, outfile)
-            
+
         start = time.time()
         data = datasets.get_carcinogenesis_dataset()
         print('%s seconds generating %s' % (time.time() - start, 'carcinogenesis'))
         with open('files/json/carcinogenesis.json', 'w') as outfile:
             json.dump(data, outfile)
-        
+
     '''
     workedunder(person,person)
     genre(person,genre)
@@ -282,7 +282,7 @@ class datasets:
     genre(person,acrime)
     genre(person,acomedy)
     genre(person,amystery)
-    genre(person,aromance)'''  
+    genre(person,aromance)'''
     def get_imdb_dataset(acceptedPredicates=None):
         facts = []
         negatives = []
@@ -295,7 +295,7 @@ class datasets:
                 if b:
                     i += 1
                     facts.append({})
-                    negatives.append({})               
+                    negatives.append({})
                 if m:
                     relation = re.sub('[ _]', '', m.group(1))
                     entities = re.sub('[ _]', '', m.group(2)).split(',')
@@ -323,7 +323,7 @@ class datasets:
     haswordauthor(author,word)
     harswordtitle(title,word)
     haswordvenue(venue,word)
-    '''  
+    '''
     def get_cora_dataset(acceptedPredicates=None):
         facts = []
         negatives = []
@@ -331,7 +331,7 @@ class datasets:
         with open(os.path.join(__location__, 'files/coralearn.pl')) as f:
             for line in f:
                 b = re.search('^begin\(model\([0-9\w]*\)\).$', line)
-                n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line) 
+                n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)
                 m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
                 if b:
                     i += 1
@@ -368,7 +368,7 @@ class datasets:
     projectmember(project, person)
     sameproject(project, project)
     samecourse(course, course)
-    sameperson(person, person)'''                  
+    sameperson(person, person)'''
     def get_uwcse_dataset(acceptedPredicates=None):
         facts = []
         negatives = []
@@ -377,7 +377,7 @@ class datasets:
         i = 0
         with open(os.path.join(__location__, 'files/uwcselearn.pl')) as f:
             for line in f:
-                n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line) 
+                n = re.search('^neg\((\w+)\(([\w, ]+)*\)\).$', line)
                 m = re.search('^(\w+)\(([\w, ]+)*\).$', line)
                 if m:
                     relation = re.sub('[ _]', '', m.group(1))
@@ -412,7 +412,7 @@ class datasets:
                             negatives[i][relation] = []
                         negatives[i][relation].append(entities)
         return [facts, negatives]
-    
+
     '''
     coursepage(page)
     facultypage(page)
@@ -422,35 +422,35 @@ class datasets:
     has(word,page)
     hasalphanumericword(id)
     allwordscapitalized(id)
-    '''  
-    def get_webkb_dataset(acceptedPredicates=None):       
+    '''
+    def get_webkb_dataset(acceptedPredicates=None):
         facts = []
         negatives = []
         pages = {}
         count = {'id' : 1}
         i = -1
-        
+
         def getPageId(page):
             if page not in pages:
                 pages[page] = 'page' + str(count['id'])
                 count['id'] += 1
             return pages[page]
-        
+
         def cleanEntity(entity):
             m = re.search('^(http|https|ftp|mail|file)\:', entity)
             if m:
                 return getPageId(entity)
             else:
                 return entity
-            
+
         def getCleanEntities(entities):
             new_entities = list(entities)
             return [cleanEntity(entity) for entity in new_entities]
-        
+
         with open(os.path.join(__location__, 'files/webkb.pl')) as f:
             for line in f:
-                b = re.search('^begin\(model\([0-9\w]*\)\).$', line.lower())   
-                n = re.search('^neg\((\w+)\((.*)\)\).$', line.lower()) 
+                b = re.search('^begin\(model\([0-9\w]*\)\).$', line.lower())
+                n = re.search('^neg\((\w+)\((.*)\)\).$', line.lower())
                 m = re.search('^(\w+)\((.*)\).$', line.lower())
                 if b:
                     i += 1
@@ -478,7 +478,7 @@ class datasets:
                             facts[i][relation].append(entities)
                     continue
         return [facts, negatives]
-    
+
     '''
     coursepage(page)
     facultypage(page)
@@ -493,43 +493,48 @@ class datasets:
     membersofproject(page,page)
     departmentof(page,page)
     pageclass(page,class)
-    '''   
-    def get_webkb2_dataset(acceptedPredicates=None):       
+    '''
+    def get_webkb2_dataset(acceptedPredicates=None):
+        def clearCharacters(value):
+            value = value.lower()
+            value = re.sub('[^a-z0-9]', '', value)
+            return value
+
         facts = [{},{},{},{}]
         negatives = [{},{},{},{}]
         pages = {}
         count = {'id' : 1}
         i = -1
-        
+
         def getPageId(page):
             if page not in pages:
                 pages[page] = 'page' + str(count['id'])
                 count['id'] += 1
             return pages[page]
-        
+
         def cleanEntity(entity):
             m = re.search('(http|https|ftp|mail|file)', entity)
             if m:
                 return getPageId(entity)
             else:
-                return entity
-            
+                return clearCharacters(entity)
+
         def getCleanEntities(entities):
             new_entities = list(entities)
             return [cleanEntity(entity) for entity in new_entities]
-        
+
         classes = ['course', 'department', 'faculty', 'person', 'student', 'researchproject', 'staff']
         folds = ['cornell', 'texas', 'washington', 'wisconsin']
         files = ['background/anchor-words', 'background/common', 'background/page-classes',
                  'background/page-words', 'target/course', 'target/department-of', 'target/faculty', 'target/instructors-of',
                  'target/members-of-project', 'target/research.project', 'target/student']
-        
+
         for i in range(len(folds)):
             fold = folds[i]
             for file in files:
                 with open(os.path.join(__location__, 'files/webkb/' + file + '.' + fold + '.db')) as f:
                     for line in f:
-                        n = re.search('^!(\w+)\((.*)\)$', line.lower()) 
+                        n = re.search('^!(\w+)\((.*)\)$', line.lower())
                         m = re.search('^(\w+)\((.*)\)$', line.lower())
                         if n:
                             relation = n.group(1)
@@ -549,7 +554,7 @@ class datasets:
                         if m:
                             relation = m.group(1)
                             entities = m.group(2).split(',')
-                            entities = getCleanEntities(entities)                          
+                            entities = getCleanEntities(entities)
                             if not acceptedPredicates or relation in acceptedPredicates:
                                 if relation in classes:
                                     if 'pageclass' not in facts[i]:
@@ -562,7 +567,7 @@ class datasets:
                                     facts[i][relation].append(entities)
                             continue
         return [facts, negatives]
-    
+
     '''
     athleteledsportsteam(athlete,sportsteam)
     athleteplaysforteam(athlete,sportsteam)
@@ -578,21 +583,21 @@ class datasets:
             value = value.lower()
             value = re.sub('[^a-z]', '', value)
             return value
-       
+
         facts = [{}]
         dataset = pd.read_csv(os.path.join(__location__, 'files/NELL.sports.08m.1070.small.csv'))
         for data in dataset.values:
             entity = clearCharacters((data[1].split(':'))[2])
             relation = clearCharacters((data[4].split(':'))[1])
             value = clearCharacters((data[5].split(':'))[2])
-            
+
             if entity and relation and value:
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
                         facts[0][relation] = []
                     facts[0][relation].append([entity, value])
         return [facts, [{}]]
-        
+
     '''
     countryhascompanyoffice(country,company)
     companyeconomicsector(company,sector)
@@ -622,7 +627,7 @@ class datasets:
             entity = clearCharacters((data[1].split(':'))[2])
             relation = clearCharacters((data[4].split(':'))[1])
             value = clearCharacters((data[5].split(':'))[2])
-            
+
             if entity and value:
                 if relation == 'companyceo':
                     companyceo[entity] = value
@@ -630,7 +635,7 @@ class datasets:
                     companyeconomicsector[entity] = value
                 elif relation == 'bankchiefexecutiveceo':
                     bankchiefexecutiveceo[entity] = value
-            
+
             if entity and relation and value:
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
@@ -647,11 +652,11 @@ class datasets:
                     facts[0]['ceoeconomicsector'] = []
                 facts[0]['ceoeconomicsector'].append([value, companyeconomicsector[key]])
         return [facts, [{}]]
-    
+
     '''
     accounttype(account,+type)
     tweets(account,+word)
-    follows(account,account)'''  
+    follows(account,account)'''
     def get_twitter_dataset(acceptedPredicates=None):
         facts = [{},{}]
         for i in range(2):
@@ -672,7 +677,7 @@ class datasets:
                                 facts[i]['typeaccount'].append(entities[::-1])
                             facts[i][relation].append(entities)
         return [facts, [{},{}]]
-    
+
     '''
     location(protein,loc)
     interaction(protein,protein)
@@ -680,7 +685,7 @@ class datasets:
     enzyme(protein,enz)
     function(protein,+fun)
     complex(protein,com)
-    phenotype(protein,phe)'''  
+    phenotype(protein,phe)'''
     def get_yeast_dataset(acceptedPredicates=None):
         facts = [{},{},{},{}]
         for i in range(4):
@@ -731,7 +736,7 @@ class datasets:
     name(person,name)
     gender(person,gender)
     educationdegree(person,educationdegree)
-    locale(person,locale)'''      
+    locale(person,locale)'''
     def get_facebook_dataset(acceptedPredicates=None):
         folds_id = [0, 414, 686, 698, 3980] #[0, 107, 348, 414, 686, 698, 1684, 1912, 3437, 3980]
         facts = []
@@ -772,7 +777,7 @@ class datasets:
                             fc[relation].append([person_id, featnames[i]])
             facts.append(fc)
         return [facts, [{},{},{},{},{}]] # [facts, [{},{},{},{},{},{},{},{},{},{}]]
-        
+
     '''
     actor(person)
     actorfemale(person)
@@ -792,7 +797,7 @@ class datasets:
             value = value.lower()
             value = re.sub('[^a-z]', '', value)
             return value
-       
+
         facts = [{}]
         dataset = pd.read_csv(os.path.join(__location__, 'files/movielens/movies.csv'), delimiter=',')
         movies = set()
@@ -936,77 +941,78 @@ class datasets:
     charge(atom, charge)
     drug(atom, drug)
     name(atom, name)
-    sbond_1_atom_1(drug, atom)
-    sbond_1_atom_2(drug, atom)
-    sbond_2_atom_1(drug, atom)
-    sbond_2_atom_2(drug, atom)
-    sbond_3_atom_1(drug, atom)
-    sbond_3_atom_2(drug, atom)
-    sbond_7_atom_1(drug, atom)
-    sbond_7_atom_2(drug, atom)
+    sbond1atom1(drug, atom)
+    sbond1atom2(drug, atom)
+    sbond2atom1(drug, atom)
+    sbond2atom2(drug, atom)
+    sbond3atom1(drug, atom)
+    sbond3atom2(drug, atom)
+    sbond7atom1(drug, atom)
+    sbond7atom2(drug, atom)
     '''
     def get_carcinogenesis_dataset(acceptedPredicates=None):
         import numpy as np
         def clearCharacters(value):
             value = value.lower()
-            value = re.sub('[^a-z]', '', value)
+            value = re.sub('[^a-z_0-9]', '', value)
+            value = value.replace('_', 'u')
             return value
-       
+
         facts = [{}]
         negatives = [{}]
-        dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/atom.csv'), delimiter=',', header=0)
+        dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/atom.csv'), delimiter=';', header=0)
         charge = {}
         for data in dataset.values:
-            entity = str(data[0])
+            entity = clearCharacters(str(data[0]))
             relation = 'drug'
-            value = str(data[1])
+            value = clearCharacters(str(data[1]))
             if not acceptedPredicates or relation in acceptedPredicates:
                 if relation not in facts[0]:
                     facts[0][relation] = []
                 facts[0][relation].append([entity, value])
             relation = 'atomtype'
-            value = 'type_' + str(data[2])
+            value = clearCharacters('type' + str(data[2]))
             if not acceptedPredicates or relation in acceptedPredicates:
                 if relation not in facts[0]:
                     facts[0][relation] = []
                 facts[0][relation].append([entity, value])
             relation = 'charge'
-            value = str(data[3])
+            value = clearCharacters(str(data[3]))
             if value not in charge:
-                charge[value] = 'charge_' + str(len(charge) + 1)
+                charge[value] = 'charge' + str(len(charge) + 1)
             value = charge[value]
             if not acceptedPredicates or relation in acceptedPredicates:
                 if relation not in facts[0]:
                     facts[0][relation] = []
                 facts[0][relation].append([entity, value])
             relation = 'name'
-            value = 'name_' + str(data[4])
+            value = clearCharacters('name' + str(data[4]))
             if not acceptedPredicates or relation in acceptedPredicates:
                 if relation not in facts[0]:
                     facts[0][relation] = []
                 facts[0][relation].append([entity, value])
         for sbond in ['1', '2', '3', '7']:
-            dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/sbond_' + sbond + '.csv'), delimiter=',', header=0)
+            dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/sbond_' + sbond + '.csv'), delimiter=';', header=0)
             for data in dataset.values:
-                entity = str(data[1])
-                relation = 'sbond_' + sbond + '_atom_1'
-                value = str(data[2])
+                entity = clearCharacters(str(data[1]))
+                relation = 'sbond' + sbond + 'atom1'
+                value = clearCharacters(str(data[2]))
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
                         facts[0][relation] = []
                     facts[0][relation].append([entity, value])
-                entity = str(data[1])
-                relation = 'sbond_' + sbond + '_atom_2'
-                value = str(data[3])
+                entity = clearCharacters(str(data[1]))
+                relation = 'sbond' + sbond + 'atom_2'
+                value = clearCharacters(str(data[3]))
                 if not acceptedPredicates or relation in acceptedPredicates:
                     if relation not in facts[0]:
                         facts[0][relation] = []
                     facts[0][relation].append([entity, value])
-        dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/canc.csv'), delimiter=',', header=0)
+        dataset = pd.read_csv(os.path.join(__location__, 'files/carcinogenesis/canc.csv'), delimiter=';', header=0)
         for data in dataset.values:
-            entity = str(data[0])
+            entity = clearCharacters(str(data[0]))
             relation = 'positive'
-            value = str(data[1])
+            value = clearCharacters(str(data[1]))
             if value == '1':
                 if relation not in facts[0]:
                     facts[0][relation] = []
@@ -1017,7 +1023,7 @@ class datasets:
                 negatives[0][relation].append([entity])
         return [facts, negatives]
 
-#import time 
+#import time
 #start = time.time()
 #data = datasets.get_webkb2_dataset()
 #print(time.time() - start)
@@ -1025,16 +1031,16 @@ class datasets:
 #import json
 #with open('files/json/webkb.json', 'w') as outfile:
 #    json.dump(data, outfile)
-        
-#import time 
+
+#import time
 #start = time.time()
 #data = datasets.get_json_dataset('webkb')
-#print(time.time() - start) 
+#print(time.time() - start)
 #
 #start = time.time()
 #data2 = datasets.target('advisedby', data)
-#print(time.time() - start) 
-        
+#print(time.time() - start)
+
 #start = time.time()
 #data = datasets.load('webkb', ['coursepage(page).',
 #    'facultypage(page).',
@@ -1046,7 +1052,7 @@ class datasets:
 #    'allwordscapitalized(id).',
 #    'departmentof(page,page).',
 #    'pageclass(page,class).'], target='pageclass')
-#print(time.time() - start) 
+#print(time.time() - start)
 
 #import time
 #start = time.time()
@@ -1059,4 +1065,4 @@ class datasets:
 #    'inphase(person, pre_quals).',
 #    'courselevel(course,#level).',
 #    'yearsinprogram(person,#year).'], target='advisedby')
-#print(time.time() - start) 
+#print(time.time() - start)
