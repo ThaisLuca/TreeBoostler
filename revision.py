@@ -16,53 +16,53 @@ class revision:
     def delete_train_files():
         '''Remove files from train folder'''
         try:
-            shutil.rmtree('boostsrl/train')
+            shutil.rmtree('tboostsrl/train')
         except:
             pass
         try:
-            os.remove('boostsrl/train_output.txt')
+            os.remove('tboostsrl/train_output.txt')
         except:
             pass
-    
+
     def delete_test_files():
         '''Remove files from test folder'''
         try:
-            shutil.rmtree('boostsrl/test')
+            shutil.rmtree('tboostsrl/test')
         except:
             pass
         try:
-            os.remove('boostsrl/test_output.txt')
+            os.remove('tboostsrl/test_output.txt')
         except:
             pass
-        
+
     def delete_model_files():
         '''Remove files of last model'''
         revision.delete_train_files()
         revision.delete_test_files()
-        
+
     def save_model_files():
         '''Remove files of last model as best model'''
         try:
-            shutil.rmtree('boostsrl/best')
+            shutil.rmtree('tboostsrl/best')
         except:
             pass
-        os.mkdir('boostsrl/best')
-        shutil.move('boostsrl/train', 'boostsrl/best')
-        shutil.move('boostsrl/test', 'boostsrl/best')
-        shutil.move('boostsrl/train_output.txt', 'boostsrl/best')
-        shutil.move('boostsrl/test_output.txt', 'boostsrl/best')
-    
+        os.mkdir('tboostsrl/best')
+        shutil.move('tboostsrl/train', 'tboostsrl/best')
+        shutil.move('tboostsrl/test', 'tboostsrl/best')
+        shutil.move('tboostsrl/train_output.txt', 'tboostsrl/best')
+        shutil.move('tboostsrl/test_output.txt', 'tboostsrl/best')
+
     def get_saved_model_files():
         '''Recover model files of best model'''
-        shutil.move('boostsrl/best/train', 'boostsrl')
-        shutil.move('boostsrl/best/test', 'boostsrl')
-        shutil.move('boostsrl/best/train_output.txt', 'boostsrl')
-        shutil.move('boostsrl/best/test_output.txt', 'boostsrl')
+        shutil.move('tboostsrl/best/train', 'tboostsrl')
+        shutil.move('tboostsrl/best/test', 'tboostsrl')
+        shutil.move('tboostsrl/best/train_output.txt', 'tboostsrl')
+        shutil.move('tboostsrl/best/test_output.txt', 'tboostsrl')
         try:
-            shutil.rmtree('boostsrl/best')
+            shutil.rmtree('tboostsrl/best')
         except:
             pass
-    
+
     def get_tree_helper(path, nodes, leaves, variances, no_variances=False):
         children = [None, None]
         split = [] if path == '' else path.split(',')
@@ -74,15 +74,15 @@ class revision:
         if right in nodes:
             children[1] = revision.get_tree_helper(right, nodes, leaves, variances, no_variances=no_variances)
         if left in leaves:
-            children[0] = leaves[left] # { 'type': 'leaf', 'std_dev': leaves[left][0], 'neg': leaves[left][1], 'pos': leaves[left][2] } 
+            children[0] = leaves[left] # { 'type': 'leaf', 'std_dev': leaves[left][0], 'neg': leaves[left][1], 'pos': leaves[left][2] }
         if right in leaves:
             children[1] = leaves[right]
         return { nodes[path]: [varc, children] }
         # { 'type': 'node', 'literals': nodes[path], 'children': children, 'variavarc] }
-        
+
     def get_tree(nodes, leaves, variances, no_variances=False):
         return revision.get_tree_helper('', nodes, leaves, variances, no_variances=no_variances)
-    
+
     def generalize_tree_helper(root):
         if isinstance(root, list):
             return root
@@ -104,12 +104,12 @@ class revision:
                 if variances[0] >= 0.0025 and variances[1] >= 0.0025:
                     return [0, true_child[1] + false_child[1], true_child[2] + false_child[2]] # return a leaf
             # otherwise
-            return { i: [variances, [true_child, false_child]] }      
-        
+            return { i: [variances, [true_child, false_child]] }
+
     def generalize_tree(tree):
         ntree = copy.deepcopy(tree)
         return revision.generalize_tree_helper(ntree)
-    
+
     def get_structured_from_tree_helper(path, root, nodes, leaves):
         if isinstance(root, list):
             leaves[path] = root
@@ -123,18 +123,18 @@ class revision:
             nodes[path] = i
             revision.get_structured_from_tree_helper(left, children[0], nodes, leaves)
             revision.get_structured_from_tree_helper(right, children[1], nodes, leaves)
-        
+
     def get_structured_from_tree(target, tree):
         nodes = {}
         leaves = {}
         revision.get_structured_from_tree_helper('', tree, nodes, leaves)
         return [target, nodes, leaves]
-        
+
     def print_will_produced_tree(will):
         '''Remove files from train folder'''
         for w in will:
             print(w)
-    
+
     def descendant_of(path, leaves):
         if len(leaves) == 0:
             return False
@@ -144,7 +144,7 @@ class revision:
         paths = set([','.join(split[:i+1]) for i in range(len(split))])
         intsc = paths.intersection(set(leaves))
         return True if len(intsc) else False
-       
+
     def get_clause(struct, path):
         '''Get definite clause of given path'''
         target = struct[0]
@@ -157,21 +157,21 @@ class revision:
             if t == 'true':
                 clauses.append(nodes[p])
         return target + ' :- ' + ', '.join(clauses) + '.'
-        
+
     def is_bad_leaf(value):
         '''Defines if given leaf is bad or not (revision point).
         If leaf has 0 pos and 0 neg examples keeps it. What should be done?'''
         if sum(value[1:]) == 0:
             return True
         return max(value[1:])/sum(value[1:]) < 1.0
-    
+
     def get_bad_leaf_value(value):
         '''Defines if given leaf is bad or not (revision point).
         If leaf has 0 pos and 0 neg examples keeps it. What should be done?'''
         if sum(value[1:]) == 0:
             return 0
         return max(value[1:])/sum(value[1:])
-    
+
     def get_bad_leaves(struct):
         '''Get revision points (bad leaves)'''
         leaves = struct[2]
@@ -183,7 +183,7 @@ class revision:
         ret = [(path, value) for path, value in bad_leaves.items()]
         ret.sort(key=lambda x: x[1])
         return ret
-    
+
     def get_candidate(struct, variances, treenumber=1, no_pruning=False):
         '''Get candidate refining every revision point in a tree'''
         target = struct[0]
@@ -195,13 +195,13 @@ class revision:
         gen = revision.generalize_tree(tree) if not no_pruning else tree
         new_struct = revision.get_structured_from_tree(target, gen)
         return revision.get_refine_file(new_struct, forceLearning=True, treenumber=treenumber)
-        
+
     def get_boosted_candidate(structs, variances, no_pruning=False):
         refine = []
         for i in range(len(structs)):
             refine += revision.get_candidate(structs[i], variances[i], i+1, no_pruning=no_pruning)
-        return refine        
-    
+        return refine
+
     def get_branch_with(branch, next_branch):
         '''Append next_branch at branch'''
         if not branch:
@@ -209,18 +209,18 @@ class revision:
         b = branch.split(',')
         b.append(next_branch)
         return ','.join(b)
-        
+
     def get_branch_last_level(branch, new_branch):
         '''Returns a branch where last level has new path'''
         b = branch.split(',')
         b[-1] = new_branch
         return ','.join(b)
-    
+
     def get_branch_to_last_level(branch):
         '''Returns a branch without last level'''
         b = branch.split(',')
         return ','.join(b[:-1])
-        
+
     def get_refine_file(struct, forceLearning=False, treenumber=1):
         '''Generate the refine file from given tree structure'''
         target = struct[0]
@@ -234,17 +234,17 @@ class revision:
             branchFalse = 'true' if revision.get_branch_with(path, 'false') in nodes or forceLearning else 'false'
             refine.append(';'.join([str(tree), path, node, branchTrue, branchFalse]))
         return refine
-    
+
     def get_boosted_refine_file(structs, forceLearning=False):
         refine = []
         for i in range(len(structs)):
             refine += revision.get_refine_file(structs[i], treenumber=i+1, forceLearning=forceLearning)
         return refine
-    
-    def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, print_function=None):
+
+    def learn_model(background, tboostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
-        model = boostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
+        model = tboostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
@@ -256,11 +256,11 @@ class revision:
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
         return [model, learning_time, structured, will, variances]
-        
-    def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None, trees=10, print_function=None):
+
+    def learn_test_model(background, tboostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
-        model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, transfer=transfer, trees=trees)
+        model = tboostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, transfer=transfer, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
@@ -271,7 +271,7 @@ class revision:
         structured = []
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
-        results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
+        results = tboostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
         inference_time = results.testtime()
         t_results = results.summarize_results()
         t_results['Learning time'] = learning_time
@@ -290,9 +290,9 @@ class revision:
             print_function('AUC ROC: %s' % t_results['AUC ROC'])
             print_function('\n')
         return [model, t_results, structured, will, variances]
-        
-    def score_model(model, boostsrl, test_pos, test_neg, test_facts, trees=10, print_function=None):
-        results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
+
+    def score_model(model, tboostsrl, test_pos, test_neg, test_facts, trees=10, print_function=None):
+        results = tboostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
         inference_time = results.testtime()
         t_results = results.summarize_results()
         t_results['Inference time'] = inference_time
@@ -307,15 +307,15 @@ class revision:
             print_function('\n')
             print_function('Total scoring time: %s seconds' % inference_time)
         return t_results
-    
-    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=1, transfer=None, print_function=None):
+
+    def theory_revision(background, tboostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=1, transfer=None, print_function=None):
         '''Function responsible for starting the theory revision process'''
         total_revision_time = 0
         best_cll = - float('inf')
         best_structured = None
         best_model_results = None
         pl_t_results = 0
-    
+
         # parameter learning
         if print_function:
             print_function('******************************************')
@@ -325,21 +325,21 @@ class revision:
             for item in revision.get_boosted_refine_file(structured_tree):
                 print_function(item)
             print_function('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), transfer=transfer, trees=trees, print_function=print_function)
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), transfer=transfer, trees=trees, print_function=print_function)
         # saving performed parameter learning will
-        #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
-        #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
+        #tboostsrl.write_to_file(will, 'tboostsrl/last_will.txt')
+        #tboostsrl.write_to_file([str(structured)], 'tboostsrl/last_structured.txt')
         pl_t_results = copy.deepcopy(t_results)
-    
+
         # scoring model
-        scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
+        scored_results = revision.score_model(model, tboostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
         best_cll = scored_results['CLL']
         best_model_results = copy.deepcopy(t_results)
         total_revision_time = pl_t_results['Learning time'] + scored_results['Inference time']
         if print_function:
             print_function('Parameter learned model CLL: %s' % scored_results['CLL'])
             print_function('\n' )
-        
+
         best_structured = copy.deepcopy(structured)
         if print_function:
             print_function('Structure after Parameter Learning')
@@ -347,7 +347,7 @@ class revision:
             print_function(variances)
             print_function('\n')
         revision.save_model_files()
-    
+
         if print_function:
             print_function('******************************************')
             print_function('Performing Theory Revision')
@@ -369,7 +369,7 @@ class revision:
                 for item in candidate:
                     print_function(item)
                 print_function('\n')
-            #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
+            #tboostsrl.write_to_file(candidate, 'tboostsrl/last_candidate.txt')
             if print_function:
                 print_function('Refining candidate')
                 print_function('***************************')
@@ -377,10 +377,10 @@ class revision:
                 #for i in range(trees):
                 #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
                 #print('\n')
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
             #t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
             # scoring model
-            scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
+            scored_results = revision.score_model(model, tboostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
             total_revision_time = total_revision_time + t_results['Learning time'] + scored_results['Inference time']
             if scored_results['CLL'] > best_cll:
                 found_better = True
@@ -393,7 +393,7 @@ class revision:
                 print_function('\n')
             if found_better == False:
                 break
-    
+
         # set total revision time to t_results learning time
         best_model_results['Learning time'] = total_revision_time
         # test best model
@@ -419,9 +419,9 @@ class revision:
             print_function('Total revision time: %s' % total_revision_time)
             print_function('Best scored revision CLL: %s' % best_cll)
             print_function('\n')
-        
+
         return [model, best_model_results, structured, pl_t_results]
-    
+
     def get_graph(lines):
         '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
            and returns it as objects with nodes, std devs and number of examples reached.'''
@@ -429,7 +429,7 @@ class revision:
             if len(match) == 1:
                 return '%.3f' % (float(match[0]))
             return '%.3f(%s)' % (float(match[0]), match[1].strip().replace('#', ''))
-           
+
         lines = lines.split('\n')
         current = []
         stack = []
@@ -439,7 +439,7 @@ class revision:
         ids = {}
         last_id = 1
         graph = ''
-       
+
         for line in lines:
             if not target:
                 match = re.match('\s*\%\s*FOR\s*(\w+\([\w,\s]*\)):', line)
@@ -461,11 +461,11 @@ class revision:
                     leaves[','.join(current)] = get_match(match.groups()) #float(match.group(1))
                     if len(stack):
                         current = stack.pop()
-                        
+
         tree = revision.get_tree(nodes, leaves, [], no_variances=True)
         stack = [(1, tree)]
         last_id = 1
-        
+
         while len(stack):
             t = stack.pop()
             current_id = t[0]
@@ -483,7 +483,7 @@ class revision:
                 stack.append((last_id-1, true_child))
                 graph += str(current_id) + '[label = "[' + i + ']"];\n'
                 graph += str(current_id) + ' -> ' + str(last_id-1) + '[label="True"];\n'
-                graph += str(current_id) + ' -> ' + str(last_id) + '[label="False"];\n'          
+                graph += str(current_id) + ' -> ' + str(last_id) + '[label="False"];\n'
 #        for key, value in nodes.items():
 #            ids[key] = last_id
 #            graph += str(last_id) + '[label = "[' + value + ']"];\n'
