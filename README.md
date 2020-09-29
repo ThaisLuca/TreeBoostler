@@ -7,6 +7,7 @@
 *boostsrl* is a Python package with wrappers for creating background knowledge and performing learning and inference. We used a modification of the original boostsrl package to work with a BoostSRL modification that allows the algorithm to learn parameters and perform refinement on given trees, as well transfer learning. It runs the transfer learning/theory revision modification of the BoostSRL developed in the following repositories:
 
 https://github.com/rodrigoazs/BoostSRL
+
 https://github.com/rodrigoazs/boostsrl-python-package
 
 ### Modified to perform Transfer Learning/Theory Revision
