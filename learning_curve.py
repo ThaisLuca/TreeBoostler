@@ -698,22 +698,22 @@ while results['save']['n_runs'] < n_runs:
             print_function(t_results)
             print_function('\n')
 
-            print_function('Start learning from scratch in target domain\n')
+            #print_function('Start learning from scratch in target domain\n')
 
             # learning from scratch (RDN-B)
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
-            ob_save['rdn_b_' + str(amount)] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print_function(t_results)
-            print_function('\n')
+            #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, #tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
+            #ob_save['rdn_b_' + str(amount)] = t_results
+            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            #print_function(t_results)
+            #print_function('\n')
 
             # learning from scratch (RDN)
-            background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
-            ob_save['rdn_' + str(amount)] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print_function(t_results)
-            print_function('\n')
+            #background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
+            #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, #tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
+            #ob_save['rdn_' + str(amount)] = t_results
+            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            #print_function(t_results)
+            #print_function('\n')
 
         results_save.append(ob_save)
     save_experiment(results_save)
