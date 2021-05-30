@@ -21,8 +21,8 @@ import random
 import json
 
 #verbose=True
-source_balanced = False
-balanced = False
+source_balanced = True
+balanced = True
 firstRun = False
 n_runs = 6
 folds = 3
