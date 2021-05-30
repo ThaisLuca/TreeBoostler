@@ -1,0 +1,560 @@
+Starting experiment #1 for 3_imdb_cora
+
+Start learning from source dataset
+
+Source train facts examples: 1078
+Source train pos examples: 382
+Source train neg examples: 382
+
+WILL Produced-Tree #1
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.8581489350995083;  // std dev = 1.43e-06, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.14185106490048766;  // std dev = 5.77e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.14185106490048804;  // std dev = 0.000, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #2
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.7194734122109581;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.12544463852839158;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.12544463852839202;  // std dev = 0.000, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #3
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.555366436746283;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.11231637819360629;  // std dev = 3.80e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.11231637819360675;  // std dev = 0.000, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #4
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.417513584158312;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.10159632948783623;  // std dev = 3.80e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.10159632948783649;  // std dev = 0.000, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #5
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.32071184716015166;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.09269127618926107;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.09269127618926053;  // std dev = 1.13e-07, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #6
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.25517224256948734;  // std dev = 4.42e-07, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.08518475138839679;  // std dev = 1.83e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.08518475138839678;  // std dev = 9.19e-08, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #7
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.20975771563253462;  // std dev = 2.53e-07, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.07877675473109176;  // std dev = 1.49e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.07877675473109143;  // std dev = 2.98e-08, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #8
+% FOR workedunder(A, B):
+%   if ( actor(B) )
+%   then return -0.07324622576333703;  // std dev = 8.69e-08, 319.000 (wgt'ed) examples reached here.  /* #neg=319 */
+%   else if ( movie(C, A), movie(C, B) )
+%   | then return 0.17709649774527667;  // std dev = 2.60e-07, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.07324622576333704;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #neg=63 */
+WILL Produced-Tree #9
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.15274385809367164;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.06842697784420268;  // std dev = 1.49e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.06842697784420307;  // std dev = 0.000, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+WILL Produced-Tree #10
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.13400703000801212;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.06419184008202625;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+%   else return -0.06419184008202618;  // std dev = 4.71e-08, 327.000 (wgt'ed) examples reached here.  /* #neg=327 */
+
+
+Starting fold 1
+
+Target train facts examples: 35095
+Target train pos examples: 2649
+Target train neg examples: 2372
+
+Target test facts examples: 7463
+Target test pos	 examples: 368
+Target test neg examples: 368
+
+Amount of data: 0.2
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- actor(A), director(B).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- actor(A), director(B).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- actor(A), director(B).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(B).;false;true
+7;false;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995118;  // std dev = 1.69e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.3389813556909643;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109537;  // std dev = 2.80e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.2925208449294558;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462835;  // std dev = 3.95e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.2437057991686254;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583101;  // std dev = 1.84e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.19684992237116936;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015033;  // std dev = 0.000, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.15518593396659525;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.12023131802011297;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253578;  // std dev = 1.05e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.09207178654689836;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527714;  // std dev = 9.66e-08, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.06998251826535634;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367125;  // std dev = 0.000, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.05294374095992671;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080109;  // std dev = 6.14e-08, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else return 0.03993649397389081;  // std dev = 15.097, 913.000 (wgt'ed) examples reached here.  /* #neg=474 #pos=439 */
+
+
+Results
+   AUC ROC   = 0.630435
+   AUC PR    = 0.704854
+   CLL	      = -0.610643
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.26087
+   F1        = 0.413793
+
+
+Total learning time: 8.483 seconds
+Total inference time: 3.024 seconds
+AUC ROC: 0.630435
+
+
+Results scoring model
+   AUC ROC   = 0.585066
+   AUC PR    = 0.671556
+   CLL	      = -0.643328
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.170132
+   F1        = 0.290792
+
+
+Total scoring time: 4.814 seconds
+Parameter learned model CLL: -0.643328
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.69e-07, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.8e-07, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.95e-07, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.84e-07, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.05e-07, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [9.66e-08, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 90], 'false': [15.097, 474, 439]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [6.14e-08, 0, 90], 'false': [15.097, 474, 439]}]]
+[{'': [3.1579677144893343e-16, 0.24963260389960681]}, {'': [8.684411214845669e-16, 0.24963260389959674]}, {'': [1.7368822429691337e-15, 0.24963260389962555]}, {'': [3.7500866609560843e-16, 0.24963260389961642]}, {'': [-3.3553406966449175e-16, 0.24963260389961384]}, {'': [-4.9343245538895844e-17, 0.24963260389962227]}, {'': [1.2335811384723962e-16, 0.24963260389961478]}, {'': [1.0362081563168128e-16, 0.24963260389962375]}, {'': [-7.894919286223336e-17, 0.24963260389961978]}, {'': [4.194175870806147e-17, 0.24963260389962288]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+1;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+2;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+3;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+4;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+5;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+6;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+7;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+8;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+9;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995118;  // std dev = 1.69e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordvenue(B, D) )
+%   | then return 0.3551405115134667;  // std dev = 0.500, 831.000 (wgt'ed) examples reached here.  /* #neg=418 #pos=413 */
+%   | else if ( haswordvenue(A, E), haswordauthor(F, E) )
+%   | | then return -0.1418510649004878;  // std dev = 0.000, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | | else if ( haswordvenue(B, G), haswordtitle(H, G) )
+%   | | | then return 0.26199508894566564;  // std dev = 3.538, 52.000 (wgt'ed) examples reached here.  /* #neg=31 #pos=21 */
+%   | | | else return 0.07554023944733843;  // std dev = 1.978, 23.000 (wgt'ed) examples reached here.  /* #neg=18 #pos=5 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109537;  // std dev = 2.80e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordvenue(B, D) )
+%   | then return 0.3061976197159849;  // std dev = 0.500, 831.000 (wgt'ed) examples reached here.  /* #neg=418 #pos=413 */
+%   | else if ( haswordvenue(A, E), haswordauthor(F, E) )
+%   | | then return -0.12544463852839138;  // std dev = 0.000, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | | else if ( haswordvenue(B, G), haswordtitle(H, G) )
+%   | | | then return 0.22702066465577223;  // std dev = 3.538, 52.000 (wgt'ed) examples reached here.  /* #neg=31 #pos=21 */
+%   | | | else return 0.06609369457227698;  // std dev = 1.978, 23.000 (wgt'ed) examples reached here.  /* #neg=18 #pos=5 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462835;  // std dev = 3.95e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordvenue(B, D) )
+%   | then if ( haswordvenue(A, E), haswordauthor(F, E) )
+%   | | then if ( author(G, F), venue(G, A) )
+%   | | | then return 0.28684563649911177;  // std dev = 2.058, 17.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=9 */
+%   | | | else return -0.1425661282067706;  // std dev = 0.949, 10.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | else return 0.2586776528877641;  // std dev = 0.500, 804.000 (wgt'ed) examples reached here.  /* #neg=401 #pos=403 */
+%   | else if ( haswordvenue(A, H), haswordtitle(I, H) )
+%   | | then if ( haswordtitle(I, J), haswordvenue(B, J) )
+%   | | | then return 0.3432333648631023;  // std dev = 2.108, 18.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=10 */
+%   | | | else return 0.061554638546006055;  // std dev = 1.969, 23.000 (wgt'ed) examples reached here.  /* #neg=18 #pos=5 */
+%   | | else if ( haswordvenue(B, K), haswordauthor(L, K) )
+%   | | | then return -0.16879460552289324;  // std dev = 0.111, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | | | else return 0.12003126335156272;  // std dev = 2.697, 34.000 (wgt'ed) examples reached here.  /* #neg=23 #pos=11 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583101;  // std dev = 1.84e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordvenue(B, D) )
+%   | then if ( haswordvenue(A, E), haswordauthor(F, E) )
+%   | | then if ( author(G, F), venue(G, A) )
+%   | | | then return 0.23035976450560475;  // std dev = 2.058, 17.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=9 */
+%   | | | else return -0.11734126382680994;  // std dev = 0.949, 10.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | else return 0.2080627313205293;  // std dev = 0.500, 804.000 (wgt'ed) examples reached here.  /* #neg=401 #pos=403 */
+%   | else if ( haswordvenue(A, H), haswordauthor(I, H) )
+%   | | then return -0.11498155606318695;  // std dev = 0.032, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | | else if ( haswordvenue(B, J), haswordtitle(K, J) )
+%   | | | then return 0.15888366060312464;  // std dev = 3.494, 52.000 (wgt'ed) examples reached here.  /* #neg=31 #pos=21 */
+%   | | | else return 0.051559298248582235;  // std dev = 1.972, 23.000 (wgt'ed) examples reached here.  /* #neg=18 #pos=5 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015033;  // std dev = 0.000, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordvenue(B, D) )
+%   | then if ( haswordvenue(B, E), haswordauthor(F, E) )
+%   | | then if ( haswordtitle(G, E) )
+%   | | | then return 0.3139789870141346;  // std dev = 1.751, 14.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=9 */
+%   | | | else return -0.33806672186730274;  // std dev = 0.000, 9.000 (wgt'ed) examples reached here.  /* #neg=9 */
+%   | | else return 0.16326752870263933;  // std dev = 0.499, 808.000 (wgt'ed) examples reached here.  /* #neg=404 #pos=404 */
+%   | else if ( haswordvenue(A, H), haswordauthor(I, H) )
+%   | | then return -0.10380308615308735;  // std dev = 0.029, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | | else if ( haswordvenue(A, J), haswordtitle(K, J) )
+%   | | | then return 0.14775360890262;  // std dev = 2.930, 39.000 (wgt'ed) examples reached here.  /* #neg=24 #pos=15 */
+%   | | | else return 0.05375335709243708;  // std dev = 2.726, 36.000 (wgt'ed) examples reached here.  /* #neg=25 #pos=11 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordauthor(E, D) )
+%   | then if ( haswordtitle(F, D) )
+%   | | then if ( author(G, E), title(G, F) )
+%   | | | then return 0.25544159716593223;  // std dev = 1.793, 14.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=9 */
+%   | | | else return -0.11522466909930858;  // std dev = 0.947, 10.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | else if ( author(H, E), venue(H, A) )
+%   | | | then return -0.3240328145364956;  // std dev = 0.263, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | | | else return -0.11532389825999718;  // std dev = 0.123, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+%   | else if ( haswordvenue(A, I), haswordvenue(B, I) )
+%   | | then return 0.1264129662626641;  // std dev = 0.499, 804.000 (wgt'ed) examples reached here.  /* #neg=401 #pos=403 */
+%   | | else if ( haswordvenue(B, J), haswordtitle(K, J) )
+%   | | | then return 0.11042193076042832;  // std dev = 3.477, 52.000 (wgt'ed) examples reached here.  /* #neg=31 #pos=21 */
+%   | | | else return 0.023228387340267113;  // std dev = 1.969, 23.000 (wgt'ed) examples reached here.  /* #neg=18 #pos=5 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253578;  // std dev = 1.05e-07, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordauthor(E, D) )
+%   | then if ( haswordtitle(F, D) )
+%   | | then if ( author(G, E), title(G, F) )
+%   | | | then return 0.1933710593040075;  // std dev = 1.793, 14.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=9 */
+%   | | | else return -0.09656666612390563;  // std dev = 0.946, 10.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | else if ( author(H, E), venue(H, A) )
+%   | | | then return -0.26184350915285276;  // std dev = 0.220, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | | | else return -0.10432712746754569;  // std dev = 0.114, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+%   | else if ( haswordvenue(A, I), haswordvenue(B, I) )
+%   | | then if ( haswordvenue(B, J), haswordauthor(K, J) )
+%   | | | then return 0.05045548823208158;  // std dev = 2.025, 21.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=9 */
+%   | | | else return 0.0976063364898282;  // std dev = 13.991, 783.000 (wgt'ed) examples reached here.  /* #neg=389 #pos=394 */
+%   | | else if ( haswordvenue(A, L), haswordtitle(M, L) )
+%   | | | then return 0.10709696778285355;  // std dev = 2.913, 39.000 (wgt'ed) examples reached here.  /* #neg=24 #pos=15 */
+%   | | | else return 0.022401212687791796;  // std dev = 2.722, 36.000 (wgt'ed) examples reached here.  /* #neg=25 #pos=11 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527714;  // std dev = 9.66e-08, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordauthor(E, D) )
+%   | then if ( haswordtitle(F, D) )
+%   | | then if ( author(G, E), title(G, F) )
+%   | | | then return 0.14520119633242295;  // std dev = 1.793, 14.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=9 */
+%   | | | else return -0.08188143408584411;  // std dev = 0.946, 10.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | else if ( author(H, E), venue(H, A) )
+%   | | | then return -0.21697889444689847;  // std dev = 0.187, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | | | else return -0.09517269746242768;  // std dev = 0.105, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+%   | else if ( haswordvenue(A, I), haswordvenue(B, I) )
+%   | | then if ( haswordvenue(B, J), haswordauthor(K, J) )
+%   | | | then return 0.03880334998174491;  // std dev = 2.022, 21.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=9 */
+%   | | | else return 0.0738749507624746;  // std dev = 13.991, 783.000 (wgt'ed) examples reached here.  /* #neg=389 #pos=394 */
+%   | | else if ( haswordvenue(A, L), haswordtitle(M, L) )
+%   | | | then return 0.08588466646270064;  // std dev = 2.909, 39.000 (wgt'ed) examples reached here.  /* #neg=24 #pos=15 */
+%   | | | else return 0.01785989683279198;  // std dev = 2.721, 36.000 (wgt'ed) examples reached here.  /* #neg=25 #pos=11 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367125;  // std dev = 0.000, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordvenue(B, D) )
+%   | then if ( haswordvenue(A, E), haswordauthor(F, E) )
+%   | | then if ( haswordtitle(G, E) )
+%   | | | then return 0.03908278126909429;  // std dev = 2.070, 23.000 (wgt'ed) examples reached here.  /* #neg=13 #pos=10 */
+%   | | | else return -0.2161163537881819;  // std dev = 0.052, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | | else return 0.05501129559652144;  // std dev = 0.499, 804.000 (wgt'ed) examples reached here.  /* #neg=401 #pos=403 */
+%   | else if ( haswordvenue(B, H), haswordtitle(I, H) )
+%   | | then if ( haswordtitle(I, J), haswordvenue(A, J) )
+%   | | | then return 0.1440415437644771;  // std dev = 2.108, 18.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=10 */
+%   | | | else return 0.012355802535804842;  // std dev = 2.716, 39.000 (wgt'ed) examples reached here.  /* #neg=28 #pos=11 */
+%   | | else if ( haswordvenue(B, K), haswordauthor(L, K) )
+%   | | | then return -0.04320788965094204;  // std dev = 0.889, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+%   | | | else return -0.005934027041959833;  // std dev = 1.751, 19.000 (wgt'ed) examples reached here.  /* #neg=15 #pos=4 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080109;  // std dev = 6.14e-08, 90.000 (wgt'ed) examples reached here.  /* #pos=90 */
+%   else if ( haswordvenue(A, D), haswordtitle(E, D) )
+%   | then if ( title(F, E), venue(F, B) )
+%   | | then if ( samebib(F, G), venue(G, A) )
+%   | | | then return 0.3635446973594336;  // std dev = 8.289, 469.000 (wgt'ed) examples reached here.  /* #neg=83 #pos=386 */
+%   | | | else return -0.4086135513827381;  // std dev = 3.480, 363.000 (wgt'ed) examples reached here.  /* #neg=352 #pos=11 */
+%   | | else if ( haswordvenue(B, D) )
+%   | | | then return 0.3721919155405153;  // std dev = 1.826, 24.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=20 */
+%   | | | else return 0.12862689851129708;  // std dev = 1.553, 11.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=6 */
+%   | else if ( haswordvenue(A, H), haswordvenue(B, H) )
+%   | | then return 0.5388585822071821;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else return 0.001979286643953334;  // std dev = 0.426, 41.000 (wgt'ed) examples reached here.  /* #neg=30 #pos=11 */
+
+
+Results
+   AUC ROC   = 0.846718
+   AUC PR    = 0.86051
+   CLL	      = -0.516827
+   Precision = 0.824934 at threshold = 0.5
+   Recall    = 0.845109
+   F1        = 0.834899
+
+
+Total learning time: 453.409 seconds
+Total inference time: 4.798 seconds
+AUC ROC: 0.846718
+
+
+Results scoring model
+   AUC ROC   = 0.892904
+   AUC PR    = 0.897302
+   CLL	      = -0.515288
+   Precision = 0.851979 at threshold = 0.5
+   Recall    = 0.935728
+   F1        = 0.891892
+
+
+Total scoring time: 11.322 seconds
+Refined model CLL: -0.515288
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.846718
+   AUC PR    = 0.86051
+   CLL	      = -0.516827
+   Precision = 0.824934 at threshold = 0.5
+   Recall    = 0.845109
+   F1        = 0.834899
+
+
+Total learning time: 478.028 seconds
+Total inference time: 4.798 seconds
+AUC ROC: 0.846718
+Total revision time: 478.028
+Best scored revision CLL: -0.515288
+
+
+Dataset: 3_imdb_cora, Fold: 1, Type: Transfer (trRDN-B), Time: 00:31:19
+{'AUC ROC': 0.846718, 'AUC PR': 0.86051, 'CLL': -0.516827, 'Precision': [0.824934, 0.5], 'Recall': 0.845109, 'F1': 0.834899, 'Learning time': 478.028, 'Inference time': 4.798, 'parameter_0.2': {'AUC ROC': 0.630435, 'AUC PR': 0.704854, 'CLL': -0.610643, 'Precision': [1.0, 0.5], 'Recall': 0.26087, 'F1': 0.413793, 'Learning time': 8.483, 'Inference time': 3.024}}
+
+
+Amount of data: 0.4
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- actor(A), director(B).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- actor(A), director(B).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- actor(A), director(B).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(B).;false;true
+7;false;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995095;  // std dev = 1.08e-06, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.3401161482142614;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109566;  // std dev = 0.000, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.29348212269163576;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462833;  // std dev = 5.84e-07, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.2444612087338976;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583095;  // std dev = 3.82e-07, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.19740454816402325;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716014917;  // std dev = 3.53e-07, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.15557229904489814;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694888;  // std dev = 3.58e-07, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.12049122688064962;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253506;  // std dev = 3.00e-07, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.09224319615661243;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527825;  // std dev = 0.000, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.0700945494670855;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936715;  // std dev = 0.000, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.05301679453337095;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801098;  // std dev = 7.88e-08, 177.000 (wgt'ed) examples reached here.  /* #pos=177 */
+%   else return 0.0399841879694491;  // std dev = 21.375, 1,830.000 (wgt'ed) examples reached here.  /* #neg=948 #pos=882 */
+
+
+Results
+   AUC ROC   = 0.630435
+   AUC PR    = 0.704854
+   CLL	      = -0.610745
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.26087
+   F1        = 0.413793
+
+
+Total learning time: 10.943 seconds
+Total inference time: 3.043 seconds
+AUC ROC: 0.630435
+
+
+Results scoring model
+   AUC ROC   = 0.583569
+   AUC PR    = 0.669883
+   CLL	      = -0.644281
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167139
+   F1        = 0.286408
+
+
+Total scoring time: 5.019 seconds
+Parameter learned model CLL: -0.644281
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.08e-06, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.84e-07, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.82e-07, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.53e-07, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.58e-07, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3e-07, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 177], 'false': [21.375, 948, 882]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [7.88e-08, 0, 177], 'false': [21.375, 948, 882]}]]
+[{'': [6.58355981156251e-15, 0.2496748185971749]}, {'': [-3.2114925910061025e-15, 0.24967481859713186]}, {'': [1.9268955546036615e-15, 0.24967481859716795]}, {'': [8.229449764453138e-16, 0.24967481859715038]}, {'': [7.02514004282585e-16, 0.24967481859714052]}, {'': [7.225858329763731e-16, 0.2496748185971581]}, {'': [5.068136745181505e-16, 0.24967481859717028]}, {'': [-1.6559258672375216e-16, 0.2496748185971519]}, {'': [-4.516161456102332e-17, 0.2496748185971634]}, {'': [3.512570021412925e-17, 0.24967481859716453]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+1;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+2;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+3;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+4;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+5;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+6;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+7;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+8;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+9;;samevenue(A, B) :- venue(C, A), venue(C, B).;true;true
+
+
+Refining candidate
+***************************
