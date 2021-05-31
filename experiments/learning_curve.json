@@ -1,1 +1,1 @@
-{"save": {"experiment": 2, "n_runs": 2, "seed": 441773, "source_balanced": 1, "balanced": 1, "folds": 3, "nodeSize": 2, "numOfClauses": 8, "maxTreeDepth": 3}}
+{"save": {"experiment": 6, "n_runs": 6, "seed": 441773, "source_balanced": 1, "balanced": 1, "folds": 3, "nodeSize": 2, "numOfClauses": 8, "maxTreeDepth": 3}}
