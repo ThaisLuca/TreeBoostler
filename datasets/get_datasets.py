@@ -145,6 +145,19 @@ class datasets:
             data_loaded = json.load(data_file)
         return data_loaded
 
+    def load_pre_saved_folds(i, target, mode):
+        '''Load folds generated used split_folds.py'''
+
+        def read_file(filename):
+            with open(os.path.join(__location__, filename)) as data:
+                data = data.read().splitlines() 
+            return data
+
+        train = read_file('folds/{}/fold_{}/train_{}.txt'.format(target,i,mode))
+        test  = read_file('folds/{}/fold_{}/test_{}.txt'.format(target,i,mode))
+
+        return (train, test)
+
     def load(dataset, bk, target=None, seed=None, balanced=1):
         '''Load dataset from json and accept only predicates presented in bk'''
         pattern = '^(\w+)\(.*\).$'
