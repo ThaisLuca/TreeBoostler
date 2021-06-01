@@ -21,8 +21,8 @@ import random
 import json
 
 #verbose=True
-source_balanced = True
-balanced = True
+source_balanced = False
+balanced = False
 firstRun = False
 n_runs = 6
 folds = 3
@@ -77,8 +77,8 @@ experiments = [
             {'id': '8', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass', 'arity': 2},
             {'id': '9', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector', 'arity': 2},
             {'id': '10', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport', 'arity': 2},
-            #{'id': '11', 'source':'yeast', 'target':'webkb', 'predicate':'proteinclass', 'to_predicate':'departmentof', 'arity':2},
-            #{'id': '12', 'source':'webkb', 'target':'yeast', 'predicate':'departmentof', 'to_predicate':'proteinclass', 'arity':2},
+            {'id': '11', 'source':'yeast', 'target':'webkb', 'predicate':'proteinclass', 'to_predicate':'departmentof', 'arity':2},
+            {'id': '12', 'source':'webkb', 'target':'yeast', 'predicate':'departmentof', 'to_predicate':'proteinclass', 'arity':2},
             #{'id': '13', 'source': 'yago2s', 'target': 'yeast', 'predicate': 'wasbornin', 'to_predicate': 'proteinclass', 'arity': 2},
             #{'id': '14', 'source': 'yeast', 'target': 'yago2s', 'predicate': 'proteinclass', 'to_predicate': 'wasbornin', 'arity': 2},
             #{'id': '15', 'source': 'yeast', 'target': 'yeast2', 'predicate': 'proteinclass', 'to_predicate': 'gene', 'arity': 2},
@@ -622,52 +622,25 @@ while results['save']['n_runs'] < n_runs:
         ob_save = {}
 
         if target not in ['nell_sports', 'nell_finances', 'yago2s']:
-            [tar_train_pos, tar_test_pos] = datasets.get_kfold(i, tar_total_data[0])
+            [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
         else:
             t_total_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
             tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=n_folds, seed=results['save']['seed'])[i] + t_total_data[0][0]
-
-#            # transfer
-#            print_function('Target predicate: %s' % to_predicate)
-#            mapping_rules, mapping_results = mapping.get_best(preds, bk[target], datasets.group_folds(src_total_data[0]), tar_train_pos, forceHead=to_predicate) #, forcePreds=critical_preds)
-#
-#            if print_function:
-#                print_function('Mapping Results')
-#                print_function('   Knowledge compiling time   = %s' % mapping_results['Knowledge compiling time'])
-#                print_function('   Generating paths time   = %s' % mapping_results['Generating paths time'])
-#                print_function('   Generating mappings time   = %s' % mapping_results['Generating mappings time'])
-#                print_function('   Possible mappings   = %s' % mapping_results['Possible mappings'])
-#                print_function('   Max mapping   = %s' % mapping_results['Max mapping'])
-#                print_function('   Numbers predicates mapping   = %s' % mapping_results['Numbers preds mapping'])
-#                print_function('   Finding best mapping   = %s' % mapping_results['Finding best mapping'])
-#                print_function('   Total time   = %s' % mapping_results['Total time'])
-#                print_function('\n')
-#
-#            transferred_structured = transfer.transfer(source_structured, mapping_rules)
-#
-#            new_target = transfer.get_transferred_target(transferred_structured)
-#            #new_target = to_predicate
-#            print_function('Best mapping found: %s \n' % mapping_rules)
-#            #print('Tranferred structured tree: %s \n' % transferred_structured)
-#            print_function('Transferred target predicate: %s \n' % new_target)
-
-#            if to_predicate != new_target:
-#                raise Exception('Head predicate mapping is different from expected: %s and %s \n' % (new_target, to_predicate))
 
         # Load new predicate target dataset
         tar_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
 
         # Group and shuffle
         if target not in ['nell_sports', 'nell_finances', 'yago2s']:
-            [tar_train_facts, tar_test_facts] =  datasets.get_kfold(i, tar_data[0])
-            [tar_train_pos, tar_test_pos] =  datasets.get_kfold(i, tar_data[1])
-            [tar_train_neg, tar_test_neg] =  datasets.get_kfold(i, tar_data[2])
+            [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
+            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
+            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
         else:
             [tar_train_facts, tar_test_facts] =  [tar_data[0][0], tar_data[0][0]]
             to_folds_pos = datasets.split_into_folds(tar_data[1][0], n_folds=n_folds, seed=results['save']['seed'])
             to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=n_folds, seed=results['save']['seed'])
-            [tar_train_pos, tar_test_pos] =  datasets.get_kfold(i, to_folds_pos)
-            [tar_train_neg, tar_test_neg] =  datasets.get_kfold(i, to_folds_neg)
+            [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, to_folds_pos)
+            [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
 
         print_function('Target train facts examples: %s' % len(tar_train_facts))
         print_function('Target train pos examples: %s' % len(tar_train_pos))
