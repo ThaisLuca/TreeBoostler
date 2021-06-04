@@ -624,9 +624,26 @@ for experiment in experiments:
 
             ob_save = {}
 
-            [tar_train_facts, tar_test_facts] =  datasets.load_pre_saved_folds(i+1, target, 'facts')
-            [tar_train_pos, tar_test_pos]     =  datasets.load_pre_saved_folds(i+1, target, 'pos')
-            [tar_train_neg, tar_test_neg]     =  datasets.load_pre_saved_folds(i+1, target, 'neg')
+            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+              [tar_train_pos, tar_test_pos] = datasets.get_kfold(i, tar_total_data[0])
+            else:
+              t_total_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
+              tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=n_folds, seed=results['save']['seed'])[i] + t_total_data[0][0]
+
+            # Load new predicate target dataset
+            tar_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
+        
+            # Group and shuffle
+            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+              [tar_train_facts, tar_test_facts] =  datasets.get_kfold(i, tar_data[0])
+              [tar_train_pos, tar_test_pos] =  datasets.get_kfold(i, tar_data[1])
+              [tar_train_neg, tar_test_neg] =  datasets.get_kfold(i, tar_data[2])
+            else:
+              [tar_train_facts, tar_test_facts] =  [tar_data[0][0], tar_data[0][0]]
+              to_folds_pos = datasets.split_into_folds(tar_data[1][0], n_folds=n_folds, seed=results['save']['seed'])
+              to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=n_folds, seed=results['save']['seed'])
+              [tar_train_pos, tar_test_pos] =  datasets.get_kfold(i, to_folds_pos)
+              [tar_train_neg, tar_test_neg] =  datasets.get_kfold(i, to_folds_neg)
 
             print_function('Target train facts examples: %s' % len(tar_train_facts))
             print_function('Target train pos examples: %s' % len(tar_train_pos))
