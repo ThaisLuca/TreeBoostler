@@ -1,0 +1,3555 @@
+Starting experiment #1 for 3_imdb_cora
+
+Start learning from source dataset
+
+Source train facts examples: 1078
+Source train pos examples: 382
+Source train neg examples: 14236
+
+WILL Produced-Tree #1
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.8581489350995083;  // std dev = 1.43e-06, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.14185106490048768;  // std dev = 4.47e-08, 43.000 (wgt'ed) examples reached here.  /* #neg=43 */
+%   else return -0.14185106490048918;  // std dev = 0.000, 722.000 (wgt'ed) examples reached here.  /* #neg=722 */
+WILL Produced-Tree #2
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.7194734122109581;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.1254446385283916;  // std dev = 0.000, 60.000 (wgt'ed) examples reached here.  /* #neg=60 */
+%   else return -0.12544463852839235;  // std dev = 0.000, 731.000 (wgt'ed) examples reached here.  /* #neg=731 */
+WILL Produced-Tree #3
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.555366436746283;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.11231637819360624;  // std dev = 5.77e-08, 72.000 (wgt'ed) examples reached here.  /* #neg=72 */
+%   else return -0.11231637819360636;  // std dev = 0.000, 669.000 (wgt'ed) examples reached here.  /* #neg=669 */
+WILL Produced-Tree #4
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.417513584158312;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.10159632948783626;  // std dev = 2.58e-08, 51.000 (wgt'ed) examples reached here.  /* #neg=51 */
+%   else return -0.10159632948783517;  // std dev = 4.27e-07, 675.000 (wgt'ed) examples reached here.  /* #neg=675 */
+WILL Produced-Tree #5
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.32071184716015166;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.09269127618926105;  // std dev = 0.000, 50.000 (wgt'ed) examples reached here.  /* #neg=50 */
+%   else return -0.09269127618926194;  // std dev = 0.000, 729.000 (wgt'ed) examples reached here.  /* #neg=729 */
+WILL Produced-Tree #6
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.25517224256948734;  // std dev = 4.42e-07, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.08518475138839679;  // std dev = 1.67e-08, 65.000 (wgt'ed) examples reached here.  /* #neg=65 */
+%   else return -0.08518475138839675;  // std dev = 1.37e-07, 706.000 (wgt'ed) examples reached here.  /* #neg=706 */
+WILL Produced-Tree #7
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.20975771563253462;  // std dev = 2.53e-07, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.0787767547310917;  // std dev = 3.07e-08, 65.000 (wgt'ed) examples reached here.  /* #neg=65 */
+%   else return -0.07877675473109279;  // std dev = 0.000, 700.000 (wgt'ed) examples reached here.  /* #neg=700 */
+WILL Produced-Tree #8
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.17709649774527667;  // std dev = 2.60e-07, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.07324622576333704;  // std dev = 0.000, 73.000 (wgt'ed) examples reached here.  /* #neg=73 */
+%   else return -0.07324622576333668;  // std dev = 1.92e-07, 641.000 (wgt'ed) examples reached here.  /* #neg=641 */
+WILL Produced-Tree #9
+% FOR workedunder(A, B):
+%   if ( director(B), actor(A) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.15274385809367164;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.06842697784420268;  // std dev = 1.67e-08, 56.000 (wgt'ed) examples reached here.  /* #neg=56 */
+%   else return -0.06842697784420258;  // std dev = 1.80e-07, 725.000 (wgt'ed) examples reached here.  /* #neg=725 */
+WILL Produced-Tree #10
+% FOR workedunder(A, B):
+%   if ( actor(A), director(B) )
+%   then if ( movie(C, A), movie(C, B) )
+%   | then return 0.13400703000801212;  // std dev = 0.000, 382.000 (wgt'ed) examples reached here.  /* #pos=382 */
+%   | else return -0.06419184008202625;  // std dev = 0.000, 66.000 (wgt'ed) examples reached here.  /* #neg=66 */
+%   else return -0.06419184008202533;  // std dev = 2.22e-07, 661.000 (wgt'ed) examples reached here.  /* #neg=661 */
+
+
+Starting fold 1
+
+Target train facts examples: 7463
+Target train pos examples: 368
+Target train neg examples: 368
+
+Target test facts examples: 35095
+Target test pos	 examples: 2649
+Target test neg examples: 2372
+
+Amount of data: 0.2
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995123;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.3092767546483856;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109542;  // std dev = 4.21e-08, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.2673146224823096;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462846;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.22379066693929936;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583098;  // std dev = 4.21e-08, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.1821112771253288;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601497;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.14483464060294518;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694894;  // std dev = 2.11e-08, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.11322903436492222;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253562;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.08745147187332597;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1770964977452774;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.06698283639999303;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936708;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.051018275540325994;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801117;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else return 0.03871272929453015;  // std dev = 5.739, 133.000 (wgt'ed) examples reached here.  /* #neg=73 #pos=60 */
+
+
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.655712
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 1.221 seconds
+Total inference time: 2.296 seconds
+AUC ROC: 0.575311
+
+
+Results scoring model
+   AUC ROC   = 0.589041
+   AUC PR    = 0.655629
+   CLL	      = -0.639966
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.178082
+   F1        = 0.302326
+
+
+Total scoring time: 0.768 seconds
+Parameter learned model CLL: -0.639966
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.11e-08, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 13], 'false': [5.739, 73, 60]}]]
+[{'': [-2.7328566760003855e-16, 0.24761150997795228]}, {'': [1.3664283380001927e-16, 0.24761150997795506]}, {'': [-2.7328566760003855e-16, 0.24761150997795414]}, {'': [1.3664283380001927e-16, 0.24761150997795303]}, {'': [-5.124106267500723e-17, 0.24761150997795303]}, {'': [3.416070845000482e-17, 0.24761150997795253]}, {'': [-3.416070845000482e-17, 0.24761150997795292]}, {'': [0.0, 0.24761150997795206]}, {'': [-1.2810265668751807e-17, 0.24761150997795242]}, {'': [0.0, 0.24761150997795298]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.655712
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 1.989 seconds
+Total inference time: 2.296 seconds
+AUC ROC: 0.575311
+Total revision time: 1.989
+Best scored revision CLL: -0.639966
+
+
+Dataset: 3_imdb_cora, Fold: 1, Type: Transfer (trRDN-B), Time: 00:02:55
+{'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.655712, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 1.989, 'Inference time': 2.296, 'parameter_0.2': {'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.655712, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 1.221, 'Inference time': 2.296}}
+
+
+Amount of data: 0.4
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995115;  // std dev = 2.60e-07, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.28616449930184334;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109548;  // std dev = 0.000, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.24764449659213675;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462843;  // std dev = 1.12e-07, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.20810557761854823;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583102;  // std dev = 0.000, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.17034006204759458;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601495;  // std dev = 2.98e-08, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.13644024009766975;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694896;  // std dev = 0.000, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.10747857691091581;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253542;  // std dev = 5.58e-08, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.08363350810702698;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1770964977452775;  // std dev = 0.000, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.06451276888206746;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936709;  // std dev = 3.65e-08, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.04945920721169146;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801112;  // std dev = 1.05e-08, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   else return 0.03775594733700009;  // std dev = 7.932, 257.000 (wgt'ed) examples reached here.  /* #neg=147 #pos=110 */
+
+
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.662256
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 1.453 seconds
+Total inference time: 2.716 seconds
+AUC ROC: 0.575311
+
+
+Results scoring model
+   AUC ROC   = 0.62585
+   AUC PR    = 0.699724
+   CLL	      = -0.614291
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.251701
+   F1        = 0.402174
+
+
+Total scoring time: 0.819 seconds
+Parameter learned model CLL: -0.614291
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.6e-07, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.12e-07, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.98e-08, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.58e-08, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.65e-08, 0, 37], 'false': [7.932, 147, 110]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.05e-08, 0, 37], 'false': [7.932, 147, 110]}]]
+[{'': [1.8243664837083652e-15, 0.2448182410028947]}, {'': [-7.681543089298381e-16, 0.2448182410028928]}, {'': [3.3606751015680416e-16, 0.24481824100289187]}, {'': [-3.3606751015680416e-16, 0.2448182410028933]}, {'': [2.400482215405744e-17, 0.24481824100289343]}, {'': [-1.200241107702872e-17, 0.2448182410028924]}, {'': [8.401687753920104e-17, 0.24481824100289082]}, {'': [-6.601326092365796e-17, 0.2448182410028912]}, {'': [3.600723323108616e-17, 0.2448182410028918]}, {'': [3.00060276925718e-18, 0.2448182410028909]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.662256
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 2.2720000000000002 seconds
+Total inference time: 2.716 seconds
+AUC ROC: 0.575311
+Total revision time: 2.2720000000000002
+Best scored revision CLL: -0.614291
+
+
+Dataset: 3_imdb_cora, Fold: 1, Type: Transfer (trRDN-B), Time: 00:03:00
+{'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.662256, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 2.2720000000000002, 'Inference time': 2.716, 'parameter_0.4': {'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.662256, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 1.453, 'Inference time': 2.716}}
+
+
+Amount of data: 0.6
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995125;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.2807211135771985;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109543;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.243004446885317;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462838;  // std dev = 1.19e-07, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.20438711478891028;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831036;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.16752784556728892;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601497;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.13441673088216227;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948967;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.10608068739128042;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253565;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.08269959097906837;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527733;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.0639070252410891;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367075;  // std dev = 2.11e-08, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.04907795233646819;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801098;  // std dev = 4.21e-08, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.037524481140466553;  // std dev = 9.642, 381.000 (wgt'ed) examples reached here.  /* #neg=220 #pos=161 */
+
+
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.664098
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 1.87 seconds
+Total inference time: 2.547 seconds
+AUC ROC: 0.575311
+
+
+Results scoring model
+   AUC ROC   = 0.634091
+   AUC PR    = 0.708916
+   CLL	      = -0.60827
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.268182
+   F1        = 0.422939
+
+
+Total scoring time: 0.844 seconds
+Parameter learned model CLL: -0.60827
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.19e-07, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.11e-08, 0, 59], 'false': [9.642, 220, 161]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 59], 'false': [9.642, 220, 161]}]]
+[{'': [-4.817238886509154e-16, 0.2440049324543131]}, {'': [-6.021548608136442e-17, 0.24400493245431285]}, {'': [2.408619443254577e-16, 0.2440049324543124]}, {'': [-3.3118517344750433e-16, 0.2440049324543127]}, {'': [-1.6559258672375216e-16, 0.24400493245430982]}, {'': [-3.010774304068221e-17, 0.24400493245430907]}, {'': [-3.010774304068221e-17, 0.24400493245431207]}, {'': [-3.010774304068221e-17, 0.24400493245430752]}, {'': [7.526935760170553e-18, 0.24400493245431223]}, {'': [3.010774304068221e-17, 0.2440049324543111]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.664098
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 2.714 seconds
+Total inference time: 2.547 seconds
+AUC ROC: 0.575311
+Total revision time: 2.714
+Best scored revision CLL: -0.60827
+
+
+Dataset: 3_imdb_cora, Fold: 1, Type: Transfer (trRDN-B), Time: 00:03:06
+{'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.664098, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 2.714, 'Inference time': 2.547, 'parameter_0.6': {'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.664098, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 1.87, 'Inference time': 2.547}}
+
+
+Amount of data: 0.8
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995126;  // std dev = 0.000, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.2828064693460832;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109538;  // std dev = 2.23e-07, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.24478237613406753;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462836;  // std dev = 3.26e-07, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.20581275264440427;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583105;  // std dev = 0.000, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.16860702212014556;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015005;  // std dev = 0.000, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.13519408995999213;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694895;  // std dev = 0.000, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.10661828159274686;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253576;  // std dev = 0.000, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.08305906829690615;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527716;  // std dev = 2.98e-08, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.06414030712522469;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367058;  // std dev = 7.88e-08, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.04922478037475538;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801092;  // std dev = 5.37e-08, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else return 0.0376135529514499;  // std dev = 11.174, 511.000 (wgt'ed) examples reached here.  /* #neg=294 #pos=217 */
+
+
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.663378
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 2.042 seconds
+Total inference time: 2.243 seconds
+AUC ROC: 0.575311
+
+
+Results scoring model
+   AUC ROC   = 0.630952
+   AUC PR    = 0.705433
+   CLL	      = -0.610576
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.261905
+   F1        = 0.415094
+
+
+Total scoring time: 0.954 seconds
+Parameter learned model CLL: -0.610576
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.23e-07, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.26e-07, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.98e-08, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [7.88e-08, 0, 77], 'false': [11.174, 294, 217]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.37e-08, 0, 77], 'false': [11.174, 294, 217]}]]
+[{'': [-1.107339328457299e-15, 0.2443235128541971]}, {'': [6.459479416000911e-16, 0.2443235128541934]}, {'': [1.3841741605716238e-15, 0.24432351285419257]}, {'': [-6.920870802858119e-17, 0.24432351285419587]}, {'': [-3.921826788286267e-16, 0.24432351285419518]}, {'': [-1.1534784671430199e-17, 0.24432351285419596]}, {'': [-1.0381306204287178e-16, 0.2443235128541962]}, {'': [1.1534784671430199e-17, 0.24432351285419082]}, {'': [8.074349270001139e-17, 0.2443235128541913]}, {'': [3.7488050182148143e-17, 0.2443235128541948]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.663378
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 2.9959999999999996 seconds
+Total inference time: 2.243 seconds
+AUC ROC: 0.575311
+Total revision time: 2.9959999999999996
+Best scored revision CLL: -0.610576
+
+
+Dataset: 3_imdb_cora, Fold: 1, Type: Transfer (trRDN-B), Time: 00:03:11
+{'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.663378, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 2.9959999999999996, 'Inference time': 2.243, 'parameter_0.8': {'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.663378, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 2.042, 'Inference time': 2.243}}
+
+
+Amount of data: 1.0
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995115;  // std dev = 3.37e-07, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.2831489350995077;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109541;  // std dev = 1.88e-07, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.2450743157714526;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462835;  // std dev = 4.09e-07, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.20604674634627437;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583099;  // std dev = 2.23e-07, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.16878403266447983;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601504;  // std dev = 4.21e-08, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.13532149444198566;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.10670632108902298;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253567;  // std dev = 1.26e-07, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.08311790017244995;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527722;  // std dev = 7.60e-08, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.06417847060322221;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936713;  // std dev = 0.000, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.04924879981260934;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801115;  // std dev = 3.65e-08, 96.000 (wgt'ed) examples reached here.  /* #pos=96 */
+%   else return 0.03762813182029733;  // std dev = 12.506, 640.000 (wgt'ed) examples reached here.  /* #neg=368 #pos=272 */
+
+
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.663262
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 2.143 seconds
+Total inference time: 2.435 seconds
+AUC ROC: 0.575311
+
+
+Results scoring model
+   AUC ROC   = 0.630435
+   AUC PR    = 0.704854
+   CLL	      = -0.610954
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.26087
+   F1        = 0.413793
+
+
+Total scoring time: 0.941 seconds
+Parameter learned model CLL: -0.610954
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.37e-07, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.88e-07, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.09e-07, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.23e-07, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.26e-07, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [7.6e-08, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 96], 'false': [12.506, 368, 272]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.65e-08, 0, 96], 'false': [12.506, 368, 272]}]]
+[{'': [1.1842378929335002e-15, 0.24437500000000237]}, {'': [3.7007434154171886e-16, 0.24437500000000592]}, {'': [1.7393494052460785e-15, 0.24437500000000023]}, {'': [5.181040781584064e-16, 0.24437499999999607]}, {'': [1.850371707708594e-17, 0.24437499999999507]}, {'': [-4.625929269271486e-17, 0.24437499999999565]}, {'': [1.6653345369377348e-16, 0.24437500000000348]}, {'': [6.013708050052931e-17, 0.24437500000000106]}, {'': [-6.013708050052931e-17, 0.24437500000000273]}, {'': [1.3877787807814457e-17, 0.24437500000000126]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.575311
+   AUC PR    = 0.659395
+   CLL	      = -0.663262
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.150623
+   F1        = 0.261811
+
+
+Total learning time: 3.0839999999999996 seconds
+Total inference time: 2.435 seconds
+AUC ROC: 0.575311
+Total revision time: 3.0839999999999996
+Best scored revision CLL: -0.610954
+
+
+Dataset: 3_imdb_cora, Fold: 1, Type: Transfer (trRDN-B), Time: 00:03:17
+{'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.663262, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 3.0839999999999996, 'Inference time': 2.435, 'parameter_1.0': {'AUC ROC': 0.575311, 'AUC PR': 0.659395, 'CLL': -0.663262, 'Precision': [1.0, 0.5], 'Recall': 0.150623, 'F1': 0.261811, 'Learning time': 2.143, 'Inference time': 2.435}}
+
+
+Starting fold 2
+
+Target train facts examples: 9016
+Target train pos examples: 771
+Target train neg examples: 544
+
+Target test facts examples: 33542
+Target test pos	 examples: 2246
+Target test neg examples: 2196
+
+Amount of data: 0.2
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995123;  // std dev = 0.000, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.4173326085688966;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109542;  // std dev = 7.30e-08, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.3586027268332912;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462846;  // std dev = 0.000, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.2949472637733054;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583098;  // std dev = 5.16e-08, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.23379523586424336;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716014967;  // std dev = 1.49e-08, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.18054306798484906;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694894;  // std dev = 2.11e-08, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.1372350272710232;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253562;  // std dev = 0.000, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.10345346296624804;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527741;  // std dev = 0.000, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.07769785658783501;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936708;  // std dev = 0.000, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.05828186198484861;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801117;  // std dev = 0.000, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   else return 0.0437163321932873;  // std dev = 7.771, 245.000 (wgt'ed) examples reached here.  /* #neg=108 #pos=137 */
+
+
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.648515
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 1.472 seconds
+Total inference time: 2.233 seconds
+AUC ROC: 0.587266
+
+
+Results scoring model
+   AUC ROC   = 0.555195
+   AUC PR    = 0.682295
+   CLL	      = -0.651866
+   Precision = 0.587786 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.740385
+
+
+Total scoring time: 0.886 seconds
+Parameter learned model CLL: -0.651866
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [7.3e-08, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.16e-08, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.49e-08, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.11e-08, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 17], 'false': [7.771, 108, 137]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 17], 'false': [7.771, 108, 137]}]]
+[{'': [-2.0898315757650005e-16, 0.24649729279467306]}, {'': [3.134747363647501e-16, 0.24649729279467025]}, {'': [-2.0898315757650005e-16, 0.2464972927946691]}, {'': [1.5673736818237505e-16, 0.2464972927946692]}, {'': [1.3061447348531253e-17, 0.24649729279466764]}, {'': [2.6122894697062506e-17, 0.2464972927946693]}, {'': [-3.2653618371328135e-17, 0.24649729279466842]}, {'': [-1.959217102279688e-17, 0.24649729279466925]}, {'': [-2.6122894697062506e-17, 0.24649729279466748]}, {'': [0.0, 0.24649729279466837]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.648515
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 2.358 seconds
+Total inference time: 2.233 seconds
+AUC ROC: 0.587266
+Total revision time: 2.358
+Best scored revision CLL: -0.651866
+
+
+Dataset: 3_imdb_cora, Fold: 2, Type: Transfer (trRDN-B), Time: 00:03:22
+{'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.648515, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 2.358, 'Inference time': 2.233, 'parameter_0.2': {'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.648515, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 1.472, 'Inference time': 2.233}}
+
+
+Amount of data: 0.4
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995115;  // std dev = 2.38e-07, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.41529179224236507;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109548;  // std dev = 0.000, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.35688895183830666;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462844;  // std dev = 9.42e-08, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.2936357518725029;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583102;  // std dev = 0.000, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.23286549868328232;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601495;  // std dev = 2.98e-08, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.17991187446904044;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948956;  // std dev = 0.000, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.13680975589045194;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253542;  // std dev = 5.37e-08, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.10316134855663259;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1770964977452775;  // std dev = 0.000, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.07749037017570239;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936709;  // std dev = 3.49e-08, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.05812901993203569;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801115;  // std dev = 0.000, 35.000 (wgt'ed) examples reached here.  /* #pos=35 */
+%   else return 0.04360007947015653;  // std dev = 10.995, 490.000 (wgt'ed) examples reached here.  /* #neg=217 #pos=273 */
+
+
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.648033
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 1.669 seconds
+Total inference time: 2.129 seconds
+AUC ROC: 0.587266
+
+
+Results scoring model
+   AUC ROC   = 0.556818
+   AUC PR    = 0.683402
+   CLL	      = -0.651299
+   Precision = 0.586667 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.739496
+
+
+Total scoring time: 0.971 seconds
+Parameter learned model CLL: -0.651299
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.38e-07, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [9.42e-08, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.98e-08, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.37e-08, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.49e-08, 0, 35], 'false': [10.995, 217, 273]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 35], 'false': [10.995, 217, 273]}]]
+[{'': [1.6240976817373718e-15, 0.24673469387755398]}, {'': [-7.105427357601002e-16, 0.24673469387754512]}, {'': [2.5376526277146434e-16, 0.24673469387754488]}, {'': [-2.791417890486108e-16, 0.2467346938775506]}, {'': [2.5376526277146434e-17, 0.2467346938775509]}, {'': [-1.2688263138573217e-17, 0.24673469387755295]}, {'': [8.247371040072592e-17, 0.24673469387754737]}, {'': [-5.075305255429287e-17, 0.24673469387755254]}, {'': [3.489272363107635e-17, 0.24673469387755106]}, {'': [0.0, 0.24673469387754718]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.648033
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 2.64 seconds
+Total inference time: 2.129 seconds
+AUC ROC: 0.587266
+Total revision time: 2.64
+Best scored revision CLL: -0.651299
+
+
+Dataset: 3_imdb_cora, Fold: 2, Type: Transfer (trRDN-B), Time: 00:03:27
+{'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.648033, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 2.64, 'Inference time': 2.129, 'parameter_0.4': {'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.648033, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 1.669, 'Inference time': 2.129}}
+
+
+Amount of data: 0.6
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995124;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.41340132254834805;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109545;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.3553010736167359;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462838;  // std dev = 1.03e-07, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.2924197735023029;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583103;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.23200280735529227;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601496;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.17932600912497537;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948967;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.1364152823741766;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253562;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.10289088068150086;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527736;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.07729879608840703;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936708;  // std dev = 0.000, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.05798837381800775;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801079;  // std dev = 5.16e-08, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   else return 0.04349347629519877;  // std dev = 13.454, 733.000 (wgt'ed) examples reached here.  /* #neg=326 #pos=407 */
+
+
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.647599
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 2.057 seconds
+Total inference time: 2.334 seconds
+AUC ROC: 0.587266
+
+
+Results scoring model
+   AUC ROC   = 0.559524
+   AUC PR    = 0.686465
+   CLL	      = -0.649926
+   Precision = 0.586294 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.7392
+
+
+Total scoring time: 1.037 seconds
+Parameter learned model CLL: -0.649926
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.03e-07, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 55], 'false': [13.454, 326, 407]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.16e-08, 0, 55], 'false': [13.454, 326, 407]}]]
+[{'': [-1.291895883200182e-16, 0.2469471736811948]}, {'': [-3.2297397080004555e-16, 0.2469471736812183]}, {'': [1.9378438248002731e-16, 0.24694717368121638]}, {'': [-3.2297397080004555e-16, 0.24694717368119828]}, {'': [-9.689219124001366e-17, 0.24694717368120392]}, {'': [-3.229739708000455e-17, 0.24694717368120453]}, {'': [-8.074349270001138e-18, 0.24694717368120006]}, {'': [-4.0371746350005693e-17, 0.24694717368120092]}, {'': [-1.6148698540002276e-17, 0.24694717368119798]}, {'': [4.844609562000683e-17, 0.24694717368120161]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.647599
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 3.094 seconds
+Total inference time: 2.334 seconds
+AUC ROC: 0.587266
+Total revision time: 3.094
+Best scored revision CLL: -0.649926
+
+
+Dataset: 3_imdb_cora, Fold: 2, Type: Transfer (trRDN-B), Time: 00:03:33
+{'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.647599, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 3.094, 'Inference time': 2.334, 'parameter_0.6': {'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.647599, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 2.057, 'Inference time': 2.334}}
+
+
+Amount of data: 0.8
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995124;  // std dev = 0.000, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.41015717402844676;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109538;  // std dev = 2.38e-07, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.35257538895651447;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462836;  // std dev = 3.37e-07, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.2903306511240306;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831047;  // std dev = 4.21e-08, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.2305191130630844;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601501;  // std dev = 0.000, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.17831795651418644;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948967;  // std dev = 0.000, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.135737086514853;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2097577156325357;  // std dev = 0.000, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.10242695715520292;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527716;  // std dev = 3.65e-08, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.07697138468070938;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367055;  // std dev = 8.56e-08, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.05774905863272059;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080109;  // std dev = 5.58e-08, 80.000 (wgt'ed) examples reached here.  /* #pos=80 */
+%   else return 0.04331292300721213;  // std dev = 15.496, 971.000 (wgt'ed) examples reached here.  /* #neg=435 #pos=536 */
+
+
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.646881
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 2.206 seconds
+Total inference time: 2.059 seconds
+AUC ROC: 0.587266
+
+
+Results scoring model
+   AUC ROC   = 0.564935
+   AUC PR    = 0.692905
+   CLL	      = -0.646999
+   Precision = 0.586108 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.739052
+
+
+Total scoring time: 1.06 seconds
+Parameter learned model CLL: -0.646999
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.38e-07, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.37e-07, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.65e-08, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [8.56e-08, 0, 80], 'false': [15.496, 435, 536]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.58e-08, 0, 80], 'false': [15.496, 435, 536]}]]
+[{'': [-7.993605777301127e-16, 0.24729514308350448]}, {'': [7.105427357601002e-16, 0.24729514308349973]}, {'': [1.4210854715202005e-15, 0.24729514308352027]}, {'': [2.2204460492503132e-17, 0.24729514308351247]}, {'': [-3.9968028886505636e-16, 0.24729514308351305]}, {'': [-4.4408920985006264e-17, 0.24729514308351244]}, {'': [-8.326672684688674e-17, 0.24729514308351538]}, {'': [1.6653345369377347e-17, 0.24729514308351058]}, {'': [9.159339953157541e-17, 0.2472951430835117]}, {'': [3.8857805861880476e-17, 0.24729514308351477]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.646881
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 3.266 seconds
+Total inference time: 2.059 seconds
+AUC ROC: 0.587266
+Total revision time: 3.266
+Best scored revision CLL: -0.646999
+
+
+Dataset: 3_imdb_cora, Fold: 2, Type: Transfer (trRDN-B), Time: 00:03:39
+{'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.646881, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 3.266, 'Inference time': 2.059, 'parameter_0.8': {'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.646881, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 2.206, 'Inference time': 2.059}}
+
+
+Amount of data: 1.0
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995112;  // std dev = 4.46e-07, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.4093040506110586;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109546;  // std dev = 0.000, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.3518584397759264;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462834;  // std dev = 4.30e-07, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.28978075601916603;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583097;  // std dev = 2.60e-07, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.2301282512902187;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015033;  // std dev = 0.000, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.17805229571102874;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.13555846379071965;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2097577156325356;  // std dev = 1.46e-07, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.10230499048265658;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1770964977452773;  // std dev = 5.16e-08, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.0768855541294751;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936713;  // std dev = 0.000, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.057686543517231556;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801087;  // std dev = 6.83e-08, 103.000 (wgt'ed) examples reached here.  /* #pos=103 */
+%   else return 0.043265933965801626;  // std dev = 17.316, 1,212.000 (wgt'ed) examples reached here.  /* #neg=544 #pos=668 */
+
+
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.646698
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 2.38 seconds
+Total inference time: 2.32 seconds
+AUC ROC: 0.587266
+
+
+Results scoring model
+   AUC ROC   = 0.566796
+   AUC PR    = 0.695289
+   CLL	      = -0.645914
+   Precision = 0.586312 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.739214
+
+
+Total scoring time: 1.299 seconds
+Parameter learned model CLL: -0.645914
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.46e-07, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.3e-07, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.6e-07, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.46e-07, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.16e-08, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 103], 'false': [17.316, 544, 668]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [6.83e-08, 0, 103], 'false': [17.316, 544, 668]}]]
+[{'': [1.9315724855614373e-15, 0.2473831541569956]}, {'': [-3.4492365813597096e-16, 0.24738315415699694]}, {'': [1.793603022307049e-15, 0.24738315415698806]}, {'': [6.553549504583448e-16, 0.2473831541570005]}, {'': [-2.4144656069517967e-16, 0.24738315415699036]}, {'': [-5.1738548720395646e-17, 0.24738315415699547]}, {'': [2.0695419488158259e-16, 0.2473831541570034]}, {'': [2.5869274360197823e-17, 0.24738315415699816]}, {'': [-1.2503482607428947e-16, 0.24738315415699647]}, {'': [4.527123013034619e-17, 0.24738315415700443]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.587266
+   AUC PR    = 0.657582
+   CLL	      = -0.646698
+   Precision = 0.505628 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.671651
+
+
+Total learning time: 3.679 seconds
+Total inference time: 2.32 seconds
+AUC ROC: 0.587266
+Total revision time: 3.679
+Best scored revision CLL: -0.645914
+
+
+Dataset: 3_imdb_cora, Fold: 2, Type: Transfer (trRDN-B), Time: 00:03:45
+{'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.646698, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 3.679, 'Inference time': 2.32, 'parameter_1.0': {'AUC ROC': 0.587266, 'AUC PR': 0.657582, 'CLL': -0.646698, 'Precision': [0.505628, 0.5], 'Recall': 1.0, 'F1': 0.671651, 'Learning time': 2.38, 'Inference time': 2.32}}
+
+
+Starting fold 3
+
+Target train facts examples: 9306
+Target train pos examples: 581
+Target train neg examples: 581
+
+Target test facts examples: 33252
+Target test pos	 examples: 2436
+Target test neg examples: 2159
+
+Amount of data: 0.2
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995122;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.31097912377875436;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109543;  // std dev = 7.30e-08, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.2687614546568414;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462846;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.224939388260425;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415830986;  // std dev = 5.16e-08, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.18296763562838886;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601496;  // std dev = 2.11e-08, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.14544074799948883;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948945;  // std dev = 1.49e-08, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.11364147003415494;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2097577156325356;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.08772415302729855;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527744;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.06715920900112778;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936708;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.05113020275885782;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801117;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else return 0.038782346141601955;  // std dev = 7.248, 212.000 (wgt'ed) examples reached here.  /* #neg=116 #pos=96 */
+
+
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.651182
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 1.404 seconds
+Total inference time: 2.191 seconds
+AUC ROC: 0.581281
+
+
+Results scoring model
+   AUC ROC   = 0.586207
+   AUC PR    = 0.651919
+   CLL	      = -0.641865
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.172414
+   F1        = 0.294118
+
+
+Total scoring time: 0.909 seconds
+Parameter learned model CLL: -0.641865
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [7.3e-08, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.16e-08, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.11e-08, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.49e-08, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 20], 'false': [7.248, 116, 96]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 20], 'false': [7.248, 116, 96]}]]
+[{'': [-8.881784197001253e-17, 0.24777500889996693]}, {'': [2.6645352591003756e-16, 0.24777500889996013]}, {'': [-2.6645352591003756e-16, 0.2477750088999647]}, {'': [1.3322676295501878e-16, 0.24777500889996323]}, {'': [2.2204460492503132e-17, 0.24777500889996415]}, {'': [1.1102230246251566e-17, 0.24777500889996562]}, {'': [-2.7755575615628914e-17, 0.2477750088999623]}, {'': [-2.2204460492503132e-17, 0.24777500889996298]}, {'': [-3.3306690738754695e-17, 0.2477750088999637]}, {'': [0.0, 0.24777500889996432]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.651182
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 2.3129999999999997 seconds
+Total inference time: 2.191 seconds
+AUC ROC: 0.581281
+Total revision time: 2.3129999999999997
+Best scored revision CLL: -0.641865
+
+
+Dataset: 3_imdb_cora, Fold: 3, Type: Transfer (trRDN-B), Time: 00:03:50
+{'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.651182, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 2.3129999999999997, 'Inference time': 2.191, 'parameter_0.2': {'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.651182, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 1.404, 'Inference time': 2.191}}
+
+
+Amount of data: 0.4
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995118;  // std dev = 2.31e-07, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.30708005148905676;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109551;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.2654472528267795;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.555366436746284;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.2223070472103824;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831025;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.1810041101239237;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601494;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.1440501208315111;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694896;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.1126946805759169;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253548;  // std dev = 5.77e-08, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.08709800365450754;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527753;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.06675425255813068;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367083;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.0508733820876941;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080108;  // std dev = 4.21e-08, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   else return 0.038622833092276126;  // std dev = 10.205, 421.000 (wgt'ed) examples reached here.  /* #neg=232 #pos=189 */
+
+
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.652098
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 1.808 seconds
+Total inference time: 2.023 seconds
+AUC ROC: 0.581281
+
+
+Results scoring model
+   AUC ROC   = 0.592672
+   AUC PR    = 0.660148
+   CLL	      = -0.637517
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.185345
+   F1        = 0.312727
+
+
+Total scoring time: 0.98 seconds
+Parameter learned model CLL: -0.637517
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.31e-07, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.77e-08, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 43], 'false': [10.205, 232, 189]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 43], 'false': [10.205, 232, 189]}]]
+[{'': [1.2393187251629655e-15, 0.24739196912678593]}, {'': [-9.914549801303723e-16, 0.24739196912678]}, {'': [-4.131062417209885e-17, 0.2473919691267824]}, {'': [-3.7179561754888965e-16, 0.24739196912678418]}, {'': [0.0, 0.2473919691267843]}, {'': [-2.0655312086049424e-17, 0.24739196912677872]}, {'': [7.745742032268534e-17, 0.247391969126785]}, {'': [-7.745742032268534e-17, 0.2473919691267789]}, {'': [-4.6474452193611206e-17, 0.24739196912678313]}, {'': [4.131062417209885e-17, 0.24739196912677888]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.652098
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 2.7880000000000003 seconds
+Total inference time: 2.023 seconds
+AUC ROC: 0.581281
+Total revision time: 2.7880000000000003
+Best scored revision CLL: -0.637517
+
+
+Dataset: 3_imdb_cora, Fold: 3, Type: Transfer (trRDN-B), Time: 00:03:55
+{'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.652098, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 2.7880000000000003, 'Inference time': 2.023, 'parameter_0.4': {'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.652098, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 1.808, 'Inference time': 2.023}}
+
+
+Amount of data: 0.6
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995125;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.31183810307439;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109543;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.26949139104367925;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462838;  // std dev = 1.19e-07, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.22551866650879998;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831036;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.183399187915367;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601497;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.14574596129721235;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948967;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.11384902862986161;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253565;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.08786133689221477;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527733;  // std dev = 0.000, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.06724795457196453;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367075;  // std dev = 2.11e-08, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.05118656657997995;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801098;  // std dev = 4.21e-08, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   else return 0.03881746308755008;  // std dev = 12.565, 637.000 (wgt'ed) examples reached here.  /* #neg=348 #pos=289 */
+
+
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.650988
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 2.133 seconds
+Total inference time: 2.314 seconds
+AUC ROC: 0.581281
+
+
+Results scoring model
+   AUC ROC   = 0.58477
+   AUC PR    = 0.650017
+   CLL	      = -0.642824
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.16954
+   F1        = 0.289926
+
+
+Total scoring time: 1.049 seconds
+Parameter learned model CLL: -0.642824
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.19e-07, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.11e-08, 0, 59], 'false': [12.565, 348, 289]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 59], 'false': [12.565, 348, 289]}]]
+[{'': [-4.817238886509154e-16, 0.24785530683714369]}, {'': [-6.021548608136442e-17, 0.24785530683713075]}, {'': [2.408619443254577e-16, 0.24785530683714024]}, {'': [-3.3118517344750433e-16, 0.24785530683713997]}, {'': [-1.6559258672375216e-16, 0.24785530683713244]}, {'': [-3.010774304068221e-17, 0.2478553068371447]}, {'': [-3.010774304068221e-17, 0.24785530683714382]}, {'': [-3.010774304068221e-17, 0.2478553068371371]}, {'': [7.526935760170553e-18, 0.2478553068371454]}, {'': [3.010774304068221e-17, 0.24785530683714452]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.650988
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 3.182 seconds
+Total inference time: 2.314 seconds
+AUC ROC: 0.581281
+Total revision time: 3.182
+Best scored revision CLL: -0.642824
+
+
+Dataset: 3_imdb_cora, Fold: 3, Type: Transfer (trRDN-B), Time: 00:04:01
+{'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.650988, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 3.182, 'Inference time': 2.314, 'parameter_0.6': {'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.650988, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 2.133, 'Inference time': 2.314}}
+
+
+Amount of data: 0.8
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.858148935099512;  // std dev = 0.000, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.30642479716847315;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109537;  // std dev = 2.80e-07, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.26489014673423134;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462835;  // std dev = 3.86e-07, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.22186420753893332;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583102;  // std dev = 1.52e-07, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.18067338553138612;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015033;  // std dev = 0.000, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.14381557753575624;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.11253481327522045;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2097577156325358;  // std dev = 9.42e-08, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.08699221137227492;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527714;  // std dev = 9.42e-08, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.06668584477595751;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367122;  // std dev = 0.000, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.050830054606463296;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080109;  // std dev = 5.96e-08, 87.000 (wgt'ed) examples reached here.  /* #pos=87 */
+%   else return 0.03859599891917352;  // std dev = 14.422, 841.000 (wgt'ed) examples reached here.  /* #neg=464 #pos=377 */
+
+
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.652257
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 2.113 seconds
+Total inference time: 2.25 seconds
+AUC ROC: 0.581281
+
+
+Results scoring model
+   AUC ROC   = 0.59375
+   AUC PR    = 0.661498
+   CLL	      = -0.636787
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.1875
+   F1        = 0.315789
+
+
+Total scoring time: 1.14 seconds
+Parameter learned model CLL: -0.636787
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.8e-07, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.86e-07, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.52e-07, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [9.42e-08, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [9.42e-08, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 87], 'false': [14.422, 464, 377]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.96e-08, 0, 87], 'false': [14.422, 464, 377]}]]
+[{'': [-1.6334315764600004e-16, 0.24732461355527835]}, {'': [8.983873670530003e-16, 0.24732461355529659]}, {'': [1.7151031552830005e-15, 0.24732461355528423]}, {'': [2.654326311747501e-16, 0.24732461355528507]}, {'': [-3.471042099977501e-16, 0.24732461355528884]}, {'': [-4.083578941150001e-17, 0.247324613555288]}, {'': [1.0208947352875003e-16, 0.24732461355528954]}, {'': [1.0208947352875003e-16, 0.24732461355529578]}, {'': [-6.635815779368752e-17, 0.24732461355530072]}, {'': [4.083578941150001e-17, 0.24732461355529128]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.652257
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 3.253 seconds
+Total inference time: 2.25 seconds
+AUC ROC: 0.581281
+Total revision time: 3.253
+Best scored revision CLL: -0.636787
+
+
+Dataset: 3_imdb_cora, Fold: 3, Type: Transfer (trRDN-B), Time: 00:04:07
+{'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.652257, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 3.253, 'Inference time': 2.25, 'parameter_0.8': {'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.652257, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 2.113, 'Inference time': 2.25}}
+
+
+Amount of data: 1.0
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995114;  // std dev = 3.77e-07, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.31158261336855736;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109542;  // std dev = 1.19e-07, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.269274290411593;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462835;  // std dev = 4.21e-07, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.22534639339232987;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583098;  // std dev = 2.46e-07, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.1832708679187909;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015044;  // std dev = 0.000, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.14565522348175267;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.11378733181358892;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253565;  // std dev = 1.37e-07, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.08782056189091127;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527725;  // std dev = 6.99e-08, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.0672215757593893;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367128;  // std dev = 0.000, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.05116980968684946;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801087;  // std dev = 6.50e-08, 99.000 (wgt'ed) examples reached here.  /* #pos=99 */
+%   else return 0.03880701861916272;  // std dev = 16.231, 1,063.000 (wgt'ed) examples reached here.  /* #neg=581 #pos=482 */
+
+
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.651046
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 2.287 seconds
+Total inference time: 2.209 seconds
+AUC ROC: 0.581281
+
+
+Results scoring model
+   AUC ROC   = 0.585198
+   AUC PR    = 0.65057
+   CLL	      = -0.642539
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.170396
+   F1        = 0.291176
+
+
+Total scoring time: 1.142 seconds
+Parameter learned model CLL: -0.642539
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.77e-07, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.19e-07, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-07, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.46e-07, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.37e-07, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [6.99e-08, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 99], 'false': [16.231, 581, 482]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [6.5e-08, 0, 99], 'false': [16.231, 581, 482]}]]
+[{'': [1.4354398702224246e-15, 0.24783157768043898]}, {'': [1.4354398702224247e-16, 0.24783157768043584]}, {'': [1.794299837778031e-15, 0.24783157768045483]}, {'': [6.100619448445304e-16, 0.24783157768043027]}, {'': [0.0, 0.2478315776804467]}, {'': [-4.485749594445077e-17, 0.24783157768044284]}, {'': [1.8840148296669324e-16, 0.24783157768044498]}, {'': [4.9343245538895844e-17, 0.24783157768044983]}, {'': [-1.1214373986112693e-16, 0.24783157768044695]}, {'': [4.261462114722823e-17, 0.24783157768045172]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.581281
+   AUC PR    = 0.668957
+   CLL	      = -0.651046
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.162562
+   F1        = 0.279661
+
+
+Total learning time: 3.429 seconds
+Total inference time: 2.209 seconds
+AUC ROC: 0.581281
+Total revision time: 3.429
+Best scored revision CLL: -0.642539
+
+
+Dataset: 3_imdb_cora, Fold: 3, Type: Transfer (trRDN-B), Time: 00:04:13
+{'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.651046, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 3.429, 'Inference time': 2.209, 'parameter_1.0': {'AUC ROC': 0.581281, 'AUC PR': 0.668957, 'CLL': -0.651046, 'Precision': [1.0, 0.5], 'Recall': 0.162562, 'F1': 0.279661, 'Learning time': 2.287, 'Inference time': 2.209}}
+
+
+Starting fold 4
+
+Target train facts examples: 8129
+Target train pos examples: 747
+Target train neg examples: 747
+
+Target test facts examples: 34429
+Target test pos	 examples: 2270
+Target test neg examples: 1993
+
+Amount of data: 0.2
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.858148935099512;  // std dev = 1.33e-07, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.31236138931196283;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109544;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.26993603060972726;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462846;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.22587144772002793;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415830997;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.18366190772849733;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716014955;  // std dev = 2.11e-08, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.14593169422976335;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948956;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.11397529357269426;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253554;  // std dev = 1.49e-08, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.0879447769863963;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527747;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.06730193794769146;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367083;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.05122086775880337;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801117;  // std dev = 0.000, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   else return 0.03883885411883757;  // std dev = 8.227, 273.000 (wgt'ed) examples reached here.  /* #neg=149 #pos=124 */
+
+
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.649425
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 1.565 seconds
+Total inference time: 2.223 seconds
+AUC ROC: 0.5837
+
+
+Results scoring model
+   AUC ROC   = 0.583893
+   AUC PR    = 0.648895
+   CLL	      = -0.643408
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167785
+   F1        = 0.287356
+
+
+Total scoring time: 0.799 seconds
+Parameter learned model CLL: -0.643408
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.33e-07, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.11e-08, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.49e-08, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 25], 'false': [8.227, 149, 124]}]]
+[{'': [7.105427357601002e-16, 0.24790350065075673]}, {'': [-7.105427357601002e-17, 0.24790350065075017]}, {'': [-2.842170943040401e-16, 0.24790350065075684]}, {'': [-3.552713678800501e-17, 0.24790350065075434]}, {'': [1.7763568394002505e-17, 0.2479035006507529]}, {'': [0.0, 0.24790350065075284]}, {'': [8.881784197001253e-18, 0.24790350065075356]}, {'': [-3.552713678800501e-17, 0.24790350065075303]}, {'': [-3.552713678800501e-17, 0.24790350065075237]}, {'': [0.0, 0.24790350065075387]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.649425
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 2.364 seconds
+Total inference time: 2.223 seconds
+AUC ROC: 0.5837
+Total revision time: 2.364
+Best scored revision CLL: -0.643408
+
+
+Dataset: 3_imdb_cora, Fold: 4, Type: Transfer (trRDN-B), Time: 00:04:18
+{'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.649425, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 2.364, 'Inference time': 2.223, 'parameter_0.2': {'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.649425, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 1.565, 'Inference time': 2.223}}
+
+
+Amount of data: 0.4
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995118;  // std dev = 2.38e-07, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.32024279791539234;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.719473412210955;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.27662976753131274;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.555366436746284;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.23117453225284032;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583102;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.1876024442795985;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601494;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.14871084179146915;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694896;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.11586098871210694;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253545;  // std dev = 5.96e-08, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.0891898633818671;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527753;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.06810811391950358;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367083;  // std dev = 0.000, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.05173465942536902;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080108;  // std dev = 4.21e-08, 42.000 (wgt'ed) examples reached here.  /* #pos=42 */
+%   else return 0.039161201386226495;  // std dev = 11.735, 554.000 (wgt'ed) examples reached here.  /* #neg=298 #pos=256 */
+
+
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.647766
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 1.822 seconds
+Total inference time: 2.226 seconds
+AUC ROC: 0.5837
+
+
+Results scoring model
+   AUC ROC   = 0.57047
+   AUC PR    = 0.63084
+   CLL	      = -0.65222
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.14094
+   F1        = 0.247059
+
+
+Total scoring time: 0.931 seconds
+Parameter learned model CLL: -0.65222
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.38e-07, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.96e-08, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 42], 'false': [11.735, 298, 256]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 42], 'false': [11.735, 298, 256]}]]
+[{'': [1.3534147347811431e-15, 0.24856312476378178]}, {'': [-9.30472630162036e-16, 0.2485631247637844]}, {'': [-4.229421046191072e-17, 0.24856312476377507]}, {'': [-3.806478941571965e-16, 0.24856312476377507]}, {'': [0.0, 0.24856312476378228]}, {'': [-2.114710523095536e-17, 0.2485631247637806]}, {'': [8.458842092382145e-17, 0.2485631247637764]}, {'': [-7.401486830834377e-17, 0.248563124763779]}, {'': [-4.4937598615780146e-17, 0.2485631247637755]}, {'': [4.229421046191072e-17, 0.24856312476378117]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.647766
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 2.753 seconds
+Total inference time: 2.226 seconds
+AUC ROC: 0.5837
+Total revision time: 2.753
+Best scored revision CLL: -0.65222
+
+
+Dataset: 3_imdb_cora, Fold: 4, Type: Transfer (trRDN-B), Time: 00:04:23
+{'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.647766, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 2.753, 'Inference time': 2.226, 'parameter_0.4': {'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.647766, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 1.822, 'Inference time': 2.226}}
+
+
+Amount of data: 0.6
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995126;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.3203338090490874;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109542;  // std dev = 8.43e-08, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.27670702947750747;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462837;  // std dev = 1.58e-07, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.23123565747592473;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831036;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.18764776932325417;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716014983;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.14874273654501954;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948967;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.115882591828099;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253567;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.08920411789666052;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527728;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.06811735224439142;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1527438580936707;  // std dev = 4.21e-08, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.05174056555139501;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801095;  // std dev = 4.47e-08, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   else return 0.039164929110027356;  // std dev = 14.390, 833.000 (wgt'ed) examples reached here.  /* #neg=448 #pos=385 */
+
+
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.647748
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 2.339 seconds
+Total inference time: 2.134 seconds
+AUC ROC: 0.5837
+
+
+Results scoring model
+   AUC ROC   = 0.570313
+   AUC PR    = 0.630618
+   CLL	      = -0.652322
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.140625
+   F1        = 0.246575
+
+
+Total scoring time: 1.1 seconds
+Parameter learned model CLL: -0.652322
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [8.43e-08, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.58e-07, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.21e-08, 0, 63], 'false': [14.39, 448, 385]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.47e-08, 0, 63], 'false': [14.39, 448, 385]}]]
+[{'': [-7.894919286223335e-16, 0.24857001624177855]}, {'': [1.1278456123176193e-16, 0.248570016241785]}, {'': [3.9474596431116675e-16, 0.24857001624178401]}, {'': [-3.101575433873453e-16, 0.2485700162417842]}, {'': [-2.2556912246352386e-16, 0.2485700162417851]}, {'': [-4.229421046191072e-17, 0.2485700162417958]}, {'': [-4.9343245538895844e-17, 0.24857001624179906]}, {'': [-2.114710523095536e-17, 0.24857001624179037]}, {'': [2.819614030794048e-17, 0.24857001624178746]}, {'': [3.172065784643304e-17, 0.24857001624179306]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.647748
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 3.439 seconds
+Total inference time: 2.134 seconds
+AUC ROC: 0.5837
+Total revision time: 3.439
+Best scored revision CLL: -0.652322
+
+
+Dataset: 3_imdb_cora, Fold: 4, Type: Transfer (trRDN-B), Time: 00:04:29
+{'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.647748, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 3.439, 'Inference time': 2.134, 'parameter_0.6': {'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.647748, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 2.339, 'Inference time': 2.134}}
+
+
+Amount of data: 0.8
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995121;  // std dev = 0.000, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.31934027083957967;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109537;  // std dev = 2.80e-07, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.27586354395914475;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462835;  // std dev = 3.82e-07, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.230568234854163;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831025;  // std dev = 1.52e-07, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.18715275112983104;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601503;  // std dev = 0.000, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.148394310127691;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.11564654868249495;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2097577156325358;  // std dev = 0.000, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.08904835814354682;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527714;  // std dev = 4.71e-08, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.06801641716512337;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367122;  // std dev = 0.000, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.051676061196823546;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1340070300080109;  // std dev = 5.77e-08, 86.000 (wgt'ed) examples reached here.  /* #pos=86 */
+%   else return 0.03912424502611442;  // std dev = 16.593, 1,108.000 (wgt'ed) examples reached here.  /* #neg=597 #pos=511 */
+
+
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.647945
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 2.741 seconds
+Total inference time: 2.148 seconds
+AUC ROC: 0.5837
+
+
+Results scoring model
+   AUC ROC   = 0.572027
+   AUC PR    = 0.632981
+   CLL	      = -0.65121
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.144054
+   F1        = 0.25183
+
+
+Total scoring time: 1.237 seconds
+Parameter learned model CLL: -0.65121
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.8e-07, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.82e-07, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.52e-07, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.71e-08, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 86], 'false': [16.593, 597, 511]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.77e-08, 0, 86], 'false': [16.593, 597, 511]}]]
+[{'': [-3.304849933767908e-16, 0.2484938875783503]}, {'': [9.088337317861747e-16, 0.24849388757835614]}, {'': [1.6937355910560528e-15, 0.24849388757835522]}, {'': [2.685190571186425e-16, 0.24849388757836147]}, {'': [-3.511403054628402e-16, 0.24849388757835542]}, {'': [-5.163828021512356e-17, 0.2484938875783658]}, {'': [-1.1360421647327184e-16, 0.2484938875783508]}, {'': [2.581914010756178e-17, 0.24849388757835988]}, {'': [-6.196593625814827e-17, 0.2484938875783644]}, {'': [3.872871016134267e-17, 0.24849388757835747]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.647945
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 3.978 seconds
+Total inference time: 2.148 seconds
+AUC ROC: 0.5837
+Total revision time: 3.978
+Best scored revision CLL: -0.65121
+
+
+Dataset: 3_imdb_cora, Fold: 4, Type: Transfer (trRDN-B), Time: 00:04:35
+{'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.647945, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 3.978, 'Inference time': 2.148, 'parameter_0.8': {'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.647945, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 2.741, 'Inference time': 2.148}}
+
+
+Amount of data: 1.0
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995107;  // std dev = 6.19e-07, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.31645205330110276;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109551;  // std dev = 0.000, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.2734109972933741;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462834;  // std dev = 4.62e-07, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.22862629797058168;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.4175135841583094;  // std dev = 3.26e-07, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.18571097794827904;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.32071184716015005;  // std dev = 1.84e-07, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.1473783925550978;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.2551722425694897;  // std dev = 0.000, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.11495773200872791;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253545;  // std dev = 1.76e-07, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.08859368503958145;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.17709649774527741;  // std dev = 0.000, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.06772192629332731;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367136;  // std dev = 0.000, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.051488154610965155;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801084;  // std dev = 7.60e-08, 115.000 (wgt'ed) examples reached here.  /* #pos=115 */
+%   else return 0.03900608017011788;  // std dev = 18.503, 1,379.000 (wgt'ed) examples reached here.  /* #neg=747 #pos=632 */
+
+
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.648536
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 3.072 seconds
+Total inference time: 1.848 seconds
+AUC ROC: 0.5837
+
+
+Results scoring model
+   AUC ROC   = 0.576975
+   AUC PR    = 0.639704
+   CLL	      = -0.647979
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.153949
+   F1        = 0.266821
+
+
+Total scoring time: 1.341 seconds
+Parameter learned model CLL: -0.647979
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [6.19e-07, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.62e-07, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [3.26e-07, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.84e-07, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [1.76e-07, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 115], 'false': [18.503, 747, 632]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [7.6e-08, 0, 115], 'false': [18.503, 747, 632]}]]
+[{'': [3.3364615418300357e-15, 0.24826137004828128]}, {'': [-1.0503675224279742e-15, 0.24826137004828985]}, {'': [1.853589745461131e-15, 0.24826137004829174]}, {'': [9.267948727305654e-16, 0.24826137004829818]}, {'': [2.934850430313457e-16, 0.24826137004827872]}, {'': [-4.633974363652827e-17, 0.24826137004828877]}, {'': [2.703151712130816e-16, 0.24826137004828322]}, {'': [-2.703151712130816e-17, 0.2482613700482947]}, {'': [-1.5832745742480493e-16, 0.24826137004828977]}, {'': [5.0201388939572296e-17, 0.24826137004829374]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.5837
+   AUC PR    = 0.673762
+   CLL	      = -0.648536
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.167401
+   F1        = 0.286792
+
+
+Total learning time: 4.413 seconds
+Total inference time: 1.848 seconds
+AUC ROC: 0.5837
+Total revision time: 4.413
+Best scored revision CLL: -0.647979
+
+
+Dataset: 3_imdb_cora, Fold: 4, Type: Transfer (trRDN-B), Time: 00:04:42
+{'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.648536, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 4.413, 'Inference time': 1.848, 'parameter_1.0': {'AUC ROC': 0.5837, 'AUC PR': 0.673762, 'CLL': -0.648536, 'Precision': [1.0, 0.5], 'Recall': 0.167401, 'F1': 0.286792, 'Learning time': 3.072, 'Inference time': 1.848}}
+
+
+Starting fold 5
+
+Target train facts examples: 8644
+Target train pos examples: 550
+Target train neg examples: 500
+
+Target test facts examples: 33914
+Target test pos	 examples: 2467
+Target test neg examples: 2240
+
+Amount of data: 0.2
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.46293935426118626;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.06745126068090773;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.3967965692867951;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.059040467278907924;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.32394341570434215;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.05134533014437306;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.2541716976468221;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.0443955355429569;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.19435095686948684;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.0381904214235419;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.14664176895680184;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.032705548445205325;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.11007928121324088;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.02789941658086087;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.08257429539205968;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.023719585755653427;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.06202085881130256;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.02010779836774985;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.04667472096461314;  // std dev = 6.318, 167.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=101 */
+%   else return 0.017003969789632808;  // std dev = 2.668, 43.000 (wgt'ed) examples reached here.  /* #neg=34 #pos=9 */
+
+
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.687798
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 1.342 seconds
+Total inference time: 2.082 seconds
+AUC ROC: 0.535236
+
+
+Results scoring model
+   AUC ROC   = 0.629091
+   AUC PR    = 0.601228
+   CLL	      = -0.640827
+   Precision = 0.60479 at threshold = 0.5
+   Recall    = 0.918182
+   F1        = 0.729242
+
+
+Total scoring time: 0.818 seconds
+Parameter learned model CLL: -0.640827
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [6.318, 66, 101], 'false': [2.668, 34, 9]}]]
+[{'': [0.23901896805192305, 0.1654948620876151]}, {'': [0.23901896805191922, 0.16549486208761455]}, {'': [0.23901896805191966, 0.16549486208761505]}, {'': [0.2390189680519196, 0.16549486208761485]}, {'': [0.23901896805191977, 0.1654948620876148]}, {'': [0.23901896805192, 0.16549486208761463]}, {'': [0.23901896805191927, 0.16549486208761463]}, {'': [0.23901896805192063, 0.16549486208761507]}, {'': [0.2390189680519205, 0.1654948620876151]}, {'': [0.23901896805191952, 0.1654948620876151]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.687798
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 2.16 seconds
+Total inference time: 2.082 seconds
+AUC ROC: 0.535236
+Total revision time: 2.16
+Best scored revision CLL: -0.640827
+
+
+Dataset: 3_imdb_cora, Fold: 5, Type: Transfer (trRDN-B), Time: 00:04:46
+{'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.687798, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 2.16, 'Inference time': 2.082, 'parameter_0.2': {'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.687798, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 1.342, 'Inference time': 2.082}}
+
+
+Amount of data: 0.4
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.8581489350995116;  // std dev = 2.23e-07, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.34135306946643323;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.7194734122109547;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.2945297734670806;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.5553664367462845;  // std dev = 5.96e-08, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.245284152992551;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.41751358415831014;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.1980083969436195;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.3207118471601494;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.15599270969465434;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.25517224256948956;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.12077394366322267;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.20975771563253545;  // std dev = 4.71e-08, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.09242966834539941;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.1770964977452775;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.07021651248968992;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.15274385809367083;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.053096439213515104;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( venue(C, A), venue(C, B) )
+%   then return 0.13400703000801117;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   else return 0.040036303589769576;  // std dev = 9.831, 387.000 (wgt'ed) examples reached here.  /* #neg=200 #pos=187 */
+
+
+Results
+   AUC ROC   = 0.583705
+   AUC PR    = 0.667324
+   CLL	      = -0.643783
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.16741
+   F1        = 0.286806
+
+
+Total learning time: 1.632 seconds
+Total inference time: 2.346 seconds
+AUC ROC: 0.583705
+
+
+Results scoring model
+   AUC ROC   = 0.575
+   AUC PR    = 0.656019
+   CLL	      = -0.649822
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.15
+   F1        = 0.26087
+
+
+Total scoring time: 0.933 seconds
+Parameter learned model CLL: -0.649822
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [2.23e-07, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [5.96e-08, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [4.71e-08, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}], ['samevenue(A, B)', {'': 'venue(C, A), venue(C, B)'}, {'true': [0.0, 0, 33], 'false': [9.831, 200, 187]}]]
+[{'': [1.5072118637335459e-15, 0.24971789889763973]}, {'': [-6.459479416000911e-16, 0.24971789889763557]}, {'': [1.0765799026668185e-16, 0.24971789889763737]}, {'': [-2.691449756667046e-16, 0.24971789889763746]}, {'': [0.0, 0.24971789889763701]}, {'': [0.0, 0.24971789889763513]}, {'': [6.728624391667616e-17, 0.24971789889763316]}, {'': [-4.710037074167331e-17, 0.2497178988976323]}, {'': [-4.0371746350005693e-17, 0.24971789889763776]}, {'': [-6.7286243916676156e-18, 0.24971789889763657]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.583705
+   AUC PR    = 0.667324
+   CLL	      = -0.643783
+   Precision = 1.0 at threshold = 0.5
+   Recall    = 0.16741
+   F1        = 0.286806
+
+
+Total learning time: 2.565 seconds
+Total inference time: 2.346 seconds
+AUC ROC: 0.583705
+Total revision time: 2.565
+Best scored revision CLL: -0.649822
+
+
+Dataset: 3_imdb_cora, Fold: 5, Type: Transfer (trRDN-B), Time: 00:04:52
+{'AUC ROC': 0.583705, 'AUC PR': 0.667324, 'CLL': -0.643783, 'Precision': [1.0, 0.5], 'Recall': 0.16741, 'F1': 0.286806, 'Learning time': 2.565, 'Inference time': 2.346, 'parameter_0.4': {'AUC ROC': 0.583705, 'AUC PR': 0.667324, 'CLL': -0.643783, 'Precision': [1.0, 0.5], 'Recall': 0.16741, 'F1': 0.286806, 'Learning time': 1.632, 'Inference time': 2.346}}
+
+
+Amount of data: 0.6
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.4537664649799861;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.10033643509951119;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.3891307049541383;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.08767828945074217;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.3181588985161905;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.07587433339668695;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.25013222577137395;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.0650861592621341;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.19161413883635625;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.05540059799863158;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.1447577821352426;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.046839009951672755;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.10872447262075903;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.03937130938010736;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.08155007150014908;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.03293116473370823;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.06121329166248851;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.02742993221430259;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.04601916688820817;  // std dev = 10.996, 502.000 (wgt'ed) examples reached here.  /* #neg=203 #pos=299 */
+%   else return 0.02276805438206142;  // std dev = 4.847, 128.000 (wgt'ed) examples reached here.  /* #neg=97 #pos=31 */
+
+
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.6857
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 1.851 seconds
+Total inference time: 2.295 seconds
+AUC ROC: 0.535236
+
+
+Results scoring model
+   AUC ROC   = 0.614697
+   AUC PR    = 0.59199
+   CLL	      = -0.652292
+   Precision = 0.595618 at threshold = 0.5
+   Recall    = 0.906061
+   F1        = 0.71875
+
+
+Total scoring time: 0.99 seconds
+Parameter learned model CLL: -0.652292
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [10.996, 203, 299], 'false': [4.847, 97, 31]}]]
+[{'': [0.24085728797955866, 0.18353271484375117]}, {'': [0.24085728797956255, 0.18353271484375014]}, {'': [0.24085728797954864, 0.18353271484375033]}, {'': [0.2408572879795511, 0.18353271484375097]}, {'': [0.24085728797955488, 0.1835327148437497]}, {'': [0.24085728797955727, 0.1835327148437506]}, {'': [0.24085728797955597, 0.18353271484375086]}, {'': [0.240857287979557, 0.18353271484375105]}, {'': [0.24085728797955555, 0.18353271484374897]}, {'': [0.24085728797955602, 0.18353271484375128]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.6857
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 2.841 seconds
+Total inference time: 2.295 seconds
+AUC ROC: 0.535236
+Total revision time: 2.841
+Best scored revision CLL: -0.652292
+
+
+Dataset: 3_imdb_cora, Fold: 5, Type: Transfer (trRDN-B), Time: 00:04:57
+{'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.6857, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 2.841, 'Inference time': 2.295, 'parameter_0.6': {'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.6857, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 1.851, 'Inference time': 2.295}}
+
+
+Amount of data: 0.8
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.4554743437176355;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.08569384527915176;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.390558607453391;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.07493888866019086;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.3192376919605107;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.06499373299816409;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.250886463316786;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.055951106643955695;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.19212503537098818;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.04785096756254199;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.14510860386334537;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.04068913960356073;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.10897561317653356;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.03442788926069685;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.08173887064393495;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.029006494515451522;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.061361316524428715;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.024350568042986007;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.04613872243617022;  // std dev = 12.723, 673.000 (wgt'ed) examples reached here.  /* #neg=271 #pos=402 */
+%   else return 0.020379551341638973;  // std dev = 5.418, 167.000 (wgt'ed) examples reached here.  /* #neg=129 #pos=38 */
+
+
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.686371
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 2.024 seconds
+Total inference time: 2.037 seconds
+AUC ROC: 0.535236
+
+
+Results scoring model
+   AUC ROC   = 0.618068
+   AUC PR    = 0.593917
+   CLL	      = -0.648837
+   Precision = 0.597325 at threshold = 0.5
+   Recall    = 0.913636
+   F1        = 0.722372
+
+
+Total scoring time: 1.039 seconds
+Parameter learned model CLL: -0.648837
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [12.723, 271, 402], 'false': [5.418, 129, 38]}]]
+[{'': [0.24052776483730734, 0.1757682240309812]}, {'': [0.24052776483732408, 0.1757682240309791]}, {'': [0.24052776483731197, 0.1757682240309793]}, {'': [0.24052776483731225, 0.1757682240309803]}, {'': [0.24052776483731067, 0.1757682240309794]}, {'': [0.24052776483731764, 0.17576822403098114]}, {'': [0.24052776483731436, 0.1757682240309806]}, {'': [0.24052776483731267, 0.17576822403098116]}, {'': [0.2405277648373147, 0.17576822403098022]}, {'': [0.24052776483731672, 0.1757682240309799]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.686371
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 3.0629999999999997 seconds
+Total inference time: 2.037 seconds
+AUC ROC: 0.535236
+Total revision time: 3.0629999999999997
+Best scored revision CLL: -0.648837
+
+
+Dataset: 3_imdb_cora, Fold: 5, Type: Transfer (trRDN-B), Time: 00:05:03
+{'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.686371, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 3.0629999999999997, 'Inference time': 2.037, 'parameter_0.8': {'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.686371, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 2.024, 'Inference time': 2.037}}
+
+
+Amount of data: 1.0
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;workedunder(A, B) :- director(B), actor(A).;true;false
+0;true;movie(C, A), movie(C, B).;false;false
+1;;workedunder(A, B) :- director(B), actor(A).;true;false
+1;true;movie(C, A), movie(C, B).;false;false
+2;;workedunder(A, B) :- director(B), actor(A).;true;false
+2;true;movie(C, A), movie(C, B).;false;false
+3;;workedunder(A, B) :- actor(A), director(B).;true;false
+3;true;movie(C, A), movie(C, B).;false;false
+4;;workedunder(A, B) :- director(B), actor(A).;true;false
+4;true;movie(C, A), movie(C, B).;false;false
+5;;workedunder(A, B) :- actor(A), director(B).;true;false
+5;true;movie(C, A), movie(C, B).;false;false
+6;;workedunder(A, B) :- director(B), actor(A).;true;false
+6;true;movie(C, A), movie(C, B).;false;false
+7;;workedunder(A, B) :- actor(A), director(B).;true;false
+7;true;movie(C, A), movie(C, B).;false;false
+8;;workedunder(A, B) :- director(B), actor(A).;true;false
+8;true;movie(C, A), movie(C, B).;false;false
+9;;workedunder(A, B) :- actor(A), director(B).;true;false
+9;true;movie(C, A), movie(C, B).;false;false
+
+
+WILL Produced-Tree #1
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.45384271500381385;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.10113958930511996;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #2
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.3891944611307275;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.08837649359551082;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #3
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.31820707987498087;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.0764692153151211;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #4
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.25016592060681264;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.06558360802849682;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #5
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.1916369618474441;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.055809457085346785;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #6
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.14477344598529676;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.04716976949296712;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #7
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.10873567483835977;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.03963499455671531;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #8
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.08155848265741104;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.03313850883384021;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #9
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.06121987810203538;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.027590839218657345;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+WILL Produced-Tree #10
+% FOR samevenue(A, B):
+%   if ( haswordvenue(A, C), haswordvenue(B, C) )
+%   then return 0.04602448061244918;  // std dev = 14.190, 836.000 (wgt'ed) examples reached here.  /* #neg=338 #pos=498 */
+%   else return 0.02289130765878614;  // std dev = 6.274, 214.000 (wgt'ed) examples reached here.  /* #neg=162 #pos=52 */
+
+
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.685676
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 2.253 seconds
+Total inference time: 2.164 seconds
+AUC ROC: 0.535236
+
+
+Results scoring model
+   AUC ROC   = 0.614727
+   AUC PR    = 0.592038
+   CLL	      = -0.652379
+   Precision = 0.595694 at threshold = 0.5
+   Recall    = 0.905455
+   F1        = 0.718615
+
+
+Total scoring time: 1.118 seconds
+Parameter learned model CLL: -0.652379
+
+
+Structure after Parameter Learning
+[['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}], ['samevenue(A, B)', {'': 'haswordvenue(A, C), haswordvenue(B, C)'}, {'true': [14.19, 338, 498], 'false': [6.274, 162, 52]}]]
+[{'': [0.24084270048762138, 0.18394619617433927]}, {'': [0.2408427004876197, 0.18394619617434038]}, {'': [0.24084270048763987, 0.18394619617433852]}, {'': [0.24084270048762046, 0.18394619617433824]}, {'': [0.24084270048762352, 0.1839461961743386]}, {'': [0.2408427004876279, 0.18394619617433638]}, {'': [0.24084270048762227, 0.18394619617433644]}, {'': [0.2408427004876221, 0.183946196174339]}, {'': [0.2408427004876295, 0.1839461961743406]}, {'': [0.24084270048762518, 0.1839461961743367]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.535236
+   AUC PR    = 0.542776
+   CLL	      = -0.685676
+   Precision = 0.543247 at threshold = 0.5
+   Recall    = 0.952169
+   F1        = 0.691798
+
+
+Total learning time: 3.3710000000000004 seconds
+Total inference time: 2.164 seconds
+AUC ROC: 0.535236
+Total revision time: 3.3710000000000004
+Best scored revision CLL: -0.652379
+
+
+Dataset: 3_imdb_cora, Fold: 5, Type: Transfer (trRDN-B), Time: 00:05:09
+{'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.685676, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 3.3710000000000004, 'Inference time': 2.164, 'parameter_1.0': {'AUC ROC': 0.535236, 'AUC PR': 0.542776, 'CLL': -0.685676, 'Precision': [0.543247, 0.5], 'Recall': 0.952169, 'F1': 0.691798, 'Learning time': 2.253, 'Inference time': 2.164}}
+
+
