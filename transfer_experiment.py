@@ -31,6 +31,8 @@ numOfClauses = 8
 maxTreeDepth = 3
 trees = 10
 
+folds_path = 'folds_transfer_experiment'
+
 if not os.path.exists('experiments'):
     os.makedirs('experiments')
 
@@ -552,7 +554,7 @@ for experiment in experiments:
     target = experiment['target']
     
     # n_runs = n_files - path - 1
-    n_runs = len(list(os.walk('datasets/folds/{}/'.format(target)))) - 1
+    n_runs = len(list(os.walk('datasets/{}/{}/'.format(folds_path, target)))) - 1
     results = { 'save': { }}
     firstRun = True
     
@@ -619,9 +621,9 @@ for experiment in experiments:
             # Load new predicate target dataset
             tar_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
 
-            [tar_train_facts, tar_test_facts] =  datasets.load_pre_saved_folds(i+1, target, 'facts')
-            [tar_train_pos, tar_test_pos]     =  datasets.load_pre_saved_folds(i+1, target, 'pos')
-            [tar_train_neg, tar_test_neg]     =  datasets.load_pre_saved_folds(i+1, target, 'neg')
+            [tar_train_facts, tar_test_facts] =  datasets.load_pre_saved_folds(i+1, target, 'facts', folds_path)
+            [tar_train_pos, tar_test_pos]     =  datasets.load_pre_saved_folds(i+1, target, 'pos', folds_path)
+            [tar_train_neg, tar_test_neg]     =  datasets.load_pre_saved_folds(i+1, target, 'neg', folds_path)
             
             random.shuffle(tar_train_pos)
             random.shuffle(tar_train_neg)

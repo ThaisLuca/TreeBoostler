@@ -265,9 +265,9 @@ bk = {
               'teamplayssport(+sportsteam,-sport).',
               'teamplayssport(-sportsteam,+sport).',
               'teamplayssport(+sportsteam,`sport).',
-              'teamplayssport(`sportsteam,+sport).',
-              'recursion_teamplayssport(`sportsteam,+sport).',
-              'recursion_teamplayssport(+sportsteam,`sport).'],
+              'teamplayssport(`sportsteam,+sport).'],
+              #'recursion_teamplayssport(`sportsteam,+sport).',
+              #'recursion_teamplayssport(+sportsteam,`sport).'],
       'nell_finances': ['countryhascompanyoffice(+country,+company).',
                         'countryhascompanyoffice(+country,-company).',
                         'countryhascompanyoffice(-country,+company).',
@@ -276,8 +276,8 @@ bk = {
                         'companyeconomicsector(-company,+sector).',
                         'economicsectorcompany(+sector,`company).',
                         'economicsectorcompany(`sector,+company).',
-                        'recursion_economicsectorcompany(+sector,`company).',
-                        'recursion_economicsectorcompany(`sector,+company).',
+                        #'recursion_economicsectorcompany(+sector,`company).',
+                        #'recursion_economicsectorcompany(`sector,+company).',
                         #'economicsectorcompany(+sector,+company).',
                         #'economicsectorcompany(+sector,-company).',
                         #'economicsectorcompany(-sector,+company).',
@@ -547,137 +547,137 @@ else:
     results = { 'save': { }}
     firstRun = True
 
-if firstRun:
+results = {}
+for experiment in experiments:
+    
+    target = experiment['target']
+    
+    # n_runs = n_files - path - 1
+    n_runs = len(list(os.walk('datasets/folds/{}/'.format(target)))) - 1
+    results = { 'save': { }}
+    firstRun = True
+    
     results['save'] = {
         'experiment': 0,
         'n_runs': 0,
         'seed': 441773,
-        'source_balanced' : 1,
-        'balanced' : 1,
-        'folds' : 3,
+        'source_balanced' : False,
+        'balanced' : False,
+        'folds' : n_runs,
         'nodeSize' : 2,
         'numOfClauses' : 8,
         'maxTreeDepth' : 3
         }
 
-start = time.time()
-#while results['save']['experiment'] < len(experiments):
-while results['save']['n_runs'] < n_runs:
-    print('Run: ' + str(results['save']['n_runs']))
-    experiment = results['save']['experiment'] % len(experiments)
-#    try:
-    #experiment = results['save']['experiment']
-    experiment_title = experiments[experiment]['id'] + '_' + experiments[experiment]['source'] + '_' + experiments[experiment]['target']
-    #if experiment_title not in results['results']:
-    #    results['results'][experiment_title] = []
+    start = time.time()
 
-    #logger = setup_logger('logger_' + experiment_title, 'log/' + experiment_title + '.log')
+    while results['save']['n_runs'] < n_runs:
+        print('Run: ' + str(results['save']['n_runs'] + 1))
+        
+        source = experiment['source']
+        target = experiment['target']
+        predicate = experiment['predicate']
+        to_predicate = experiment['to_predicate']
+        
+        experiment_title = experiment['id'] + '_' + experiment['source'] + '_' + experiment['target']
 
-    nbr = get_number_experiment() + 1 #len(results['results'][experiment_title]) + 1
-    print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
+        nbr = get_number_experiment() + 1
+        print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
 
-    source = experiments[experiment]['source']
-    target = experiments[experiment]['target']
-    predicate = experiments[experiment]['predicate']
-    to_predicate = experiments[experiment]['to_predicate']
+        # Load source dataset
+        src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
+        src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
 
-    # Load source dataset
-    src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-    src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
+        # Group and shuffle
+        src_facts = datasets.group_folds(src_data[0])
+        src_pos = datasets.group_folds(src_data[1])
+        src_neg = datasets.group_folds(src_data[2])
 
-    # Group and shuffle
-    src_facts = datasets.group_folds(src_data[0])
-    src_pos = datasets.group_folds(src_data[1])
-    src_neg = datasets.group_folds(src_data[2])
+        print_function('Start learning from source dataset\n')
 
-    print_function('Start learning from source dataset\n')
+        print_function('Source train facts examples: %s' % len(src_facts))
+        print_function('Source train pos examples: %s' % len(src_pos))
+        print_function('Source train neg examples: %s\n' % len(src_neg))
 
-    print_function('Source train facts examples: %s' % len(src_facts))
-    print_function('Source train pos examples: %s' % len(src_pos))
-    print_function('Source train neg examples: %s\n' % len(src_neg))
+        # learning from source dataset
+        background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
 
-    # learning from source dataset
-    background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-    [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
+        #preds = mapping.get_preds(source_structured, bk[source])
+        #print_function('Predicates from source: %s' % preds + '\n')
 
-    #preds = mapping.get_preds(source_structured, bk[source])
-    #print_function('Predicates from source: %s' % preds + '\n')
+        #critical_preds = mapping.get_critical_preds(source_structured, bk[source])
+        #print_function('Critical predicates from source: %s' % critical_preds + '\n')
+        #print('Source structured tree: %s \n' % source_structured)
 
-    #critical_preds = mapping.get_critical_preds(source_structured, bk[source])
-    #print_function('Critical predicates from source: %s' % critical_preds + '\n')
-    #print('Source structured tree: %s \n' % source_structured)
+        # Load total target dataset
+        tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
 
-    # Load total target dataset
-    tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
+        if target in ['nell_sports', 'nell_finances', 'yago2s']:
+            n_folds = folds
+        else:
+            n_folds = len(tar_total_data[0])
 
-    if target in ['nell_sports', 'nell_finances', 'yago2s']:
-        n_folds = folds
-    else:
-        n_folds = len(tar_total_data[0])
+        results_save = []
+        for i in range(n_folds):
+            print_function('Starting fold ' + str(i+1) + '\n')
 
-    results_save = []
-    for i in range(n_folds):
-        print_function('Starting fold ' + str(i+1) + '\n')
+            ob_save = {}
 
-        ob_save = {}
+            [tar_train_facts, tar_test_facts] =  datasets.load_pre_saved_folds(i+1, target, 'facts')
+            [tar_train_pos, tar_test_pos]     =  datasets.load_pre_saved_folds(i+1, target, 'pos')
+            [tar_train_neg, tar_test_neg]     =  datasets.load_pre_saved_folds(i+1, target, 'neg')
 
-        [tar_train_facts, tar_test_facts] =  datasets.load_pre_saved_folds(i+1, target, 'facts')
-        [tar_train_pos, tar_test_pos]     =  datasets.load_pre_saved_folds(i+1, target, 'pos')
-        [tar_train_neg, tar_test_neg]     =  datasets.load_pre_saved_folds(i+1, target, 'neg')
+            print_function('Target train facts examples: %s' % len(tar_train_facts))
+            print_function('Target train pos examples: %s' % len(tar_train_pos))
+            print_function('Target train neg examples: %s\n' % len(tar_train_neg))
+            print_function('Target test facts examples: %s' % len(tar_test_facts))
+            print_function('Target test pos	 examples: %s' % len(tar_test_pos))
+            print_function('Target test neg examples: %s\n' % len(tar_test_neg))
 
-        print_function('Target train facts examples: %s' % len(tar_train_facts))
-        print_function('Target train pos examples: %s' % len(tar_train_pos))
-        print_function('Target train neg examples: %s\n' % len(tar_train_neg))
-        print_function('Target test facts examples: %s' % len(tar_test_facts))
-        print_function('Target test pos	 examples: %s' % len(tar_test_pos))
-        print_function('Target test neg examples: %s\n' % len(tar_test_neg))
+            # generate transfer file
+            transferred_structured = source_structured
+            tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
+            new_target = to_predicate
 
-        # generate transfer file
-        transferred_structured = source_structured
-        tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
-        new_target = to_predicate
+            random.shuffle(tar_train_pos)
+            random.shuffle(tar_train_neg)
+            
+            for amount in [0.2, 0.4, 0.6, 0.8, 1.0]:
+                print_function('Amount of data: ' + str(amount))
+                part_tar_train_pos = tar_train_pos[:int(amount * len(tar_train_pos))]
+                part_tar_train_neg = tar_train_neg[:int(amount * len(tar_train_neg))]
 
-        random.shuffle(tar_train_pos)
-        random.shuffle(tar_train_neg)
-        for amount in [0.2, 0.4, 0.6, 0.8, 1.0]:
-            print_function('Amount of data: ' + str(amount))
-            part_tar_train_pos = tar_train_pos[:int(amount * len(tar_train_pos))]
-            part_tar_train_neg = tar_train_neg[:int(amount * len(tar_train_neg))]
+                # transfer and revision theory
+                background = tboostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+                [model, t_results, structured, pl_t_results] = revision.theory_revision(background, tboostsrl, target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=0, print_function=print_function)
+                #t_results['Mapping results'] = mapping_results
+                t_results['parameter_' + str(amount)] = pl_t_results
+                ob_save['transfer_' + str(amount)] = t_results
+                print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+                print_function(t_results)
+                print_function('\n')
 
-            # transfer and revision theory
-            background = tboostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, tboostsrl, target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=0, print_function=print_function)
-            #t_results['Mapping results'] = mapping_results
-            t_results['parameter_' + str(amount)] = pl_t_results
-            ob_save['transfer_' + str(amount)] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print_function(t_results)
-            print_function('\n')
+                #print_function('Start learning from scratch in target domain\n')
 
-            #print_function('Start learning from scratch in target domain\n')
+                # learning from scratch (RDN-B)
+                #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
+                #ob_save['rdn_b_' + str(amount)] = t_results
+                #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+                #print_function(t_results)
+                #print_function('\n')
 
-            # learning from scratch (RDN-B)
-            #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, #tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
-            #ob_save['rdn_b_' + str(amount)] = t_results
-            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            #print_function(t_results)
-            #print_function('\n')
+                # learning from scratch (RDN)
+                #background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
+                #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
+                #ob_save['rdn_' + str(amount)] = t_results
+                #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+                #print_function(t_results)
+                #print_function('\n')
 
-            # learning from scratch (RDN)
-            #background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
-            #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, #tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
-            #ob_save['rdn_' + str(amount)] = t_results
-            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            #print_function(t_results)
-            #print_function('\n')
+            results_save.append(ob_save)
+        save_experiment(results_save)
 
-        results_save.append(ob_save)
-    save_experiment(results_save)
-        #results['results'][experiment_title].append(results_save)
-#    except Exception as e:
-#        print_function(e)
-#        print_function('Error in experiment of ' + experiment_title)
-#        pass
-    results['save']['experiment'] += 1
-    results['save']['n_runs'] += 1
-    save(results)
+        results['save']['experiment'] += 1
+        results['save']['n_runs'] += 1
+        save(results)
