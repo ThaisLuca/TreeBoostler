@@ -31,8 +31,6 @@ numOfClauses = 8
 maxTreeDepth = 3
 trees = 10
 
-folds_path = 'folds_transfer_experiment'
-
 if not os.path.exists('experiments'):
     os.makedirs('experiments')
 
@@ -554,7 +552,7 @@ for experiment in experiments:
     target = experiment['target']
     
     # n_runs = n_files - path - 1
-    n_runs = len(list(os.walk('datasets/{}/{}/'.format(folds_path, target)))) - 1
+    n_runs = len(list(os.walk('datasets/folds/{}/'.format(target)))) - 1
     results = { 'save': { }}
     firstRun = True
     
@@ -617,13 +615,27 @@ for experiment in experiments:
             print_function('Starting fold ' + str(i+1) + '\n')
 
             ob_save = {}
+            
+            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+                [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
+            else:
+                t_total_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
+                tar_train_pos = datasets.split_into_folds(t_total_data[1][0], n_folds=n_folds, seed=results['save']['seed'])[i] + t_total_data[0][0]
 
             # Load new predicate target dataset
             tar_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
 
-            [tar_train_facts, tar_test_facts] =  datasets.load_pre_saved_folds(i+1, target, 'facts', folds_path)
-            [tar_train_pos, tar_test_pos]     =  datasets.load_pre_saved_folds(i+1, target, 'pos', folds_path)
-            [tar_train_neg, tar_test_neg]     =  datasets.load_pre_saved_folds(i+1, target, 'neg', folds_path)
+            # Group and shuffle
+            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+                [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
+                [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
+                [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
+            else:
+                [tar_train_facts, tar_test_facts] =  [tar_data[0][0], tar_data[0][0]]
+                to_folds_pos = datasets.split_into_folds(tar_data[1][0], n_folds=n_folds, seed=results['save']['seed'])
+                to_folds_neg = datasets.split_into_folds(tar_data[2][0], n_folds=n_folds, seed=results['save']['seed'])
+                [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, to_folds_pos)
+                [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, to_folds_neg)
             
             random.shuffle(tar_train_pos)
             random.shuffle(tar_train_neg)
