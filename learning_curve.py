@@ -650,7 +650,7 @@ for experiment in experiments:
 
                 # transfer and revision theory
                 background = tboostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-                [model, t_results, structured, pl_t_results] = revision.theory_revision(background, tboostsrl, target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=0, print_function=print_function)
+                [model, t_results, structured, pl_t_results] = revision.theory_revision(background, tboostsrl, target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
                 #t_results['Mapping results'] = mapping_results
                 t_results['parameter_' + str(amount)] = pl_t_results
                 ob_save['transfer_' + str(amount)] = t_results
