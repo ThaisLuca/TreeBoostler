@@ -19,6 +19,7 @@ from tboostsrl import tboostsrl
 import numpy as np
 import random
 import json
+import pickle
 
 #verbose=True
 source_balanced = False
@@ -34,6 +35,10 @@ trees = 10
 
 if not os.path.exists('experiments'):
     os.makedirs('experiments')
+
+def load_pickle_file(filename):
+    with open(filename, 'rb') as file:
+        return pickle.load(file)
 
 def print_function(message):
     global experiment_title
@@ -568,7 +573,8 @@ for experiment in experiments:
         'numOfClauses' : 8,
         'maxTreeDepth' : 3
         }
-
+        
+    _id = experiment['id']
     source = experiment['source']
     target = experiment['target']
     predicate = experiment['predicate']
@@ -580,24 +586,25 @@ for experiment in experiments:
     print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
 
     # Load source dataset
-    src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-    src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
+    # src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
+    # src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
 
-    # Group and shuffle
-    src_facts = datasets.group_folds(src_data[0])
-    src_pos = datasets.group_folds(src_data[1])
-    src_neg = datasets.group_folds(src_data[2])
+    # # Group and shuffle
+    # src_facts = datasets.group_folds(src_data[0])
+    # src_pos = datasets.group_folds(src_data[1])
+    # src_neg = datasets.group_folds(src_data[2])
 
-    print_function('Start learning from source dataset\n')
+    # print_function('Start learning from source dataset\n')
 
-    print_function('Source train facts examples: %s' % len(src_facts))
-    print_function('Source train pos examples: %s' % len(src_pos))
-    print_function('Source train neg examples: %s\n' % len(src_neg))
+    # print_function('Source train facts examples: %s' % len(src_facts))
+    # print_function('Source train pos examples: %s' % len(src_pos))
+    # print_function('Source train neg examples: %s\n' % len(src_neg))
 
-    # learning from source dataset
-    background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-    [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
-
+    # # learning from source dataset
+    # background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+    # [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
+    source_structured = load_pickle_file(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+    
     start = time.time()
 
     while results['save']['n_runs'] < n_runs:
