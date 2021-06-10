@@ -48,6 +48,61 @@ def load_pickle_file(filename):
     with open(filename, 'rb') as file:
         return pickle.load(file)
 
+def get_next_node(node, next):
+  """
+      Add next nodes of tree to list of rules
+
+      Args:
+          node(list): current branch to be added to list
+          next(list): next branch of tree given the current node
+      Returns:
+          all rules from a node
+  """
+
+  if not node:
+    return next
+  b = node.split(',')
+  b.append(next)
+  return ','.join(b)
+
+
+def get_rules(structure, treenumber=1):
+  """
+      Sweep through a branch of the tree 
+      to get all rules
+
+      Args:
+          structure(list): tree struct
+          treenumber(int): number of the tree to be processed
+      Returns:
+          all rules learned in the given branch
+  """
+
+  target = structure[0]
+  nodes = structure[1]
+  tree = treenumber-1
+
+  rules = []
+  for path, value in nodes.items():
+    node = target + ' :- ' + value + '.' if not path else value + '.'
+    true =  'true'  if get_next_node(path, 'true')  in nodes else 'false'
+    false = 'true'  if get_next_node(path, 'false') in nodes else 'false'
+    rules.append(';'.join([str(tree), path, node, true, false]))
+  return rules
+
+def write_to_file(data, filename, op='w'):
+  """
+      Write data to a specific file
+
+      Args:
+          data(list): information to be written
+          filename(str): name of file in which the data will be written
+          op(str): 'w' to create a new file or 'a' to append data to a new file if exists
+  """
+  with open(filename, op) as f:
+      for line in data:
+          f.write(line + '\n')
+
 def save_experiment(data):
     if not os.path.exists('experiments/' + experiment_title):
         os.makedirs('experiments/' + experiment_title)
@@ -69,6 +124,69 @@ def get_number_experiment():
 def save(data):
     with open('experiments/transfer_experiment.json', 'w') as fp:
         json.dump(data, fp)
+
+def save_pickle_file(nodes, _id, source, target, filename):
+    with open(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, filename), 'wb') as file:
+        pickle.dump(nodes, file)
+
+def match_bk_source(sources):
+  """
+      Match nodes to source background
+
+      Args:
+          nodes(dict): dictionary with nodes in order of depth
+          sources(list): all predicates found in source background
+      Returns:
+          all nodes learned by the model
+  """
+  source_match = {}
+  for source in sources:
+    if(source.split('(')[0] not in source_match):
+      source_match[source.split('(')[0]] = source.replace('.', '').replace('+', '').replace('-', '')
+  return source_match
+
+def get_all_rules_from_tree(structures):
+  """
+      Sweep through the relational tree 
+      to get all relational rules
+
+      Args:
+          structure(list): tree struct
+      Returns:
+          all rules learned by the model
+  """
+
+  rules = []
+  for i in range(len(structures)):
+    rules += get_rules(structures[i], treenumber=i+1)
+  return rules
+
+def deep_first_search_nodes(structure, matches={}, trees=[]):
+  """
+      Uses Deep-First Search to return all nodes
+
+      Args:
+          structure(list/dict/str/float): something to be added to the list
+          trees: list to hold tree nodes. As we are using recursion, its default is empty.
+      Returns:
+          all nodes learned by the model
+  """
+  if(isinstance(structure, list)):
+    for element in structure:
+      trees = deep_first_search_nodes(element, matches, trees)
+    return trees
+  elif(isinstance(structure, dict)):
+    node_number = 0
+    nodes = {}
+    for key in structure:
+      if(isinstance(structure[key], str)):
+        nodes[node_number] = matches.get(structure[key].split('(')[0], structure[key])
+        node_number += 1
+    if(nodes):
+      trees.append(nodes)
+    return trees
+  else:
+    return trees
 
 experiments = [
             {'id': '1', 'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby', 'arity': 2},
@@ -587,25 +705,33 @@ for experiment in experiments:
     print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
 
     # Load source dataset
-    # src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-    # src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
+    src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
+    src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
 
-    # # Group and shuffle
-    # src_facts = datasets.group_folds(src_data[0])
-    # src_pos = datasets.group_folds(src_data[1])
-    # src_neg = datasets.group_folds(src_data[2])
+    # Group and shuffle
+    src_facts = datasets.group_folds(src_data[0])
+    src_pos = datasets.group_folds(src_data[1])
+    src_neg = datasets.group_folds(src_data[2])
 
-    # print_function('Start learning from source dataset\n')
+    print_function('Start learning from source dataset\n')
 
-    # print_function('Source train facts examples: %s' % len(src_facts))
-    # print_function('Source train pos examples: %s' % len(src_pos))
-    # print_function('Source train neg examples: %s\n' % len(src_neg))
+    print_function('Source train facts examples: %s' % len(src_facts))
+    print_function('Source train pos examples: %s' % len(src_pos))
+    print_function('Source train neg examples: %s\n' % len(src_neg))
 
-    # # learning from source dataset
-    # background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-    # [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
+    # learning from source dataset
+    background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+    [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
 
-    source_structured = load_pickle_file(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+    # Get the list of predicates from source tree          
+    nodes = deep_first_search_nodes(source_structured, match_bk_source(set(bk[source])))
+    save_pickle_file(nodes, _id, source, target, 'source_tree_nodes.pkl')
+    save_pickle_file(source_structured, _id, source, target, 'source_structured_nodes.pkl')
+
+    refine_structure = get_all_rules_from_tree(source_structured)
+    write_to_file(refine_structure, os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'))
+
+    #source_structured = load_pickle_file(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
 
     while results['save']['n_runs'] < n_runs:
         print('Run: ' + str(results['save']['n_runs'] + 1))
