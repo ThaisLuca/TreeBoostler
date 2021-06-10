@@ -723,6 +723,9 @@ for experiment in experiments:
     background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
     [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
 
+    if not os.path.exists('resources/' + experiment_title):
+        os.makedirs('resources/' + experiment_title)
+
     # Get the list of predicates from source tree          
     nodes = deep_first_search_nodes(source_structured, match_bk_source(set(bk[source])))
     save_pickle_file(nodes, _id, source, target, 'source_tree_nodes.pkl')
