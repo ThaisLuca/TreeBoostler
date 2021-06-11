@@ -691,6 +691,12 @@ for experiment in experiments:
         'maxTreeDepth' : 3
         }
 
+    if 'nodes' in locals():
+            nodes.clear()
+
+    if 'structured' in locals():
+        structured.clear()
+
     start = time.time()
 
     _id = experiment['id']
