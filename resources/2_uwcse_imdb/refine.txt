@@ -1,0 +1,72 @@
+0;;advisedby(A, B) :- professor(B), student(A).;true;false
+0;true;publication(C, B), publication(C, A).;true;true
+0;true,true;tempadvisedby(D, B), publication(E, D).;false;true
+0;true,true,false;ta(F, A, G).;false;false
+0;true,false;publication(H, A).;true;true
+0;true,false,true;publication(H, I), professor(I).;false;false
+0;true,false,false;ta(J, A, K).;false;false
+1;;advisedby(A, B) :- professor(B), student(A).;true;false
+1;true;publication(C, B), publication(C, A).;true;true
+1;true,true;tempadvisedby(D, B), publication(E, D).;true;false
+1;true,true,true;publication(E, B).;false;false
+1;true,false;tempadvisedby(F, B), publication(G, F).;true;true
+1;true,false,true;publication(G, H), tempadvisedby(I, H).;false;false
+1;true,false,false;publication(J, B), publication(K, A).;false;false
+2;;advisedby(A, B) :- hasposition(B, C), student(A).;true;false
+2;true;publication(D, B), publication(D, A).;true;true
+2;true,true;tempadvisedby(E, B).;true;true
+2;true,true,true;ta(F, E, G).;false;false
+2;true,true,false;ta(H, A, I).;false;false
+2;true,false;publication(J, A).;true;true
+2;true,false,true;ta(K, A, L), publication(M, B).;false;false
+2;true,false,false;tempadvisedby(N, B), ta(P, N, Q).;false;false
+3;;advisedby(A, B) :- professor(B), student(A).;true;false
+3;true;publication(C, A), publication(C, B).;true;true
+3;true,true;ta(D, A, E).;true;false
+3;true,true,true;tempadvisedby(F, B), ta(G, F, E).;false;false
+3;true,false;tempadvisedby(H, B), publication(I, H).;true;true
+3;true,false,true;publication(J, A).;false;false
+3;true,false,false;publication(K, A).;false;false
+4;;advisedby(A, B) :- professor(B), student(A).;true;false
+4;true;publication(C, A), publication(D, B).;true;true
+4;true,true;publication(C, B).;true;true
+4;true,true,true;tempadvisedby(E, B).;false;false
+4;true,true,false;publication(C, F), professor(F).;false;false
+4;true,false;projectmember(G, B).;true;true
+4;true,false,true;publication(H, A).;false;false
+4;true,false,false;tempadvisedby(I, B).;false;false
+5;;advisedby(A, B) :- professor(B), student(A).;true;false
+5;true;ta(C, A, D).;true;true
+5;true,true;tempadvisedby(E, B), ta(F, E, D).;false;true
+5;true,true,false;tempadvisedby(G, B), publication(H, G).;false;false
+5;true,false;publication(I, B).;true;true
+5;true,false,true;publication(I, J), tempadvisedby(K, J).;false;false
+5;true,false,false;publication(L, A).;false;false
+6;;advisedby(A, B) :- professor(B), student(A).;true;false
+6;true;publication(C, B), ta(D, A, E).;true;true
+6;true,true;ta(F, G, E), publication(C, G).;true;true
+6;true,true,true;ta(D, G, H).;false;false
+6;true,true,false;publication(C, I), ta(J, I, K).;false;false
+6;true,false;publication(L, B), publication(L, A).;true;true
+6;true,false,true;tempadvisedby(M, B).;false;false
+6;true,false,false;projectmember(N, B).;false;false
+7;;advisedby(A, B) :- student(A), professor(B).;true;false
+7;true;publication(C, A), publication(C, B).;false;true
+7;true,false;tempadvisedby(D, B), publication(E, D).;true;true
+7;true,false,true;publication(E, B).;false;false
+7;true,false,false;publication(F, B).;false;false
+8;;advisedby(A, B) :- hasposition(B, C), student(A).;true;true
+8;true;hasposition(D, C), tempadvisedby(E, D).;true;true
+8;true,true;publication(F, A), publication(F, D).;true;true
+8;true,true,true;ta(G, E, H), publication(I, B).;false;false
+8;true,true,false;publication(J, B).;false;false
+8;true,false;publication(K, A).;false;true
+8;true,false,false;publication(L, B).;false;false
+8;false;professor(B).;false;false
+9;;advisedby(A, B) :- professor(B), student(A).;true;false
+9;true;publication(C, B), ta(D, A, E).;true;true
+9;true,true;tempadvisedby(F, B).;true;true
+9;true,true,true;ta(G, F, H).;false;false
+9;true,true,false;ta(D, I, J), tempadvisedby(I, K).;false;false
+9;true,false;publication(L, B), publication(L, A).;false;true
+9;true,false,false;publication(M, A).;false;false

@@ -1,0 +1,76 @@
+0;;companyeconomicsector(A, B) :- cityhascompanyoffice(C, A).;true;true
+0;true;cityhascompanyoffice(C, D), economicsectorcompany(B, D).;true;false
+0;true,true;acquired(D, E).;true;true
+0;true,true,true;acquired(F, A), acquired(G, F).;false;false
+0;true,true,false;countryhascompanyoffice(H, A).;false;false
+0;false;companyalsoknownas(A, I), economicsectorcompany(B, I).;false;true
+0;false,false;acquired(A, J), economicsectorcompany(B, J).;false;true
+0;false,false,false;countryhascompanyoffice(K, A).;false;false
+1;;companyeconomicsector(A, B) :- companyalsoknownas(A, C), economicsectorcompany(B, C).;false;true
+1;false;acquired(A, D), companyceo(D, E).;true;true
+1;false,true;economicsectorcompany(B, D).;false;true
+1;false,true,false;companyceo(A, F), cityhascompanyoffice(G, A).;false;false
+1;false,false;companyalsoknownas(A, H).;true;true
+1;false,false,true;cityhascompanyoffice(I, H), acquired(J, H).;false;false
+1;false,false,false;acquired(A, K).;false;false
+2;;companyeconomicsector(A, B) :- countryhascompanyoffice(C, A), acquired(D, A).;true;true
+2;true;economicsectorcompany(B, D).;false;true
+2;true,false;companyalsoknownas(D, E), acquired(A, F).;false;false
+2;false;bankboughtbank(G, A), cityhascompanyoffice(H, G).;true;true
+2;false,true;bankboughtbank(A, I), acquired(J, I).;false;true
+2;false,true,false;cityhascompanyoffice(H, K), economicsectorcompany(B, K).;false;false
+2;false,false;companyalsoknownas(A, L).;false;true
+2;false,false,false;companyceo(A, M), bankchiefexecutiveceo(N, M).;false;false
+3;;companyeconomicsector(A, B) :- acquired(A, C), economicsectorcompany(B, C).;false;true
+3;false;companyceo(A, D).;true;true
+3;false,true;acquired(A, E).;true;true
+3;false,true,true;acquired(F, A), economicsectorcompany(B, F).;false;false
+3;false,true,false;acquired(G, A), economicsectorcompany(B, G).;false;false
+3;false,false;acquired(A, H), cityhascompanyoffice(I, H).;true;true
+3;false,false,true;countryhascompanyoffice(J, H).;false;false
+3;false,false,false;companyalsoknownas(A, K), acquired(A, L).;false;false
+4;;companyeconomicsector(A, B) :- acquired(C, A), economicsectorcompany(B, C).;true;true
+4;true;companyceo(A, D).;true;false
+4;true,true;cityhascompanyoffice(E, C), companyalsoknownas(C, F).;false;false
+4;false;acquired(G, A), companyceo(G, H).;true;true
+4;false,true;acquired(I, G), economicsectorcompany(B, I).;false;true
+4;false,true,false;companyalsoknownas(G, J).;false;false
+4;false,false;acquired(K, A).;true;false
+4;false,false,true;bankchiefexecutiveceo(A, L).;false;false
+5;;companyeconomicsector(A, B) :- cityhascompanyoffice(C, A).;true;false
+5;true;cityhascompanyoffice(C, D), economicsectorcompany(B, D).;true;false
+5;true,true;acquired(A, E), cityhascompanyoffice(C, E).;true;true
+5;true,true,true;acquired(F, D).;false;false
+5;true,true,false;acquired(G, A), cityhascompanyoffice(H, G).;false;false
+6;;companyeconomicsector(A, B) :- cityhascompanyoffice(C, A).;true;true
+6;true;cityhascompanyoffice(C, D), economicsectorcompany(B, D).;true;false
+6;true,true;companyalsoknownas(D, D), acquired(E, A).;true;false
+6;true,true,true;cityhascompanyoffice(F, E).;false;false
+6;false;companyalsoknownas(A, G), economicsectorcompany(B, G).;false;true
+6;false,false;countryhascompanyoffice(H, A), bankbankincountry(I, H).;true;true
+6;false,false,true;companyalsoknownas(A, J), acquired(J, K).;false;false
+6;false,false,false;countryhascompanyoffice(L, A).;false;false
+7;;companyeconomicsector(A, B) :- companyalsoknownas(A, C), countryhascompanyoffice(D, C).;true;true
+7;true;economicsectorcompany(B, C).;false;true
+7;true,false;acquired(A, E), acquired(C, F).;true;false
+7;true,false,true;companyceo(E, G).;false;false
+7;false;acquired(A, H), economicsectorcompany(B, H).;false;true
+7;false,false;acquired(A, I).;true;true
+7;false,false,true;bankboughtbank(J, I), economicsectorcompany(B, J).;false;false
+7;false,false,false;cityhascompanyoffice(K, A).;false;false
+8;;companyeconomicsector(A, B) :- acquired(C, A), economicsectorcompany(B, C).;true;true
+8;true;cityhascompanyoffice(D, A).;false;true
+8;true,false;companyceo(A, E).;false;false
+8;false;cityhascompanyoffice(F, A).;true;true
+8;false,true;cityhascompanyoffice(F, G), economicsectorcompany(B, G).;true;false
+8;false,true,true;bankchiefexecutiveceo(A, H), acquired(G, I).;false;false
+8;false,false;acquired(J, A).;true;false
+8;false,false,true;companyalsoknownas(J, K), economicsectorcompany(B, K).;false;false
+9;;companyeconomicsector(A, B) :- acquired(C, A), economicsectorcompany(B, C).;true;true
+9;true;cityhascompanyoffice(D, A).;false;false
+9;false;cityhascompanyoffice(E, A).;true;true
+9;false,true;cityhascompanyoffice(E, F), economicsectorcompany(B, F).;true;false
+9;false,true,true;acquired(G, F), companyceo(F, H).;false;false
+9;false,false;acquired(I, A).;true;true
+9;false,false,true;bankboughtbank(J, A), bankchiefexecutiveceo(J, K).;false;false
+9;false,false,false;companyalsoknownas(A, L), companyceo(L, M).;false;false
