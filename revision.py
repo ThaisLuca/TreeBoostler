@@ -12,26 +12,28 @@ import re
 import copy
 import math
 
+PATH = os.getcwd() + '/TreeBoostler/'
+
 class revision:
     def delete_train_files():
         '''Remove files from train folder'''
         try:
-            shutil.rmtree('tboostsrl/train')
+            shutil.rmtree(PATH + 'tboostsrl/train')
         except:
             pass
         try:
-            os.remove('tboostsrl/train_output.txt')
+            os.remove(PATH + 'tboostsrl/train_output.txt')
         except:
             pass
 
     def delete_test_files():
         '''Remove files from test folder'''
         try:
-            shutil.rmtree('tboostsrl/test')
+            shutil.rmtree(PATH + 'tboostsrl/test')
         except:
             pass
         try:
-            os.remove('tboostsrl/test_output.txt')
+            os.remove(PATH + 'tboostsrl/test_output.txt')
         except:
             pass
 
@@ -43,23 +45,23 @@ class revision:
     def save_model_files():
         '''Remove files of last model as best model'''
         try:
-            shutil.rmtree('tboostsrl/best')
+            shutil.rmtree(PATH + 'tboostsrl/best')
         except:
             pass
-        os.mkdir('tboostsrl/best')
-        shutil.move('tboostsrl/train', 'tboostsrl/best')
-        shutil.move('tboostsrl/test', 'tboostsrl/best')
-        shutil.move('tboostsrl/train_output.txt', 'tboostsrl/best')
-        shutil.move('tboostsrl/test_output.txt', 'tboostsrl/best')
+        os.mkdir(PATH + 'tboostsrl/best')
+        shutil.move(PATH + 'tboostsrl/train', 'tboostsrl/best')
+        shutil.move(PATH + 'tboostsrl/test', 'tboostsrl/best')
+        shutil.move(PATH + 'tboostsrl/train_output.txt', 'tboostsrl/best')
+        shutil.move(PATH + 'tboostsrl/test_output.txt', 'tboostsrl/best')
 
     def get_saved_model_files():
         '''Recover model files of best model'''
-        shutil.move('tboostsrl/best/train', 'tboostsrl')
-        shutil.move('tboostsrl/best/test', 'tboostsrl')
-        shutil.move('tboostsrl/best/train_output.txt', 'tboostsrl')
-        shutil.move('tboostsrl/best/test_output.txt', 'tboostsrl')
+        shutil.move(PATH + 'tboostsrl/best/train', 'tboostsrl')
+        shutil.move(PATH + 'tboostsrl/best/test', 'tboostsrl')
+        shutil.move(PATH + 'tboostsrl/best/train_output.txt', 'tboostsrl')
+        shutil.move(PATH + 'tboostsrl/best/test_output.txt', 'tboostsrl')
         try:
-            shutil.rmtree('tboostsrl/best')
+            shutil.rmtree(PATH + 'tboostsrl/best')
         except:
             pass
 
@@ -271,6 +273,7 @@ class revision:
         structured = []
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
+        
         results = tboostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
         inference_time = results.testtime()
         t_results = results.summarize_results()

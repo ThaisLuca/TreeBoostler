@@ -21,6 +21,8 @@ import random
 import json
 import pickle
 
+PATH = os.getcwd() + '/TreeBoostler/'
+
 #verbose=True
 source_balanced = False
 balanced = False
@@ -33,8 +35,8 @@ numOfClauses = 8
 maxTreeDepth = 3
 trees = 10
 
-if not os.path.exists('curves-experiments'):
-    os.makedirs('curves-experiments')
+if not os.path.exists(PATH + '/curves-experiments'):
+    os.makedirs(PATH + 'curves-experiments')
 
 def load_pickle_file(filename):
     with open(filename, 'rb') as file:
@@ -43,21 +45,21 @@ def load_pickle_file(filename):
 def print_function(message):
     global experiment_title
     global nbr
-    if not os.path.exists('curves-experiments/' + experiment_title):
-        os.makedirs('curves-experiments/' + experiment_title)
-    with open('curves-experiments/' + experiment_title + '/' + str(nbr) + '_' + experiment_title + '.txt', 'a') as f:
+    if not os.path.exists(PATH + 'curves-experiments/' + experiment_title):
+        os.makedirs(PATH + 'curves-experiments/' + experiment_title)
+    with open(PATH + 'curves-experiments/' + experiment_title + '/' + str(nbr) + '_' + experiment_title + '.txt', 'a') as f:
         print(message, file=f)
         print(message)
 
 def save_experiment(data):
-    if not os.path.exists('curves-experiments/' + experiment_title):
-        os.makedirs('curves-experiments/' + experiment_title)
+    if not os.path.exists(PATH + 'curves-experiments/' + experiment_title):
+        os.makedirs(PATH + 'curves-experiments/' + experiment_title)
     results = []
-    if os.path.isfile('curves-experiments/' + experiment_title + '/' + experiment_title + '.json'):
-        with open('curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
+    if os.path.isfile(PATH + 'curves-experiments/' + experiment_title + '/' + experiment_title + '.json'):
+        with open(PATH + 'curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
             results = json.load(fp)
     results.append(data)
-    with open('curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'w') as fp:
+    with open(PATH + 'curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'w') as fp:
         json.dump(results, fp)
 
 def save_pickle_file(nodes, _id, source, target, filename):
@@ -184,13 +186,13 @@ def write_to_file(data, filename, op='w'):
 
 def get_number_experiment():
     results = []
-    if os.path.isfile('curves-experiments/' + experiment_title + '/' + experiment_title + '.json'):
-        with open('curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
+    if os.path.isfile(PATH + 'curves-experiments/' + experiment_title + '/' + experiment_title + '.json'):
+        with open(PATH + 'curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
             results = json.load(fp)
     return len(results)
 
 def save(data):
-    with open('curves-experiments/learning_curve.json', 'w') as fp:
+    with open(PATH + 'curves-experiments/learning_curve.json', 'w') as fp:
         json.dump(data, fp)
 
 experiments = [
