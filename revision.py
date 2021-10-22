@@ -49,17 +49,17 @@ class revision:
         except:
             pass
         os.mkdir(PATH + 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/train', 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/test', 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/train_output.txt', 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/test_output.txt', 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/train', PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/test', PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/train_output.txt', PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/test_output.txt', PATH + 'boostsrl/best')
 
     def get_saved_model_files():
         '''Recover model files of best model'''
-        shutil.move(PATH + 'boostsrl/best/train', 'boostsrl')
-        shutil.move(PATH + 'boostsrl/best/test', 'boostsrl')
-        shutil.move(PATH + 'boostsrl/best/train_output.txt', 'boostsrl')
-        shutil.move(PATH + 'boostsrl/best/test_output.txt', 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/train', PATH + 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/test', PATH + 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/train_output.txt', PATH + 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/test_output.txt', PATH + 'boostsrl')
         try:
             shutil.rmtree(PATH + 'boostsrl/best')
         except:
