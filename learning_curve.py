@@ -33,8 +33,8 @@ numOfClauses = 8
 maxTreeDepth = 3
 trees = 10
 
-if not os.path.exists('experiments'):
-    os.makedirs('experiments')
+if not os.path.exists('curves-experiments'):
+    os.makedirs('curves-experiments')
 
 def load_pickle_file(filename):
     with open(filename, 'rb') as file:
@@ -43,21 +43,21 @@ def load_pickle_file(filename):
 def print_function(message):
     global experiment_title
     global nbr
-    if not os.path.exists('experiments/' + experiment_title):
-        os.makedirs('experiments/' + experiment_title)
-    with open('experiments/' + experiment_title + '/' + str(nbr) + '_' + experiment_title + '.txt', 'a') as f:
+    if not os.path.exists('curves-experiments/' + experiment_title):
+        os.makedirs('curves-experiments/' + experiment_title)
+    with open('curves-experiments/' + experiment_title + '/' + str(nbr) + '_' + experiment_title + '.txt', 'a') as f:
         print(message, file=f)
         print(message)
 
 def save_experiment(data):
-    if not os.path.exists('experiments/' + experiment_title):
-        os.makedirs('experiments/' + experiment_title)
+    if not os.path.exists('curves-experiments/' + experiment_title):
+        os.makedirs('curves-experiments/' + experiment_title)
     results = []
-    if os.path.isfile('experiments/' + experiment_title + '/' + experiment_title + '.json'):
-        with open('experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
+    if os.path.isfile('curves-experiments/' + experiment_title + '/' + experiment_title + '.json'):
+        with open('curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
             results = json.load(fp)
     results.append(data)
-    with open('experiments/' + experiment_title + '/' + experiment_title + '.json', 'w') as fp:
+    with open('curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'w') as fp:
         json.dump(results, fp)
 
 def save_pickle_file(nodes, _id, source, target, filename):
@@ -184,13 +184,13 @@ def write_to_file(data, filename, op='w'):
 
 def get_number_experiment():
     results = []
-    if os.path.isfile('experiments/' + experiment_title + '/' + experiment_title + '.json'):
-        with open('experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
+    if os.path.isfile('curves-experiments/' + experiment_title + '/' + experiment_title + '.json'):
+        with open('curves-experiments/' + experiment_title + '/' + experiment_title + '.json', 'r') as fp:
             results = json.load(fp)
     return len(results)
 
 def save(data):
-    with open('experiments/learning_curve.json', 'w') as fp:
+    with open('curves-experiments/learning_curve.json', 'w') as fp:
         json.dump(data, fp)
 
 experiments = [
@@ -206,7 +206,7 @@ experiments = [
             {'id': '8', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass', 'arity': 2},
             {'id': '9', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector', 'arity': 2},
             #{'id': '10', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport', 'arity': 2},
-            {'id': '11', 'source':'uwcse', 'target':'webkb', 'predicate':'advisedby', 'to_predicate':'departmentof', 'arity':2},
+            #{'id': '11', 'source':'uwcse', 'target':'webkb', 'predicate':'advisedby', 'to_predicate':'departmentof', 'arity':2},
             #{'id': '12', 'source':'webkb', 'target':'yeast', 'predicate':'departmentof', 'to_predicate':'proteinclass', 'arity':2},
             #{'id': '13', 'source': 'yago2s', 'target': 'yeast', 'predicate': 'wasbornin', 'to_predicate': 'proteinclass', 'arity': 2},
             #{'id': '14', 'source': 'yeast', 'target': 'yago2s', 'predicate': 'proteinclass', 'to_predicate': 'wasbornin', 'arity': 2},
@@ -681,8 +681,11 @@ for experiment in experiments:
     
     target = experiment['target']
     
-    # n_runs = n_files - path - 1
-    n_runs = len(list(os.walk('datasets/folds/{}/'.format(target)))) - 1
+    if target in ['nell_sports', 'nell_finances', 'yago2s']:
+        n_runs = params.N_FOLDS
+    else:
+        n_runs = len(tar_total_data[0])
+        
     results = { 'save': { }}
     firstRun = True
     
@@ -714,36 +717,17 @@ for experiment in experiments:
 
     nbr = get_number_experiment() + 1
     print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
-
-    # Load source dataset
-    src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-    src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
-
-    # Group and shuffle
-    src_facts = datasets.group_folds(src_data[0])
-    src_pos = datasets.group_folds(src_data[1])
-    src_neg = datasets.group_folds(src_data[2])
-
-    print_function('Start learning from source dataset\n')
-
-    print_function('Source train facts examples: %s' % len(src_facts))
-    print_function('Source train pos examples: %s' % len(src_pos))
-    print_function('Source train neg examples: %s\n' % len(src_neg))
-
-    # learning from source dataset
-    background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-    [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
     
-    if not os.path.exists('resources/' + experiment_title):
-        os.makedirs('resources/' + experiment_title)
+    #if not os.path.exists('resources/' + experiment_title):
+    #    os.makedirs('resources/' + experiment_title)
 
     # Get the list of predicates from source tree          
-    nodes = deep_first_search_nodes(source_structured, match_bk_source(set(bk[source])))
-    save_pickle_file(nodes, _id, source, target, 'source_tree_nodes.pkl')
-    save_pickle_file(source_structured, _id, source, target, 'source_structured_nodes.pkl')
+    #nodes = deep_first_search_nodes(source_structured, match_bk_source(set(bk[source])))
+    #save_pickle_file(nodes, _id, source, target, 'source_tree_nodes.pkl')
+    #save_pickle_file(source_structured, _id, source, target, 'source_structured_nodes.pkl')
 
-    refine_structure = get_all_rules_from_tree(source_structured)
-    write_to_file(refine_structure, os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'))
+    #refine_structure = get_all_rules_from_tree(source_structured)
+    #write_to_file(refine_structure, os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'))
 
     #source_structured = load_pickle_file(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
     
@@ -751,6 +735,25 @@ for experiment in experiments:
 
     while results['save']['n_runs'] < n_runs:
         print('Run: ' + str(results['save']['n_runs'] + 1))
+        
+         # Load source dataset
+        src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
+        src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
+
+        # Group and shuffle
+        src_facts = datasets.group_folds(src_data[0])
+        src_pos = datasets.group_folds(src_data[1])
+        src_neg = datasets.group_folds(src_data[2])
+
+        print_function('Start learning from source dataset\n')
+
+        print_function('Source train facts examples: %s' % len(src_facts))
+        print_function('Source train pos examples: %s' % len(src_pos))
+        print_function('Source train neg examples: %s\n' % len(src_neg))
+
+        # learning from source dataset
+        background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
 
         #preds = mapping.get_preds(source_structured, bk[source])
         #print_function('Predicates from source: %s' % preds + '\n')
@@ -834,12 +837,12 @@ for experiment in experiments:
                 print_function('\n')
 
                 # learning from scratch (RDN)
-                background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
-                [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
-                ob_save['rdn_' + str(amount)] = t_results
-                print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-                print_function(t_results)
-                print_function('\n')
+                #background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
+                #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, part_tar_train_pos, part_tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
+                #ob_save['rdn_' + str(amount)] = t_results
+                #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+                #print_function(t_results)
+                #print_function('\n')
 
             results_save.append(ob_save)
         save_experiment(results_save)
