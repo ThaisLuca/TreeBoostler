@@ -15,7 +15,7 @@ from datasets.get_datasets import *
 from revision import *
 from transfer import *
 from mapping import *
-from tboostsrl import tboostsrl
+from boostsrl import boostsrl as tboostsrl
 import numpy as np
 import random
 import json
