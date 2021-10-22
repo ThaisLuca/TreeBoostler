@@ -681,6 +681,9 @@ for experiment in experiments:
     
     target = experiment['target']
     
+    # Load total target dataset
+    tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
+    
     if target in ['nell_sports', 'nell_finances', 'yago2s']:
         n_runs = params.N_FOLDS
     else:

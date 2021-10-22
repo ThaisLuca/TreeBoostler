@@ -676,6 +676,9 @@ for experiment in experiments:
     
     target = experiment['target']
     
+    # Load total target dataset
+    tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
+    
     if target in ['nell_sports', 'nell_finances', 'yago2s']:
         n_runs = params.N_FOLDS
     else:
@@ -751,7 +754,7 @@ for experiment in experiments:
         #source_structured = load_pickle_file(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
 
         # Load total target dataset
-        tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
+        #tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
 
         if target in ['nell_sports', 'nell_finances', 'yago2s']:
             n_folds = folds
@@ -760,7 +763,6 @@ for experiment in experiments:
 
         results_save = []
         
-        n_folds = 1
         for i in range(n_folds):
             print_function('Starting fold ' + str(i+1) + '\n')
 
