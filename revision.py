@@ -18,22 +18,22 @@ class revision:
     def delete_train_files():
         '''Remove files from train folder'''
         try:
-            shutil.rmtree(PATH + 'tboostsrl/train')
+            shutil.rmtree(PATH + 'boostsrl/train')
         except:
             pass
         try:
-            os.remove(PATH + 'tboostsrl/train_output.txt')
+            os.remove(PATH + 'boostsrl/train_output.txt')
         except:
             pass
 
     def delete_test_files():
         '''Remove files from test folder'''
         try:
-            shutil.rmtree(PATH + 'tboostsrl/test')
+            shutil.rmtree(PATH + 'boostsrl/test')
         except:
             pass
         try:
-            os.remove(PATH + 'tboostsrl/test_output.txt')
+            os.remove(PATH + 'boostsrl/test_output.txt')
         except:
             pass
 
@@ -45,23 +45,23 @@ class revision:
     def save_model_files():
         '''Remove files of last model as best model'''
         try:
-            shutil.rmtree(PATH + 'tboostsrl/best')
+            shutil.rmtree(PATH + 'boostsrl/best')
         except:
             pass
-        os.mkdir(PATH + 'tboostsrl/best')
-        shutil.move(PATH + 'tboostsrl/train', 'tboostsrl/best')
-        shutil.move(PATH + 'tboostsrl/test', 'tboostsrl/best')
-        shutil.move(PATH + 'tboostsrl/train_output.txt', 'tboostsrl/best')
-        shutil.move(PATH + 'tboostsrl/test_output.txt', 'tboostsrl/best')
+        os.mkdir(PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/train', 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/test', 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/train_output.txt', 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/test_output.txt', 'boostsrl/best')
 
     def get_saved_model_files():
         '''Recover model files of best model'''
-        shutil.move(PATH + 'tboostsrl/best/train', 'tboostsrl')
-        shutil.move(PATH + 'tboostsrl/best/test', 'tboostsrl')
-        shutil.move(PATH + 'tboostsrl/best/train_output.txt', 'tboostsrl')
-        shutil.move(PATH + 'tboostsrl/best/test_output.txt', 'tboostsrl')
+        shutil.move(PATH + 'boostsrl/best/train', 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/test', 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/train_output.txt', 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/test_output.txt', 'boostsrl')
         try:
-            shutil.rmtree(PATH + 'tboostsrl/best')
+            shutil.rmtree(PATH + 'boostsrl/best')
         except:
             pass
 
@@ -243,10 +243,10 @@ class revision:
             refine += revision.get_refine_file(structs[i], treenumber=i+1, forceLearning=forceLearning)
         return refine
 
-    def learn_model(background, tboostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, print_function=None):
+    def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
-        model = tboostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
+        model = boostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
@@ -259,10 +259,10 @@ class revision:
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
         return [model, learning_time, structured, will, variances]
 
-    def learn_test_model(background, tboostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None, trees=10, print_function=None):
+    def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
-        model = tboostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, transfer=transfer, trees=trees)
+        model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, transfer=transfer, trees=trees)
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
@@ -274,7 +274,7 @@ class revision:
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
         
-        results = tboostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
+        results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
         inference_time = results.testtime()
         t_results = results.summarize_results()
         t_results['Learning time'] = learning_time
@@ -283,7 +283,7 @@ class revision:
             print_function('Results')
             print_function('   AUC ROC   = %s' % t_results['AUC ROC'])
             print_function('   AUC PR    = %s' % t_results['AUC PR'])
-            print_function('   CLL	      = %s' % t_results['CLL'])
+            print_function('   CLL        = %s' % t_results['CLL'])
             print_function('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
             print_function('   Recall    = %s' % t_results['Recall'])
             print_function('   F1        = %s' % t_results['F1'])
@@ -294,8 +294,8 @@ class revision:
             print_function('\n')
         return [model, t_results, structured, will, variances]
 
-    def score_model(model, tboostsrl, test_pos, test_neg, test_facts, trees=10, print_function=None):
-        results = tboostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
+    def score_model(model, boostsrl, test_pos, test_neg, test_facts, trees=10, print_function=None):
+        results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
         inference_time = results.testtime()
         t_results = results.summarize_results()
         t_results['Inference time'] = inference_time
@@ -303,7 +303,7 @@ class revision:
             print_function('Results scoring model')
             print_function('   AUC ROC   = %s' % t_results['AUC ROC'])
             print_function('   AUC PR    = %s' % t_results['AUC PR'])
-            print_function('   CLL	      = %s' % t_results['CLL'])
+            print_function('   CLL        = %s' % t_results['CLL'])
             print_function('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
             print_function('   Recall    = %s' % t_results['Recall'])
             print_function('   F1        = %s' % t_results['F1'])
@@ -311,7 +311,7 @@ class revision:
             print_function('Total scoring time: %s seconds' % inference_time)
         return t_results
 
-    def theory_revision(background, tboostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=1, transfer=None, print_function=None):
+    def theory_revision(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, structured_tree, trees=10, max_revision_iterations=1, transfer=None, print_function=None):
         '''Function responsible for starting the theory revision process'''
         total_revision_time = 0
         best_cll = - float('inf')
@@ -328,14 +328,14 @@ class revision:
             for item in revision.get_boosted_refine_file(structured_tree):
                 print_function(item)
             print_function('\n')
-        [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), transfer=transfer, trees=trees, print_function=print_function)
+        [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, refine=revision.get_boosted_refine_file(structured_tree), transfer=transfer, trees=trees, print_function=print_function)
         # saving performed parameter learning will
-        #tboostsrl.write_to_file(will, 'tboostsrl/last_will.txt')
-        #tboostsrl.write_to_file([str(structured)], 'tboostsrl/last_structured.txt')
+        #boostsrl.write_to_file(will, 'boostsrl/last_will.txt')
+        #boostsrl.write_to_file([str(structured)], 'boostsrl/last_structured.txt')
         pl_t_results = copy.deepcopy(t_results)
 
         # scoring model
-        scored_results = revision.score_model(model, tboostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
+        scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
         best_cll = scored_results['CLL']
         best_model_results = copy.deepcopy(t_results)
         total_revision_time = pl_t_results['Learning time'] + scored_results['Inference time']
@@ -372,7 +372,7 @@ class revision:
                 for item in candidate:
                     print_function(item)
                 print_function('\n')
-            #tboostsrl.write_to_file(candidate, 'tboostsrl/last_candidate.txt')
+            #boostsrl.write_to_file(candidate, 'boostsrl/last_candidate.txt')
             if print_function:
                 print_function('Refining candidate')
                 print_function('***************************')
@@ -380,10 +380,10 @@ class revision:
                 #for i in range(trees):
                 #    print('Tree #%s: %s' % (i+1, str(get_bad_leaves(best_structured[i]))))
                 #print('\n')
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, r_train_pos, r_train_neg, train_facts, test_pos, test_neg, test_facts, trees=trees, refine=candidate, print_function=print_function)
             #t_results['Learning time'] = t_results['Learning time'] + pl_t_results['Learning time']
             # scoring model
-            scored_results = revision.score_model(model, tboostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
+            scored_results = revision.score_model(model, boostsrl, r_train_pos, r_train_neg, train_facts, trees=trees, print_function=print_function)
             total_revision_time = total_revision_time + t_results['Learning time'] + scored_results['Inference time']
             if scored_results['CLL'] > best_cll:
                 found_better = True
@@ -407,7 +407,7 @@ class revision:
             print_function('Results')
             print_function('   AUC ROC   = %s' % best_model_results['AUC ROC'])
             print_function('   AUC PR    = %s' % best_model_results['AUC PR'])
-            print_function('   CLL	      = %s' % best_model_results['CLL'])
+            print_function('   CLL        = %s' % best_model_results['CLL'])
             print_function('   Precision = %s at threshold = %s' % (best_model_results['Precision'][0], best_model_results['Precision'][1]))
             print_function('   Recall    = %s' % best_model_results['Recall'])
             print_function('   F1        = %s' % best_model_results['F1'])

@@ -15,7 +15,7 @@ from datasets.get_datasets import *
 from revision import *
 from transfer import *
 from mapping import *
-from boostsrl import boostsrl as tboostsrl
+from boostsrl import boostsrl
 import numpy as np
 import random
 import json
@@ -739,8 +739,8 @@ for experiment in experiments:
         print_function('Source train neg examples: %s\n' % len(src_neg))
 
         # learning from source dataset
-        background = tboostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, tboostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
+        background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
 
         #if not os.path.exists('resources/' + experiment_title):
         #    os.makedirs('resources/' + experiment_title)
@@ -799,7 +799,7 @@ for experiment in experiments:
             print_function('Target train neg examples: %s\n' % len(tar_train_neg))
             
             print_function('Target test facts examples: %s' % len(tar_test_facts))
-            print_function('Target test pos	 examples: %s' % len(tar_test_pos))
+            print_function('Target test pos  examples: %s' % len(tar_test_pos))
             print_function('Target test neg examples: %s\n' % len(tar_test_neg))
 
             # generate transfer file
@@ -808,8 +808,8 @@ for experiment in experiments:
             new_target = to_predicate
 
             # transfer and revision theory
-            background = tboostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, tboostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
+            background = boostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
 
             t_results['parameter'] = pl_t_results
             ob_save['transfer'] = t_results
@@ -818,15 +818,15 @@ for experiment in experiments:
             print_function('\n')
 
             # learning from scratch (RDN-B)
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
             ob_save['rdn_b_' + str(amount)] = t_results
             print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
             print_function(t_results)
             print_function('\n')
 
             # learning from scratch (RDN)
-            #background = tboostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
-            #[model, t_results, structured, will, variances] = revision.learn_test_model(background, tboostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
+            #background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
+            #[model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, new_target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=1, print_function=print_function)
             #ob_save['rdn_' + str(amount)] = t_results
             #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
             #print_function(t_results)
