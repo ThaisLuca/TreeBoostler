@@ -401,15 +401,15 @@ class train(object):
 class test(object):
 
     # Possibly a partial fix to Issue #3: checking for the .aucTemp.txt.lock
-    if os.path.isfile('TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
+    if os.path.isfile(os.getcwd() + '/TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
     #if os.path.isfile('boostsrl/test/AUC/.aucTemp.txt.lock'):
         print('Found lock file boostsrl/test/AUC/.aucTemp.txt.lock, removing it:')
-        os.remove('TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
+        os.remove(os.getcwd() + '/TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
         #os.remove('boostsrl/test/AUC/.aucTemp.txt.lock')
 
     def __init__(self, model, test_pos, test_neg, test_facts, trees=1):
         # Create train folder if it does not exist
-        os.makedirs('TreeBoostler/boostsrl/test', exist_ok=True)
+        os.makedirs(os.getcwd() + '/TreeBoostler/boostsrl/test', exist_ok=True)
         #os.makedirs('boostsrl/test', exist_ok=True)
         # Write test_bk
         write_to_file(['import: "../background.txt".'], 'boostsrl/test/test_bk.txt')
@@ -470,7 +470,7 @@ class test(object):
     def get_testing_time(self):
         '''Return the testing time as a float representing the total number of seconds seconds.'''
         with open('TreeBoostler/boostsrl/test_output.txt', 'r') as f:
-        #with open(' boostsrl/test_output.txt', 'r') as f:
+        #with open('boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total inference time \(\d* trees\):.*', text)
         # Remove the last character "." from the line and split it on spaces.
