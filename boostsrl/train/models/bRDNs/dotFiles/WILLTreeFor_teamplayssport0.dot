@@ -1,0 +1,35 @@
+digraph G{ 
+1[label = "[athleteplayssport(C, B), athleteplaysinleague(C, D)]"];
+1 -> 2[label="True"];
+1 -> 3[label="False"];
+2[label = "[athleteledsportsteam(C, E)]"];
+2 -> 4[label="True"];
+2 -> 5[label="False"];
+4[label = "[teamplaysagainstteam(F, A), athleteplaysforteam(C, F)]"];
+4 -> 6[label="True"];
+4 -> 7[label="False"];
+6[shape = box,label = "0,858(0,702)"];
+7[label = "[teamplaysagainstteam(G, A), teamplaysagainstteam(A, G)]"];
+7 -> 8[label="True"];
+7 -> 9[label="False"];
+8[shape = box,label = "0,761(0,681)"];
+9[shape = box,label = "0,852(0,701)"];
+5[label = "[teamplaysagainstteam(H, A), teamplaysinleague(H, D)]"];
+5 -> 10[label="True"];
+5 -> 11[label="False"];
+10[shape = box,label = "0,191(0,548)"];
+11[label = "[teamplaysagainstteam(I, A)]"];
+11 -> 12[label="True"];
+11 -> 13[label="False"];
+12[shape = box,label = "0,791(0,688)"];
+13[shape = box,label = "0,525(0,628)"];
+3[label = "[teamalsoknownas(J, A), teamalsoknownas(K, J)]"];
+3 -> 14[label="True"];
+3 -> 15[label="False"];
+14[label = "[teamplaysagainstteam(A, M), athleteledsportsteam(N, K)]"];
+14 -> 16[label="True"];
+14 -> 17[label="False"];
+16[shape = box,label = "-0,081(0,480)"];
+17[shape = box,label = "-0,130(0,467)"];
+15[shape = box,label = "-0,138(0,466)"];
+}

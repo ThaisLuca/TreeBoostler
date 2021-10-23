@@ -1,0 +1,2 @@
+8;;teamplayssport(A, B) :- teamplaysagainstteam(C, A).;true;true
+8;false;teamplaysagainstteam(A, F), teamalsoknownas(F, G).;true;true

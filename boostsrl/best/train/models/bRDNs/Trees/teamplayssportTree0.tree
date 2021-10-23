@@ -1,0 +1,13 @@
+setParam: stringsAreCaseSensitive = true.
+
+usePrologVariables: true.
+
+
+(teamplayssport(A, _, 0.26199508894566564) :-  /* #neg=31 #pos=21 */ teamalsoknownas(A, UniqueVar1), teamplaysagainstteam(UniqueVar1, UniqueVar2), athleteledsportsteam(_, UniqueVar2)).
+(teamplayssport(A, _, 0.10814893509951219) :-  /* #neg=3 #pos=1 */ teamalsoknownas(A, UniqueVar3), teamplaysagainstteam(UniqueVar3, UniqueVar4), teamplaysagainstteam(UniqueVar4, _), teamplaysagainstteam(_, A)).
+(teamplayssport(A, _, 0) :- teamalsoknownas(A, UniqueVar5), teamplaysagainstteam(UniqueVar5, _)).
+(teamplayssport(A, _, 0.19148226843284105) :-  /* #neg=440 #pos=220 */ teamplaysagainstteam(_, A)).
+(teamplayssport(A, _, 0) :- teamplaysagainstteam(A, _), athleteplaysforteam(_, A), teamalsoknownas(A, _)).
+(teamplayssport(A, _, 0.024815601766178853) :-  /* #neg=10 #pos=2 */ teamplaysagainstteam(A, _), athleteplaysforteam(_, A)).
+(teamplayssport(A, _, 0) :- teamplaysagainstteam(_, A)).
+teamplayssport(_, _, 0.19294105763780123) /* #neg=304 #pos=153 */ .
