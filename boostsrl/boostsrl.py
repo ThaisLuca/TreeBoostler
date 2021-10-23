@@ -5,12 +5,14 @@
 
    Name:         boostsrl.py
    Author:       Alexander L. Hayes
-   Modifier by:  Rodrigo Azevedo
-   Updated:      July 22, 2017
+   Modifier by:  Rodrigo Azevedo and Thais Luca
+   Updated:      December 06, 2020
    License:      GPLv3
 '''
 
 from __future__ import print_function
+import psutil
+import time
 import os
 import re
 import sys
@@ -21,26 +23,29 @@ else:
     import subprocess
 
 # Mode definitions and predicate logic examples can be verified with regular expressions.
-mode_re = re.compile(r'[a-zA-Z0-9]*\(((\+|\-|\#|\`)[a-zA-Z0-9]*,( )*)*(\+|\-|\#|\`)[a-zA-Z0-9]*\)\.')
+mode_re = re.compile(
+    r'[a-zA-Z0-9]*\(((\+|\-|\#|\`)[a-zA-Z0-9]*,( )*)*(\+|\-|\#|\`)[a-zA-Z0-9]*\)\.')
 exam_re = re.compile(r'[a-zA-Z0-9]*\(([a-zA-Z0-9]*,( )*)*[a-zA-Z0-9]*\)\.')
 
-PATH = os.getcwd() + '/'
 
 def results_to_float(string):
     '''Results can be printed with comma format.'''
-    return float(string.replace(',','.'))
+    return float(string.replace(',', '.'))
+
 
 def examples_to_float(string):
     '''Results can be printed with comma format.'''
-    return int(string.replace('.',''))
+    return int(string.replace('.', ''))
+
 
 def time_to_float(string):
     '''Results can be printed with comma format.'''
     if '.' in string and ',' in string:
-        return float(string.replace('.','').replace(',','.'))
+        return float(string.replace('.', '').replace(',', '.'))
     elif ',' in string:
-        return float(string.replace(',','.'))
+        return float(string.replace(',', '.'))
     return float(string)
+
 
 def example_data(example):
     '''For demo purposes, include some sample data.
@@ -50,9 +55,9 @@ def example_data(example):
     if example == 'train_pos':
         return ['cancer(Alice).', 'cancer(Bob).', 'cancer(Chuck).', 'cancer(Fred).']
     elif example == 'train_neg':
-        return ['cancer(Dan).','cancer(Earl).']
+        return ['cancer(Dan).', 'cancer(Earl).']
     elif example == 'train_facts':
-        return ['friends(Alice, Bob).', 'friends(Alice, Fred).', 'friends(Chuck, Bob).', 'friends(Chuck, Fred).', 'friends(Dan, Bob).', 'friends(Earl, Bob).','friends(Bob, Alice).', 'friends(Fred, Alice).', 'friends(Bob, Chuck).', 'friends(Fred, Chuck).', 'friends(Bob, Dan).', 'friends(Bob, Earl).', 'smokes(Alice).', 'smokes(Chuck).', 'smokes(Bob).']
+        return ['friends(Alice, Bob).', 'friends(Alice, Fred).', 'friends(Chuck, Bob).', 'friends(Chuck, Fred).', 'friends(Dan, Bob).', 'friends(Earl, Bob).', 'friends(Bob, Alice).', 'friends(Fred, Alice).', 'friends(Bob, Chuck).', 'friends(Fred, Chuck).', 'friends(Bob, Dan).', 'friends(Bob, Earl).', 'smokes(Alice).', 'smokes(Chuck).', 'smokes(Bob).']
     elif example == 'test_pos':
         return ['cancer(Zod).', 'cancer(Xena).', 'cancer(Yoda).']
     elif example == 'test_neg':
@@ -64,13 +69,15 @@ def example_data(example):
     else:
         raise(Exception('Attempted to use sample data that does not exist.'))
 
-def call_process(call):
+def call_process(cmd):
     '''Create a subprocess and wait for it to finish. Error out if errors occur.'''
-    try:
-        p = subprocess.Popen(call, shell=True)
-        os.waitpid(p.pid, 0)
-    except:
-        raise(Exception('Encountered problems while running process: ', call))
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+    pid = p.pid
+
+    (output, err) = p.communicate()  
+
+    #This makes the wait possible
+    p_status = p.wait()
 
 def inspect_mode_syntax(example):
     '''Uses a regular expression to check whether all of the examples in a list are in the correct form.
@@ -80,9 +87,10 @@ def inspect_mode_syntax(example):
           friends(person, person).   ::: FAIL
     '''
     if not mode_re.search(example):
-        raise(Exception('Error when checking background knowledge; incorrect syntax: ' + example + \
-                        '\nBackground knowledge should only contain letters and numbers, of the form: ' + \
+        raise(Exception('Error when checking background knowledge; incorrect syntax: ' + example +
+                        '\nBackground knowledge should only contain letters and numbers, of the form: ' +
                         'predicate(+var1, -var2).'))
+
 
 def inspect_example_syntax(example):
     '''Uses a regular expression to check whether all of the examples in a list are in the correct form.
@@ -93,30 +101,14 @@ def inspect_example_syntax(example):
     if not exam_re.search(example):
         raise(Exception('Error when checking example; incorrect syntax: ' + example))
 
+
 def write_to_file(content, path):
     '''Takes a list (content) and a path/file (path) and writes each line of the list to the file location.'''
-    with open(PATH + 'TreeBoostler/' + path, 'w') as f:
+    #with open(os.getcwd() + '/TreeBoostler/' + path, 'w+') as f:
+    with open(path, 'w+') as f:
         for line in content:
             f.write(line + '\n')
     f.close()
-
-'''
-def build_bridges(target, bk):
-I'm experimenting with whether bridgers can be set automatically. I'll experiment with the ability here.
-    # Loop through the background information in order to find the target.
-    for pred in bk:
-        if (target + '(') in pred:
-            # Number of commas in the predicate changes the behavior of the querypred.
-            num_commas = pred.count(',')
-            if num_commas > 0:
-                print('querypred: ' + target + '/' + str(num_commas + 1))
-                break
-
-def save_model(model):
-    Take the trees from the current model and pickle them.
-    import cPickle as pickle
-    pass
-'''
 
 class modes(object):
 
@@ -146,7 +138,7 @@ class modes(object):
         self.recursion = recursion
         self.lineSearch = lineSearch
         self.resampleNegs = resampleNegs
-        #self.queryPred = 'advisedby/2'
+        # self.queryPred = 'advisedby/2'
 
         # Many of the arguments in the modes object are optional this shows us the values of the ones that are neither false nor none
 
@@ -173,9 +165,10 @@ class modes(object):
         # Force type checking for input validation Issue #5
         for type_check in types:
             if not types[type_check]:
-                raise(TypeError('Error when checking type: ' +  type_check))
+                raise(TypeError('Error when checking type: ' + type_check))
 
-        relevant = [[attr, value] for attr, value in self.__dict__.items() if (value is not False) and (value is not None)]
+        relevant = [[attr, value] for attr, value in self.__dict__.items() if (
+            value is not False) and (value is not None)]
         self.relevant = relevant
 
         background_knowledge = []
@@ -209,6 +202,7 @@ class modes(object):
         self.background_knowledge = background_knowledge
         write_to_file(background_knowledge, 'boostsrl/background.txt')
 
+
 class train(object):
 
     def __init__(self, background, train_pos, train_neg, train_facts, refine=None, transfer=None, save=False, advice=False, softm=False, alpha=0.5, beta=-2, trees=1):
@@ -234,26 +228,40 @@ class train(object):
             inspect_example_syntax(example)
 
         # Create train folder if it does not exist
-        os.makedirs(PATH + 'TreeBoostler/boostsrl/train', exist_ok=True)
+        #os.makedirs('TreeBoostler/boostsrl/train', exist_ok=True)
+        os.makedirs('boostsrl/train', exist_ok=True) 
         # Write train_bk
-        write_to_file(['import: "../background.txt".'], 'boostsrl/train/train_bk.txt')
-
-        # Write refine.txt if presented
-        if refine:
-            write_to_file(refine, 'boostsrl/refine.txt')
-
-        # Write transfer.txt if presented
-        if transfer:
-            write_to_file(transfer, 'boostsrl/transfer.txt')
+        write_to_file(['import: "../background.txt".'],
+                      'boostsrl/train/train_bk.txt')
 
         write_to_file(self.train_pos, 'boostsrl/train/train_pos.txt')
         write_to_file(self.train_neg, 'boostsrl/train/train_neg.txt')
         write_to_file(self.train_facts, 'boostsrl/train/train_facts.txt')
+        
+        #Adding refine and transfer file treatment so it works for TreeBoostler
+        if(refine and '.txt' not in refine):
+            refine = 'refine.txt'
+        
+        if(transfer and '.txt' not in transfer):
+            transfer = 'transfer.txt'
 
-        combine = '' #'-combine ' if self.trees > 1 else ''
+        combine = ''  # '-combine ' if self.trees > 1 else ''
+        refine = '-refine {} '.format(refine) if refine else ''
+        transfer = '-transfer {} '.format(transfer) if transfer else ''
 
-        CALL = '(java -jar TreeBoostler/boostsrl/v1-0.jar -l ' + ('-refine refine.txt ' if refine else '') + ('-transfer transfer.txt ' if transfer else '') + combine + '-train train/ -target ' + ','.join(self.target) + \
-               ' -trees ' + str(self.trees) + ' > train_output.txt 2>&1)'
+        #CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -l '
+        CALL = 'java -jar boostsrl/v1-0.jar -l '
+        if(refine != ''):
+            CALL += refine
+        if(transfer != ''):
+            CALL += transfer
+
+        #CALL += '-train TreeBoostler/boostsrl/train/ -target ' + \
+        #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
+        #             ' > TreeBoostler/boostsrl/train_output.txt 2>&1'
+        CALL += '-train boostsrl/train/ -target ' + \
+            ','.join(self.target) + ' -trees ' + str(self.trees) + \
+                     ' > boostsrl/train_output.txt 2>&1'
         call_process(CALL)
 
     def tree(self, treenumber, target, image=False):
@@ -265,20 +273,29 @@ class train(object):
             Writing this with Jupyter notebooks in mind.
             '''
             from graphviz import Source
-            tree_file = PATH + 'TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + '.dot' if self.trees == 1 else 'boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
+            #tree_file = os.getcwd() + '/TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
+            #                      '.dot' if self.trees == 1 else os.getcwd(
+            #                      ) + '/TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
+            tree_file = 'boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
+                                  '.dot' if self.trees == 1 else os.getcwd(
+                                  ) + 'boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
             with open(tree_file, 'r') as f:
                 tree_output = ''.join(f.read().splitlines())
             src = Source(tree_output)
             return src
         else:
-            tree_file = PATH + 'TreeBoostler/boostsrl/train/models/bRDNs/Trees/' + target + 'Tree' + str(treenumber) + '.tree'
+            #tree_file = os.getcwd() + '/TreeBoostler/boostsrl/train/models/bRDNs/Trees/' + \
+            #                      target + 'Tree' + str(treenumber) + '.tree'
+            tree_file = 'boostsrl/train/models/bRDNs/Trees/' + \
+                                  target + 'Tree' + str(treenumber) + '.tree'
             with open(tree_file, 'r') as f:
                 tree_output = f.read()
             return tree_output
 
     def get_training_time(self):
         '''Return the training time as a float representing the total number of seconds seconds.'''
-        with open(PATH + 'TreeBoostler/boostsrl/train_output.txt', 'r') as f:
+        #with open('TreeBoostler/boostsrl/train_output.txt', 'r') as f:
+        with open('boostsrl/train_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total learning time \(\d* trees\):.*', text)
         # Remove the last character "." from the line and split it on spaces.
@@ -290,28 +307,35 @@ class train(object):
         seconds = []
         # time with comma, is this supposed to happen?
         if 'milliseconds' in splitline:
-            seconds.append((time_to_float(splitline[splitline.index('milliseconds') - 1])) / 1000)
+            seconds.append(
+                (time_to_float(splitline[splitline.index('milliseconds') - 1])) / 1000)
         if 'seconds' in splitline:
-            seconds.append(time_to_float(splitline[splitline.index('seconds') - 1]))
+            seconds.append(time_to_float(
+                splitline[splitline.index('seconds') - 1]))
         if 'minutes' in splitline:
-            seconds.append(time_to_float(splitline[splitline.index('minutes') - 1]) * 60)
+            seconds.append(time_to_float(
+                splitline[splitline.index('minutes') - 1]) * 60)
         if 'hours' in splitline:
-            seconds.append(time_to_float(splitline[splitline.index('hours') - 1]) * 3600)
+            seconds.append(time_to_float(
+                splitline[splitline.index('hours') - 1]) * 3600)
         if 'days' in splitline:
-            seconds.append(time_to_float(splitline[splitline.index('days') - 1]) * 86400)
+            seconds.append(time_to_float(
+                splitline[splitline.index('days') - 1]) * 86400)
         return sum(seconds)
 
-    def traintime(self):
-        '''Combines the get_training_time and training_time_to_float functions
-           to return a float representing seconds.'''
-        splitline = self.get_training_time()
-        return self.training_time_to_float(splitline)
+#    def traintime(self):
+#        '''Combines the get_training_time and training_time_to_float functions
+#           to return a float representing seconds.'''
+#        splitline = self.get_training_time()
+#        return self.training_time_to_float(splitline)
 
     def get_variances(self, treenumber=1):
         '''Return variances of nodes'''
-        with open(PATH + 'TreeBoostler/boostsrl/train/train_learn_dribble.txt', 'r') as f:
+        #with open('TreeBoostler/boostsrl/train/train_learn_dribble.txt', 'r') as f:
+        with open('boostsrl/train/train_learn_dribble.txt', 'r') as f:
             text = f.read()
-        line = re.findall(r'% Path: '+ str(treenumber-1) + ';([\w,]*)\sComparing variance: ([\d.\w\-]*) .*\sComparing variance: ([\d.\w\-]*) .*', text)
+        line = re.findall(r'% Path: ' + str(treenumber-1) +
+                          ';([\w,]*)\sComparing variance: ([\d.\w\-]*) .*\sComparing variance: ([\d.\w\-]*) .*', text)
         ret = {}
         for item in line:
             ret[item[0]] = [float(item[1]), float(item[2])]
@@ -320,7 +344,8 @@ class train(object):
     def get_will_produced_tree(self, treenumber=1):
         '''Return the WILL-Produced Tree'''
         combine = 'Combined' if self.trees > 1 and treenumber=='combine' else '#' + str(treenumber)
-        with open(PATH + 'TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
+        #with open(os.getcwd() + '/TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
+        with open('boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%%%%%  WILL-Produced Tree '+ combine +' .* %%%%%[\s\S]*% Clauses:', text)
         splitline = (line[0].split('\n'))[2:]
@@ -332,7 +357,7 @@ class train(object):
         '''Use the get_will_produced_tree function to get the WILL-Produced Tree #1
            and returns it as objects with nodes, std devs and number of examples reached.'''
         def get_results(groups):
-            #std dev, neg, pos
+            # std dev, neg, pos
             # std dev with comma, is this supposed to happen?
             ret = [results_to_float(groups[0]), 0, 0]
             if len(groups) > 1:
@@ -343,14 +368,14 @@ class train(object):
                 if match:
                     ret[1] = examples_to_float(match[0])
             return ret
-
+    
         lines = self.get_will_produced_tree(treenumber=treenumber)
         current = []
         stack = []
         target = None
         nodes = {}
         leaves = {}
-
+        
         for line in lines:
             if not target:
                 match = re.match('\s*\%\s*FOR\s*(\w+\([\w,\s]*\)):', line)
@@ -377,32 +402,38 @@ class train(object):
 class test(object):
 
     # Possibly a partial fix to Issue #3: checking for the .aucTemp.txt.lock
-    if os.path.isfile(PATH + 'TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
+    #if os.path.isfile('TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
+    if os.path.isfile('boostsrl/test/AUC/.aucTemp.txt.lock'):
         print('Found lock file boostsrl/test/AUC/.aucTemp.txt.lock, removing it:')
-        os.remove(PATH + 'TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
+        #os.remove('TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
+        os.remove('boostsrl/test/AUC/.aucTemp.txt.lock')
 
     def __init__(self, model, test_pos, test_neg, test_facts, trees=1):
         # Create train folder if it does not exist
-        os.makedirs(PATH + 'TreeBoostler/boostsrl/test', exist_ok=True)
+        #os.makedirs('TreeBoostler/boostsrl/test', exist_ok=True)
+        os.makedirs('boostsrl/test', exist_ok=True)
         # Write test_bk
         write_to_file(['import: "../background.txt".'], 'boostsrl/test/test_bk.txt')
-
+        
         write_to_file(test_pos, 'boostsrl/test/test_pos.txt')
         write_to_file(test_neg, 'boostsrl/test/test_neg.txt')
         write_to_file(test_facts, 'boostsrl/test/test_facts.txt')
 
         self.target = model.target
 
-        CALL = '(java -jar TreeBoostler/boostsrl/v1-0.jar -i -model train/models/ -test test/ -target ' + \
-               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath . > test_output.txt 2>&1)'
+        #CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -i -model TreeBoostler/boostsrl/train/models/ -test TreeBoostler/boostsrl/test/ -target ' + \
+        #       ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  TreeBoostler/boostsrl/ >  TreeBoostler/boostsrl/test_output.txt 2>&1'
+        CALL = 'java -jar boostsrl/v1-0.jar -i -model boostsrl/train/models/ -test boostsrl/test/ -target ' + \
+               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  boostsrl/ >  boostsrl/test_output.txt 2>&1'
         call_process(CALL)
-
+    
     def summarize_results(self):
-        with open(PATH + 'TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        #with open(os.getcwd() + '/TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open('boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%   AUC ROC.*|%   AUC PR.*|%   CLL.*|%   Precision.*|%   Recall.*|%   F1.*', text)
         line = [word.replace(' ','').replace('\t','').replace('%','').replace('atthreshold=',';') for word in line]
-
+        
         results = {
             'AUC ROC': results_to_float(line[0][line[0].index('=')+1:]),
             'AUC PR': results_to_float(line[1][line[1].index('=')+1:]),
@@ -416,18 +447,19 @@ class test(object):
     def float_split(self, line):
         '''Returns a list where the first item is a string and the second is a float.
            Used when returning inference results.
-
+        
         Example:
            >>> test.float_split('target(pred1, pred2, pred3). 0.85691')
            ['target(pred1, pred2, pred3).', 0.85691]'''
         intermediate = line.rsplit(None, 1)
         return [intermediate[0], float(intermediate[1])]
-
+        
     def inference_results(self, target):
         '''Converts BoostSRL results into a Python dictionary.'''
-        results_file = PATH + 'TreeBoostler/boostsrl/test/results_' + target + '.db'
+        #results_file = ' TreeBoostler/boostsrl/test/results_' + target + '.db'
+        results_file = ' boostsrl/test/results_' + target + '.db'
         inference_dict = {}
-
+        
         with open(results_file, 'r') as f:
             for line in f.read().splitlines():
                 full = self.float_split(line)
@@ -438,7 +470,8 @@ class test(object):
 
     def get_testing_time(self):
         '''Return the testing time as a float representing the total number of seconds seconds.'''
-        with open(PATH + 'TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        #with open(' TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open('boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total inference time \(\d* trees\):.*', text)
         # Remove the last character "." from the line and split it on spaces.

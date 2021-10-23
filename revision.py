@@ -11,29 +11,28 @@ import os
 import re
 import copy
 import math
-
-PATH = os.getcwd() + '/TreeBoostler/'
+import time
 
 class revision:
     def delete_train_files():
         '''Remove files from train folder'''
         try:
-            shutil.rmtree(PATH + 'boostsrl/train')
+            shutil.rmtree('boostsrl/train')
         except:
             pass
         try:
-            os.remove(PATH + 'boostsrl/train_output.txt')
+            os.remove('boostsrl/train_output.txt')
         except:
             pass
 
     def delete_test_files():
         '''Remove files from test folder'''
         try:
-            shutil.rmtree(PATH + 'boostsrl/test')
+            shutil.rmtree('boostsrl/test')
         except:
             pass
         try:
-            os.remove(PATH + 'boostsrl/test_output.txt')
+            os.remove('boostsrl/test_output.txt')
         except:
             pass
 
@@ -45,23 +44,23 @@ class revision:
     def save_model_files():
         '''Remove files of last model as best model'''
         try:
-            shutil.rmtree(PATH + 'boostsrl/best')
+            shutil.rmtree('boostsrl/best')
         except:
             pass
-        os.mkdir(PATH + 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/train', PATH + 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/test', PATH + 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/train_output.txt', PATH + 'boostsrl/best')
-        shutil.move(PATH + 'boostsrl/test_output.txt', PATH + 'boostsrl/best')
+        os.mkdir('boostsrl/best')
+        shutil.move('boostsrl/train', 'boostsrl/best')
+        shutil.move('boostsrl/test', 'boostsrl/best')
+        shutil.move('boostsrl/train_output.txt', 'boostsrl/best')
+        shutil.move('boostsrl/test_output.txt', 'boostsrl/best')
 
     def get_saved_model_files():
         '''Recover model files of best model'''
-        shutil.move(PATH + 'boostsrl/best/train', PATH + 'boostsrl')
-        shutil.move(PATH + 'boostsrl/best/test', PATH + 'boostsrl')
-        shutil.move(PATH + 'boostsrl/best/train_output.txt', PATH + 'boostsrl')
-        shutil.move(PATH + 'boostsrl/best/test_output.txt', PATH + 'boostsrl')
+        shutil.move('boostsrl/best/train', 'boostsrl')
+        shutil.move('boostsrl/best/test', 'boostsrl')
+        shutil.move('boostsrl/best/train_output.txt', 'boostsrl')
+        shutil.move('boostsrl/best/test_output.txt', 'boostsrl')
         try:
-            shutil.rmtree(PATH + 'boostsrl/best')
+            shutil.rmtree('boostsrl/best')
         except:
             pass
 
@@ -246,14 +245,18 @@ class revision:
     def learn_model(background, boostsrl, target, train_pos, train_neg, facts, refine=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
+        
+        start = time.time()
         model = boostsrl.train(background, train_pos, train_neg, facts, refine=refine, trees=trees)
+        end = time.time()
+        
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
             for i in will:
                 print_function(i)
             print_function('\n')
-        learning_time = model.traintime()
+        learning_time = end-start
         structured = []
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
@@ -262,18 +265,19 @@ class revision:
     def learn_test_model(background, boostsrl, target, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None, trees=10, print_function=None):
         '''Train and test a boosted or single tree'''
         revision.delete_model_files()
+        start = time.time()
         model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=refine, transfer=transfer, trees=trees)
+        end = time.time()
         will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(trees)]
         variances = [model.get_variances(treenumber=i+1) for i in range(trees)]
         if print_function:
             for i in will:
                 print_function(i)
             print_function('\n')
-        learning_time = model.traintime()
+        learning_time = end-start
         structured = []
         for i in range(trees):
             structured.append(model.get_structured_tree(treenumber=i+1).copy())
-        
         results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=trees)
         inference_time = results.testtime()
         t_results = results.summarize_results()
@@ -283,7 +287,7 @@ class revision:
             print_function('Results')
             print_function('   AUC ROC   = %s' % t_results['AUC ROC'])
             print_function('   AUC PR    = %s' % t_results['AUC PR'])
-            print_function('   CLL        = %s' % t_results['CLL'])
+            print_function('   CLL	      = %s' % t_results['CLL'])
             print_function('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
             print_function('   Recall    = %s' % t_results['Recall'])
             print_function('   F1        = %s' % t_results['F1'])
@@ -303,7 +307,7 @@ class revision:
             print_function('Results scoring model')
             print_function('   AUC ROC   = %s' % t_results['AUC ROC'])
             print_function('   AUC PR    = %s' % t_results['AUC PR'])
-            print_function('   CLL        = %s' % t_results['CLL'])
+            print_function('   CLL	      = %s' % t_results['CLL'])
             print_function('   Precision = %s at threshold = %s' % (t_results['Precision'][0], t_results['Precision'][1]))
             print_function('   Recall    = %s' % t_results['Recall'])
             print_function('   F1        = %s' % t_results['F1'])
@@ -407,7 +411,7 @@ class revision:
             print_function('Results')
             print_function('   AUC ROC   = %s' % best_model_results['AUC ROC'])
             print_function('   AUC PR    = %s' % best_model_results['AUC PR'])
-            print_function('   CLL        = %s' % best_model_results['CLL'])
+            print_function('   CLL	      = %s' % best_model_results['CLL'])
             print_function('   Precision = %s at threshold = %s' % (best_model_results['Precision'][0], best_model_results['Precision'][1]))
             print_function('   Recall    = %s' % best_model_results['Recall'])
             print_function('   F1        = %s' % best_model_results['F1'])
