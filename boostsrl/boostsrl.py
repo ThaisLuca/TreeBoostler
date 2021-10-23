@@ -257,7 +257,7 @@ class train(object):
 
         CALL += '-train repos-transfer/TreeBoostler/boostsrl/train/ -target ' + \
             ','.join(self.target) + ' -trees ' + str(self.trees) + \
-                     ' > TreeBoostler/boostsrl/train_output.txt 2>&1'
+                     ' > repos-transfer/TreeBoostler/boostsrl/train_output.txt 2>&1'
                  
         #CALL += '-train boostsrl/train/ -target ' + \
         #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
