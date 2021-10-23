@@ -13,26 +13,28 @@ import copy
 import math
 import time
 
+PATH = os.getcwd() + '/TreeBoostler/'
+
 class revision:
     def delete_train_files():
         '''Remove files from train folder'''
         try:
-            shutil.rmtree('boostsrl/train')
+            shutil.rmtree(PATH + 'boostsrl/train')
         except:
             pass
         try:
-            os.remove('boostsrl/train_output.txt')
+            os.remove(PATH + 'boostsrl/train_output.txt')
         except:
             pass
 
     def delete_test_files():
         '''Remove files from test folder'''
         try:
-            shutil.rmtree('boostsrl/test')
+            shutil.rmtree(PATH + 'boostsrl/test')
         except:
             pass
         try:
-            os.remove('boostsrl/test_output.txt')
+            os.remove(PATH + 'boostsrl/test_output.txt')
         except:
             pass
 
@@ -44,23 +46,23 @@ class revision:
     def save_model_files():
         '''Remove files of last model as best model'''
         try:
-            shutil.rmtree('boostsrl/best')
+            shutil.rmtree(PATH + 'boostsrl/best')
         except:
             pass
-        os.mkdir('boostsrl/best')
-        shutil.move('boostsrl/train', 'boostsrl/best')
-        shutil.move('boostsrl/test', 'boostsrl/best')
-        shutil.move('boostsrl/train_output.txt', 'boostsrl/best')
-        shutil.move('boostsrl/test_output.txt', 'boostsrl/best')
+        os.mkdir(PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/train', PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/test', PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/train_output.txt', PATH + 'boostsrl/best')
+        shutil.move(PATH + 'boostsrl/test_output.txt', PATH + 'boostsrl/best')
 
     def get_saved_model_files():
         '''Recover model files of best model'''
-        shutil.move('boostsrl/best/train', 'boostsrl')
-        shutil.move('boostsrl/best/test', 'boostsrl')
-        shutil.move('boostsrl/best/train_output.txt', 'boostsrl')
-        shutil.move('boostsrl/best/test_output.txt', 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/train', PATH + 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/test', PATH + 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/train_output.txt', PATH + 'boostsrl')
+        shutil.move(PATH + 'boostsrl/best/test_output.txt', PATH + 'boostsrl')
         try:
-            shutil.rmtree('boostsrl/best')
+            shutil.rmtree(PATH + 'boostsrl/best')
         except:
             pass
 
