@@ -819,7 +819,7 @@ for experiment in experiments:
 
             # learning from scratch (RDN-B)
             [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
-            ob_save['rdn_b_' + str(amount)] = t_results
+            ob_save['rdn_b'] = t_results
             print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
             print_function(t_results)
             print_function('\n')
