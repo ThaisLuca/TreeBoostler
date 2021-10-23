@@ -258,6 +258,7 @@ class train(object):
         CALL += '-train TreeBoostler/boostsrl/train/ -target ' + \
             ','.join(self.target) + ' -trees ' + str(self.trees) + \
                      ' > TreeBoostler/boostsrl/train_output.txt 2>&1'
+                 
         #CALL += '-train boostsrl/train/ -target ' + \
         #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
         #             ' > boostsrl/train_output.txt 2>&1'
@@ -275,6 +276,7 @@ class train(object):
             tree_file = os.getcwd() + '/TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
                                   '.dot' if self.trees == 1 else os.getcwd(
                                   ) + '/TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
+                              
             #tree_file = 'boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
             #                      '.dot' if self.trees == 1 else os.getcwd(
             #                      ) + 'boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
@@ -285,6 +287,7 @@ class train(object):
         else:
             tree_file = os.getcwd() + '/TreeBoostler/boostsrl/train/models/bRDNs/Trees/' + \
                                   target + 'Tree' + str(treenumber) + '.tree'
+                              
             #tree_file = 'boostsrl/train/models/bRDNs/Trees/' + \
             #                      target + 'Tree' + str(treenumber) + '.tree'
             with open(tree_file, 'r') as f:
@@ -343,7 +346,7 @@ class train(object):
     def get_will_produced_tree(self, treenumber=1):
         '''Return the WILL-Produced Tree'''
         combine = 'Combined' if self.trees > 1 and treenumber=='combine' else '#' + str(treenumber)
-        with open('TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
+        with open(os.getcwd() + '/TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
         #with open('boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%%%%%  WILL-Produced Tree '+ combine +' .* %%%%%[\s\S]*% Clauses:', text)
@@ -455,7 +458,7 @@ class test(object):
         
     def inference_results(self, target):
         '''Converts BoostSRL results into a Python dictionary.'''
-        results_file = ' TreeBoostler/boostsrl/test/results_' + target + '.db'
+        results_file = os.getcwd() + '/TreeBoostler/boostsrl/test/results_' + target + '.db'
         #results_file = ' boostsrl/test/results_' + target + '.db'
         inference_dict = {}
         
@@ -469,8 +472,8 @@ class test(object):
 
     def get_testing_time(self):
         '''Return the testing time as a float representing the total number of seconds seconds.'''
-        with open('TreeBoostler/boostsrl/test_output.txt', 'r') as f:
-        #with open('boostsrl/test_output.txt', 'r') as f:
+        with open(os.getcwd() + '/TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        #with open(' boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total inference time \(\d* trees\):.*', text)
         # Remove the last character "." from the line and split it on spaces.
