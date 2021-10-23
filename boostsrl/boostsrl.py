@@ -103,8 +103,8 @@ def inspect_example_syntax(example):
 
 def write_to_file(content, path):
     '''Takes a list (content) and a path/file (path) and writes each line of the list to the file location.'''
-    #with open(os.getcwd() + '/TreeBoostler/' + path, 'w+') as f:
-    with open(path, 'w+') as f:
+    with open(os.getcwd() + '/TreeBoostler/' + path, 'w+') as f:
+    #with open(path, 'w+') as f:
         for line in content:
             f.write(line + '\n')
     f.close()
