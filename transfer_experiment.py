@@ -715,8 +715,8 @@ for experiment in experiments:
     
     experiment_title = experiment['id'] + '_' + experiment['source'] + '_' + experiment['target']
     
-    print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
     nbr = get_number_experiment() + 1
+    print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
     
     start = time.time()
 
