@@ -24,6 +24,8 @@ else:
 mode_re = re.compile(r'[a-zA-Z0-9]*\(((\+|\-|\#|\`)[a-zA-Z0-9]*,( )*)*(\+|\-|\#|\`)[a-zA-Z0-9]*\)\.')
 exam_re = re.compile(r'[a-zA-Z0-9]*\(([a-zA-Z0-9]*,( )*)*[a-zA-Z0-9]*\)\.')
 
+PATH = os.getcwd() + '/'
+
 def results_to_float(string):
     '''Results can be printed with comma format.'''
     return float(string.replace(',','.'))
@@ -93,7 +95,7 @@ def inspect_example_syntax(example):
 
 def write_to_file(content, path):
     '''Takes a list (content) and a path/file (path) and writes each line of the list to the file location.'''
-    with open('TreeBoostler/' + path, 'w') as f:
+    with open(PATH + 'TreeBoostler/' + path, 'w') as f:
         for line in content:
             f.write(line + '\n')
     f.close()
@@ -232,7 +234,7 @@ class train(object):
             inspect_example_syntax(example)
 
         # Create train folder if it does not exist
-        os.makedirs('TreeBoostler/boostsrl/train', exist_ok=True)
+        os.makedirs(PATH + 'TreeBoostler/boostsrl/train', exist_ok=True)
         # Write train_bk
         write_to_file(['import: "../background.txt".'], 'boostsrl/train/train_bk.txt')
 
@@ -250,7 +252,7 @@ class train(object):
 
         combine = '' #'-combine ' if self.trees > 1 else ''
 
-        CALL = '(cd TreeBoostler/boostsrl; java -jar v1-0.jar -l ' + ('-refine refine.txt ' if refine else '') + ('-transfer transfer.txt ' if transfer else '') + combine + '-train train/ -target ' + ','.join(self.target) + \
+        CALL = '(java -jar TreeBoostler/boostsrl/v1-0.jar -l ' + ('-refine refine.txt ' if refine else '') + ('-transfer transfer.txt ' if transfer else '') + combine + '-train train/ -target ' + ','.join(self.target) + \
                ' -trees ' + str(self.trees) + ' > train_output.txt 2>&1)'
         call_process(CALL)
 
@@ -263,20 +265,20 @@ class train(object):
             Writing this with Jupyter notebooks in mind.
             '''
             from graphviz import Source
-            tree_file = 'TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + '.dot' if self.trees == 1 else 'boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
+            tree_file = PATH + 'TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + '.dot' if self.trees == 1 else 'boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
             with open(tree_file, 'r') as f:
                 tree_output = ''.join(f.read().splitlines())
             src = Source(tree_output)
             return src
         else:
-            tree_file = 'TreeBoostler/boostsrl/train/models/bRDNs/Trees/' + target + 'Tree' + str(treenumber) + '.tree'
+            tree_file = PATH + 'TreeBoostler/boostsrl/train/models/bRDNs/Trees/' + target + 'Tree' + str(treenumber) + '.tree'
             with open(tree_file, 'r') as f:
                 tree_output = f.read()
             return tree_output
 
     def get_training_time(self):
         '''Return the training time as a float representing the total number of seconds seconds.'''
-        with open('TreeBoostler/boostsrl/train_output.txt', 'r') as f:
+        with open(PATH + 'TreeBoostler/boostsrl/train_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total learning time \(\d* trees\):.*', text)
         # Remove the last character "." from the line and split it on spaces.
@@ -307,7 +309,7 @@ class train(object):
 
     def get_variances(self, treenumber=1):
         '''Return variances of nodes'''
-        with open('TreeBoostler/boostsrl/train/train_learn_dribble.txt', 'r') as f:
+        with open(PATH + 'TreeBoostler/boostsrl/train/train_learn_dribble.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Path: '+ str(treenumber-1) + ';([\w,]*)\sComparing variance: ([\d.\w\-]*) .*\sComparing variance: ([\d.\w\-]*) .*', text)
         ret = {}
@@ -318,7 +320,7 @@ class train(object):
     def get_will_produced_tree(self, treenumber=1):
         '''Return the WILL-Produced Tree'''
         combine = 'Combined' if self.trees > 1 and treenumber=='combine' else '#' + str(treenumber)
-        with open('TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
+        with open(PATH + 'TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%%%%%  WILL-Produced Tree '+ combine +' .* %%%%%[\s\S]*% Clauses:', text)
         splitline = (line[0].split('\n'))[2:]
@@ -375,13 +377,13 @@ class train(object):
 class test(object):
 
     # Possibly a partial fix to Issue #3: checking for the .aucTemp.txt.lock
-    if os.path.isfile('TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
+    if os.path.isfile(PATH + 'TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
         print('Found lock file boostsrl/test/AUC/.aucTemp.txt.lock, removing it:')
-        os.remove('TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
+        os.remove(PATH + 'TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
 
     def __init__(self, model, test_pos, test_neg, test_facts, trees=1):
         # Create train folder if it does not exist
-        os.makedirs('TreeBoostler/boostsrl/test', exist_ok=True)
+        os.makedirs(PATH + 'TreeBoostler/boostsrl/test', exist_ok=True)
         # Write test_bk
         write_to_file(['import: "../background.txt".'], 'boostsrl/test/test_bk.txt')
 
@@ -391,12 +393,12 @@ class test(object):
 
         self.target = model.target
 
-        CALL = '(cd TreeBoostler/boostsrl; java -jar v1-0.jar -i -model train/models/ -test test/ -target ' + \
+        CALL = '(java -jar TreeBoostler/boostsrl/v1-0.jar -i -model train/models/ -test test/ -target ' + \
                ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath . > test_output.txt 2>&1)'
         call_process(CALL)
 
     def summarize_results(self):
-        with open('TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open(PATH + 'TreeBoostler/boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%   AUC ROC.*|%   AUC PR.*|%   CLL.*|%   Precision.*|%   Recall.*|%   F1.*', text)
         line = [word.replace(' ','').replace('\t','').replace('%','').replace('atthreshold=',';') for word in line]
@@ -423,7 +425,7 @@ class test(object):
 
     def inference_results(self, target):
         '''Converts BoostSRL results into a Python dictionary.'''
-        results_file = 'TreeBoostler/boostsrl/test/results_' + target + '.db'
+        results_file = PATH + 'TreeBoostler/boostsrl/test/results_' + target + '.db'
         inference_dict = {}
 
         with open(results_file, 'r') as f:
@@ -436,7 +438,7 @@ class test(object):
 
     def get_testing_time(self):
         '''Return the testing time as a float representing the total number of seconds seconds.'''
-        with open('TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open(PATH + 'TreeBoostler/boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total inference time \(\d* trees\):.*', text)
         # Remove the last character "." from the line and split it on spaces.
