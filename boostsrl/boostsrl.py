@@ -469,7 +469,7 @@ class test(object):
 
     def get_testing_time(self):
         '''Return the testing time as a float representing the total number of seconds seconds.'''
-        with open(' TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open('TreeBoostler/boostsrl/test_output.txt', 'r') as f:
         #with open(' boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total inference time \(\d* trees\):.*', text)
