@@ -21,7 +21,9 @@ import random
 import json
 import pickle
 
-PATH = os.getcwd() + '/TreeBoostler/'
+PATH = os.getcwd() + '/'
+
+learn_from_source = False
 
 #verbose=True
 source_balanced = False
@@ -687,7 +689,7 @@ for experiment in experiments:
     tar_total_data = datasets.load(target, bk[target], seed=441773)
     
     if target in ['nell_sports', 'nell_finances', 'yago2s']:
-        n_runs = params.N_FOLDS
+        n_runs = 3
     else:
         n_runs = len(tar_total_data[0])
         
@@ -723,49 +725,41 @@ for experiment in experiments:
     nbr = get_number_experiment() + 1
     print_function('Starting experiment #' + str(nbr) + ' for ' + experiment_title+ '\n')
     
-    #if not os.path.exists('resources/' + experiment_title):
-    #    os.makedirs('resources/' + experiment_title)
+    if(not learn_from_source):
+        
+        print_function('Loading pre-trained trees.')
 
-    # Get the list of predicates from source tree          
-    #nodes = deep_first_search_nodes(source_structured, match_bk_source(set(bk[source])))
-    #save_pickle_file(nodes, _id, source, target, 'source_tree_nodes.pkl')
-    #save_pickle_file(source_structured, _id, source, target, 'source_structured_nodes.pkl')
-
-    #refine_structure = get_all_rules_from_tree(source_structured)
-    #write_to_file(refine_structure, os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'))
-
-    #source_structured = load_pickle_file(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
-    
+        from shutil import copyfile
+        copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
+        nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
+        #sources_dict =  utils.match_bk_source(set(bk[source]))
+        #nodes = [sources_dict[node] for node in utils.sweep_tree(nodes) if node != predicate]
+        source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+  
     start = time.time()
-
     while results['save']['n_runs'] < n_runs:
         print('Run: ' + str(results['save']['n_runs'] + 1))
         
-         # Load source dataset
-        src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
-        src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
+        if(learn_from_source):
+        
+            # Load source dataset
+            src_total_data = datasets.load(source, bk[source], seed=results['save']['seed'])
+            src_data = datasets.load(source, bk[source], target=predicate, balanced=source_balanced, seed=results['save']['seed'])
 
-        # Group and shuffle
-        src_facts = datasets.group_folds(src_data[0])
-        src_pos = datasets.group_folds(src_data[1])
-        src_neg = datasets.group_folds(src_data[2])
+            # Group and shuffle
+            src_facts = datasets.group_folds(src_data[0])
+            src_pos = datasets.group_folds(src_data[1])
+            src_neg = datasets.group_folds(src_data[2])
 
-        print_function('Start learning from source dataset\n')
+            print_function('Start learning from source dataset\n')
 
-        print_function('Source train facts examples: %s' % len(src_facts))
-        print_function('Source train pos examples: %s' % len(src_pos))
-        print_function('Source train neg examples: %s\n' % len(src_neg))
+            print_function('Source train facts examples: %s' % len(src_facts))
+            print_function('Source train pos examples: %s' % len(src_pos))
+            print_function('Source train neg examples: %s\n' % len(src_neg))
 
-        # learning from source dataset
-        background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-        [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
-
-        #preds = mapping.get_preds(source_structured, bk[source])
-        #print_function('Predicates from source: %s' % preds + '\n')
-
-        #critical_preds = mapping.get_critical_preds(source_structured, bk[source])
-        #print_function('Critical predicates from source: %s' % critical_preds + '\n')
-        #print('Source structured tree: %s \n' % source_structured)
+            # learning from source dataset
+            background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
+            [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
 
         # Load total target dataset
         tar_total_data = datasets.load(target, bk[target], seed=results['save']['seed'])
