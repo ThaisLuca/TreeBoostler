@@ -1,0 +1,11 @@
+candidates,similarity
+"teamplaysinleague(sportsteam,sportsleague),companyalsoknownas(company,company)",4.6937031745910645
+"teamplaysinleague(sportsteam,sportsleague),cityhascompanyoffice(city,company)",5.125797748565674
+"teamplaysinleague(sportsteam,sportsleague),countryhascompanyoffice(country,company)",5.151769638061523
+"teamplaysinleague(sportsteam,sportsleague),acquired(company,company)",5.1992621421813965
+"teamplaysinleague(sportsteam,sportsleague),bankboughtbank(company,company)",5.271543979644775
+"teamplaysinleague(sportsteam,sportsleague),companyceo(company,person)",5.301362991333008
+"teamplaysinleague(sportsteam,sportsleague),economicsectorcompany(`sector,company)",5.356081485748291
+"teamplaysinleague(sportsteam,sportsleague),economicsectorcompany(sector,`company)",5.356081485748291
+"teamplaysinleague(sportsteam,sportsleague),bankbankincountry(person,country)",5.4116129875183105
+"teamplaysinleague(sportsteam,sportsleague),bankchiefexecutiveceo(company,person)",5.474438190460205

@@ -1,0 +1,80 @@
+0;;teamplayssport(A, B) :- athleteplayssport(C, B), athleteplaysinleague(C, D).;true;true
+0;true;athleteledsportsteam(C, E).;true;true
+0;true,true;teamplaysinleague(A, D).;false;true
+0;true,true,false;athleteplaysforteam(F, A), athleteplayssport(F, G).;false;false
+0;true,false;athleteplaysforteam(H, A), teamplaysinleague(A, I).;false;false
+0;false;athleteplayssport(J, B).;true;true
+0;false,true;teamplaysagainstteam(K, A).;false;false
+0;false,false;teamalsoknownas(L, A), teamplaysagainstteam(A, M).;false;false
+1;;teamplayssport(A, B) :- athleteplayssport(C, B), athleteplaysinleague(C, D).;true;true
+1;true;athleteplaysforteam(E, A), teamplaysagainstteam(F, A).;false;true
+1;true,false;athleteplaysforteam(G, A), teamplaysagainstteam(A, H).;false;true
+1;true,false,false;athleteledsportsteam(I, A), athleteplaysinleague(I, J).;false;false
+1;false;teamplaysinleague(A, K).;false;true
+1;false,false;teamalsoknownas(L, A), teamplaysinleague(L, M).;true;true
+1;false,false,true;teamplaysagainstteam(N, A), teamalsoknownas(N, L).;false;false
+1;false,false,false;athleteplayssport(P, B).;false;false
+2;;teamplayssport(A, B) :- athleteplayssport(C, B), athleteplaysinleague(C, D).;true;true
+2;true;teamalsoknownas(E, A), athleteplaysforteam(F, A).;true;true
+2;true,true;athleteledsportsteam(G, A).;false;true
+2;true,true,false;athleteplaysforteam(C, E).;false;false
+2;true,false;athleteledsportsteam(C, H), teamplaysagainstteam(A, I).;false;true
+2;true,false,false;teamplaysagainstteam(J, A), teamalsoknownas(K, J).;false;false
+2;false;teamalsoknownas(L, A), athleteplaysforteam(M, L).;true;false
+2;false,true;athleteledsportsteam(M, L).;false;false
+3;;teamplayssport(A, B) :- athleteplayssport(C, B).;true;true
+3;true;athleteledsportsteam(C, D).;true;true
+3;true,true;teamalsoknownas(A, E).;false;true
+3;true,true,false;teamplaysagainstteam(A, D), teamalsoknownas(D, F).;false;false
+3;true,false;teamplaysagainstteam(G, A), athleteplaysforteam(C, H).;false;true
+3;true,false,false;teamplaysinleague(A, I), athleteplaysinleague(J, I).;false;false
+3;false;teamalsoknownas(K, A), teamalsoknownas(L, K).;true;false
+3;false,true;athleteledsportsteam(M, L), teamplaysagainstteam(A, N).;false;false
+4;;teamplayssport(A, B) :- athleteplayssport(C, B), athleteplaysinleague(C, D).;true;true
+4;true;athleteledsportsteam(C, E), teamplaysinleague(A, F).;true;false
+4;true,true;teamplaysinleague(E, F), teamalsoknownas(E, G).;true;true
+4;true,true,true;athleteledsportsteam(H, G), athleteplayssport(H, B).;false;false
+4;true,true,false;athleteplaysforteam(I, A), athleteplaysinleague(I, J).;false;false
+4;false;athleteplayssport(K, B).;true;true
+4;false,true;teamplaysagainstteam(L, A).;false;false
+4;false,false;teamplaysagainstteam(A, M), teamalsoknownas(N, A).;false;false
+5;;teamplayssport(A, B) :- athleteplayssport(C, B), athleteplaysinleague(C, D).;true;true
+5;true;athleteplaysforteam(E, A), athleteledsportsteam(F, A).;true;false
+5;true,true;teamplaysinleague(A, D).;false;true
+5;true,true,false;athleteplaysinleague(E, G), teamplaysinleague(A, G).;false;false
+5;false;teamplaysinleague(A, H).;false;true
+5;false,false;teamplaysagainstteam(A, I), teamalsoknownas(A, J).;true;true
+5;false,false,true;teamalsoknownas(I, J).;false;false
+5;false,false,false;teamplaysagainstteam(K, A).;false;false
+6;;teamplayssport(A, B) :- teamplaysagainstteam(C, A), teamplaysinleague(A, D).;true;true
+6;true;teamalsoknownas(C, E), teamplaysinleague(E, F).;true;true
+6;true,true;athleteplayssport(G, B), athleteplaysinleague(G, H).;false;false
+6;true,false;athleteplayssport(I, B), athleteplaysinleague(I, J).;false;false
+6;false;athleteplayssport(K, B).;true;false
+6;false,true;teamalsoknownas(L, A), athleteplaysinleague(K, M).;true;true
+6;false,true,true;teamalsoknownas(L, N), teamalsoknownas(N, L).;false;false
+6;false,true,false;athleteplaysforteam(K, P), athleteledsportsteam(Q, P).;false;false
+7;;teamplayssport(A, B) :- athleteplayssport(C, B), athleteplaysforteam(C, D).;true;true
+7;true;teamalsoknownas(E, D), athleteledsportsteam(C, E).;true;false
+7;true,true;teamplaysagainstteam(F, A), teamplaysagainstteam(D, F).;false;true
+7;true,true,false;teamplaysagainstteam(A, G).;false;false
+7;false;athleteplayssport(H, B), teamplaysagainstteam(I, A).;true;true
+7;false,true;athleteledsportsteam(J, I), athleteplaysinleague(J, K).;false;false
+7;false,false;athleteplayssport(L, B).;true;false
+7;false,false,true;athleteplaysinleague(L, M).;false;false
+8;;teamplayssport(A, B) :- athleteplayssport(C, B).;true;true
+8;true;athleteledsportsteam(C, D), teamalsoknownas(A, E).;true;true
+8;true,true;teamplaysinleague(E, F), teamplaysinleague(D, F).;false;true
+8;true,true,false;teamalsoknownas(E, G), teamplaysagainstteam(D, G).;false;false
+8;true,false;athleteplaysforteam(H, A), teamplaysagainstteam(I, A).;true;true
+8;true,false,true;athleteplaysforteam(J, I), teamplaysagainstteam(A, K).;false;false
+8;true,false,false;athleteledsportsteam(C, L).;false;false
+8;false;teamalsoknownas(M, A), teamplaysagainstteam(A, N).;false;false
+9;;teamplayssport(A, B) :- athleteplayssport(C, B).;true;true
+9;true;teamplaysagainstteam(A, D), athleteledsportsteam(C, D).;false;true
+9;true,false;teamplaysagainstteam(E, A), athleteledsportsteam(F, E).;true;true
+9;true,false,true;teamalsoknownas(E, G), teamplaysagainstteam(A, G).;false;false
+9;true,false,false;teamplaysinleague(A, H), teamalsoknownas(A, I).;false;false
+9;false;teamalsoknownas(J, A), teamalsoknownas(K, J).;true;false
+9;false,true;teamplaysinleague(A, L), teamplaysinleague(J, L).;false;true
+9;false,true,false;teamplaysagainstteam(A, K), athleteplaysforteam(M, K).;false;false
