@@ -13,7 +13,7 @@ import copy
 import math
 import time
 
-PATH = os.getcwd() + '/TreeBoostler/'
+PATH = os.getcwd() + '/'
 
 class revision:
     def delete_train_files():

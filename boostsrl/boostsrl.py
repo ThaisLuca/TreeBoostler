@@ -20,6 +20,8 @@ if os.name == 'posix' and sys.version_info[0] < 3:
     import subprocess32 as subprocess
 else:
     import subprocess
+    
+PATH = os.getcwd() + '/'
 
 # Mode definitions and predicate logic examples can be verified with regular expressions.
 mode_re = re.compile(
@@ -103,7 +105,7 @@ def inspect_example_syntax(example):
 
 def write_to_file(content, path):
     '''Takes a list (content) and a path/file (path) and writes each line of the list to the file location.'''
-    with open(os.getcwd() + '/repos-transfer/TreeBoostler/' + path, 'w+') as f:
+    with open(PATH + path, 'w+') as f:
     #with open(path, 'w+') as f:
         for line in content:
             f.write(line + '\n')
@@ -227,7 +229,7 @@ class train(object):
             inspect_example_syntax(example)
 
         # Create train folder if it does not exist
-        os.makedirs('repos-transfer/TreeBoostler/boostsrl/train', exist_ok=True)
+        os.makedirs(PATH + 'boostsrl/train', exist_ok=True)
         #os.makedirs('boostsrl/train', exist_ok=True) 
         # Write train_bk
         write_to_file(['import: "../background.txt".'],
@@ -248,20 +250,20 @@ class train(object):
         refine = '-refine {} '.format(refine) if refine else ''
         transfer = '-transfer {} '.format(transfer) if transfer else ''
 
-        CALL = 'java -jar repos-transfer/TreeBoostler/boostsrl/v1-0.jar -l '
-        #CALL = 'java -jar boostsrl/v1-0.jar -l '
+        #CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -l '
+        CALL = 'java -jar boostsrl/v1-0.jar -l '
         if(refine != ''):
             CALL += refine
         if(transfer != ''):
             CALL += transfer
 
-        CALL += '-train repos-transfer/TreeBoostler/boostsrl/train/ -target ' + \
-            ','.join(self.target) + ' -trees ' + str(self.trees) + \
-                     ' > repos-transfer/TreeBoostler/boostsrl/train_output.txt 2>&1'
-                 
-        #CALL += '-train boostsrl/train/ -target ' + \
+        #CALL += '-train TreeBoostler/boostsrl/train/ -target ' + \
         #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
-        #             ' > boostsrl/train_output.txt 2>&1'
+        #             ' >  TreeBoostler/boostsrl/train_output.txt 2>&1'
+                 
+        CALL += '-train boostsrl/train/ -target ' + \
+            ','.join(self.target) + ' -trees ' + str(self.trees) + \
+                     ' > boostsrl/train_output.txt 2>&1'
         call_process(CALL)
 
     def tree(self, treenumber, target, image=False):
@@ -273,9 +275,9 @@ class train(object):
             Writing this with Jupyter notebooks in mind.
             '''
             from graphviz import Source
-            tree_file = os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
+            tree_file = PATH + 'boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
                                   '.dot' if self.trees == 1 else os.getcwd(
-                                  ) + '/repos-transfer/TreeBoostler/boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
+                                  ) + 'boostsrl/train/models/bRDNs/dotFiles/CombinedTrees' + target + '.dot'
                               
             #tree_file = 'boostsrl/train/models/bRDNs/dotFiles/WILLTreeFor_' + target + str(treenumber) + \
             #                      '.dot' if self.trees == 1 else os.getcwd(
@@ -285,7 +287,7 @@ class train(object):
             src = Source(tree_output)
             return src
         else:
-            tree_file = os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/train/models/bRDNs/Trees/' + \
+            tree_file = PATH + 'boostsrl/train/models/bRDNs/Trees/' + \
                                   target + 'Tree' + str(treenumber) + '.tree'
                               
             #tree_file = 'boostsrl/train/models/bRDNs/Trees/' + \
@@ -296,7 +298,7 @@ class train(object):
 
     def get_training_time(self):
         '''Return the training time as a float representing the total number of seconds seconds.'''
-        with open('/repos-transfer/TreeBoostler/boostsrl/train_output.txt', 'r') as f:
+        with open(PATH + 'boostsrl/train_output.txt', 'r') as f:
         #with open('boostsrl/train_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total learning time \(\d* trees\):.*', text)
@@ -333,7 +335,7 @@ class train(object):
 
     def get_variances(self, treenumber=1):
         '''Return variances of nodes'''
-        with open('/repos-transfer/TreeBoostler/boostsrl/train/train_learn_dribble.txt', 'r') as f:
+        with open(PATH + 'boostsrl/train/train_learn_dribble.txt', 'r') as f:
         #with open('boostsrl/train/train_learn_dribble.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Path: ' + str(treenumber-1) +
@@ -346,7 +348,7 @@ class train(object):
     def get_will_produced_tree(self, treenumber=1):
         '''Return the WILL-Produced Tree'''
         combine = 'Combined' if self.trees > 1 and treenumber=='combine' else '#' + str(treenumber)
-        with open(os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
+        with open(PATH + 'boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
         #with open('boostsrl/train/models/WILLtheories/' + self.target[0] + '_learnedWILLregressionTrees.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%%%%%  WILL-Produced Tree '+ combine +' .* %%%%%[\s\S]*% Clauses:', text)
@@ -404,15 +406,15 @@ class train(object):
 class test(object):
 
     # Possibly a partial fix to Issue #3: checking for the .aucTemp.txt.lock
-    if os.path.isfile(os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock'):
+    if os.path.isfile(PATH + 'boostsrl/test/AUC/.aucTemp.txt.lock'):
     #if os.path.isfile('boostsrl/test/AUC/.aucTemp.txt.lock'):
         print('Found lock file boostsrl/test/AUC/.aucTemp.txt.lock, removing it:')
-        os.remove(os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/test/AUC/.aucTemp.txt.lock')
+        os.remove(PATH + 'boostsrl/test/AUC/.aucTemp.txt.lock')
         #os.remove('boostsrl/test/AUC/.aucTemp.txt.lock')
 
     def __init__(self, model, test_pos, test_neg, test_facts, trees=1):
         # Create train folder if it does not exist
-        os.makedirs(os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/test', exist_ok=True)
+        os.makedirs(PATH + 'boostsrl/test', exist_ok=True)
         #os.makedirs('boostsrl/test', exist_ok=True)
         # Write test_bk
         write_to_file(['import: "../background.txt".'], 'boostsrl/test/test_bk.txt')
@@ -423,14 +425,14 @@ class test(object):
 
         self.target = model.target
 
-        CALL = 'java -jar repos-transfer/TreeBoostler/boostsrl/v1-0.jar -i -model repos-transfer/TreeBoostler/boostsrl/train/models/ -test repos-transfer/TreeBoostler/boostsrl/test/ -target ' + \
-               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  repos-transfer/TreeBoostler/boostsrl/ >  repos-transfer/TreeBoostler/boostsrl/test_output.txt 2>&1'
-        #CALL = 'java -jar boostsrl/v1-0.jar -i -model boostsrl/train/models/ -test boostsrl/test/ -target ' + \
-        #       ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  boostsrl/ >  boostsrl/test_output.txt 2>&1'
+        #CALL = 'java -jar repos-transfer/TreeBoostler/boostsrl/v1-0.jar -i -model repos-transfer/TreeBoostler/boostsrl/train/models/ -test repos-transfer/TreeBoostler/boostsrl/test/ -target ' + \
+        #       ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  repos-transfer/TreeBoostler/boostsrl/ >  repos-transfer/TreeBoostler/boostsrl/test_output.txt 2>&1'
+        CALL = 'java -jar boostsrl/v1-0.jar -i -model boostsrl/train/models/ -test boostsrl/test/ -target ' + \
+               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  boostsrl/ >  boostsrl/test_output.txt 2>&1'
         call_process(CALL)
     
     def summarize_results(self):
-        with open(os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open(PATH + 'boostsrl/test_output.txt', 'r') as f:
         #with open('boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'%   AUC ROC.*|%   AUC PR.*|%   CLL.*|%   Precision.*|%   Recall.*|%   F1.*', text)
@@ -458,7 +460,7 @@ class test(object):
         
     def inference_results(self, target):
         '''Converts BoostSRL results into a Python dictionary.'''
-        results_file = os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/test/results_' + target + '.db'
+        results_file = PATH + 'boostsrl/test/results_' + target + '.db'
         #results_file = ' boostsrl/test/results_' + target + '.db'
         inference_dict = {}
         
@@ -472,7 +474,7 @@ class test(object):
 
     def get_testing_time(self):
         '''Return the testing time as a float representing the total number of seconds seconds.'''
-        with open(os.getcwd() + '/repos-transfer/TreeBoostler/boostsrl/test_output.txt', 'r') as f:
+        with open(PATH + 'boostsrl/test_output.txt', 'r') as f:
         #with open(' boostsrl/test_output.txt', 'r') as f:
             text = f.read()
         line = re.findall(r'% Total inference time \(\d* trees\):.*', text)
