@@ -250,20 +250,20 @@ class train(object):
         refine = '-refine {} '.format(refine) if refine else ''
         transfer = '-transfer {} '.format(transfer) if transfer else ''
 
-        #CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -l '
-        CALL = 'java -jar boostsrl/v1-0.jar -l '
+        CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -l '
+        #CALL = 'java -jar boostsrl/v1-0.jar -l '
         if(refine != ''):
             CALL += refine
         if(transfer != ''):
             CALL += transfer
 
-        #CALL += '-train TreeBoostler/boostsrl/train/ -target ' + \
-        #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
-        #             ' >  TreeBoostler/boostsrl/train_output.txt 2>&1'
-                 
-        CALL += '-train boostsrl/train/ -target ' + \
+        CALL += '-train TreeBoostler/boostsrl/train/ -target ' + \
             ','.join(self.target) + ' -trees ' + str(self.trees) + \
-                     ' > boostsrl/train_output.txt 2>&1'
+                     ' >  TreeBoostler/boostsrl/train_output.txt 2>&1'
+                 
+        #CALL += '-train boostsrl/train/ -target ' + \
+        #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
+        #             ' > boostsrl/train_output.txt 2>&1'
         call_process(CALL)
 
     def tree(self, treenumber, target, image=False):
@@ -425,10 +425,10 @@ class test(object):
 
         self.target = model.target
 
-        #CALL = 'java -jar repos-transfer/TreeBoostler/boostsrl/v1-0.jar -i -model repos-transfer/TreeBoostler/boostsrl/train/models/ -test repos-transfer/TreeBoostler/boostsrl/test/ -target ' + \
-        #       ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  repos-transfer/TreeBoostler/boostsrl/ >  repos-transfer/TreeBoostler/boostsrl/test_output.txt 2>&1'
-        CALL = 'java -jar boostsrl/v1-0.jar -i -model boostsrl/train/models/ -test boostsrl/test/ -target ' + \
-               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  boostsrl/ >  boostsrl/test_output.txt 2>&1'
+        CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -i -model TreeBoostler/boostsrl/train/models/ -test TreeBoostler/boostsrl/test/ -target ' + \
+               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  TreeBoostler/boostsrl/ >  TreeBoostler/boostsrl test_output.txt 2>&1'
+        #CALL = 'java -jar boostsrl/v1-0.jar -i -model boostsrl/train/models/ -test boostsrl/test/ -target ' + \
+        #       ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  boostsrl/ >  boostsrl/test_output.txt 2>&1'
         call_process(CALL)
     
     def summarize_results(self):
