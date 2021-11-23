@@ -723,12 +723,12 @@ for experiment in experiments:
     if(not learn_from_source):
         print_function('Loading pre-trained trees.')
 
-        from shutil import copyfile
-        copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
-        nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
+        #from shutil import copyfile
+        #copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
+        #nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
         #sources_dict =  utils.match_bk_source(set(bk[source]))
         #nodes = [sources_dict[node] for node in utils.sweep_tree(nodes) if node != predicate]
-        source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+        #source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
     
     start = time.time()
 
@@ -802,19 +802,19 @@ for experiment in experiments:
             print_function('Target test neg examples: %s\n' % len(tar_test_neg))
 
             # generate transfer file
-            transferred_structured = source_structured
-            tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
+            #transferred_structured = source_structured
+            #tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
             new_target = to_predicate
 
             # transfer and revision theory
             background = boostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
+            #[model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
 
-            t_results['parameter'] = pl_t_results
-            ob_save['transfer'] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print_function(t_results)
-            print_function('\n')
+            #t_results['parameter'] = pl_t_results
+            #ob_save['transfer'] = t_results
+            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            #print_function(t_results)
+            #print_function('\n')
 
             # learning from scratch (RDN-B)
             [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
