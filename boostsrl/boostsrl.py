@@ -250,16 +250,16 @@ class train(object):
         refine = '-refine {} '.format(refine) if refine else ''
         transfer = '-transfer {} '.format(transfer) if transfer else ''
 
-        CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -l '
+        CALL = 'java -jar ' + PATH + 'boostsrl/v1-0.jar -l '
         #CALL = 'java -jar boostsrl/v1-0.jar -l '
         if(refine != ''):
             CALL += refine
         if(transfer != ''):
             CALL += transfer
 
-        CALL += '-train TreeBoostler/boostsrl/train/ -target ' + \
+        CALL += '-train ' + PATH + 'boostsrl/train/ -target ' + \
             ','.join(self.target) + ' -trees ' + str(self.trees) + \
-                     ' >  TreeBoostler/boostsrl/train_output.txt 2>&1'
+                     ' >  ' + PATH + 'boostsrl/train_output.txt 2>&1'
                  
         #CALL += '-train boostsrl/train/ -target ' + \
         #    ','.join(self.target) + ' -trees ' + str(self.trees) + \
@@ -425,8 +425,8 @@ class test(object):
 
         self.target = model.target
 
-        CALL = 'java -jar TreeBoostler/boostsrl/v1-0.jar -i -model TreeBoostler/boostsrl/train/models/ -test TreeBoostler/boostsrl/test/ -target ' + \
-               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  TreeBoostler/boostsrl/ >  TreeBoostler/boostsrl test_output.txt 2>&1'
+        CALL = 'java -jar ' + PATH + 'boostsrl/v1-0.jar -i -model ' + PATH + 'boostsrl/train/models/ -test ' + PATH + 'boostsrl/test/ -target ' + \
+               ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  ' + PATH + 'boostsrl/ >  ' + PATH + 'boostsrl/test_output.txt 2>&1'
         #CALL = 'java -jar boostsrl/v1-0.jar -i -model boostsrl/train/models/ -test boostsrl/test/ -target ' + \
         #       ','.join(self.target) + ' -trees ' + str(trees) + ' -aucJarPath  boostsrl/ >  boostsrl/test_output.txt 2>&1'
         call_process(CALL)
