@@ -21,6 +21,13 @@ import random
 import json
 import pickle
 
+import psutil
+
+if os.name == 'posix' and sys.version_info[0] < 3:
+    import subprocess32 as subprocess
+else:
+    import subprocess
+
 PATH = os.getcwd() + '/'
 
 learn_from_source = False
@@ -204,7 +211,20 @@ experiments = [
             #{'id': '7', 'source':'yeast', 'target':'twitter', 'predicate':'proteinclass', 'to_predicate':'accounttype', 'arity': 2},
             #{'id': '8', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass', 'arity': 2},
             #{'id': '9', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector', 'arity': 2},
-            {'id': '10', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport', 'arity': 2},
+            #{'id': '10', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport', 'arity': 2},
+            {'id': '13', 'source': 'twitter', 'target': 'cora', 'predicate':'accounttype', 'to_predicate':'samevenue', 'arity': 2},
+            {'id': '14', 'source': 'cora', 'target': 'twitter', 'predicate':'samevenue', 'to_predicate':'accounttype', 'arity': 2},
+            {'id': '34', 'source': 'imdb', 'target': 'twitter', 'predicate': 'workedunder', 'to_predicate': 'accounttype', 'arity': 2},
+            {'id': '35', 'source': 'cora', 'target': 'uwcse', 'predicate': 'samevenue', 'to_predicate': 'advisedby', 'arity': 2},
+            {'id': '36', 'source': 'uwcse', 'target': 'imdb', 'predicate': 'advisedby', 'to_predicate': 'workedunder', 'arity': 2},
+            {'id': '37', 'source': 'uwcse', 'target': 'twitter', 'predicate': 'advisedby', 'to_predicate': 'accounttype', 'arity': 2},
+            {'id': '38', 'source': 'uwcse', 'target': 'cora', 'predicate': 'advisedby', 'to_predicate': 'samevenue', 'arity': 2},
+            {'id': '39', 'source': 'twitter', 'target': 'uwcse', 'predicate': 'accounttype', 'to_predicate': 'advisedby', 'arity': 2},
+            {'id': '40', 'source': 'twitter', 'target': 'imdb', 'predicate': 'accounttype', 'to_predicate': 'workedunder', 'arity': 2},
+            #{'id': '11', 'source': 'yeast', 'target': 'cora', 'predicate': 'proteinclass', 'to_predicate': 'samevenue', 'arity': 2},
+            #{'id': '12', 'source': 'cora', 'target': 'yeast', 'predicate': 'samevenue', 'to_predicate': 'proteinclass', 'arity': 2},
+            #{'id': '13', 'source': 'twitter', 'target': 'cora', 'predicate': 'accounttype', 'to_predicate': 'samevenue', 'arity': 2},
+            #{'id': '14', 'source': 'cora', 'target': 'twitter', 'predicate': 'samevenue', 'to_predicate': 'accounttype', 'arity': 2},
             #{'id': '11', 'source':'uwcse', 'target':'webkb', 'predicate':'advisedby', 'to_predicate':'departmentof', 'arity':2},
             #{'id': '12', 'source':'webkb', 'target':'yeast', 'predicate':'departmentof', 'to_predicate':'proteinclass', 'arity':2},
             #{'id': '13', 'source': 'yago2s', 'target': 'yeast', 'predicate': 'wasbornin', 'to_predicate': 'proteinclass', 'arity': 2},
@@ -214,6 +234,7 @@ experiments = [
             #{'id': '48', 'source':'twitter', 'target':'facebook', 'predicate':'follows', 'to_predicate':'edge', 'arity': 2},
             #{'id': '49', 'source':'imdb', 'target':'facebook', 'predicate':'workedunder', 'to_predicate':'edge','arity': 2},
             #{'id': '50', 'source':'uwcse', 'target':'facebook', 'predicate':'advisedby', 'to_predicate':'edge', 'arity': 2},
+            {'id': }
             ]
 
 bk = {
@@ -674,7 +695,38 @@ bk = {
 #else:
 #    results = { 'save': { }}
 #    firstRun = True
+
+def call_process(cmd):
+    '''Create a subprocess and wait for it to finish. Error out if errors occur.'''
+    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
+    pid = p.pid
+
+    (output, err) = p.communicate()  
+
+    #This makes the wait possible
+    p_status = p.wait()
+
+def train_and_test(background, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None):
+    '''
+        Train RDN-B using transfer learning
+    '''
+    import time
+    start = time.time()
+    model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=None, transfer=None, trees=10)
+    learning_time = time.time() - start
+
+    will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(10)]
+    for w in will:
+        print_function(w)
+
+    # Test transfered model
+    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=10)
+    inference_time = results.get_testing_time()
     
+    print_function('Inference time using transfer learning {}'.format(inference_time))
+
+    return model, results.summarize_results(), learning_time, inference_time    
+
 results = {}
 for experiment in experiments:
     
@@ -714,6 +766,8 @@ for experiment in experiments:
     target = experiment['target']
     predicate = experiment['predicate']
     to_predicate = experiment['to_predicate']
+
+    os.mkdir('CLLs/' + target)
     
     experiment_title = experiment['id'] + '_' + experiment['source'] + '_' + experiment['target']
     
@@ -723,15 +777,16 @@ for experiment in experiments:
     if(not learn_from_source):
         print_function('Loading pre-trained trees.')
 
-        #from shutil import copyfile
-        #copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
-        #nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
+        from shutil import copyfile
+        copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
+        nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
         #sources_dict =  utils.match_bk_source(set(bk[source]))
         #nodes = [sources_dict[node] for node in utils.sweep_tree(nodes) if node != predicate]
-        #source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+        source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
     
     start = time.time()
 
+    n_runs = 1
     while results['save']['n_runs'] < n_runs:
         print('Run: ' + str(results['save']['n_runs'] + 1))
         
@@ -802,26 +857,31 @@ for experiment in experiments:
             print_function('Target test neg examples: %s\n' % len(tar_test_neg))
 
             # generate transfer file
-            #transferred_structured = source_structured
-            #tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
+            transferred_structured = source_structured
+            tr_file = transfer.get_transfer_file(bk[source], bk[target], predicate, to_predicate, searchArgPermutation=True, allowSameTargetMap=False)
             new_target = to_predicate
 
             # transfer and revision theory
             background = boostsrl.modes(bk[target], [to_predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-            #[model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
+            [model, t_results, structured, pl_t_results] = revision.theory_revision(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, transferred_structured, transfer=tr_file, trees=trees, max_revision_iterations=1, print_function=print_function)
 
-            #t_results['parameter'] = pl_t_results
-            #ob_save['transfer'] = t_results
-            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            t_results['parameter'] = pl_t_results
+            ob_save['transfer'] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Transfer (trRDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
+
+            # learning from scratch (RDN-B)
+            #[model, t_results, learning_time, inference_time] = train_and_test(background, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts)
+            #ob_save['rdn_b'] = t_results
+            #ob_save['rdn_b']['Learning time'] = learning_time
+            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
             #print_function(t_results)
             #print_function('\n')
 
-            # learning from scratch (RDN-B)
-            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
-            ob_save['rdn_b'] = t_results
-            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            print_function(t_results)
-            print_function('\n')
+            #if os.path.isfile('boostsrl/test/AUC/aucTemp.txt'):                
+            #  CALL = f'''mv boostsrl/test/AUC/aucTemp.txt CLLs/{target}/aucTemp_{i+1}'''
+            #  call_process(CALL)
 
             # learning from scratch (RDN)
             #background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
