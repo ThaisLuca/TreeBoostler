@@ -767,7 +767,7 @@ for experiment in experiments:
     predicate = experiment['predicate']
     to_predicate = experiment['to_predicate']
 
-    os.mkdir('CLLs/' + target)
+    #os.mkdir('CLLs/' + target)
     
     experiment_title = experiment['id'] + '_' + experiment['source'] + '_' + experiment['target']
     
