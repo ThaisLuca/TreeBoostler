@@ -1,0 +1,2436 @@
+Starting experiment #1 for 39_twitter_uwcse
+
+Loading pre-trained trees.
+Starting fold 1
+
+Target train facts examples: 708
+Target train pos examples: 35
+Target train neg examples: 1814
+
+Target test facts examples: 1679
+Target test pos  examples: 78
+Target test neg examples: 2265
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(A, D).;false;false
+0;false;follows(A, E), recursion_accounttype(E, B).;true;true
+0;false,true;follows(A, F), follows(F, A).;false;true
+0;false,true,false;follows(A, G), follows(G, E).;false;false
+0;false,false;follows(H, A).;true;true
+0;false,false,true;follows(I, H), follows(I, A).;false;false
+0;false,false,false;follows(A, J), follows(J, K).;false;false
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;true;follows(A, C), tweets(A, D).;false;false
+1;false;follows(A, E), recursion_accounttype(E, B).;true;true
+1;false,true;tweets(A, F), tweets(E, F).;false;true
+1;false,true,false;follows(G, A), follows(E, H).;false;false
+1;false,false;follows(I, A).;true;true
+1;false,false,true;follows(I, J), recursion_accounttype(J, B).;false;false
+1;false,false,false;tweets(A, K).;false;false
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;true;follows(C, D), follows(D, A).;false;false
+2;false;follows(E, A).;true;true
+2;false,true;follows(F, E), follows(F, A).;false;true
+2;false,true,false;follows(E, G), recursion_accounttype(G, B).;false;false
+2;false,false;follows(A, H), follows(H, I).;true;true
+2;false,false,true;recursion_accounttype(I, B).;false;false
+2;false,false,false;follows(A, J).;false;false
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;tweets(A, D), tweets(C, D).;false;false
+3;false;follows(E, A).;true;true
+3;false,true;follows(F, E), recursion_accounttype(F, B).;true;false
+3;false,true,true;follows(A, G), recursion_accounttype(G, B).;false;false
+3;false,false;follows(A, H), recursion_accounttype(H, B).;true;true
+3;false,false,true;follows(A, I), follows(I, H).;false;false
+3;false,false,false;tweets(A, J), follows(A, K).;false;false
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, D), follows(D, C).;true;false
+4;true,true;follows(D, A).;false;true
+4;true,true,false;tweets(A, E).;false;false
+4;false;follows(F, A).;false;true
+4;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+4;false,false,true;follows(G, H), follows(H, G).;false;false
+4;false,false,false;follows(A, I), follows(I, J).;false;false
+5;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+5;true;follows(D, A), tweets(D, E).;true;true
+5;true,true;recursion_accounttype(D, B).;false;false
+5;true,false;follows(C, F), follows(F, C).;true;false
+5;true,false,true;tweets(C, G), recursion_accounttype(F, B).;false;false
+5;false;follows(A, H), follows(H, A).;false;true
+5;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+5;false,false,false;tweets(A, J), follows(K, A).;false;false
+6;;accounttype(A, B) :- follows(A, C).;true;true
+6;true;follows(D, C), recursion_accounttype(D, B).;true;false
+6;true,true;recursion_accounttype(C, B).;true;true
+6;true,true,true;follows(E, A), follows(E, D).;false;false
+6;true,true,false;follows(F, A), recursion_accounttype(F, B).;false;false
+6;false;follows(G, A), recursion_accounttype(G, B).;false;true
+6;false,false;follows(H, A).;false;true
+6;false,false,false;tweets(A, I).;false;false
+7;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+7;true;tweets(C, D), follows(A, C).;false;false
+7;false;follows(E, A).;true;true
+7;false,true;follows(E, F), recursion_accounttype(F, B).;true;false
+7;false,true,true;follows(F, E), follows(A, F).;false;false
+7;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+7;false,false,true;tweets(A, H).;false;false
+7;false,false,false;follows(A, I).;false;false
+8;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+8;true;follows(C, D), recursion_accounttype(D, B).;false;true
+8;true,false;follows(A, E), follows(E, A).;false;false
+8;false;follows(F, A), follows(A, G).;true;true
+8;false,true;follows(G, A), follows(G, F).;false;true
+8;false,true,false;follows(H, F), recursion_accounttype(H, B).;false;false
+8;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+8;false,false,false;follows(J, A).;false;false
+9;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+9;true;follows(C, D).;true;false
+9;true,true;follows(A, D).;true;true
+9;true,true,true;follows(E, A), recursion_accounttype(E, B).;false;false
+9;true,true,false;tweets(C, F), follows(D, C).;false;false
+9;false;follows(A, G), follows(H, A).;false;true
+9;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+9;false,false,false;follows(J, A).;false;false
+
+
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then if ( ta(D, A, E) )
+%   | | then return 0.6581489350995122;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else return 0.8581489350995122;  // std dev = 0.000, 10.000 (wgt'ed) examples reached here.  /* #pos=10 */
+%   | else if ( tempadvisedby(F, B), publication(G, F) )
+%   | | then if ( publication(G, B) )
+%   | | | then return 0.10814893509951219;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | | else return -0.14185106490048777;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | | then return 0.2581489350995122;  // std dev = 1.095, 5.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=2 */
+%   | | | else return 0.5781489350995124;  // std dev = 2.245, 25.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=18 */
+%   else return -0.14185106490048768;  // std dev = 6.32e-08, 73.000 (wgt'ed) examples reached here.  /* #neg=73 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.7304865328997829;  // std dev = 0.065, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else if ( publication(D, B), tempadvisedby(E, B) )
+%   | | then if ( publication(F, A) )
+%   | | | then return -0.20707305516400226;  // std dev = 0.056, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | | else return 0.37473248879542936;  // std dev = 1.454, 9.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=5 */
+%   | | else if ( publication(G, A), publication(H, B) )
+%   | | | then return 0.27238913840392565;  // std dev = 1.000, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return 0.7057224717372589;  // std dev = 0.966, 15.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=14 */
+%   else return -0.12544463852839158;  // std dev = 0.000, 62.000 (wgt'ed) examples reached here.  /* #neg=62 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), tempadvisedby(D, B) )
+%   | then if ( ta(E, D, F), publication(G, A) )
+%   | | then if ( publication(C, A) )
+%   | | | then return 0.5587415021627511;  // std dev = 0.046, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | | else return -0.1481829493246978;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else if ( publication(C, A) )
+%   | | | then return 0.5819071276777678;  // std dev = 0.053, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.7427748382089423;  // std dev = 0.081, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( publication(H, A) )
+%   | | then if ( publication(H, I), tempadvisedby(I, J) )
+%   | | | then return 0.4402296297446263;  // std dev = 0.941, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return -0.01701372959166107;  // std dev = 1.389, 9.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=3 */
+%   | | else if ( ta(K, A, L) )
+%   | | | then return 0.1262420572178442;  // std dev = 1.000, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return 0.4262420572178442;  // std dev = 1.265, 10.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=8 */
+%   else return -0.11231637819360633;  // std dev = 2.98e-08, 58.000 (wgt'ed) examples reached here.  /* #neg=58 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then if ( ta(D, A, E) )
+%   | | then return 0.2882221626175876;  // std dev = 0.763, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else if ( tempadvisedby(F, B), ta(G, F, H) )
+%   | | | then return 0.4140186431706302;  // std dev = 2.11e-08, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | | else return 0.45788917784904;  // std dev = 0.121, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | else if ( ta(I, A, J) )
+%   | | then return 0.4489480121381136;  // std dev = 0.609, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else if ( tempadvisedby(K, B), ta(L, K, M) )
+%   | | | then return -0.015507524115852619;  // std dev = 1.077, 7.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=2 */
+%   | | | else return 0.16055630872103868;  // std dev = 2.412, 25.000 (wgt'ed) examples reached here.  /* #neg=10 #pos=15 */
+%   else return -0.10159632948783631;  // std dev = 0.000, 61.000 (wgt'ed) examples reached here.  /* #neg=61 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B) )
+%   | then if ( publication(D, C) )
+%   | | then if ( publication(E, A) )
+%   | | | then return 0.34308725361843717;  // std dev = 0.102, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | | else return -0.0325249138441018;  // std dev = 0.780, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else if ( publication(F, A) )
+%   | | | then return 0.2893189384817041;  // std dev = 0.764, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | | | else return 0.5197524320991168;  // std dev = 0.148, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | else if ( publication(G, B) )
+%   | | then if ( publication(G, H), tempadvisedby(I, H) )
+%   | | | then return 0.38297214151609327;  // std dev = 0.950, 8.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=7 */
+%   | | | else return -0.3455389935294617;  // std dev = 0.943, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+%   | | else return 0.5189211715337972;  // std dev = 0.090, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   else return -0.09269127618926103;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #neg=63 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( publication(C, B), publication(C, A) )
+%   then if ( student(A), tempadvisedby(D, B) )
+%   | then if ( ta(E, A, F) )
+%   | | then return 0.3137752639810978;  // std dev = 0.010, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.25065294759940865;  // std dev = 0.021, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else return -0.11445244184081718;  // std dev = 0.725, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+%   else if ( professor(B), student(A) )
+%   | then if ( tempadvisedby(G, B), publication(H, G) )
+%   | | then return -0.20121828634472058;  // std dev = 0.893, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+%   | | else if ( projectmember(I, B) )
+%   | | | then return 0.3779767467908902;  // std dev = 0.060, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return -0.018629074869440713;  // std dev = 2.635, 31.000 (wgt'ed) examples reached here.  /* #neg=15 #pos=16 */
+%   | else return -0.08518475138839679;  // std dev = 1.29e-08, 57.000 (wgt'ed) examples reached here.  /* #neg=57 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( publication(C, B), publication(C, A) )
+%   then if ( tempadvisedby(D, B) )
+%   | then if ( ta(E, A, F) )
+%   | | then return 0.2504389853112055;  // std dev = 0.008, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.2065702288907295;  // std dev = 0.018, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else return 0.07488200838615346;  // std dev = 0.371, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   else if ( publication(G, A) )
+%   | then if ( professor(B), student(A) )
+%   | | then if ( publication(G, H), tempadvisedby(I, H) )
+%   | | | then return -0.18776340155473423;  // std dev = 1.672, 17.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=5 */
+%   | | | else return 0.06919128067904307;  // std dev = 0.675, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else return -0.07877675473109176;  // std dev = 0.000, 32.000 (wgt'ed) examples reached here.  /* #neg=32 */
+%   | else if ( tempadvisedby(J, B), ta(K, J, L) )
+%   | | then return -0.15740985848948721;  // std dev = 1.145, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | | else if ( tempadvisedby(M, B), publication(N, B) )
+%   | | | then return 0.3265013055185136;  // std dev = 0.525, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return -0.029748720775113077;  // std dev = 1.863, 31.000 (wgt'ed) examples reached here.  /* #neg=21 #pos=10 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then if ( tempadvisedby(D, B), publication(E, D) )
+%   | | then if ( ta(F, A, G) )
+%   | | | then return 0.2045152480197349;  // std dev = 0.003, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return 0.1715221296583581;  // std dev = 0.008, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | | then return 0.18124462283139142;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return 0.026185274207511267;  // std dev = 0.781, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else if ( publication(K, B) )
+%   | | then if ( publication(L, A), tempadvisedby(M, B) )
+%   | | | then return -0.2883312758591898;  // std dev = 0.235, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | | else return -0.00791873298169348;  // std dev = 2.343, 24.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=12 */
+%   | | else if ( tempadvisedby(N, B) )
+%   | | | then return 0.21666259133670557;  // std dev = 0.808, 7.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=6 */
+%   | | | else return 0.013932029527721213;  // std dev = 1.112, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   else return -0.07454778220395633;  // std dev = 0.011, 47.000 (wgt'ed) examples reached here.  /* #neg=47 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( publication(C, B), professor(B) )
+%   then if ( student(A) )
+%   | then if ( publication(C, A), ta(D, A, E) )
+%   | | then return 0.18187160723589899;  // std dev = 0.030, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( publication(C, F), tempadvisedby(G, F) )
+%   | | | then return 0.06671120039217439;  // std dev = 2.204, 31.000 (wgt'ed) examples reached here.  /* #neg=10 #pos=21 */
+%   | | | else return -0.06188829194387524;  // std dev = 0.872, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else return -0.07165775366341255;  // std dev = 0.018, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   else if ( tempadvisedby(H, B), student(A) )
+%   | then if ( projectmember(I, B), publication(J, A) )
+%   | | then return 0.0606555781254641;  // std dev = 0.812, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | else if ( inphase(A, K), inphase(H, K) )
+%   | | | then return -0.3733663746676161;  // std dev = 0.751, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | | else return -0.15046449575896237;  // std dev = 0.962, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | else if ( publication(L, A) )
+%   | | then return -0.09740139414503193;  // std dev = 0.182, 32.000 (wgt'ed) examples reached here.  /* #neg=31 #pos=1 */
+%   | | else return -0.01700714605877409;  // std dev = 0.144, 16.000 (wgt'ed) examples reached here.  /* #neg=14 #pos=2 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), ta(D, C, E) )
+%   | then if ( ta(D, F, G), publication(H, F) )
+%   | | then return 0.14467475715336237;  // std dev = 0.009, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | else return 0.3886586226126439;  // std dev = 0.296, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | else if ( projectmember(I, B) )
+%   | | then return 0.29012870505794786;  // std dev = 0.054, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( publication(J, B), publication(K, A) )
+%   | | | then return 0.1887676277055654;  // std dev = 0.873, 10.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=8 */
+%   | | | else return -0.014794509011625616;  // std dev = 2.310, 22.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=13 */
+%   else return -0.06659196259869192;  // std dev = 0.037, 65.000 (wgt'ed) examples reached here.  /* #neg=65 */
+
+
+Results
+   AUC ROC   = 0.952094
+   AUC PR    = 0.372018
+   CLL	      = -0.205383
+   Precision = 0.25 at threshold = 0.5
+   Recall    = 0.871795
+   F1        = 0.388571
+
+
+Total learning time: 7.699486970901489 seconds
+Total inference time: 1.113 seconds
+AUC ROC: 0.952094
+
+
+Results scoring model
+   AUC ROC   = 0.965664
+   AUC PR    = 0.377322
+   CLL	      = -0.197698
+   Precision = 0.151961 at threshold = 0.5
+   Recall    = 0.885714
+   F1        = 0.259414
+
+
+Total scoring time: 1.042 seconds
+Parameter learned model CLL: -0.197698
+
+
+Structure after Parameter Learning
+[['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, A), publication(C, B)', 'true,true': 'ta(D, A, E)', 'true,false': 'tempadvisedby(F, B), publication(G, F)', 'true,false,true': 'publication(G, B)', 'true,false,false': 'tempadvisedby(H, B), ta(I, H, J)'}, {'true,true,true': [0.894, 1, 4], 'true,true,false': [0.0, 0, 10], 'true,false,true,true': [0.866, 3, 1], 'true,false,true,false': [0.0, 3, 0], 'true,false,false,true': [1.095, 3, 2], 'true,false,false,false': [2.245, 7, 18], 'false': [6.32e-08, 73, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B), publication(C, A)', 'true,false': 'publication(D, B), tempadvisedby(E, B)', 'true,false,true': 'publication(F, A)', 'true,false,false': 'publication(G, A), publication(H, B)'}, {'true,true': [0.065, 0, 14], 'true,false,true,true': [0.056, 5, 0], 'true,false,true,false': [1.454, 4, 5], 'true,false,false,true': [1.0, 2, 2], 'true,false,false,false': [0.966, 1, 14], 'false': [0.0, 62, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B), tempadvisedby(D, B)', 'true,true': 'ta(E, D, F), publication(G, A)', 'true,true,true': 'publication(C, A)', 'true,true,false': 'publication(C, A)', 'true,false': 'publication(H, A)', 'true,false,true': 'publication(H, I), tempadvisedby(I, J)', 'true,false,false': 'ta(K, A, L)'}, {'true,true,true,true': [0.046, 0, 8], 'true,true,true,false': [0.0, 3, 0], 'true,true,false,true': [0.053, 0, 5], 'true,true,false,false': [0.081, 0, 5], 'true,false,true,true': [0.941, 1, 4], 'true,false,true,false': [1.389, 6, 3], 'true,false,false,true': [1.0, 2, 2], 'true,false,false,false': [1.265, 2, 8], 'false': [2.98e-08, 58, 0]}], ['advisedby(A, B)', {'': 'student(A), professor(B)', 'true': 'publication(C, B), publication(C, A)', 'true,true': 'ta(D, A, E)', 'true,true,false': 'tempadvisedby(F, B), ta(G, F, H)', 'true,false': 'ta(I, A, J)', 'true,false,false': 'tempadvisedby(K, B), ta(L, K, M)'}, {'true,true,true': [0.763, 1, 4], 'true,true,false,true': [2.11e-08, 0, 7], 'true,true,false,false': [0.121, 0, 3], 'true,false,true': [0.609, 1, 4], 'true,false,false,true': [1.077, 5, 2], 'true,false,false,false': [2.412, 10, 15], 'false': [0.0, 61, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'tempadvisedby(C, B)', 'true,true': 'publication(D, C)', 'true,true,true': 'publication(E, A)', 'true,true,false': 'publication(F, A)', 'true,false': 'publication(G, B)', 'true,false,true': 'publication(G, H), tempadvisedby(I, H)'}, {'true,true,true,true': [0.102, 0, 8], 'true,true,true,false': [0.78, 2, 1], 'true,true,false,true': [0.764, 1, 8], 'true,true,false,false': [0.148, 0, 7], 'true,false,true,true': [0.95, 1, 7], 'true,false,true,false': [0.943, 5, 1], 'true,false,false': [0.09, 0, 3], 'false': [0.0, 63, 0]}], ['advisedby(A, B)', {'': 'publication(C, B), publication(C, A)', 'true': 'student(A), tempadvisedby(D, B)', 'true,true': 'ta(E, A, F)', 'false': 'professor(B), student(A)', 'false,true': 'tempadvisedby(G, B), publication(H, G)', 'false,true,false': 'projectmember(I, B)'}, {'true,true,true': [0.01, 0, 4], 'true,true,false': [0.021, 0, 9], 'true,false': [0.725, 4, 1], 'false,true,true': [0.893, 5, 1], 'false,true,false,true': [0.06, 0, 4], 'false,true,false,false': [2.635, 15, 16], 'false,false': [1.29e-08, 57, 0]}], ['advisedby(A, B)', {'': 'publication(C, B), publication(C, A)', 'true': 'tempadvisedby(D, B)', 'true,true': 'ta(E, A, F)', 'false': 'publication(G, A)', 'false,true': 'professor(B), student(A)', 'false,true,true': 'publication(G, H), tempadvisedby(I, H)', 'false,false': 'tempadvisedby(J, B), ta(K, J, L)', 'false,false,false': 'tempadvisedby(M, B), publication(N, B)'}, {'true,true,true': [0.008, 0, 4], 'true,true,false': [0.018, 0, 9], 'true,false': [0.371, 2, 1], 'false,true,true,true': [1.672, 12, 5], 'false,true,true,false': [0.675, 2, 1], 'false,true,false': [0.0, 32, 0], 'false,false,true': [1.145, 4, 2], 'false,false,false,true': [0.525, 1, 3], 'false,false,false,false': [1.863, 21, 10]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B), publication(C, A)', 'true,true': 'tempadvisedby(D, B), publication(E, D)', 'true,true,true': 'ta(F, A, G)', 'true,true,false': 'tempadvisedby(H, B), ta(I, H, J)', 'true,false': 'publication(K, B)', 'true,false,true': 'publication(L, A), tempadvisedby(M, B)', 'true,false,false': 'tempadvisedby(N, B)'}, {'true,true,true,true': [0.003, 0, 3], 'true,true,true,false': [0.008, 0, 5], 'true,true,false,true': [0.0, 0, 3], 'true,true,false,false': [0.781, 1, 3], 'true,false,true,true': [0.235, 5, 0], 'true,false,true,false': [2.343, 12, 12], 'true,false,false,true': [0.808, 1, 6], 'true,false,false,false': [1.112, 2, 3], 'false': [0.011, 47, 0]}], ['advisedby(A, B)', {'': 'publication(C, B), professor(B)', 'true': 'student(A)', 'true,true': 'publication(C, A), ta(D, A, E)', 'true,true,false': 'publication(C, F), tempadvisedby(G, F)', 'false': 'tempadvisedby(H, B), student(A)', 'false,true': 'projectmember(I, B), publication(J, A)', 'false,true,false': 'inphase(A, K), inphase(H, K)', 'false,false': 'publication(L, A)'}, {'true,true,true': [0.03, 0, 4], 'true,true,false,true': [2.204, 10, 21], 'true,true,false,false': [0.872, 2, 1], 'true,false': [0.018, 5, 0], 'false,true,true': [0.812, 1, 3], 'false,true,false,true': [0.751, 2, 1], 'false,true,false,false': [0.962, 2, 2], 'false,false,true': [0.182, 31, 1], 'false,false,false': [0.144, 14, 2]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'tempadvisedby(C, B), ta(D, C, E)', 'true,true': 'ta(D, F, G), publication(H, F)', 'true,false': 'projectmember(I, B)', 'true,false,false': 'publication(J, B), publication(K, A)'}, {'true,true,true': [0.009, 0, 7], 'true,true,false': [0.296, 0, 3], 'true,false,true': [0.054, 0, 4], 'true,false,false,true': [0.873, 2, 8], 'true,false,false,false': [2.31, 9, 13], 'false': [0.037, 65, 0]}]]
+[{'': [0.22004437869822666, 5.475072450206251e-17], 'true': [0.06222222222222188, 0.2454346238130019], 'true,false': [0.12244897959183677, 0.22222222222222215], 'true,false,false': [0.24000000000000005, 0.2015999999999999], 'true,false,true': [0.18750000000000003, 0.0], 'true,true': [0.15999999999999986, -8.881784197001253e-17]}, {'': [0.17598639624855947, -3.581364595565021e-17], 'true': [0.00030322206826686023, 0.22265229058943906], 'true,false': [0.22904751146587413, 0.13296398891966763], 'true,false,true': [0.0006327022395618886, 0.23505259520916777], 'true,false,false': [0.25000000000000006, 0.06222222222222248]}, {'': [0.1850986278697255, 1.5313421029312504e-17], 'true': [0.07746257622729884, 0.23602882610948736], 'true,false': [0.24911137223508995, 0.2040816326530613], 'true,false,true': [0.17724954404126725, 0.21436622095728522], 'true,false,false': [0.25, 0.15999999999999995], 'true,true': [0.09931161374613601, 0.007411331199691684], 'true,true,true': [0.00026014705252863646, -4.625929269271485e-18], 'true,true,false': [0.0005708369609771947, 0.0013126152926353108]}, {'': [0.1757235514638421, -5.4601132358614255e-18], 'true': [0.044385337550683225, 0.21567903187809323], 'true,false': [0.07422002636736194, 0.22334047243255886], 'true,false,false': [0.16575797699498934, 0.23268265513531206], 'true,true': [0.116537016724207, 0.0018730893038500396], 'true,true,false': [6.344131569286608e-17, 0.004896394343754958]}, {'': [0.14404512035559494, -2.114710523095536e-17], 'true': [0.06991778001676693, 0.24202941827563637], 'true,false': [0.2578744198949769, 0.002676377967936886], 'true,false,true': [0.11272890004975644, 0.14812836603982527], 'true,true': [0.0842500298480142, 0.050960403698487255], 'true,true,true': [0.0012943564702315308, 0.20285824951295728], 'true,true,false': [0.06492853361997024, 0.0031328573370648094]}, {'': [0.05954571293374708, 0.08894650849741234], 'false': [0.20901707575074485, 2.921639538487254e-18], 'false,true': [0.13285262260162342, 0.2144720562213644], 'false,true,false': [0.0009097199227237895, 0.2240517806800983], 'true': [0.0008897051177956847, 0.10526246751321647], 'true,true': [2.2691843038713522e-05, 4.906686628567167e-05]}, {'': [0.0121836569789062, 0.10033177951601206], 'false': [0.06696754827121426, 0.13789468064078664], 'false,false': [0.21869131922406607, 0.11989500623026658], 'false,false,false': [0.06898897838134829, 0.11195905952594082], 'false,true': [0.17106191543044016, -1.734723475976807e-18], 'false,true,true': [0.1645363741503394, 0.15191813027076223], 'true': [0.000441096670227873, 0.04594134748648621], 'true,true': [1.7277383340411068e-05, 3.7316862386023906e-05]}, {'': [0.16224037341043002, 2.7293014375183413e-06], 'true': [0.04566480693234589, 0.19945718744187718], 'true,false': [0.2023399922367685, 0.16736924126081457], 'true,false,true': [0.011005610246639009, 0.22864421936924825], 'true,false,false': [0.09322378237005298, 0.24719806997123875], 'true,true': [0.0002651515084774875, 0.09310878128905922], 'true,true,false': [0.0, 0.15263605228628419], 'true,true,true': [3.1706826174778455e-06, 1.4135306790558077e-05]}, {'': [0.13510925188116915, 0.06733326469587962], 'true': [0.15058850551012812, 6.213109983732868e-05], 'true,true': [0.00022524015448466272, 0.16659365643052845], 'true,true,false': [0.1567173844740436, 0.2535698574621921], 'false': [0.22472511761462635, 0.030503458652815788], 'false,true': [0.1647711638946464, 0.22479037954815384], 'false,true,false': [0.18781592601588795, 0.2312275421454926], 'false,false': [0.03319516200493352, 0.020811228531677207]}, {'': [0.15142641194822853, 2.148960842789286e-05], 'true': [0.021246775508419934, 0.18318917384073505], 'true,false': [0.0007305826045762853, 0.19952643791556113], 'true,false,false': [0.07619073832357504, 0.24263888720301072], 'true,true': [1.1659246093238223e-05, 0.029125691497398538]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;advisedby(A, B) :- professor(B), student(A).;true;true
+0;true;publication(C, A), publication(C, B).;true;true
+0;true,true;ta(D, A, E).;true;true
+0;true,false;tempadvisedby(F, B), publication(G, F).;true;true
+0;true,false,true;publication(G, B).;true;true
+1;;advisedby(A, B) :- professor(B), student(A).;true;true
+1;true;publication(C, B), publication(C, A).;true;true
+1;true,false;publication(D, B), tempadvisedby(E, B).;true;true
+1;true,false,true;publication(F, A).;true;true
+2;;advisedby(A, B) :- professor(B), student(A).;true;true
+2;true;publication(C, B), tempadvisedby(D, B).;true;true
+2;true,true;ta(E, D, F), publication(G, A).;true;true
+2;true,true,true;publication(C, A).;true;true
+2;true,true,false;publication(C, A).;true;true
+3;;advisedby(A, B) :- student(A), professor(B).;true;true
+3;true;publication(C, B), publication(C, A).;true;true
+3;true,true;ta(D, A, E).;true;true
+3;true,true,false;tempadvisedby(F, B), ta(G, F, H).;true;true
+4;;advisedby(A, B) :- professor(B), student(A).;true;true
+4;true;tempadvisedby(C, B).;true;true
+4;true,true;publication(D, C).;true;true
+4;true,true,true;publication(E, A).;true;true
+5;;advisedby(A, B) :- publication(C, B), publication(C, A).;true;true
+5;true;student(A), tempadvisedby(D, B).;true;true
+5;true,true;ta(E, A, F).;true;true
+5;false;professor(B), student(A).;true;true
+5;false,true;tempadvisedby(G, B), publication(H, G).;true;true
+5;false,true,false;projectmember(I, B).;true;true
+6;;advisedby(A, B) :- publication(C, B), publication(C, A).;true;true
+6;true;tempadvisedby(D, B).;true;true
+6;true,true;ta(E, A, F).;true;true
+6;false;publication(G, A).;true;true
+6;false,true;professor(B), student(A).;true;true
+7;;advisedby(A, B) :- professor(B), student(A).;true;true
+7;true;publication(C, B), publication(C, A).;true;true
+7;true,true;tempadvisedby(D, B), publication(E, D).;true;true
+7;true,true,true;ta(F, A, G).;true;true
+7;true,true,false;tempadvisedby(H, B), ta(I, H, J).;true;true
+8;;advisedby(A, B) :- publication(C, B), professor(B).;true;true
+8;true;student(A).;true;true
+8;true,true;publication(C, A), ta(D, A, E).;true;true
+9;;advisedby(A, B) :- professor(B), student(A).;true;true
+9;true;tempadvisedby(C, B), ta(D, C, E).;true;true
+9;true,true;ta(D, F, G), publication(H, F).;true;true
+9;true,false;projectmember(I, B).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.8581489350995123;  // std dev = 0.000, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else if ( publication(D, A) )
+%   | | then if ( projectmember(E, B) )
+%   | | | then return 0.6081489350995122;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return 0.15814893509951225;  // std dev = 1.449, 10.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=3 */
+%   | | else if ( tempadvisedby(F, B), publication(G, F) )
+%   | | | then return 0.19148226843284552;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | | else return 0.7914822684328456;  // std dev = 0.966, 15.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=14 */
+%   else return -0.14185106490048768;  // std dev = 4.94e-08, 54.000 (wgt'ed) examples reached here.  /* #neg=54 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.7194734122109542;  // std dev = 5.16e-08, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else if ( tempadvisedby(D, B), ta(E, D, F) )
+%   | | then return 0.11782811683854266;  // std dev = 1.069, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | | else if ( tempadvisedby(G, B) )
+%   | | | then return 0.5820845298803937;  // std dev = 1.224, 11.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=9 */
+%   | | | else return 0.35186428675587605;  // std dev = 2.042, 17.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=10 */
+%   else return -0.12544463852839155;  // std dev = 0.000, 52.000 (wgt'ed) examples reached here.  /* #neg=52 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.5553664367462846;  // std dev = 0.000, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else if ( projectmember(D, B) )
+%   | | then return 0.637171065061654;  // std dev = 0.037, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tempadvisedby(E, B), publication(F, E) )
+%   | | | then return 0.02743987520237412;  // std dev = 0.821, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | | else return 0.4187382345149603;  // std dev = 1.983, 22.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=16 */
+%   else return -0.11231637819360636;  // std dev = 2.11e-08, 65.000 (wgt'ed) examples reached here.  /* #neg=65 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.4175135841583098;  // std dev = 4.21e-08, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else if ( tempadvisedby(D, B), publication(E, B) )
+%   | | then if ( ta(F, A, G) )
+%   | | | then return -0.25554713608890306;  // std dev = 0.017, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | | else return 0.17248840956826075;  // std dev = 1.437, 9.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=5 */
+%   | | else if ( publication(H, B) )
+%   | | | then return 0.4888769239708044;  // std dev = 0.856, 8.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=7 */
+%   | | | else return 0.19091815247897984;  // std dev = 1.723, 14.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=9 */
+%   else return -0.10159632948783633;  // std dev = 0.000, 76.000 (wgt'ed) examples reached here.  /* #neg=76 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), publication(D, C) )
+%   | then if ( publication(E, A), publication(E, B) )
+%   | | then return 0.3207118471601497;  // std dev = 0.000, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else if ( publication(F, A) )
+%   | | | then return -0.2682947122375832;  // std dev = 0.071, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | | else return -0.03221943933684382;  // std dev = 0.844, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | else if ( tempadvisedby(G, B) )
+%   | | then if ( publication(H, A), publication(I, B) )
+%   | | | then return 0.23324234960267667;  // std dev = 0.479, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | | else return 0.4712875369476876;  // std dev = 0.170, 10.000 (wgt'ed) examples reached here.  /* #pos=10 */
+%   | | else if ( publication(J, A) )
+%   | | | then return 0.5433535607002368;  // std dev = 0.263, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.10091782080411398;  // std dev = 1.574, 11.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=7 */
+%   else return -0.09269127618926101;  // std dev = 0.000, 58.000 (wgt'ed) examples reached here.  /* #neg=58 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( tempadvisedby(C, B), publication(D, B) )
+%   then if ( publication(D, A) )
+%   | then return 0.26170191159627315;  // std dev = 0.030, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | else if ( publication(E, A) )
+%   | | then return -0.22326075117867325;  // std dev = 0.182, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else if ( ta(F, C, G) )
+%   | | | then return 0.12381589928577257;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.2742635213827579;  // std dev = 0.722, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   else if ( student(A), professor(B) )
+%   | then if ( ta(H, A, I) )
+%   | | then if ( tempadvisedby(J, B) )
+%   | | | then return 0.006022447485314479;  // std dev = 0.813, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return -0.23609215277827716;  // std dev = 1.128, 7.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=2 */
+%   | | else if ( tempadvisedby(K, B) )
+%   | | | then return -0.05196556993730152;  // std dev = 1.163, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | | else return 0.24180356975154071;  // std dev = 1.321, 11.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=9 */
+%   | else return -0.08518475138839682;  // std dev = 2.11e-08, 44.000 (wgt'ed) examples reached here.  /* #neg=44 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( publication(C, A), publication(C, B) )
+%   then if ( professor(B), student(A) )
+%   | then return 0.21171665463016137;  // std dev = 0.044, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else return -0.0860617917093856;  // std dev = 0.025, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   else if ( professor(B), ta(D, A, E) )
+%   | then return 0.23926115462694644;  // std dev = 0.806, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else if ( publication(F, A), professor(B) )
+%   | | then if ( professor(A) )
+%   | | | then return -0.07404907408065937;  // std dev = 0.012, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+%   | | | else return -0.2880595731030685;  // std dev = 1.636, 17.000 (wgt'ed) examples reached here.  /* #neg=13 #pos=4 */
+%   | | else if ( student(B) )
+%   | | | then return -0.07877675473109177;  // std dev = 0.000, 43.000 (wgt'ed) examples reached here.  /* #neg=43 */
+%   | | | else return 0.05172188767812687;  // std dev = 2.120, 20.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=13 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, A) )
+%   then if ( publication(D, B) )
+%   | then if ( publication(C, B), student(A) )
+%   | | then return 0.17855634579457616;  // std dev = 0.039, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | | else return -0.014067549891881623;  // std dev = 0.910, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | else return 0.413644869372361;  // std dev = 0.186, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else if ( professor(B), student(A) )
+%   | then if ( ta(E, A, F), tempadvisedby(G, B) )
+%   | | then return -0.23321319479369243;  // std dev = 0.688, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | | then return 0.1956959786782376;  // std dev = 0.535, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.04107613474402397;  // std dev = 2.018, 18.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=12 */
+%   | else return -0.07373980448249981;  // std dev = 0.026, 51.000 (wgt'ed) examples reached here.  /* #neg=51 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.15386641919303787;  // std dev = 0.034, 14.000 (wgt'ed) examples reached here.  /* #pos=14 */
+%   | else if ( projectmember(D, B) )
+%   | | then return 0.2820569986504425;  // std dev = 0.091, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( publication(E, A) )
+%   | | | then return -0.2263957734547052;  // std dev = 1.459, 15.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=3 */
+%   | | | else return 0.006375094001426399;  // std dev = 2.265, 22.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=14 */
+%   else return -0.07206963297840371;  // std dev = 0.070, 47.000 (wgt'ed) examples reached here.  /* #neg=47 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( publication(C, B), professor(B) )
+%   then if ( tempadvisedby(D, B) )
+%   | then if ( publication(E, A), student(A) )
+%   | | then return 0.08774348019856096;  // std dev = 0.126, 15.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=13 */
+%   | | else if ( publication(F, D) )
+%   | | | then return -0.11271432665723197;  // std dev = 0.843, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+%   | | | else return 0.0954105099171219;  // std dev = 0.873, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+%   | else if ( publication(C, G), tempadvisedby(G, H) )
+%   | | then return 0.379815706153061;  // std dev = 0.161, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.14199533964833252;  // std dev = 0.954, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   else if ( projectmember(I, B), student(A) )
+%   | then return -0.20395347133165748;  // std dev = 0.502, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | else if ( publication(J, A) )
+%   | | then return -0.08350969306175426;  // std dev = 0.148, 40.000 (wgt'ed) examples reached here.  /* #neg=39 #pos=1 */
+%   | | else if ( professor(B), student(A) )
+%   | | | then return 0.16115515114213522;  // std dev = 0.930, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return -0.06440325536715646;  // std dev = 0.008, 18.000 (wgt'ed) examples reached here.  /* #neg=18 */
+
+
+Results
+   AUC ROC   = 0.950323
+   AUC PR    = 0.439115
+   CLL	      = -0.204076
+   Precision = 0.197411 at threshold = 0.5
+   Recall    = 0.782051
+   F1        = 0.315245
+
+
+Total learning time: 5.488654851913452 seconds
+Total inference time: 1.038 seconds
+AUC ROC: 0.950323
+
+
+Results scoring model
+   AUC ROC   = 0.965743
+   AUC PR    = 0.317883
+   CLL	      = -0.211505
+   Precision = 0.146018 at threshold = 0.5
+   Recall    = 0.942857
+   F1        = 0.252874
+
+
+Total scoring time: 1.044 seconds
+Refined model CLL: -0.211505
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.952094
+   AUC PR    = 0.372018
+   CLL	      = -0.205383
+   Precision = 0.25 at threshold = 0.5
+   Recall    = 0.871795
+   F1        = 0.388571
+
+
+Total learning time: 15.274141822814942 seconds
+Total inference time: 1.113 seconds
+AUC ROC: 0.952094
+Total revision time: 15.274141822814942
+Best scored revision CLL: -0.197698
+
+
+Dataset: 39_twitter_uwcse, Fold: 1, Type: Transfer (trRDN-B), Time: 00:00:17
+{'AUC ROC': 0.952094, 'AUC PR': 0.372018, 'CLL': -0.205383, 'Precision': [0.25, 0.5], 'Recall': 0.871795, 'F1': 0.388571, 'Learning time': 15.274141822814942, 'Inference time': 1.113, 'parameter': {'AUC ROC': 0.952094, 'AUC PR': 0.372018, 'CLL': -0.205383, 'Precision': [0.25, 0.5], 'Recall': 0.871795, 'F1': 0.388571, 'Learning time': 7.699486970901489, 'Inference time': 1.113}}
+
+
+Starting fold 2
+
+Target train facts examples: 422
+Target train pos examples: 20
+Target train neg examples: 341
+
+Target test facts examples: 1965
+Target test pos  examples: 93
+Target test neg examples: 3738
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(A, D).;false;false
+0;false;follows(A, E), recursion_accounttype(E, B).;true;true
+0;false,true;follows(A, F), follows(F, A).;false;true
+0;false,true,false;follows(A, G), follows(G, E).;false;false
+0;false,false;follows(H, A).;true;true
+0;false,false,true;follows(I, H), follows(I, A).;false;false
+0;false,false,false;follows(A, J), follows(J, K).;false;false
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;true;follows(A, C), tweets(A, D).;false;false
+1;false;follows(A, E), recursion_accounttype(E, B).;true;true
+1;false,true;tweets(A, F), tweets(E, F).;false;true
+1;false,true,false;follows(G, A), follows(E, H).;false;false
+1;false,false;follows(I, A).;true;true
+1;false,false,true;follows(I, J), recursion_accounttype(J, B).;false;false
+1;false,false,false;tweets(A, K).;false;false
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;true;follows(C, D), follows(D, A).;false;false
+2;false;follows(E, A).;true;true
+2;false,true;follows(F, E), follows(F, A).;false;true
+2;false,true,false;follows(E, G), recursion_accounttype(G, B).;false;false
+2;false,false;follows(A, H), follows(H, I).;true;true
+2;false,false,true;recursion_accounttype(I, B).;false;false
+2;false,false,false;follows(A, J).;false;false
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;tweets(A, D), tweets(C, D).;false;false
+3;false;follows(E, A).;true;true
+3;false,true;follows(F, E), recursion_accounttype(F, B).;true;false
+3;false,true,true;follows(A, G), recursion_accounttype(G, B).;false;false
+3;false,false;follows(A, H), recursion_accounttype(H, B).;true;true
+3;false,false,true;follows(A, I), follows(I, H).;false;false
+3;false,false,false;tweets(A, J), follows(A, K).;false;false
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, D), follows(D, C).;true;false
+4;true,true;follows(D, A).;false;true
+4;true,true,false;tweets(A, E).;false;false
+4;false;follows(F, A).;false;true
+4;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+4;false,false,true;follows(G, H), follows(H, G).;false;false
+4;false,false,false;follows(A, I), follows(I, J).;false;false
+5;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+5;true;follows(D, A), tweets(D, E).;true;true
+5;true,true;recursion_accounttype(D, B).;false;false
+5;true,false;follows(C, F), follows(F, C).;true;false
+5;true,false,true;tweets(C, G), recursion_accounttype(F, B).;false;false
+5;false;follows(A, H), follows(H, A).;false;true
+5;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+5;false,false,false;tweets(A, J), follows(K, A).;false;false
+6;;accounttype(A, B) :- follows(A, C).;true;true
+6;true;follows(D, C), recursion_accounttype(D, B).;true;false
+6;true,true;recursion_accounttype(C, B).;true;true
+6;true,true,true;follows(E, A), follows(E, D).;false;false
+6;true,true,false;follows(F, A), recursion_accounttype(F, B).;false;false
+6;false;follows(G, A), recursion_accounttype(G, B).;false;true
+6;false,false;follows(H, A).;false;true
+6;false,false,false;tweets(A, I).;false;false
+7;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+7;true;tweets(C, D), follows(A, C).;false;false
+7;false;follows(E, A).;true;true
+7;false,true;follows(E, F), recursion_accounttype(F, B).;true;false
+7;false,true,true;follows(F, E), follows(A, F).;false;false
+7;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+7;false,false,true;tweets(A, H).;false;false
+7;false,false,false;follows(A, I).;false;false
+8;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+8;true;follows(C, D), recursion_accounttype(D, B).;false;true
+8;true,false;follows(A, E), follows(E, A).;false;false
+8;false;follows(F, A), follows(A, G).;true;true
+8;false,true;follows(G, A), follows(G, F).;false;true
+8;false,true,false;follows(H, F), recursion_accounttype(H, B).;false;false
+8;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+8;false,false,false;follows(J, A).;false;false
+9;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+9;true;follows(C, D).;true;false
+9;true,true;follows(A, D).;true;true
+9;true,true,true;follows(E, A), recursion_accounttype(E, B).;false;false
+9;true,true,false;tweets(C, F), follows(D, C).;false;false
+9;false;follows(A, G), follows(H, A).;false;true
+9;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+9;false,false,false;follows(J, A).;false;false
+
+
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.8581489350995123;  // std dev = 0.000, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else if ( publication(D, A) )
+%   | | then if ( publication(D, E), professor(E) )
+%   | | | then return -0.1418510649004878;  // std dev = 0.000, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | | | else return 0.5248156017661789;  // std dev = 1.155, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+%   | | else if ( ta(F, A, G) )
+%   | | | then return 0.8581489350995122;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.4581489350995122;  // std dev = 1.095, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   else return -0.14185106490048774;  // std dev = 2.11e-08, 32.000 (wgt'ed) examples reached here.  /* #neg=32 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, B) )
+%   | then if ( publication(C, D), tempadvisedby(D, B) )
+%   | | then return 0.28338752385885496;  // std dev = 1.137, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | else if ( publication(C, E), student(E) )
+%   | | | then return 0.7355347252953028;  // std dev = 0.106, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | | | else return 0.5393216632082884;  // std dev = 0.769, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else return 0.12521923775261948;  // std dev = 0.811, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   else return -0.12544463852839138;  // std dev = 0.000, 45.000 (wgt'ed) examples reached here.  /* #neg=45 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), publication(E, A) )
+%   | then return 0.6173411387963916;  // std dev = 0.126, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( ta(F, A, G), tempadvisedby(H, B) )
+%   | | then return 0.3402510454265488;  // std dev = 0.914, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | else if ( publication(I, A) )
+%   | | | then return 0.4245877748358783;  // std dev = 1.081, 10.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=8 */
+%   | | | else return 0.6469984549151877;  // std dev = 0.135, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else return -0.11231637819360638;  // std dev = 0.000, 44.000 (wgt'ed) examples reached here.  /* #neg=44 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( professor(B) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.4477136972327944;  // std dev = 0.131, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else if ( publication(D, A), publication(E, B) )
+%   | | then return 0.16860168112046972;  // std dev = 0.961, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   | | else if ( ta(F, A, G) )
+%   | | | then return 0.2936324828004673;  // std dev = 0.881, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return 0.5637227318443903;  // std dev = 0.156, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else return -0.10159632948783635;  // std dev = 0.000, 30.000 (wgt'ed) examples reached here.  /* #neg=30 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A) )
+%   | then if ( publication(C, D), professor(D) )
+%   | | then if ( tempadvisedby(E, B), publication(C, B) )
+%   | | | then return 0.3557847788497861;  // std dev = 0.110, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.21730706816311374;  // std dev = 0.624, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | else return 0.4885067913723429;  // std dev = 0.072, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( tempadvisedby(F, B), ta(G, F, H) )
+%   | | then return 0.2552571965409079;  // std dev = 0.880, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | else return -0.27582077352410633;  // std dev = 1.153, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   else return -0.10173319864768578;  // std dev = 0.140, 37.000 (wgt'ed) examples reached here.  /* #neg=37 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), ta(D, A, E) )
+%   | then return 0.37587759314580865;  // std dev = 0.215, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | else if ( publication(F, A), publication(F, B) )
+%   | | then return 0.28936607775233947;  // std dev = 0.088, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else if ( publication(G, A), publication(H, B) )
+%   | | | then return -0.30929543775958757;  // std dev = 0.782, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | | else return 0.12391933277155423;  // std dev = 1.008, 7.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=5 */
+%   else return -0.09126781677356434;  // std dev = 0.109, 37.000 (wgt'ed) examples reached here.  /* #neg=37 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.22670369624494427;  // std dev = 0.098, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else if ( publication(D, A), tempadvisedby(E, B) )
+%   | | then if ( ta(F, E, G) )
+%   | | | then return -0.47120452600812746;  // std dev = 0.344, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | | else return -0.05268827881121271;  // std dev = 0.693, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | else if ( tempadvisedby(H, B) )
+%   | | | then return 0.3238077288324695;  // std dev = 0.147, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | | else return -0.12022263983590663;  // std dev = 1.228, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   else return -0.07966761337388018;  // std dev = 0.053, 36.000 (wgt'ed) examples reached here.  /* #neg=36 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, B) )
+%   then if ( student(A) )
+%   | then if ( ta(D, A, E) )
+%   | | then return 0.2820899906002233;  // std dev = 0.091, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | | else if ( tempadvisedby(F, B), publication(C, F) )
+%   | | | then return -0.05030030294783568;  // std dev = 0.798, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.1964020903981282;  // std dev = 0.036, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | else return -0.10997740120709208;  // std dev = 0.021, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   else if ( publication(G, A) )
+%   | then if ( publication(H, B) )
+%   | | then return -0.07216645375693617;  // std dev = 0.000, 15.000 (wgt'ed) examples reached here.  /* #neg=15 */
+%   | | else if ( professor(A) )
+%   | | | then return -0.07216645375693614;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | | else return -0.019724289681521845;  // std dev = 0.555, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | else if ( student(A), publication(I, B) )
+%   | | then return -0.07216645375693614;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | | else return -0.20245640844673352;  // std dev = 0.319, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( publication(C, A), tempadvisedby(D, B) )
+%   then if ( publication(C, B), student(A) )
+%   | then return 0.1678267030923239;  // std dev = 0.114, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( ta(E, D, F) )
+%   | | then return -0.47943238029506213;  // std dev = 0.461, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else return -0.20856105022549085;  // std dev = 0.813, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   else if ( professor(B), student(A) )
+%   | then if ( tempadvisedby(G, B), ta(H, G, I) )
+%   | | then return 0.04049410751390483;  // std dev = 0.948, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | else if ( publication(J, B), publication(J, A) )
+%   | | | then return 0.16147075856764073;  // std dev = 0.032, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.3459161789330688;  // std dev = 0.104, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else return -0.07246674137899692;  // std dev = 0.085, 33.000 (wgt'ed) examples reached here.  /* #neg=33 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( publication(C, B), ta(D, A, E) )
+%   then if ( professor(B) )
+%   | then if ( tempadvisedby(F, B), ta(G, F, H) )
+%   | | then return 0.15662765469864245;  // std dev = 0.091, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else return 0.23834136984214904;  // std dev = 0.146, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | else return -0.06306132093410084;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   else if ( publication(I, B), publication(I, A) )
+%   | then if ( professor(B) )
+%   | | then return 0.1541714518200596;  // std dev = 0.085, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | else return -0.06306132093410084;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | else if ( professor(B), student(A) )
+%   | | then if ( tempadvisedby(J, B), ta(K, J, L) )
+%   | | | then return -0.047191598690912426;  // std dev = 0.816, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   | | | else return -0.33497000914207564;  // std dev = 0.800, 9.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=1 */
+%   | | else return -0.06274721485938699;  // std dev = 0.023, 27.000 (wgt'ed) examples reached here.  /* #neg=27 */
+
+
+Results
+   AUC ROC   = 0.953547
+   AUC PR    = 0.325188
+   CLL	      = -0.233902
+   Precision = 0.172414 at threshold = 0.5
+   Recall    = 0.860215
+   F1        = 0.287253
+
+
+Total learning time: 3.931474447250366 seconds
+Total inference time: 1.307 seconds
+AUC ROC: 0.953547
+
+
+Results scoring model
+   AUC ROC   = 0.989663
+   AUC PR    = 0.846923
+   CLL	      = -0.168452
+   Precision = 0.454545 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.625
+
+
+Total scoring time: 0.527 seconds
+Parameter learned model CLL: -0.168452
+
+
+Structure after Parameter Learning
+[['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, A), publication(C, B)', 'true,false': 'publication(D, A)', 'true,false,true': 'publication(D, E), professor(E)', 'true,false,false': 'ta(F, A, G)'}, {'true,true': [0.0, 0, 9], 'true,false,true,true': [0.0, 7, 0], 'true,false,true,false': [1.155, 2, 4], 'true,false,false,true': [0.0, 0, 4], 'true,false,false,false': [1.095, 2, 3], 'false': [2.11e-08, 32, 0]}], ['advisedby(A, B)', {'': 'student(A), professor(B)', 'true': 'publication(C, B)', 'true,true': 'publication(C, D), tempadvisedby(D, B)', 'true,true,false': 'publication(C, E), student(E)'}, {'true,true,true': [1.137, 3, 3], 'true,true,false,true': [0.106, 0, 13], 'true,true,false,false': [0.769, 1, 3], 'true,false': [0.811, 2, 1], 'false': [0.0, 45, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'ta(C, A, D), publication(E, A)', 'true,false': 'ta(F, A, G), tempadvisedby(H, B)', 'true,false,false': 'publication(I, A)'}, {'true,true': [0.126, 0, 5], 'true,false,true': [0.914, 1, 3], 'true,false,false,true': [1.081, 2, 8], 'true,false,false,false': [0.135, 0, 4], 'false': [0.0, 44, 0]}], ['advisedby(A, B)', {'': 'professor(B)', 'true': 'publication(C, A), publication(C, B)', 'true,false': 'publication(D, A), publication(E, B)', 'true,false,false': 'ta(F, A, G)'}, {'true,true': [0.131, 0, 9], 'true,false,true': [0.961, 2, 3], 'true,false,false,true': [0.881, 1, 4], 'true,false,false,false': [0.156, 0, 4], 'false': [0.0, 30, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, A)', 'true,true': 'publication(C, D), professor(D)', 'true,true,true': 'tempadvisedby(E, B), publication(C, B)', 'true,false': 'tempadvisedby(F, B), ta(G, F, H)'}, {'true,true,true,true': [0.11, 0, 4], 'true,true,true,false': [0.624, 1, 5], 'true,true,false': [0.072, 0, 4], 'true,false,true': [0.88, 1, 5], 'true,false,false': [1.153, 4, 2], 'false': [0.14, 37, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'tempadvisedby(C, B), ta(D, A, E)', 'true,false': 'publication(F, A), publication(F, B)', 'true,false,false': 'publication(G, A), publication(H, B)'}, {'true,true': [0.215, 0, 6], 'true,false,true': [0.088, 0, 8], 'true,false,false,true': [0.782, 3, 1], 'true,false,false,false': [1.008, 2, 5], 'false': [0.109, 37, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B), publication(C, A)', 'true,false': 'publication(D, A), tempadvisedby(E, B)', 'true,false,true': 'ta(F, E, G)', 'true,false,false': 'tempadvisedby(H, B)'}, {'true,true': [0.098, 0, 9], 'true,false,true,true': [0.344, 3, 0], 'true,false,true,false': [0.693, 2, 2], 'true,false,false,true': [0.147, 0, 6], 'true,false,false,false': [1.228, 3, 3], 'false': [0.053, 36, 0]}], ['advisedby(A, B)', {'': 'professor(B), publication(C, B)', 'true': 'student(A)', 'true,true': 'ta(D, A, E)', 'true,true,false': 'tempadvisedby(F, B), publication(C, F)', 'false': 'publication(G, A)', 'false,true': 'publication(H, B)', 'false,true,false': 'professor(A)', 'false,false': 'student(A), publication(I, B)'}, {'true,true,true': [0.091, 0, 9], 'true,true,false,true': [0.798, 1, 2], 'true,true,false,false': [0.036, 0, 8], 'true,false': [0.021, 3, 0], 'false,true,true': [0.0, 15, 0], 'false,true,false,true': [0.0, 5, 0], 'false,true,false,false': [0.555, 3, 1], 'false,false,true': [0.0, 4, 0], 'false,false,false': [0.319, 3, 0]}], ['advisedby(A, B)', {'': 'publication(C, A), tempadvisedby(D, B)', 'true': 'publication(C, B), student(A)', 'true,false': 'ta(E, D, F)', 'false': 'professor(B), student(A)', 'false,true': 'tempadvisedby(G, B), ta(H, G, I)', 'false,true,false': 'publication(J, B), publication(J, A)'}, {'true,true': [0.114, 0, 4], 'true,false,true': [0.461, 3, 0], 'true,false,false': [0.813, 4, 2], 'false,true,true': [0.948, 1, 5], 'false,true,false,true': [0.032, 0, 5], 'false,true,false,false': [0.104, 0, 4], 'false,false': [0.085, 33, 0]}], ['advisedby(A, B)', {'': 'publication(C, B), ta(D, A, E)', 'true': 'professor(B)', 'true,true': 'tempadvisedby(F, B), ta(G, F, H)', 'false': 'publication(I, B), publication(I, A)', 'false,true': 'professor(B)', 'false,false': 'professor(B), student(A)', 'false,false,true': 'tempadvisedby(J, B), ta(K, J, L)'}, {'true,true,true': [0.091, 0, 3], 'true,true,false': [0.146, 0, 6], 'true,false': [0.0, 4, 0], 'false,true,true': [0.085, 0, 7], 'false,true,false': [0.0, 3, 0], 'false,false,true,true': [0.816, 2, 3], 'false,false,true,false': [0.8, 8, 1], 'false,false,false': [0.023, 27, 0]}]]
+[{'': [0.22892819979188353, 1.3877787807814457e-17], 'true': [-2.9605947323337506e-16, 0.24999999999999983], 'true,false': [0.21301775147928975, 0.17283950617283939], 'true,false,true': [-7.93016446160826e-18, 0.22222222222222213], 'true,false,false': [0.0, 0.23999999999999994]}, {'': [0.15228775338162862, -2.4671622769447924e-18], 'true': [0.1192991651497219, 0.21944525015454783], 'true,true': [0.2153539247208385, 0.042401148469858436], 'true,true,false': [0.0008662788842663633, 0.14794863023854404]}, {'': [0.1021790923338972, 0.0], 'true': [0.0031614647065670185, 0.12397382141618121], 'true,false': [0.20888103506113484, 0.09485477871254523], 'true,false,false': [0.1168393488952661, 0.0045601313890714645]}, {'': [0.09460226600242964, 0.0], 'true': [0.001893884471596552, 0.14841766034912132], 'true,false': [0.18454365707022288, 0.10689775071073344], 'true,false,false': [0.15510281687130006, 0.006114338771909422]}, {'': [0.16544798329222019, 0.0005309600286877766], 'true': [0.04184905583383861, 0.2456901976953837], 'true,false': [0.12893651579796153, 0.22142197444861775], 'true,true': [0.04476555751681446, 0.0012911097415508332], 'true,true,true': [0.0030489328375301328, 0.06490621009352866]}, {'': [0.11936780732818088, 0.000323137880472095], 'true': [0.007678176795687701, 0.13668573176632623], 'true,false': [0.0009585529892295469, 0.19147401330530703], 'true,false,false': [0.15301207362848265, 0.1452067964014431]}, {'': [0.13921193312564464, 7.758038475765237e-05], 'true': [0.0010717095040438324, 0.1848925125745055], 'true,false': [0.1284165088673122, 0.1767754239910856], 'true,false,false': [0.0035943720771977237, 0.25137499175508643], 'true,false,true': [0.03949479763767083, 0.1200409997890622]}, {'': [0.052609214592133594, 0.015186206515135713], 'true': [0.048109406839757576, 0.00015301466566245334], 'true,true': [0.008308893335059513, 0.07014349284607492], 'true,true,false': [0.21248956937375243, 0.0001649675438431114], 'false': [0.01321740359349524, 0.01870766334338264], 'false,false': [0.0, 0.03395094458613889], 'false,true': [-2.7755575615628915e-18, 0.03490688111686228], 'false,true,false': [-6.938893903907229e-19, 0.0770126044168775]}, {'': [0.12580825752334235, 0.03562655320358193], 'true': [0.003237120601768482, 0.11327246014623284], 'true,false': [0.07076625556611331, 0.11006846995173973], 'false': [0.07564581557307966, 0.00021746514906817365], 'false,true': [0.14983546797435712, 0.009710177704616118], 'false,true,false': [0.00020185132604465527, 0.002695522847952936]}, {'': [0.019321760718725583, 0.04503713098507349], 'false': [0.010636552099023543, 0.04481270687878111], 'false,false': [0.11229152205894034, 1.9752121543803766e-05], 'false,false,true': [0.13320008542166123, 0.07109836298059606], 'true': [0.004781108470584272, 0.0], 'false,true': [0.0010380511596382788, -5.782411586589357e-19], 'true,true': [0.002747440287427914, 0.0035722321479777406]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;advisedby(A, B) :- professor(B), student(A).;true;true
+0;true;publication(C, A), publication(C, B).;true;true
+0;true,false;publication(D, A).;true;true
+0;true,false,true;publication(D, E), professor(E).;true;true
+0;true,false,false;ta(F, A, G).;true;true
+1;;advisedby(A, B) :- student(A), professor(B).;true;true
+1;true;publication(C, B).;true;true
+1;true,true;publication(C, D), tempadvisedby(D, B).;true;true
+1;true,true,false;publication(C, E), student(E).;true;true
+2;;advisedby(A, B) :- professor(B), student(A).;true;true
+3;;advisedby(A, B) :- professor(B).;true;true
+3;true;publication(C, A), publication(C, B).;true;true
+4;;advisedby(A, B) :- professor(B), student(A).;true;true
+4;true;publication(C, A).;true;true
+4;true,true;publication(C, D), professor(D).;true;true
+5;;advisedby(A, B) :- professor(B), student(A).;true;true
+5;true;tempadvisedby(C, B), ta(D, A, E).;true;true
+5;true,false;publication(F, A), publication(F, B).;true;true
+6;;advisedby(A, B) :- professor(B), student(A).;true;true
+6;true;publication(C, B), publication(C, A).;true;true
+7;;advisedby(A, B) :- professor(B), publication(C, B).;true;true
+7;true;student(A).;true;true
+7;true,true;ta(D, A, E).;true;true
+7;true,true,false;tempadvisedby(F, B), publication(C, F).;true;true
+7;false;publication(G, A).;true;true
+7;false,true;publication(H, B).;true;true
+7;false,true,false;professor(A).;true;true
+7;false,false;student(A), publication(I, B).;true;true
+8;;advisedby(A, B) :- publication(C, A), tempadvisedby(D, B).;true;true
+8;false;professor(B), student(A).;true;true
+8;false,true;tempadvisedby(G, B), ta(H, G, I).;true;true
+8;false,true,false;publication(J, B), publication(J, A).;true;true
+9;;advisedby(A, B) :- publication(C, B), ta(D, A, E).;true;true
+9;true;professor(B).;true;true
+9;false;publication(I, B), publication(I, A).;true;true
+9;false,true;professor(B).;true;true
+9;false,false;professor(B), student(A).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, B) )
+%   then if ( publication(D, A), tempadvisedby(E, B) )
+%   | then if ( ta(F, A, G) )
+%   | | then return 0.8581489350995121;  // std dev = 2.11e-08, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( publication(C, A), student(A) )
+%   | | | then return 0.6081489350995122;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return -0.14185106490048777;  // std dev = 0.000, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+%   | else return 0.8581489350995123;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else if ( student(B) )
+%   | then return -0.1418510649004877;  // std dev = 2.98e-08, 32.000 (wgt'ed) examples reached here.  /* #neg=32 */
+%   | else return 0.024815601766178873;  // std dev = 0.913, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), publication(D, C) )
+%   | then if ( publication(E, A) )
+%   | | then return 0.032043174539001615;  // std dev = 0.856, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | else return 0.38614007887762103;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else if ( publication(F, A), publication(F, B) )
+%   | | then return 0.7313730497173963;  // std dev = 0.058, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else if ( ta(G, A, H) )
+%   | | | then return 0.7194734122109545;  // std dev = 0.000, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | | else return 0.40474092418899915;  // std dev = 0.992, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   else return -0.13016183023667577;  // std dev = 0.154, 37.000 (wgt'ed) examples reached here.  /* #neg=37 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, B) )
+%   then if ( publication(C, A), student(A) )
+%   | then if ( tempadvisedby(D, B) )
+%   | | then return 0.6349947613185603;  // std dev = 0.154, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.5524261025068926;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( ta(E, A, F) )
+%   | | then if ( ta(E, G, H), publication(I, G) )
+%   | | | then return 0.4464646569849885;  // std dev = 0.796, 7.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=6 */
+%   | | | else return -0.08460252030451527;  // std dev = 0.786, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else if ( tempadvisedby(J, B), ta(K, J, L) )
+%   | | | then return 0.44647311322173344;  // std dev = 0.645, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return -0.29242410737771646;  // std dev = 0.163, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   else if ( student(B) )
+%   | then return -0.11184692692461205;  // std dev = 0.000, 33.000 (wgt'ed) examples reached here.  /* #neg=33 */
+%   | else return -0.04223484794712054;  // std dev = 0.926, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), publication(D, A) )
+%   | then if ( ta(E, A, F), ta(G, C, H) )
+%   | | then return -0.2331845219923615;  // std dev = 0.739, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | else if ( publication(D, I), ta(J, I, K) )
+%   | | | then return 0.4932941913653582;  // std dev = 0.156, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return -0.055581528706009686;  // std dev = 0.633, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else if ( publication(L, B) )
+%   | | then if ( tempadvisedby(M, B), ta(N, M, P) )
+%   | | | then return 0.5352004589906663;  // std dev = 0.046, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.4261645276887901;  // std dev = 0.040, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else return 0.11941703408051384;  // std dev = 0.840, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   else return -0.10485224455286592;  // std dev = 0.091, 37.000 (wgt'ed) examples reached here.  /* #neg=37 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), ta(D, C, E) )
+%   | then if ( publication(F, A) )
+%   | | then return 0.4423699486636514;  // std dev = 0.126, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.4029366507168196;  // std dev = 0.045, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( publication(G, A) )
+%   | | then if ( tempadvisedby(H, B) )
+%   | | | then return 0.09808377640554289;  // std dev = 0.460, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return 0.3874384537521012;  // std dev = 0.430, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | else return 0.017515350247954566;  // std dev = 0.664, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   else if ( student(B) )
+%   | then return -0.0920621474971597;  // std dev = 7.45e-09, 30.000 (wgt'ed) examples reached here.  /* #neg=30 */
+%   | else return -0.19648429549475652;  // std dev = 0.160, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), publication(D, C) )
+%   | then return -0.08628784185225129;  // std dev = 1.085, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | else if ( ta(E, A, F) )
+%   | | then if ( publication(G, A) )
+%   | | | then return 0.2922396936757189;  // std dev = 0.084, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.34174745302126325;  // std dev = 0.007, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | | then return 0.30274944021917827;  // std dev = 0.082, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.11214266968211656;  // std dev = 0.933, 8.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=5 */
+%   else return -0.08591813953576817;  // std dev = 0.043, 42.000 (wgt'ed) examples reached here.  /* #neg=42 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), publication(D, C) )
+%   | then if ( publication(E, A) )
+%   | | then return -0.10197450699382961;  // std dev = 0.609, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | else return -0.010899349817252083;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else if ( tempadvisedby(F, B) )
+%   | | then if ( ta(G, A, H) )
+%   | | | then return 0.26434474854425066;  // std dev = 0.032, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.24328805415883306;  // std dev = 0.071, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( publication(I, A), publication(I, B) )
+%   | | | then return 0.2137902018517784;  // std dev = 0.026, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.05817683387821154;  // std dev = 0.985, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   else if ( professor(B) )
+%   | then return -0.13285003570269618;  // std dev = 0.030, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | else return -0.078226407219649;  // std dev = 0.000, 26.000 (wgt'ed) examples reached here.  /* #neg=26 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( ta(C, A, D) )
+%   | then if ( publication(E, A) )
+%   | | then return 0.1994091293118148;  // std dev = 0.052, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else return 0.2560439845247826;  // std dev = 0.084, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( publication(F, A), publication(F, B) )
+%   | | then if ( tempadvisedby(G, B) )
+%   | | | then return 0.2844061255751917;  // std dev = 0.206, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return 0.18520338350136245;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | | then return 0.12558978477355695;  // std dev = 0.412, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return -0.07178741826480321;  // std dev = 0.882, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   else if ( professor(B), publication(K, B) )
+%   | then return -0.11830350162856453;  // std dev = 0.027, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | else return -0.07291820708458713;  // std dev = 0.005, 36.000 (wgt'ed) examples reached here.  /* #neg=36 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B), publication(D, C) )
+%   | then return 0.3150529545235739;  // std dev = 0.077, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | else if ( tempadvisedby(E, B), publication(F, A) )
+%   | | then if ( ta(G, A, H) )
+%   | | | then return 0.18115782079731488;  // std dev = 0.022, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return -0.11130387837193816;  // std dev = 0.570, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | else if ( publication(I, A) )
+%   | | | then return 0.2330455232819896;  // std dev = 0.496, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | | else return 0.08369232210794231;  // std dev = 0.562, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   else if ( professor(B) )
+%   | then return -0.09537262840672082;  // std dev = 0.032, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | else return -0.06799924846320948;  // std dev = 1.05e-08, 31.000 (wgt'ed) examples reached here.  /* #neg=31 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( publication(C, A), professor(B) )
+%   then if ( publication(C, B) )
+%   | then if ( tempadvisedby(D, B) )
+%   | | then return 0.2083044057349413;  // std dev = 0.125, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.1260465471634618;  // std dev = 0.018, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( tempadvisedby(E, B) )
+%   | | then return -0.13629861080521888;  // std dev = 0.779, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | else return 0.08799806536866966;  // std dev = 0.729, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   else if ( professor(B) )
+%   | then if ( ta(F, A, G) )
+%   | | then return -0.028807262682852254;  // std dev = 0.965, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else return -0.2812878907658422;  // std dev = 0.428, 7.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=3 */
+%   | else return -0.06381431999289487;  // std dev = 0.000, 30.000 (wgt'ed) examples reached here.  /* #neg=30 */
+
+
+Results
+   AUC ROC   = 0.9313
+   AUC PR    = 0.175032
+   CLL	      = -0.242659
+   Precision = 0.145299 at threshold = 0.5
+   Recall    = 0.731183
+   F1        = 0.242424
+
+
+Total learning time: 4.500604152679443 seconds
+Total inference time: 1.394 seconds
+AUC ROC: 0.9313
+
+
+Results scoring model
+   AUC ROC   = 0.987097
+   AUC PR    = 0.764313
+   CLL	      = -0.167769
+   Precision = 0.5 at threshold = 0.5
+   Recall    = 0.95
+   F1        = 0.655172
+
+
+Total scoring time: 0.584 seconds
+Refined model CLL: -0.167769
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.9313
+   AUC PR    = 0.175032
+   CLL	      = -0.242659
+   Precision = 0.145299 at threshold = 0.5
+   Recall    = 0.731183
+   F1        = 0.242424
+
+
+Total learning time: 9.54307859992981 seconds
+Total inference time: 1.394 seconds
+AUC ROC: 0.9313
+Total revision time: 9.54307859992981
+Best scored revision CLL: -0.167769
+
+
+Dataset: 39_twitter_uwcse, Fold: 2, Type: Transfer (trRDN-B), Time: 00:00:30
+{'AUC ROC': 0.9313, 'AUC PR': 0.175032, 'CLL': -0.242659, 'Precision': [0.145299, 0.5], 'Recall': 0.731183, 'F1': 0.242424, 'Learning time': 9.54307859992981, 'Inference time': 1.394, 'parameter': {'AUC ROC': 0.953547, 'AUC PR': 0.325188, 'CLL': -0.233902, 'Precision': [0.172414, 0.5], 'Recall': 0.860215, 'F1': 0.287253, 'Learning time': 3.931474447250366, 'Inference time': 1.307}}
+
+
+Starting fold 3
+
+Target train facts examples: 162
+Target train pos examples: 9
+Target train neg examples: 91
+
+Target test facts examples: 2225
+Target test pos  examples: 104
+Target test neg examples: 3988
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(A, D).;false;false
+0;false;follows(A, E), recursion_accounttype(E, B).;true;true
+0;false,true;follows(A, F), follows(F, A).;false;true
+0;false,true,false;follows(A, G), follows(G, E).;false;false
+0;false,false;follows(H, A).;true;true
+0;false,false,true;follows(I, H), follows(I, A).;false;false
+0;false,false,false;follows(A, J), follows(J, K).;false;false
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;true;follows(A, C), tweets(A, D).;false;false
+1;false;follows(A, E), recursion_accounttype(E, B).;true;true
+1;false,true;tweets(A, F), tweets(E, F).;false;true
+1;false,true,false;follows(G, A), follows(E, H).;false;false
+1;false,false;follows(I, A).;true;true
+1;false,false,true;follows(I, J), recursion_accounttype(J, B).;false;false
+1;false,false,false;tweets(A, K).;false;false
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;true;follows(C, D), follows(D, A).;false;false
+2;false;follows(E, A).;true;true
+2;false,true;follows(F, E), follows(F, A).;false;true
+2;false,true,false;follows(E, G), recursion_accounttype(G, B).;false;false
+2;false,false;follows(A, H), follows(H, I).;true;true
+2;false,false,true;recursion_accounttype(I, B).;false;false
+2;false,false,false;follows(A, J).;false;false
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;tweets(A, D), tweets(C, D).;false;false
+3;false;follows(E, A).;true;true
+3;false,true;follows(F, E), recursion_accounttype(F, B).;true;false
+3;false,true,true;follows(A, G), recursion_accounttype(G, B).;false;false
+3;false,false;follows(A, H), recursion_accounttype(H, B).;true;true
+3;false,false,true;follows(A, I), follows(I, H).;false;false
+3;false,false,false;tweets(A, J), follows(A, K).;false;false
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, D), follows(D, C).;true;false
+4;true,true;follows(D, A).;false;true
+4;true,true,false;tweets(A, E).;false;false
+4;false;follows(F, A).;false;true
+4;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+4;false,false,true;follows(G, H), follows(H, G).;false;false
+4;false,false,false;follows(A, I), follows(I, J).;false;false
+5;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+5;true;follows(D, A), tweets(D, E).;true;true
+5;true,true;recursion_accounttype(D, B).;false;false
+5;true,false;follows(C, F), follows(F, C).;true;false
+5;true,false,true;tweets(C, G), recursion_accounttype(F, B).;false;false
+5;false;follows(A, H), follows(H, A).;false;true
+5;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+5;false,false,false;tweets(A, J), follows(K, A).;false;false
+6;;accounttype(A, B) :- follows(A, C).;true;true
+6;true;follows(D, C), recursion_accounttype(D, B).;true;false
+6;true,true;recursion_accounttype(C, B).;true;true
+6;true,true,true;follows(E, A), follows(E, D).;false;false
+6;true,true,false;follows(F, A), recursion_accounttype(F, B).;false;false
+6;false;follows(G, A), recursion_accounttype(G, B).;false;true
+6;false,false;follows(H, A).;false;true
+6;false,false,false;tweets(A, I).;false;false
+7;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+7;true;tweets(C, D), follows(A, C).;false;false
+7;false;follows(E, A).;true;true
+7;false,true;follows(E, F), recursion_accounttype(F, B).;true;false
+7;false,true,true;follows(F, E), follows(A, F).;false;false
+7;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+7;false,false,true;tweets(A, H).;false;false
+7;false,false,false;follows(A, I).;false;false
+8;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+8;true;follows(C, D), recursion_accounttype(D, B).;false;true
+8;true,false;follows(A, E), follows(E, A).;false;false
+8;false;follows(F, A), follows(A, G).;true;true
+8;false,true;follows(G, A), follows(G, F).;false;true
+8;false,true,false;follows(H, F), recursion_accounttype(H, B).;false;false
+8;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+8;false,false,false;follows(J, A).;false;false
+9;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+9;true;follows(C, D).;true;false
+9;true,true;follows(A, D).;true;true
+9;true,true,true;follows(E, A), recursion_accounttype(E, B).;false;false
+9;true,true,false;tweets(C, F), follows(D, C).;false;false
+9;false;follows(A, G), follows(H, A).;false;true
+9;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+9;false,false,false;follows(J, A).;false;false
+
+
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B) )
+%   then if ( ta(C, A, D) )
+%   | then return 0.6581489350995122;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else return 0.8581489350995122;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.1418510649004878;  // std dev = 0.000, 11.000 (wgt'ed) examples reached here.  /* #neg=11 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then return 0.7366049332824657;  // std dev = 0.057, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   else if ( sameperson(A, B) )
+%   | then return -0.22883260470216082;  // std dev = 0.127, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | else return -0.12544463852839138;  // std dev = 0.000, 9.000 (wgt'ed) examples reached here.  /* #neg=9 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then return 0.5728278417003819;  // std dev = 0.073, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   else return -0.11705179950804126;  // std dev = 0.124, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A) )
+%   | then return 0.09215111172878383;  // std dev = 0.837, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else return 0.43015843089290134;  // std dev = 0.064, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   else if ( professor(A) )
+%   | then return -0.13952206487200083;  // std dev = 0.094, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | else return -0.10034481997057254;  // std dev = 0.009, 11.000 (wgt'ed) examples reached here.  /* #neg=11 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B) )
+%   then if ( tempadvisedby(C, B) )
+%   | then return 0.36391507188590677;  // std dev = 0.090, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else return 0.17138306197630937;  // std dev = 0.897, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   else return -0.09015552398255451;  // std dev = 0.013, 14.000 (wgt'ed) examples reached here.  /* #neg=14 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B) )
+%   then if ( tempadvisedby(C, B) )
+%   | then return 0.07575587828031553;  // std dev = 0.940, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else return 0.29781845321196465;  // std dev = 0.066, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.0830592543585836;  // std dev = 0.008, 14.000 (wgt'ed) examples reached here.  /* #neg=14 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B) )
+%   | then return 0.2700327614069128;  // std dev = 0.078, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else return 0.07574249106266372;  // std dev = 0.900, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   else if ( publication(D, B) )
+%   | then return -0.12222081774913285;  // std dev = 0.197, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | else return -0.07771295414473288;  // std dev = 0.008, 16.000 (wgt'ed) examples reached here.  /* #neg=16 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), ta(C, A, D) )
+%   then return 0.2356626263572092;  // std dev = 0.051, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else if ( publication(E, A), publication(F, B) )
+%   | then return -0.18848287059196997;  // std dev = 0.743, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else if ( professor(B) )
+%   | | then return 0.20063122931583197;  // std dev = 0.022, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return -0.07173261343947823;  // std dev = 0.009, 15.000 (wgt'ed) examples reached here.  /* #neg=15 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( professor(B) )
+%   then if ( tempadvisedby(C, B) )
+%   | then return 0.18403779388971045;  // std dev = 0.057, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else return 0.20720166404769036;  // std dev = 0.113, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.0654622654520376;  // std dev = 0.017, 12.000 (wgt'ed) examples reached here.  /* #neg=12 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, A) )
+%   then return -0.2688000890785472;  // std dev = 1.003, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   else if ( ta(D, A, E) )
+%   | then if ( tempadvisedby(F, B) )
+%   | | then return -0.18238011017739295;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else if ( publication(G, B) )
+%   | | | then return 0.019239914698043932;  // std dev = 0.185, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | | else return -0.06459667057418544;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | else if ( professor(B) )
+%   | | then return 0.143737434062877;  // std dev = 0.015, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return -0.06092287511375039;  // std dev = 0.010, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+
+
+Results
+   AUC ROC   = 0.901497
+   AUC PR    = 0.114819
+   CLL	      = -0.376729
+   Precision = 0.119816 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.213992
+
+
+Total learning time: 1.9293100833892822 seconds
+Total inference time: 0.989 seconds
+AUC ROC: 0.901497
+
+
+Results scoring model
+   AUC ROC   = 0.962149
+   AUC PR    = 0.536955
+   CLL	      = -0.197898
+   Precision = 0.5625 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.72
+
+
+Total scoring time: 0.37 seconds
+Parameter learned model CLL: -0.197898
+
+
+Structure after Parameter Learning
+[['advisedby(A, B)', {'': 'professor(B)', 'true': 'ta(C, A, D)'}, {'true,true': [0.894, 1, 4], 'true,false': [0.0, 0, 5], 'false': [0.0, 11, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'false': 'sameperson(A, B)'}, {'true': [0.057, 0, 9], 'false,true': [0.127, 3, 0], 'false,false': [0.0, 9, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)'}, {'true': [0.073, 0, 9], 'false': [0.124, 20, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, A)', 'false': 'professor(A)'}, {'true,true': [0.837, 1, 2], 'true,false': [0.064, 0, 7], 'false,true': [0.094, 3, 0], 'false,false': [0.009, 11, 0]}], ['advisedby(A, B)', {'': 'professor(B)', 'true': 'tempadvisedby(C, B)'}, {'true,true': [0.09, 0, 4], 'true,false': [0.897, 1, 5], 'false': [0.013, 14, 0]}], ['advisedby(A, B)', {'': 'professor(B)', 'true': 'tempadvisedby(C, B)'}, {'true,true': [0.94, 1, 4], 'true,false': [0.066, 0, 5], 'false': [0.008, 14, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'tempadvisedby(C, B)', 'false': 'publication(D, B)'}, {'true,true': [0.078, 0, 4], 'true,false': [0.9, 1, 5], 'false,true': [0.197, 5, 0], 'false,false': [0.008, 16, 0]}], ['advisedby(A, B)', {'': 'professor(B), ta(C, A, D)', 'false': 'publication(E, A), publication(F, B)', 'false,false': 'professor(B)'}, {'true': [0.051, 0, 4], 'false,true': [0.743, 2, 1], 'false,false,true': [0.022, 0, 4], 'false,false,false': [0.009, 15, 0]}], ['advisedby(A, B)', {'': 'professor(B)', 'true': 'tempadvisedby(C, B)'}, {'true,true': [0.057, 0, 4], 'true,false': [0.113, 0, 5], 'false': [0.017, 12, 0]}], ['advisedby(A, B)', {'': 'professor(B), publication(C, A)', 'false': 'ta(D, A, E)', 'false,true': 'tempadvisedby(F, B)', 'false,true,false': 'publication(G, B)', 'false,false': 'professor(B)'}, {'true': [1.003, 2, 2], 'false,true,true': [0.816, 1, 2], 'false,true,false,true': [0.185, 2, 1], 'false,true,false,false': [0.0, 5, 0], 'false,false,true': [0.015, 0, 4], 'false,false,false': [0.01, 6, 0]}]]
+[{'': [0.08999999999999977, -1.0092936587501423e-17], 'true': [0.15999999999999986, 0.0]}, {'': [0.0003668612677795045, 0.0033403348592339066], 'false': [0.005344535774774238, 0.0]}, {'': [0.000588378284448638, 0.0007662391009226694]}, {'': [0.09450419705609563, 0.0008942486604969709], 'true': [0.23366341967760454, 0.0005898458757519645], 'false': [0.0029425409861363904, 6.725655477169109e-06]}, {'': [0.09020476830249435, 1.1268498417361741e-05], 'true': [0.0020326121020459442, 0.13415877583352823]}, {'': [0.10105668281983873, 4.544220744128509e-06], 'true': [0.1765866632206933, 0.0008708088263470915]}, {'': [0.09063537966374029, 0.002211294466346813], 'true': [0.0015029366887020917, 0.13495752465358915], 'false': [0.007765757129148778, 3.870140738373648e-06]}, {'': [0.0006549484469887124, 0.039355281084895576], 'false': [0.18415129970884145, 0.012359933718287497], 'false,false': [0.00012433459942340352, 5.483762523675329e-06]}, {'': [0.0019157896704647835, 2.4778212414004973e-05], 'true': [0.0008073877022780479, 0.0025640379647049404]}, {'': [0.25130869216861706, 0.04335702920007699], 'false': [0.06932671456286775, 0.01008326029881095], 'false,true': [0.2222222222222222, 0.005918012074086802], 'false,false': [5.4048917330917073e-05, 1.5064358888552953e-05], 'false,true,false': [0.01138850738708077, 0.0]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;advisedby(A, B) :- professor(B).;true;true
+0;true;ta(C, A, D).;true;true
+1;;advisedby(A, B) :- professor(B), student(A).;true;true
+1;false;sameperson(A, B).;true;true
+2;;advisedby(A, B) :- professor(B), student(A).;true;true
+3;;advisedby(A, B) :- professor(B), student(A).;true;true
+3;true;publication(C, A).;true;true
+3;false;professor(A).;true;true
+4;;advisedby(A, B) :- professor(B).;true;true
+4;true;tempadvisedby(C, B).;true;true
+5;;advisedby(A, B) :- professor(B).;true;true
+5;true;tempadvisedby(C, B).;true;true
+6;;advisedby(A, B) :- professor(B), student(A).;true;true
+6;true;tempadvisedby(C, B).;true;true
+6;false;publication(D, B).;true;true
+7;;advisedby(A, B) :- professor(B), ta(C, A, D).;true;true
+7;false;publication(E, A), publication(F, B).;true;true
+7;false,false;professor(B).;true;true
+8;;advisedby(A, B) :- professor(B).;true;true
+8;true;tempadvisedby(C, B).;true;true
+9;;advisedby(A, B) :- professor(B), publication(C, A).;true;true
+9;false;ta(D, A, E).;true;true
+9;false,true;tempadvisedby(F, B).;true;true
+9;false,true,false;publication(G, B).;true;true
+9;false,false;professor(B).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D) )
+%   | then return 0.6581489350995122;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else return 0.8581489350995122;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.14185106490048777;  // std dev = 0.000, 8.000 (wgt'ed) examples reached here.  /* #neg=8 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A) )
+%   | then return 0.41183736048488795;  // std dev = 0.801, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else return 0.7359930932441975;  // std dev = 0.050, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   else return -0.12544463852839138;  // std dev = 7.45e-09, 16.000 (wgt'ed) examples reached here.  /* #neg=16 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B) )
+%   | then return 0.6065700905224951;  // std dev = 0.088, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else return 0.4139209034399271;  // std dev = 0.894, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   else return -0.11231637819360635;  // std dev = 1.39e-08, 15.000 (wgt'ed) examples reached here.  /* #neg=15 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then return 0.4670478633330926;  // std dev = 0.122, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   else return -0.10159632948783635;  // std dev = 0.000, 12.000 (wgt'ed) examples reached here.  /* #neg=12 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( tempadvisedby(C, B), ta(D, A, E) )
+%   then return 0.36431047581904075;  // std dev = 0.062, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   else if ( ta(F, A, G) )
+%   | then if ( professor(B) )
+%   | | then return -0.25695088646785036;  // std dev = 0.786, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else return -0.09269127618926097;  // std dev = 0.000, 8.000 (wgt'ed) examples reached here.  /* #neg=8 */
+%   | else if ( publication(H, A) )
+%   | | then return -0.09837745393345108;  // std dev = 0.740, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+%   | | else return 0.18706637468573914;  // std dev = 0.486, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), tempadvisedby(E, B) )
+%   | then return 0.029527118052807055;  // std dev = 0.887, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else return 0.3386363134643497;  // std dev = 0.181, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   else return -0.10014903546238595;  // std dev = 0.043, 13.000 (wgt'ed) examples reached here.  /* #neg=13 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D) )
+%   | then return 0.30046535485298526;  // std dev = 0.092, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else return 0.24984070224558286;  // std dev = 0.122, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.08475635583524108;  // std dev = 0.053, 25.000 (wgt'ed) examples reached here.  /* #neg=25 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), ta(C, A, D) )
+%   then return 0.24181906358070643;  // std dev = 0.080, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else if ( professor(B), student(A) )
+%   | then return 0.032507930119940964;  // std dev = 0.960, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | else return -0.07768536895735285;  // std dev = 0.036, 14.000 (wgt'ed) examples reached here.  /* #neg=14 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( professor(B) )
+%   then if ( ta(C, A, D) )
+%   | then return 0.010460143090757535;  // std dev = 0.853, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else return 0.20140305887921497;  // std dev = 0.107, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.07479495631425986;  // std dev = 0.040, 17.000 (wgt'ed) examples reached here.  /* #neg=17 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D) )
+%   | then return 0.00874151147451534;  // std dev = 0.853, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else return 0.17132896121119304;  // std dev = 0.095, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.06582521444259759;  // std dev = 0.033, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+
+
+Results
+   AUC ROC   = 0.901327
+   AUC PR    = 0.113784
+   CLL	      = -0.376129
+   Precision = 0.119816 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.213992
+
+
+Total learning time: 1.6917932033538818 seconds
+Total inference time: 0.919 seconds
+AUC ROC: 0.901327
+
+
+Results scoring model
+   AUC ROC   = 0.969475
+   AUC PR    = 0.574411
+   CLL	      = -0.190415
+   Precision = 0.5625 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.72
+
+
+Total scoring time: 0.353 seconds
+Refined model CLL: -0.190415
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.901327
+   AUC PR    = 0.113784
+   CLL	      = -0.376129
+   Precision = 0.119816 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.213992
+
+
+Total learning time: 4.344103286743164 seconds
+Total inference time: 0.919 seconds
+AUC ROC: 0.901327
+Total revision time: 4.344103286743164
+Best scored revision CLL: -0.190415
+
+
+Dataset: 39_twitter_uwcse, Fold: 3, Type: Transfer (trRDN-B), Time: 00:00:37
+{'AUC ROC': 0.901327, 'AUC PR': 0.113784, 'CLL': -0.376129, 'Precision': [0.119816, 0.5], 'Recall': 1.0, 'F1': 0.213992, 'Learning time': 4.344103286743164, 'Inference time': 0.919, 'parameter': {'AUC ROC': 0.901497, 'AUC PR': 0.114819, 'CLL': -0.376729, 'Precision': [0.119816, 0.5], 'Recall': 1.0, 'F1': 0.213992, 'Learning time': 1.9293100833892822, 'Inference time': 0.989}}
+
+
+Starting fold 4
+
+Target train facts examples: 681
+Target train pos examples: 33
+Target train neg examples: 1488
+
+Target test facts examples: 1706
+Target test pos  examples: 80
+Target test neg examples: 2591
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(A, D).;false;false
+0;false;follows(A, E), recursion_accounttype(E, B).;true;true
+0;false,true;follows(A, F), follows(F, A).;false;true
+0;false,true,false;follows(A, G), follows(G, E).;false;false
+0;false,false;follows(H, A).;true;true
+0;false,false,true;follows(I, H), follows(I, A).;false;false
+0;false,false,false;follows(A, J), follows(J, K).;false;false
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;true;follows(A, C), tweets(A, D).;false;false
+1;false;follows(A, E), recursion_accounttype(E, B).;true;true
+1;false,true;tweets(A, F), tweets(E, F).;false;true
+1;false,true,false;follows(G, A), follows(E, H).;false;false
+1;false,false;follows(I, A).;true;true
+1;false,false,true;follows(I, J), recursion_accounttype(J, B).;false;false
+1;false,false,false;tweets(A, K).;false;false
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;true;follows(C, D), follows(D, A).;false;false
+2;false;follows(E, A).;true;true
+2;false,true;follows(F, E), follows(F, A).;false;true
+2;false,true,false;follows(E, G), recursion_accounttype(G, B).;false;false
+2;false,false;follows(A, H), follows(H, I).;true;true
+2;false,false,true;recursion_accounttype(I, B).;false;false
+2;false,false,false;follows(A, J).;false;false
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;tweets(A, D), tweets(C, D).;false;false
+3;false;follows(E, A).;true;true
+3;false,true;follows(F, E), recursion_accounttype(F, B).;true;false
+3;false,true,true;follows(A, G), recursion_accounttype(G, B).;false;false
+3;false,false;follows(A, H), recursion_accounttype(H, B).;true;true
+3;false,false,true;follows(A, I), follows(I, H).;false;false
+3;false,false,false;tweets(A, J), follows(A, K).;false;false
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, D), follows(D, C).;true;false
+4;true,true;follows(D, A).;false;true
+4;true,true,false;tweets(A, E).;false;false
+4;false;follows(F, A).;false;true
+4;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+4;false,false,true;follows(G, H), follows(H, G).;false;false
+4;false,false,false;follows(A, I), follows(I, J).;false;false
+5;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+5;true;follows(D, A), tweets(D, E).;true;true
+5;true,true;recursion_accounttype(D, B).;false;false
+5;true,false;follows(C, F), follows(F, C).;true;false
+5;true,false,true;tweets(C, G), recursion_accounttype(F, B).;false;false
+5;false;follows(A, H), follows(H, A).;false;true
+5;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+5;false,false,false;tweets(A, J), follows(K, A).;false;false
+6;;accounttype(A, B) :- follows(A, C).;true;true
+6;true;follows(D, C), recursion_accounttype(D, B).;true;false
+6;true,true;recursion_accounttype(C, B).;true;true
+6;true,true,true;follows(E, A), follows(E, D).;false;false
+6;true,true,false;follows(F, A), recursion_accounttype(F, B).;false;false
+6;false;follows(G, A), recursion_accounttype(G, B).;false;true
+6;false,false;follows(H, A).;false;true
+6;false,false,false;tweets(A, I).;false;false
+7;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+7;true;tweets(C, D), follows(A, C).;false;false
+7;false;follows(E, A).;true;true
+7;false,true;follows(E, F), recursion_accounttype(F, B).;true;false
+7;false,true,true;follows(F, E), follows(A, F).;false;false
+7;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+7;false,false,true;tweets(A, H).;false;false
+7;false,false,false;follows(A, I).;false;false
+8;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+8;true;follows(C, D), recursion_accounttype(D, B).;false;true
+8;true,false;follows(A, E), follows(E, A).;false;false
+8;false;follows(F, A), follows(A, G).;true;true
+8;false,true;follows(G, A), follows(G, F).;false;true
+8;false,true,false;follows(H, F), recursion_accounttype(H, B).;false;false
+8;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+8;false,false,false;follows(J, A).;false;false
+9;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+9;true;follows(C, D).;true;false
+9;true,true;follows(A, D).;true;true
+9;true,true,true;follows(E, A), recursion_accounttype(E, B).;false;false
+9;true,true,false;tweets(C, F), follows(D, C).;false;false
+9;false;follows(A, G), follows(H, A).;false;true
+9;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+9;false,false,false;follows(J, A).;false;false
+
+
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then if ( ta(D, A, E) )
+%   | | then return 0.6581489350995122;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else return 0.8581489350995123;  // std dev = 0.000, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else if ( tempadvisedby(F, B) )
+%   | | then if ( publication(G, F) )
+%   | | | then return 0.10814893509951219;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | | else return 0.42957750652808374;  // std dev = 1.852, 14.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=8 */
+%   | | else if ( publication(H, A) )
+%   | | | then return 0.35814893509951223;  // std dev = 1.225, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | | else return 0.7470378239884012;  // std dev = 0.943, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   else return -0.14185106490048774;  // std dev = 1.83e-08, 45.000 (wgt'ed) examples reached here.  /* #neg=45 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( tempadvisedby(C, B) )
+%   | then if ( publication(D, B), publication(D, A) )
+%   | | then return 0.7339281331150419;  // std dev = 0.053, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else if ( publication(E, B), publication(F, A) )
+%   | | | then return 0.024894964354314396;  // std dev = 1.240, 9.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=2 */
+%   | | | else return 0.58045051990987;  // std dev = 1.256, 9.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=7 */
+%   | else return 0.7495551806583913;  // std dev = 0.121, 16.000 (wgt'ed) examples reached here.  /* #pos=16 */
+%   else return -0.12544463852839136;  // std dev = 1.49e-08, 68.000 (wgt'ed) examples reached here.  /* #neg=68 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.5653293325971722;  // std dev = 0.083, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | else if ( ta(D, A, E), publication(F, B) )
+%   | | then if ( ta(G, H, E), publication(F, H) )
+%   | | | then return 0.6420296528729866;  // std dev = 0.194, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | | else return 0.1944436529569017;  // std dev = 1.788, 13.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=7 */
+%   | | else if ( tempadvisedby(I, B) )
+%   | | | then return 0.5300541764484006;  // std dev = 0.829, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return 0.34807574558507337;  // std dev = 0.895, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   else return -0.11231637819360638;  // std dev = 0.000, 50.000 (wgt'ed) examples reached here.  /* #neg=50 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B) )
+%   | then if ( publication(D, A), publication(E, B) )
+%   | | then if ( publication(D, F), publication(E, F) )
+%   | | | then return 0.45656543635500846;  // std dev = 0.235, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | | | else return -0.046194773895836504;  // std dev = 0.856, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | else if ( ta(G, C, H) )
+%   | | | then return 0.5646160844054309;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return 0.4585904022925364;  // std dev = 0.912, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else if ( publication(I, A), ta(J, A, K) )
+%   | | then return 0.030455874976196052;  // std dev = 1.144, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | else if ( publication(L, A), publication(L, B) )
+%   | | | then return 0.4078082373623054;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.13980018671628977;  // std dev = 1.763, 14.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=9 */
+%   else return -0.10159632948783634;  // std dev = 1.29e-08, 45.000 (wgt'ed) examples reached here.  /* #neg=45 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), publication(E, B) )
+%   | then if ( ta(F, G, D), publication(H, G) )
+%   | | then if ( publication(E, G), publication(I, A) )
+%   | | | then return 0.43915568189328524;  // std dev = 0.217, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | | else return 0.03905374981503229;  // std dev = 1.365, 9.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=5 */
+%   | | else return 0.5331143110886198;  // std dev = 0.098, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( publication(J, A), publication(J, B) )
+%   | | then return 0.310197542888914;  // std dev = 0.011, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | | else if ( tempadvisedby(K, B), ta(L, K, M) )
+%   | | | then return 0.17440935148287137;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return -0.10077620311973139;  // std dev = 1.600, 12.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=4 */
+%   else return -0.092691276189261;  // std dev = 0.000, 47.000 (wgt'ed) examples reached here.  /* #neg=47 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.2578775383092173;  // std dev = 0.092, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | else if ( tempadvisedby(D, B), ta(E, D, F) )
+%   | | then return -0.09118849658069637;  // std dev = 1.168, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | else if ( publication(G, A), tempadvisedby(H, B) )
+%   | | | then return 0.29977116100739964;  // std dev = 0.731, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.06339857043093133;  // std dev = 2.277, 25.000 (wgt'ed) examples reached here.  /* #neg=10 #pos=15 */
+%   else return -0.0851847513883968;  // std dev = 1.67e-08, 66.000 (wgt'ed) examples reached here.  /* #neg=66 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, B) )
+%   then if ( publication(C, D), tempadvisedby(E, D) )
+%   | then if ( ta(F, A, G), ta(F, E, H) )
+%   | | then return 0.3779647350000056;  // std dev = 0.098, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else if ( publication(I, E), sameperson(B, D) )
+%   | | | then return -0.23857616399612125;  // std dev = 0.881, 5.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=2 */
+%   | | | else return 0.08684652807868423;  // std dev = 2.458, 35.000 (wgt'ed) examples reached here.  /* #neg=11 #pos=24 */
+%   | else return -0.27085064588946983;  // std dev = 0.551, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   else if ( student(B) )
+%   | then return -0.07877675473109179;  // std dev = 5.27e-09, 40.000 (wgt'ed) examples reached here.  /* #neg=40 */
+%   | else return -0.216530444889814;  // std dev = 0.832, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), publication(C, B) )
+%   then if ( student(A), publication(D, A) )
+%   | then if ( publication(D, E), tempadvisedby(F, E) )
+%   | | then return 0.2641495758563089;  // std dev = 0.102, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | else if ( publication(C, G), ta(H, G, I) )
+%   | | | then return 0.12837450438900108;  // std dev = 1.098, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | | else return -0.16439321199547016;  // std dev = 0.519, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else if ( tempadvisedby(J, B) )
+%   | | then if ( publication(K, J) )
+%   | | | then return -0.16759132679849056;  // std dev = 0.665, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | | else return -0.04265348400135694;  // std dev = 1.457, 11.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=5 */
+%   | | else if ( publication(C, L), ta(M, L, N) )
+%   | | | then return 0.045435352823078645;  // std dev = 0.888, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | | else return 0.39916167354872256;  // std dev = 0.152, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else if ( student(B) )
+%   | then return -0.07324622576333704;  // std dev = 1.18e-08, 41.000 (wgt'ed) examples reached here.  /* #neg=41 */
+%   | else return -0.24707961730356268;  // std dev = 0.890, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B) )
+%   | then if ( tempadvisedby(D, B), publication(E, D) )
+%   | | then return -0.09294258438202234;  // std dev = 0.918, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | else if ( publication(C, F), student(F) )
+%   | | | then return 0.22101531081541817;  // std dev = 1.291, 29.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=27 */
+%   | | | else return 0.009633237068692874;  // std dev = 0.853, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | else return -0.14775296570261662;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   else return -0.07244163860269096;  // std dev = 0.078, 42.000 (wgt'ed) examples reached here.  /* #neg=42 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( ta(C, A, D), professor(B) )
+%   then if ( ta(E, F, D), publication(G, F) )
+%   | then if ( publication(G, B) )
+%   | | then if ( publication(H, A) )
+%   | | | then return 0.1975299300714564;  // std dev = 0.167, 7.000 (wgt'ed) examples reached here.  /* #pos=7 */
+%   | | | else return -0.02299324991323215;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | else return 0.4661825835661706;  // std dev = 0.151, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | else if ( tempadvisedby(I, B), publication(J, B) )
+%   | | then if ( publication(J, K), ta(L, K, M) )
+%   | | | then return 0.1173551549696512;  // std dev = 0.651, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return -0.42365946538027144;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+%   | | else return -0.0023859748696046235;  // std dev = 0.547, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   else if ( tempadvisedby(N, B), ta(P, N, Q) )
+%   | then return 0.14004329060025364;  // std dev = 0.405, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | else if ( publication(R, A), publication(R, B) )
+%   | | then return 0.01821524479365945;  // std dev = 0.263, 15.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=9 */
+%   | | else return -0.10112931348985417;  // std dev = 0.210, 59.000 (wgt'ed) examples reached here.  /* #neg=55 #pos=4 */
+
+
+Results
+   AUC ROC   = 0.955847
+   AUC PR    = 0.516849
+   CLL	      = -0.195036
+   Precision = 0.211409 at threshold = 0.5
+   Recall    = 0.7875
+   F1        = 0.333333
+
+
+Total learning time: 8.476691246032715 seconds
+Total inference time: 1.273 seconds
+AUC ROC: 0.955847
+
+
+Results scoring model
+   AUC ROC   = 0.965573
+   AUC PR    = 0.337486
+   CLL	      = -0.233484
+   Precision = 0.136752 at threshold = 0.5
+   Recall    = 0.969697
+   F1        = 0.2397
+
+
+Total scoring time: 0.94 seconds
+Parameter learned model CLL: -0.233484
+
+
+Structure after Parameter Learning
+[['advisedby(A, B)', {'': 'student(A), professor(B)', 'true': 'publication(C, B), publication(C, A)', 'true,true': 'ta(D, A, E)', 'true,false': 'tempadvisedby(F, B)', 'true,false,true': 'publication(G, F)', 'true,false,false': 'publication(H, A)'}, {'true,true,true': [0.894, 1, 4], 'true,true,false': [0.0, 0, 9], 'true,false,true,true': [0.866, 3, 1], 'true,false,true,false': [1.852, 6, 8], 'true,false,false,true': [1.225, 3, 3], 'true,false,false,false': [0.943, 1, 8], 'false': [1.83e-08, 45, 0]}], ['advisedby(A, B)', {'': 'student(A), professor(B)', 'true': 'tempadvisedby(C, B)', 'true,true': 'publication(D, B), publication(D, A)', 'true,true,false': 'publication(E, B), publication(F, A)'}, {'true,true,true': [0.053, 0, 8], 'true,true,false,true': [1.24, 7, 2], 'true,true,false,false': [1.256, 2, 7], 'true,false': [0.121, 0, 16], 'false': [1.49e-08, 68, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B), publication(C, A)', 'true,false': 'ta(D, A, E), publication(F, B)', 'true,false,true': 'ta(G, H, E), publication(F, H)', 'true,false,false': 'tempadvisedby(I, B)'}, {'true,true': [0.083, 0, 13], 'true,false,true,true': [0.194, 0, 6], 'true,false,true,false': [1.788, 6, 7], 'true,false,false,true': [0.829, 1, 4], 'true,false,false,false': [0.895, 1, 3], 'false': [0.0, 50, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'tempadvisedby(C, B)', 'true,true': 'publication(D, A), publication(E, B)', 'true,true,true': 'publication(D, F), publication(E, F)', 'true,true,false': 'ta(G, C, H)', 'true,false': 'publication(I, A), ta(J, A, K)', 'true,false,false': 'publication(L, A), publication(L, B)'}, {'true,true,true,true': [0.235, 0, 9], 'true,true,true,false': [0.856, 3, 1], 'true,true,false,true': [0.0, 0, 3], 'true,true,false,false': [0.912, 1, 4], 'true,false,true': [1.144, 3, 3], 'true,false,false,true': [0.0, 0, 4], 'true,false,false,false': [1.763, 5, 9], 'false': [1.29e-08, 45, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'ta(C, A, D), publication(E, B)', 'true,true': 'ta(F, G, D), publication(H, G)', 'true,true,true': 'publication(E, G), publication(I, A)', 'true,false': 'publication(J, A), publication(J, B)', 'true,false,false': 'tempadvisedby(K, B), ta(L, K, M)'}, {'true,true,true,true': [0.217, 0, 7], 'true,true,true,false': [1.365, 4, 5], 'true,true,false': [0.098, 0, 5], 'true,false,true': [0.011, 0, 9], 'true,false,false,true': [0.866, 1, 3], 'true,false,false,false': [1.6, 8, 4], 'false': [0.0, 47, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, A), publication(C, B)', 'true,false': 'tempadvisedby(D, B), ta(E, D, F)', 'true,false,false': 'publication(G, A), tempadvisedby(H, B)'}, {'true,true': [0.092, 0, 13], 'true,false,true': [1.168, 3, 3], 'true,false,false,true': [0.731, 1, 2], 'true,false,false,false': [2.277, 10, 15], 'false': [1.67e-08, 66, 0]}], ['advisedby(A, B)', {'': 'professor(B), publication(C, B)', 'true': 'publication(C, D), tempadvisedby(E, D)', 'true,true': 'ta(F, A, G), ta(F, E, H)', 'true,true,false': 'publication(I, E), sameperson(B, D)', 'false': 'student(B)'}, {'true,true,true': [0.098, 0, 5], 'true,true,false,true': [0.881, 3, 2], 'true,true,false,false': [2.458, 11, 24], 'true,false': [0.551, 3, 1], 'false,true': [5.27e-09, 40, 0], 'false,false': [0.832, 3, 1]}], ['advisedby(A, B)', {'': 'professor(B), publication(C, B)', 'true': 'student(A), publication(D, A)', 'true,true': 'publication(D, E), tempadvisedby(F, E)', 'true,true,false': 'publication(C, G), ta(H, G, I)', 'true,false': 'tempadvisedby(J, B)', 'true,false,true': 'publication(K, J)', 'true,false,false': 'publication(C, L), ta(M, L, N)', 'false': 'student(B)'}, {'true,true,true': [0.102, 0, 12], 'true,true,false,true': [1.098, 1, 5], 'true,true,false,false': [0.519, 2, 1], 'true,false,true,true': [0.665, 2, 1], 'true,false,true,false': [1.457, 6, 5], 'true,false,false,true': [0.888, 3, 4], 'true,false,false,false': [0.152, 0, 4], 'false,true': [1.18e-08, 41, 0], 'false,false': [0.89, 4, 1]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B)', 'true,true': 'tempadvisedby(D, B), publication(E, D)', 'true,true,false': 'publication(C, F), student(F)'}, {'true,true,true': [0.918, 3, 3], 'true,true,false,true': [1.291, 2, 27], 'true,true,false,false': [0.853, 2, 2], 'true,false': [0.816, 2, 1], 'false': [0.078, 42, 0]}], ['advisedby(A, B)', {'': 'ta(C, A, D), professor(B)', 'true': 'ta(E, F, D), publication(G, F)', 'true,true': 'publication(G, B)', 'true,true,true': 'publication(H, A)', 'true,false': 'tempadvisedby(I, B), publication(J, B)', 'true,false,true': 'publication(J, K), ta(L, K, M)', 'false': 'tempadvisedby(N, B), ta(P, N, Q)', 'false,false': 'publication(R, A), publication(R, B)'}, {'true,true,true,true': [0.167, 0, 7], 'true,true,true,false': [0.866, 1, 3], 'true,true,false': [0.151, 0, 3], 'true,false,true,true': [0.651, 1, 2], 'true,false,true,false': [0.866, 3, 1], 'true,false,false': [0.547, 1, 2], 'false,true': [0.405, 2, 2], 'false,false,true': [0.263, 6, 9], 'false,false,false': [0.21, 55, 4]}]]
+[{'': [0.20914440923494962, 7.401486830834377e-18], 'true': [0.06632653061224467, 0.2387511478420566], 'true,false': [0.25, 0.1955555555555553], 'true,false,true': [0.18750000000000003, 0.24489795918367338], 'true,false,false': [0.24999999999999992, 0.09876543209876527], 'true,true': [0.15999999999999986, -2.9605947323337506e-16]}, {'': [0.1554582911414911, 3.2653618371328133e-18], 'true': [0.21295253600041258, 0.0009212314475582906], 'true,true': [0.00034823159402519455, 0.2502183495736202], 'true,true,false': [0.17073592820736733, 0.17537978328555223]}, {'': [0.14718883429516558, 0.0], 'true': [0.0005269193870005914, 0.20345939388333423], 'true,false': [0.2134855333365047, 0.17356877409051844], 'true,false,true': [0.006246014864868273, 0.24587141744475505], 'true,false,false': [0.13733759716607388, 0.20045988452414146]}, {'': [0.17426408688071476, 3.7007434154171884e-18], 'true': [0.12061073449616774, 0.19870874234931557], 'true,false': [0.21823983248355497, 0.1850664365936421], 'true,false,false': [0.0, 0.22198071350999887], 'true,true': [0.11451938044061308, 0.10661121767533535], 'true,true,true': [0.0061421917996407555, 0.18337494249024205], 'true,true,false': [0.0, 0.16636240630522256]}, {'': [0.1652476223736685, -1.4173059888831785e-17], 'true': [0.13988156802690777, 0.1685035451470981], 'true,false': [1.2424989243574479e-05, 0.22112907643603094], 'true,false,false': [0.18750000000000003, 0.21340699621588907], 'true,true': [0.15875972946722078, 0.0019314997561007629], 'true,true,true': [0.0067061877949139105, 0.20698791443926978]}, {'': [0.16559376725998087, 4.20539024479226e-18], 'true': [0.0006535617169424276, 0.2174952189933266], 'true,false': [0.2274191281805937, 0.20965656462953702], 'true,false,false': [0.17826742713076635, 0.2074369752462648]}, {'': [0.17437953007462761, 0.01729481885742742], 'true': [0.1729045414808738, 0.07596142370377126], 'true,true': [0.001933319465558414, 0.18204387596209395], 'true,true,false': [0.15521834928220507, 0.17263860299456915], 'false': [6.938893903907229e-19, 0.1729920263841151]}, {'': [0.13765823662569454, 0.02013846836596328], 'true': [0.09766921758142014, 0.16395206372946444], 'true,false': [0.18592402229510172, 0.10278709685222656], 'true,false,true': [0.14742699729521058, 0.19307832566797825], 'true,false,false': [0.11274051106555481, 0.00574533381356504], 'true,true': [0.010480606977657125, 0.18280132621265435], 'true,true,false': [0.2007964928777746, 0.08966903571109519], 'false': [3.384826294588892e-18, 0.15834043138883008]}, {'': [0.11261745561842378, 0.00014410408945910618], 'true': [0.0978096353513172, 0.2222222222222223], 'true,true': [0.14033117206627851, 0.07728805480312767], 'true,true,false': [0.057461981699772464, 0.18176074989510416]}, {'': [0.16190434849741317, 0.053287436713557415], 'true': [0.08652431170678912, 0.20503643967578383], 'true,false': [0.23944760037028479, 0.0996304060302219], 'true,false,true': [0.14145574214073833, 0.18749999999999997], 'true,true': [0.08196637288282009, 0.007622106666232013], 'true,true,true': [0.00397763477046194, 0.18750000000000003], 'false': [0.04100764003060396, 0.051536808741565104], 'false,false': [0.06898435021564465, 0.04421387346555772]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;advisedby(A, B) :- student(A), professor(B).;true;true
+0;true;publication(C, B), publication(C, A).;true;true
+0;true,true;ta(D, A, E).;true;true
+1;;advisedby(A, B) :- student(A), professor(B).;true;true
+1;true;tempadvisedby(C, B).;true;true
+1;true,true;publication(D, B), publication(D, A).;true;true
+2;;advisedby(A, B) :- professor(B), student(A).;true;true
+2;true;publication(C, B), publication(C, A).;true;true
+3;;advisedby(A, B) :- professor(B), student(A).;true;true
+3;true;tempadvisedby(C, B).;true;true
+3;true,true;publication(D, A), publication(E, B).;true;true
+3;true,true,false;ta(G, C, H).;true;true
+3;true,false;publication(I, A), ta(J, A, K).;true;true
+3;true,false,false;publication(L, A), publication(L, B).;true;true
+4;;advisedby(A, B) :- professor(B), student(A).;true;true
+4;true;ta(C, A, D), publication(E, B).;true;true
+4;true,true;ta(F, G, D), publication(H, G).;true;true
+4;true,false;publication(J, A), publication(J, B).;true;true
+5;;advisedby(A, B) :- professor(B), student(A).;true;true
+5;true;publication(C, A), publication(C, B).;true;true
+6;;advisedby(A, B) :- professor(B), publication(C, B).;true;true
+6;true;publication(C, D), tempadvisedby(E, D).;true;true
+6;true,true;ta(F, A, G), ta(F, E, H).;true;true
+6;false;student(B).;true;true
+7;;advisedby(A, B) :- professor(B), publication(C, B).;true;true
+7;false;student(B).;true;true
+8;;advisedby(A, B) :- professor(B), student(A).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B), publication(C, A) )
+%   | then return 0.8581489350995123;  // std dev = 0.000, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | else if ( publication(D, A), publication(E, B) )
+%   | | then if ( tempadvisedby(F, B) )
+%   | | | then return 0.5248156017661788;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.10814893509951223;  // std dev = 1.500, 12.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=3 */
+%   | | else if ( tempadvisedby(G, B), ta(H, A, I) )
+%   | | | then return 0.41370449065506787;  // std dev = 1.491, 9.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=5 */
+%   | | | else return 0.7672398441904213;  // std dev = 0.953, 11.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=10 */
+%   else return -0.14185106490048768;  // std dev = 5.16e-08, 55.000 (wgt'ed) examples reached here.  /* #neg=55 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), publication(E, B) )
+%   | then if ( ta(F, G, D), publication(E, G) )
+%   | | then if ( publication(E, A) )
+%   | | | then return 0.5194734122109544;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return 0.7804859656617165;  // std dev = 0.117, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | else if ( ta(C, H, I), tempadvisedby(H, J) )
+%   | | | then return 0.5749803740593651;  // std dev = 0.869, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return 0.37130612523123546;  // std dev = 1.119, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   | else if ( publication(K, A), publication(K, B) )
+%   | | then if ( publication(K, L), tempadvisedby(M, L) )
+%   | | | then return 0.43375912649666876;  // std dev = 1.195, 7.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=5 */
+%   | | | else return 0.7194734122109544;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( publication(N, A), publication(P, B) )
+%   | | | then return 0.09427401025834971;  // std dev = 1.206, 7.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=2 */
+%   | | | else return 0.30690610938370777;  // std dev = 1.488, 9.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=5 */
+%   else return -0.1254446385283915;  // std dev = 0.000, 45.000 (wgt'ed) examples reached here.  /* #neg=45 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, B) )
+%   | then if ( publication(C, A) )
+%   | | then return 0.5968822585063572;  // std dev = 0.104, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | | else if ( publication(D, A), tempadvisedby(E, B) )
+%   | | | then return 0.07446165150133958;  // std dev = 1.076, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | | | else return 0.42499443275926685;  // std dev = 1.999, 23.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=17 */
+%   | else return -0.08261502543640134;  // std dev = 0.930, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+%   else return -0.1123163781936064;  // std dev = 0.000, 62.000 (wgt'ed) examples reached here.  /* #neg=62 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), ta(D, A, E) )
+%   | then if ( tempadvisedby(F, B), ta(G, F, E) )
+%   | | then return -0.16116388358656625;  // std dev = 0.764, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | | then return 0.3266258992419474;  // std dev = 0.725, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.0770476354419674;  // std dev = 1.532, 10.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=5 */
+%   | else if ( publication(K, B), publication(K, A) )
+%   | | then return 0.44654410658060495;  // std dev = 0.105, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | | else if ( ta(L, A, M), publication(N, B) )
+%   | | | then return 0.31686323351312323;  // std dev = 1.508, 13.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=10 */
+%   | | | else return 0.1609626433156129;  // std dev = 1.670, 12.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=6 */
+%   else return -0.10159632948783631;  // std dev = 0.000, 48.000 (wgt'ed) examples reached here.  /* #neg=48 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( tempadvisedby(C, B) )
+%   | then if ( publication(D, A), publication(D, B) )
+%   | | then return 0.3947186594154794;  // std dev = 0.126, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else if ( publication(E, A), publication(F, B) )
+%   | | | then return -0.12441714051806738;  // std dev = 1.243, 10.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=2 */
+%   | | | else return 0.11382313140505076;  // std dev = 1.761, 13.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=7 */
+%   | else if ( ta(G, A, H), publication(I, A) )
+%   | | then return 0.5464308543859562;  // std dev = 0.133, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( ta(J, A, K) )
+%   | | | then return 0.16721278131952078;  // std dev = 1.208, 8.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=6 */
+%   | | | else return 0.3448341402090459;  // std dev = 0.777, 8.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=7 */
+%   else return -0.092691276189261;  // std dev = 0.000, 44.000 (wgt'ed) examples reached here.  /* #neg=44 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B) )
+%   | then if ( publication(C, D), student(D) )
+%   | | then if ( ta(E, D, F), tempadvisedby(G, B) )
+%   | | | then return 0.30559769597860936;  // std dev = 1.332, 14.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=12 */
+%   | | | else return 0.12161506384852304;  // std dev = 2.036, 26.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=18 */
+%   | | else return -0.08602464168243161;  // std dev = 0.924, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | else return -0.12994705789455008;  // std dev = 0.901, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+%   else return -0.0851847513883968;  // std dev = 7.45e-09, 57.000 (wgt'ed) examples reached here.  /* #neg=57 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), publication(E, A) )
+%   | then if ( tempadvisedby(F, B), publication(G, B) )
+%   | | then return 0.2118473147093039;  // std dev = 0.640, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else return 0.464319338429545;  // std dev = 0.300, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( tempadvisedby(H, B), ta(I, H, J) )
+%   | | then return -0.12050483927554699;  // std dev = 0.980, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | | else if ( tempadvisedby(K, B), ta(L, A, M) )
+%   | | | then return 0.47417990399926;  // std dev = 0.080, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.09691333307113476;  // std dev = 2.015, 27.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=19 */
+%   else return -0.07877675473109173;  // std dev = 1.83e-08, 64.000 (wgt'ed) examples reached here.  /* #neg=64 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( student(A), tempadvisedby(C, B) )
+%   then if ( publication(D, A), publication(E, C) )
+%   | then return -0.11484538863058331;  // std dev = 0.793, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else if ( publication(F, A), ta(G, C, H) )
+%   | | then return 0.35838569048235086;  // std dev = 0.297, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( ta(I, A, J), publication(K, A) )
+%   | | | then return -0.002323457087905628;  // std dev = 0.751, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return 0.18119341120649488;  // std dev = 1.339, 13.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=10 */
+%   else if ( publication(L, A), publication(L, B) )
+%   | then return 0.07873350428318411;  // std dev = 0.136, 9.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=5 */
+%   | else if ( publication(M, A) )
+%   | | then if ( professor(B), ta(N, A, P) )
+%   | | | then return -0.23509704806515463;  // std dev = 1.029, 5.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=2 */
+%   | | | else return -0.07831604955611178;  // std dev = 0.859, 43.000 (wgt'ed) examples reached here.  /* #neg=42 #pos=1 */
+%   | | else if ( professor(B) )
+%   | | | then return 0.07791964791185989;  // std dev = 1.469, 11.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=8 */
+%   | | | else return -0.07324622576333704;  // std dev = 2.63e-09, 9.000 (wgt'ed) examples reached here.  /* #neg=9 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( publication(C, A), tempadvisedby(D, B) )
+%   then if ( ta(E, A, F) )
+%   | then return 0.31919179113071017;  // std dev = 0.333, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( student(A), ta(G, D, H) )
+%   | | then return -0.3872115636513851;  // std dev = 0.019, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else if ( professor(A) )
+%   | | | then return -0.07237215216274805;  // std dev = 0.012, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | | else return 0.19729045482383617;  // std dev = 0.649, 7.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=6 */
+%   else if ( ta(I, A, J), professor(B) )
+%   | then if ( ta(K, L, J), publication(M, L) )
+%   | | then if ( ta(I, L, N) )
+%   | | | then return -0.03726985926377145;  // std dev = 1.437, 10.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=6 */
+%   | | | else return -0.3692799008128779;  // std dev = 1.128, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+%   | | else if ( tempadvisedby(P, B) )
+%   | | | then return 0.059385709349177696;  // std dev = 0.868, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return -0.14400900993630045;  // std dev = 0.977, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | else return -0.049969792586186466;  // std dev = 0.215, 59.000 (wgt'ed) examples reached here.  /* #neg=50 #pos=9 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.1800305607820942;  // std dev = 0.086, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | else if ( publication(D, A), tempadvisedby(E, B) )
+%   | | then if ( publication(D, F), ta(G, F, H) )
+%   | | | then return 0.12637840607003326;  // std dev = 0.948, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   | | | else return -0.342444986354236;  // std dev = 0.055, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else if ( tempadvisedby(I, B), ta(J, A, K) )
+%   | | | then return -0.0579164949130357;  // std dev = 1.179, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | | else return 0.13464106645301693;  // std dev = 1.846, 18.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=13 */
+%   else return -0.06565114179345799;  // std dev = 0.019, 56.000 (wgt'ed) examples reached here.  /* #neg=56 */
+
+
+Results
+   AUC ROC   = 0.946558
+   AUC PR    = 0.383832
+   CLL	      = -0.194185
+   Precision = 0.195035 at threshold = 0.5
+   Recall    = 0.6875
+   F1        = 0.303867
+
+
+Total learning time: 6.904818058013916 seconds
+Total inference time: 1.145 seconds
+AUC ROC: 0.946558
+
+
+Results scoring model
+   AUC ROC   = 0.966968
+   AUC PR    = 0.392683
+   CLL	      = -0.206145
+   Precision = 0.17033 at threshold = 0.5
+   Recall    = 0.939394
+   F1        = 0.288372
+
+
+Total scoring time: 0.95 seconds
+Refined model CLL: -0.206145
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.946558
+   AUC PR    = 0.383832
+   CLL	      = -0.194185
+   Precision = 0.195035 at threshold = 0.5
+   Recall    = 0.6875
+   F1        = 0.303867
+
+
+Total learning time: 17.271509304046628 seconds
+Total inference time: 1.145 seconds
+AUC ROC: 0.946558
+Total revision time: 17.271509304046628
+Best scored revision CLL: -0.206145
+
+
+Dataset: 39_twitter_uwcse, Fold: 4, Type: Transfer (trRDN-B), Time: 00:00:57
+{'AUC ROC': 0.946558, 'AUC PR': 0.383832, 'CLL': -0.194185, 'Precision': [0.195035, 0.5], 'Recall': 0.6875, 'F1': 0.303867, 'Learning time': 17.271509304046628, 'Inference time': 1.145, 'parameter': {'AUC ROC': 0.955847, 'AUC PR': 0.516849, 'CLL': -0.195036, 'Precision': [0.211409, 0.5], 'Recall': 0.7875, 'F1': 0.333333, 'Learning time': 8.476691246032715, 'Inference time': 1.273}}
+
+
+Starting fold 5
+
+Target train facts examples: 414
+Target train pos examples: 16
+Target train neg examples: 345
+
+Target test facts examples: 1973
+Target test pos  examples: 97
+Target test neg examples: 3734
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(A, D).;false;false
+0;false;follows(A, E), recursion_accounttype(E, B).;true;true
+0;false,true;follows(A, F), follows(F, A).;false;true
+0;false,true,false;follows(A, G), follows(G, E).;false;false
+0;false,false;follows(H, A).;true;true
+0;false,false,true;follows(I, H), follows(I, A).;false;false
+0;false,false,false;follows(A, J), follows(J, K).;false;false
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;true;follows(A, C), tweets(A, D).;false;false
+1;false;follows(A, E), recursion_accounttype(E, B).;true;true
+1;false,true;tweets(A, F), tweets(E, F).;false;true
+1;false,true,false;follows(G, A), follows(E, H).;false;false
+1;false,false;follows(I, A).;true;true
+1;false,false,true;follows(I, J), recursion_accounttype(J, B).;false;false
+1;false,false,false;tweets(A, K).;false;false
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;true;follows(C, D), follows(D, A).;false;false
+2;false;follows(E, A).;true;true
+2;false,true;follows(F, E), follows(F, A).;false;true
+2;false,true,false;follows(E, G), recursion_accounttype(G, B).;false;false
+2;false,false;follows(A, H), follows(H, I).;true;true
+2;false,false,true;recursion_accounttype(I, B).;false;false
+2;false,false,false;follows(A, J).;false;false
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;tweets(A, D), tweets(C, D).;false;false
+3;false;follows(E, A).;true;true
+3;false,true;follows(F, E), recursion_accounttype(F, B).;true;false
+3;false,true,true;follows(A, G), recursion_accounttype(G, B).;false;false
+3;false,false;follows(A, H), recursion_accounttype(H, B).;true;true
+3;false,false,true;follows(A, I), follows(I, H).;false;false
+3;false,false,false;tweets(A, J), follows(A, K).;false;false
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, D), follows(D, C).;true;false
+4;true,true;follows(D, A).;false;true
+4;true,true,false;tweets(A, E).;false;false
+4;false;follows(F, A).;false;true
+4;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+4;false,false,true;follows(G, H), follows(H, G).;false;false
+4;false,false,false;follows(A, I), follows(I, J).;false;false
+5;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+5;true;follows(D, A), tweets(D, E).;true;true
+5;true,true;recursion_accounttype(D, B).;false;false
+5;true,false;follows(C, F), follows(F, C).;true;false
+5;true,false,true;tweets(C, G), recursion_accounttype(F, B).;false;false
+5;false;follows(A, H), follows(H, A).;false;true
+5;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+5;false,false,false;tweets(A, J), follows(K, A).;false;false
+6;;accounttype(A, B) :- follows(A, C).;true;true
+6;true;follows(D, C), recursion_accounttype(D, B).;true;false
+6;true,true;recursion_accounttype(C, B).;true;true
+6;true,true,true;follows(E, A), follows(E, D).;false;false
+6;true,true,false;follows(F, A), recursion_accounttype(F, B).;false;false
+6;false;follows(G, A), recursion_accounttype(G, B).;false;true
+6;false,false;follows(H, A).;false;true
+6;false,false,false;tweets(A, I).;false;false
+7;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+7;true;tweets(C, D), follows(A, C).;false;false
+7;false;follows(E, A).;true;true
+7;false,true;follows(E, F), recursion_accounttype(F, B).;true;false
+7;false,true,true;follows(F, E), follows(A, F).;false;false
+7;false,false;follows(A, G), recursion_accounttype(G, B).;true;true
+7;false,false,true;tweets(A, H).;false;false
+7;false,false,false;follows(A, I).;false;false
+8;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+8;true;follows(C, D), recursion_accounttype(D, B).;false;true
+8;true,false;follows(A, E), follows(E, A).;false;false
+8;false;follows(F, A), follows(A, G).;true;true
+8;false,true;follows(G, A), follows(G, F).;false;true
+8;false,true,false;follows(H, F), recursion_accounttype(H, B).;false;false
+8;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+8;false,false,false;follows(J, A).;false;false
+9;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+9;true;follows(C, D).;true;false
+9;true,true;follows(A, D).;true;true
+9;true,true,true;follows(E, A), recursion_accounttype(E, B).;false;false
+9;true,true,false;tweets(C, F), follows(D, C).;false;false
+9;false;follows(A, G), follows(H, A).;false;true
+9;false,false;follows(I, A), recursion_accounttype(I, B).;false;true
+9;false,false,false;follows(J, A).;false;false
+
+
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( student(A), professor(B) )
+%   then if ( publication(C, A) )
+%   | then return 0.8581489350995122;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( tempadvisedby(D, B), publication(E, B) )
+%   | | then if ( publication(E, F), inphase(F, G) )
+%   | | | then return 0.6581489350995122;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return 0.35814893509951223;  // std dev = 1.225, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | else return 0.6914822684328454;  // std dev = 0.913, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   else return -0.1418510649004878;  // std dev = 0.000, 27.000 (wgt'ed) examples reached here.  /* #neg=27 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( hasposition(B, C), student(A) )
+%   then if ( publication(D, A) )
+%   | then return 0.7194734122109545;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( publication(E, B), tempadvisedby(F, B) )
+%   | | then if ( projectmember(G, B) )
+%   | | | then return 0.47540780245230163;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.23100908049959298;  // std dev = 1.628, 11.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=5 */
+%   | | else return 0.5518526675222027;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   else if ( professor(B), student(A) )
+%   | then return 0.08518600085553603;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else return -0.12544463852839138;  // std dev = 7.45e-09, 23.000 (wgt'ed) examples reached here.  /* #neg=23 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, B) )
+%   | then if ( publication(C, A) )
+%   | | then return 0.5553664367462845;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.7048131889245993;  // std dev = 0.122, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | else return 0.410665680387035;  // std dev = 0.899, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   else return -0.11231637819360633;  // std dev = 1.83e-08, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( student(A), hasposition(B, C) )
+%   then if ( projectmember(D, B) )
+%   | then return 0.5507360530752967;  // std dev = 0.029, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( tempadvisedby(E, B) )
+%   | | then if ( ta(F, E, G), ta(F, A, H) )
+%   | | | then return 0.23441967777960027;  // std dev = 0.796, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return 0.5390731938752393;  // std dev = 0.150, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else return 0.44785823522164697;  // std dev = 0.037, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   else if ( ta(I, A, J) )
+%   | then if ( ta(K, B, L) )
+%   | | then return -0.10159632948783628;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | else return -0.18488131163622215;  // std dev = 0.289, 6.000 (wgt'ed) examples reached here.  /* #neg=6 */
+%   | else if ( professor(A) )
+%   | | then return -0.1015963294878363;  // std dev = 0.000, 14.000 (wgt'ed) examples reached here.  /* #neg=14 */
+%   | | else return 0.08593993390087432;  // std dev = 0.650, 4.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=1 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( projectmember(C, B) )
+%   | then if ( ta(D, A, E) )
+%   | | then return -0.2936949360288315;  // std dev = 0.892, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else return 0.13794750386418192;  // std dev = 0.941, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else if ( ta(F, A, G) )
+%   | | then if ( ta(F, H, I), tempadvisedby(H, B) )
+%   | | | then return 0.40552426774113526;  // std dev = 0.107, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return 0.20449311092356925;  // std dev = 1.019, 8.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=6 */
+%   | | else return 0.41256066622832543;  // std dev = 0.265, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   else return -0.0916756798424131;  // std dev = 0.011, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( publication(C, B), ta(D, A, E) )
+%   then if ( tempadvisedby(F, B), ta(G, F, E) )
+%   | then return -0.14874765908346663;  // std dev = 0.943, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | else if ( publication(H, A) )
+%   | | then return -0.16261633315758647;  // std dev = 0.679, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else if ( tempadvisedby(I, B) )
+%   | | | then return 0.41455070989370296;  // std dev = 0.113, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | | else return 0.17819114872938913;  // std dev = 0.323, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   else if ( ta(J, A, K), professor(B) )
+%   | then return -0.4720459287052424;  // std dev = 0.204, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | else if ( tempadvisedby(L, B), student(A) )
+%   | | then return 0.1337002014873177;  // std dev = 0.919, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else if ( hasposition(B, M), student(A) )
+%   | | | then return -0.4109430709080845;  // std dev = 0.788, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | | else return -0.06325230310939244;  // std dev = 0.605, 25.000 (wgt'ed) examples reached here.  /* #neg=24 #pos=1 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( projectmember(C, B), student(A) )
+%   then return 0.16707063463489605;  // std dev = 0.860, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   else if ( ta(D, A, E), tempadvisedby(F, B) )
+%   | then if ( ta(D, F, G) )
+%   | | then return 0.3041512878302562;  // std dev = 0.006, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( ta(H, F, E) )
+%   | | | then return -0.28804941620334995;  // std dev = 0.862, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | | else return 0.060492087252241034;  // std dev = 0.831, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else if ( tempadvisedby(I, B), student(A) )
+%   | | then return -0.5373609545097706;  // std dev = 0.830, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+%   | | else if ( publication(J, A), ta(K, A, L) )
+%   | | | then return -0.2500697739238227;  // std dev = 0.562, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | | else return 0.0011445083752937687;  // std dev = 0.810, 21.000 (wgt'ed) examples reached here.  /* #neg=17 #pos=4 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), projectmember(E, B) )
+%   | then return -0.25663570628666815;  // std dev = 0.772, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else if ( tempadvisedby(F, B), publication(G, B) )
+%   | | then if ( publication(G, A) )
+%   | | | then return 0.261495218166291;  // std dev = 0.039, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return 0.001697890525147066;  // std dev = 1.361, 9.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=6 */
+%   | | else if ( ta(H, A, I) )
+%   | | | then return 0.09643158379537929;  // std dev = 0.432, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.36477808805797624;  // std dev = 0.207, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else return -0.0851288050192183;  // std dev = 0.050, 27.000 (wgt'ed) examples reached here.  /* #neg=27 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( tempadvisedby(C, B), student(A) )
+%   then if ( ta(D, A, E), publication(F, B) )
+%   | then if ( ta(G, C, E) )
+%   | | then return 0.04942007544235749;  // std dev = 0.731, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else return 0.287146686298403;  // std dev = 0.173, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | else if ( projectmember(H, B) )
+%   | | then return 0.09902545605772353;  // std dev = 0.569, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | else return -0.36017651807755335;  // std dev = 0.745, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   else if ( ta(I, A, J) )
+%   | then if ( professor(B) )
+%   | | then return -0.23282131046215757;  // std dev = 0.975, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | else return -0.06822516907777493;  // std dev = 0.028, 9.000 (wgt'ed) examples reached here.  /* #neg=9 */
+%   | else if ( professor(A) )
+%   | | then return -0.07445962729162117;  // std dev = 9.13e-09, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+%   | | else return 0.056659407777857475;  // std dev = 0.525, 6.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=2 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D) )
+%   | then if ( publication(E, B) )
+%   | | then if ( ta(F, G, D), publication(E, G) )
+%   | | | then return -0.152558210450197;  // std dev = 0.804, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return 0.041588618649821746;  // std dev = 1.368, 11.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=8 */
+%   | | else return -0.29194521890232067;  // std dev = 0.148, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | else if ( publication(H, B), tempadvisedby(I, B) )
+%   | | then return 0.04063810186733215;  // std dev = 0.657, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else return 0.27387116578988246;  // std dev = 0.191, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else return -0.07184935790225755;  // std dev = 0.059, 22.000 (wgt'ed) examples reached here.  /* #neg=22 */
+
+
+Results
+   AUC ROC   = 0.911655
+   AUC PR    = 0.12633
+   CLL	      = -0.298695
+   Precision = 0.124665 at threshold = 0.5
+   Recall    = 0.958763
+   F1        = 0.220641
+
+
+Total learning time: 4.918070316314697 seconds
+Total inference time: 1.318 seconds
+AUC ROC: 0.911655
+
+
+Results scoring model
+   AUC ROC   = 0.956159
+   AUC PR    = 0.395747
+   CLL	      = -0.248221
+   Precision = 0.253968 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.405063
+
+
+Total scoring time: 0.58 seconds
+Parameter learned model CLL: -0.248221
+
+
+Structure after Parameter Learning
+[['advisedby(A, B)', {'': 'student(A), professor(B)', 'true': 'publication(C, A)', 'true,false': 'tempadvisedby(D, B), publication(E, B)', 'true,false,true': 'publication(E, F), inphase(F, G)'}, {'true,true': [0.0, 0, 4], 'true,false,true,true': [0.894, 1, 4], 'true,false,true,false': [1.225, 3, 3], 'true,false,false': [0.913, 1, 5], 'false': [0.0, 27, 0]}], ['advisedby(A, B)', {'': 'hasposition(B, C), student(A)', 'true': 'publication(D, A)', 'true,false': 'publication(E, B), tempadvisedby(F, B)', 'true,false,true': 'projectmember(G, B)', 'false': 'professor(B), student(A)'}, {'true,true': [0.0, 0, 4], 'true,false,true,true': [0.816, 1, 2], 'true,false,true,false': [1.628, 6, 5], 'true,false,false': [0.894, 1, 4], 'false,true': [0.816, 2, 1], 'false,false': [7.45e-09, 23, 0]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'publication(C, B)', 'true,true': 'publication(C, A)'}, {'true,true,true': [0.0, 0, 4], 'true,true,false': [0.122, 0, 9], 'true,false': [0.899, 1, 3], 'false': [1.83e-08, 20, 0]}], ['advisedby(A, B)', {'': 'student(A), hasposition(B, C)', 'true': 'projectmember(D, B)', 'true,false': 'tempadvisedby(E, B)', 'true,false,true': 'ta(F, E, G), ta(F, A, H)', 'false': 'ta(I, A, J)', 'false,true': 'ta(K, B, L)', 'false,false': 'professor(A)'}, {'true,true': [0.029, 0, 4], 'true,false,true,true': [0.796, 1, 3], 'true,false,true,false': [0.15, 0, 5], 'true,false,false': [0.037, 0, 3], 'false,true,true': [0.0, 5, 0], 'false,true,false': [0.289, 6, 0], 'false,false,true': [0.0, 14, 0], 'false,false,false': [0.65, 3, 1]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'projectmember(C, B)', 'true,true': 'ta(D, A, E)', 'true,false': 'ta(F, A, G)', 'true,false,true': 'ta(F, H, I), tempadvisedby(H, B)'}, {'true,true,true': [0.892, 2, 1], 'true,true,false': [0.941, 1, 3], 'true,false,true,true': [0.107, 0, 3], 'true,false,true,false': [1.019, 2, 6], 'true,false,false': [0.265, 0, 3], 'false': [0.011, 20, 0]}], ['advisedby(A, B)', {'': 'publication(C, B), ta(D, A, E)', 'true': 'tempadvisedby(F, B), ta(G, F, E)', 'true,false': 'publication(H, A)', 'true,false,false': 'tempadvisedby(I, B)', 'false': 'ta(J, A, K), professor(B)', 'false,false': 'tempadvisedby(L, B), student(A)', 'false,false,false': 'hasposition(B, M), student(A)'}, {'true,true': [0.943, 2, 2], 'true,false,true': [0.679, 2, 1], 'true,false,false,true': [0.113, 0, 5], 'true,false,false,false': [0.323, 1, 2], 'false,true': [0.204, 4, 0], 'false,false,true': [0.919, 1, 4], 'false,false,false,true': [0.788, 2, 1], 'false,false,false,false': [0.605, 24, 1]}], ['advisedby(A, B)', {'': 'projectmember(C, B), student(A)', 'false': 'ta(D, A, E), tempadvisedby(F, B)', 'false,true': 'ta(D, F, G)', 'false,true,false': 'ta(H, F, E)', 'false,false': 'tempadvisedby(I, B), student(A)', 'false,false,false': 'publication(J, A), ta(K, A, L)'}, {'true': [0.86, 1, 4], 'false,true,true': [0.006, 0, 3], 'false,true,false,true': [0.862, 2, 1], 'false,true,false,false': [0.831, 1, 3], 'false,false,true': [0.83, 4, 1], 'false,false,false,true': [0.562, 5, 0], 'false,false,false,false': [0.81, 17, 4]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'ta(C, A, D), projectmember(E, B)', 'true,false': 'tempadvisedby(F, B), publication(G, B)', 'true,false,true': 'publication(G, A)', 'true,false,false': 'ta(H, A, I)'}, {'true,true': [0.772, 2, 1], 'true,false,true,true': [0.039, 0, 3], 'true,false,true,false': [1.361, 3, 6], 'true,false,false,true': [0.432, 1, 2], 'true,false,false,false': [0.207, 0, 4], 'false': [0.05, 27, 0]}], ['advisedby(A, B)', {'': 'tempadvisedby(C, B), student(A)', 'true': 'ta(D, A, E), publication(F, B)', 'true,true': 'ta(G, C, E)', 'true,false': 'projectmember(H, B)', 'false': 'ta(I, A, J)', 'false,true': 'professor(B)', 'false,false': 'professor(A)'}, {'true,true,true': [0.731, 1, 2], 'true,true,false': [0.173, 0, 6], 'true,false,true': [0.569, 1, 3], 'true,false,false': [0.745, 2, 1], 'false,true,true': [0.975, 2, 2], 'false,true,false': [0.028, 9, 0], 'false,false,true': [9.13e-09, 20, 0], 'false,false,false': [0.525, 4, 2]}], ['advisedby(A, B)', {'': 'professor(B), student(A)', 'true': 'ta(C, A, D)', 'true,true': 'publication(E, B)', 'true,true,true': 'ta(F, G, D), publication(E, G)', 'true,false': 'publication(H, B), tempadvisedby(I, B)'}, {'true,true,true,true': [0.804, 1, 2], 'true,true,true,false': [1.368, 3, 8], 'true,true,false': [0.148, 3, 0], 'true,false,true': [0.657, 1, 2], 'true,false,false': [0.191, 0, 4], 'false': [0.059, 22, 0]}]]
+[{'': [0.1814058956916096, -1.2335811384723961e-17], 'true': [0.0, 0.20761245674740453], 'true,false': [0.23140495867768587, 0.13888888888888898], 'true,false,true': [0.15999999999999986, 0.24999999999999992]}, {'': [0.2158748262451957, 0.03016943299466836], 'true': [0.0, 0.23809637586141766], 'true,false': [0.24702018948091173, 0.15999999999999998], 'true,false,true': [0.22222222222222224, 0.24098382818367184], 'false': [0.22222222222222224, 2.413528314402514e-18]}, {'': [0.06309429496751333, 1.6653345369377347e-17], 'true': [0.0059048503156203715, 0.2018653355027453], 'true,true': [0.0, 0.0016571261608596306]}, {'': [0.05780372420578084, 0.023634824420183817], 'true': [0.00020451587243452973, 0.07237825181706233], 'true,false': [0.09586275545356597, 0.00046039892407786126], 'true,false,true': [0.15852337855301574, 0.004483694809812455], 'false': [0.00928673468376881, 0.02952530624486901], 'false,false': [-3.96508223080413e-18, 0.1055095502573995], 'false,true': [0.0, 0.013872776502913913]}, {'': [0.18095278460337041, 5.844803658479336e-06], 'true': [0.2857790209963071, 0.09018762631482287], 'true,true': [0.2651615873204382, 0.2213927265745829], 'true,false': [0.10336375328534465, 0.023424415939677146], 'true,false,true': [0.003817500117517377, 0.12967172749289563]}, {'': [0.1623409830504083, 0.08162936974801378], 'true': [0.22234968506418168, 0.10943357766495682], 'true,false': [0.15378154521949464, 0.0277129849564966], 'false': [0.010355476917436296, 0.07235828310353215], 'false,false': [0.16873748302092614, 0.046836799157666295], 'false,false,false': [0.20710603847899356, 0.01465211150920227], 'true,false,false': [0.0025685118161698607, 0.034704288844257546]}, {'': [0.14802830240841855, 0.1236952151800309], 'false': [0.19661926806414734, 0.09429212017405567], 'false,true': [1.1112188089967834e-05, 0.23453715794462235], 'false,true,false': [0.24781926352208475, 0.17251221606248976], 'false,false': [0.13769227409969104, 0.04718929776938041], 'false,false,false': [0.06319721599647149, 0.031241616430949675]}, {'': [0.15897517638531158, 9.214024353416488e-05], 'true': [0.19840966299442295, 0.13192790768070428], 'true,false': [0.1670927708765585, 0.050465381978944526], 'true,false,true': [0.0004966996208387772, 0.2057511317660951], 'true,false,false': [0.062299498281913106, 0.010728432030308377]}, {'': [0.14283393903807368, 0.03663712177498701], 'true': [0.07519478834936141, 0.17723845753620715], 'true,false': [0.08097620373756731, 0.18509301323930663], 'true,true': [0.17791885236602736, 0.004994775837994504], 'false': [0.078918642079302, 0.013637887685289023], 'false,true': [0.23753878227240788, 8.483591389943522e-05], 'false,false': [4.163336342344337e-18, 0.04587274302787973]}, {'': [0.1522172178870964, 0.00016064226920410596], 'true': [0.16703378745174174, 0.08023255778533946], 'true,true': [0.1862169600535804, 0.0073281107214619445], 'true,true,true': [0.2154225523329717, 0.1701747289693534], 'true,false': [0.14393485903523737, 0.009142548087901575]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;advisedby(A, B) :- student(A), professor(B).;true;true
+0;true;publication(C, A).;true;true
+1;;advisedby(A, B) :- hasposition(B, C), student(A).;true;true
+1;true;publication(D, A).;true;true
+1;false;professor(B), student(A).;true;true
+2;;advisedby(A, B) :- professor(B), student(A).;true;true
+2;true;publication(C, B).;true;true
+2;true,true;publication(C, A).;true;true
+3;;advisedby(A, B) :- student(A), hasposition(B, C).;true;true
+3;true;projectmember(D, B).;true;true
+3;true,false;tempadvisedby(E, B).;true;true
+3;false;ta(I, A, J).;true;true
+3;false,true;ta(K, B, L).;true;true
+3;false,false;professor(A).;true;true
+4;;advisedby(A, B) :- professor(B), student(A).;true;true
+6;;advisedby(A, B) :- projectmember(C, B), student(A).;true;true
+6;false;ta(D, A, E), tempadvisedby(F, B).;true;true
+6;false,true;ta(D, F, G).;true;true
+7;;advisedby(A, B) :- professor(B), student(A).;true;true
+7;true;ta(C, A, D), projectmember(E, B).;true;true
+7;true,false;tempadvisedby(F, B), publication(G, B).;true;true
+7;true,false,true;publication(G, A).;true;true
+8;;advisedby(A, B) :- tempadvisedby(C, B), student(A).;true;true
+8;false;ta(I, A, J).;true;true
+8;false,true;professor(B).;true;true
+8;false,false;professor(A).;true;true
+9;;advisedby(A, B) :- professor(B), student(A).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), publication(C, B) )
+%   | then return 0.8581489350995122;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( tempadvisedby(D, B) )
+%   | | then if ( ta(E, A, F), publication(G, B) )
+%   | | | then return 0.4581489350995123;  // std dev = 1.549, 10.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=6 */
+%   | | | else return 0.23314893509951226;  // std dev = 1.369, 8.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=3 */
+%   | | else return 0.6081489350995122;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   else return -0.14185106490048777;  // std dev = 0.000, 23.000 (wgt'ed) examples reached here.  /* #neg=23 */
+WILL Produced-Tree #2
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( publication(C, A), ta(D, A, E) )
+%   | then return 0.1583214307625457;  // std dev = 1.025, 5.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=2 */
+%   | else if ( ta(F, A, G), projectmember(H, B) )
+%   | | then return 0.1376408687907352;  // std dev = 0.803, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else if ( publication(I, B), tempadvisedby(J, B) )
+%   | | | then return 0.4350523155041526;  // std dev = 1.548, 11.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=7 */
+%   | | | else return 0.7792262962262226;  // std dev = 0.093, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   else return -0.12544463852839138;  // std dev = 0.000, 24.000 (wgt'ed) examples reached here.  /* #neg=24 */
+WILL Produced-Tree #3
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D), tempadvisedby(E, B) )
+%   | then if ( ta(F, E, D) )
+%   | | then return 0.2058685640535899;  // std dev = 0.987, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | else if ( ta(C, G, H), publication(I, G) )
+%   | | | then return 0.47010063046540496;  // std dev = 0.810, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return 0.7313207299925736;  // std dev = 0.046, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | else if ( projectmember(J, B) )
+%   | | then return 0.7102709630214844;  // std dev = 0.056, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else return 0.5939547598089115;  // std dev = 0.063, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else return -0.11231637819360639;  // std dev = 0.000, 29.000 (wgt'ed) examples reached here.  /* #neg=29 */
+WILL Produced-Tree #4
+% FOR advisedby(A, B):
+%   if ( hasposition(B, C), student(A) )
+%   then if ( publication(D, B), ta(E, A, F) )
+%   | then if ( ta(G, H, F), publication(I, H) )
+%   | | then return 0.5613381511186984;  // std dev = 0.144, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | else return 0.5866811715278561;  // std dev = 0.159, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( projectmember(J, B) )
+%   | | then return 0.21657543203041243;  // std dev = 0.912, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   | | else return 0.03366375779338453;  // std dev = 0.807, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   else if ( professor(B) )
+%   | then if ( tempadvisedby(K, B) )
+%   | | then return -0.10159632948783628;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #neg=5 */
+%   | | else return -0.06400457094149474;  // std dev = 0.709, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | else return -0.10159632948783634;  // std dev = 0.000, 31.000 (wgt'ed) examples reached here.  /* #neg=31 */
+WILL Produced-Tree #5
+% FOR advisedby(A, B):
+%   if ( tempadvisedby(C, B), student(A) )
+%   then if ( projectmember(D, B) )
+%   | then return 0.1604459896396059;  // std dev = 1.139, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+%   | else if ( ta(E, A, F), ta(E, C, G) )
+%   | | then return 0.4490443735790661;  // std dev = 0.071, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else return 0.46690637908078686;  // std dev = 0.088, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else if ( ta(H, A, I), publication(J, A) )
+%   | then return -0.20211927326550438;  // std dev = 0.379, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | else if ( professor(B) )
+%   | | then if ( professor(A) )
+%   | | | then return -0.09269127618926096;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | | | else return 0.16254880617789727;  // std dev = 0.954, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else return -0.09269127618926096;  // std dev = 7.45e-09, 14.000 (wgt'ed) examples reached here.  /* #neg=14 */
+WILL Produced-Tree #6
+% FOR advisedby(A, B):
+%   if ( professor(B), student(A) )
+%   then if ( ta(C, A, D) )
+%   | then if ( tempadvisedby(E, B), ta(C, E, F) )
+%   | | then return 0.34285790540864935;  // std dev = 0.065, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( ta(G, H, D), publication(I, H) )
+%   | | | then return -0.10196469606017657;  // std dev = 1.024, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | | else return 0.03070223561624626;  // std dev = 1.182, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+%   | else return 0.4163519268255506;  // std dev = 0.132, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   else return -0.08474063617242374;  // std dev = 0.012, 30.000 (wgt'ed) examples reached here.  /* #neg=30 */
+WILL Produced-Tree #7
+% FOR advisedby(A, B):
+%   if ( ta(C, A, D), publication(E, B) )
+%   then if ( ta(C, F, G), publication(H, F) )
+%   | then return 0.3153219826824535;  // std dev = 0.097, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( ta(I, J, D), publication(K, J) )
+%   | | then return 0.08219127013035013;  // std dev = 0.718, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | else return 0.038970076301069224;  // std dev = 0.921, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   else if ( projectmember(L, B), student(A) )
+%   | then return 0.15916802142402642;  // std dev = 0.681, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else if ( publication(M, A) )
+%   | | then if ( publication(M, B) )
+%   | | | then return 0.09273041206541546;  // std dev = 0.343, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return -0.07729158805888783;  // std dev = 0.010, 10.000 (wgt'ed) examples reached here.  /* #neg=10 */
+%   | | else if ( professor(B), student(A) )
+%   | | | then return -0.47966999764138474;  // std dev = 0.894, 6.000 (wgt'ed) examples reached here.  /* #neg=5 #pos=1 */
+%   | | | else return -0.07904004609292538;  // std dev = 0.003, 12.000 (wgt'ed) examples reached here.  /* #neg=12 */
+WILL Produced-Tree #8
+% FOR advisedby(A, B):
+%   if ( publication(C, A), tempadvisedby(D, B) )
+%   then if ( publication(C, B) )
+%   | then return 0.1552524735665505;  // std dev = 0.281, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else return -0.5970487601226235;  // std dev = 0.066, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   else if ( hasposition(B, E), ta(F, A, G) )
+%   | then if ( ta(H, I, G), publication(J, I) )
+%   | | then return 0.11359839354928811;  // std dev = 0.753, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | else return 0.32631171532918124;  // std dev = 0.164, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( projectmember(K, B) )
+%   | | then return 0.31954418925043954;  // std dev = 0.062, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | else if ( publication(L, A) )
+%   | | | then return -0.010633187399918786;  // std dev = 0.284, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+%   | | | else return -0.10937457280923839;  // std dev = 0.832, 18.000 (wgt'ed) examples reached here.  /* #neg=17 #pos=1 */
+WILL Produced-Tree #9
+% FOR advisedby(A, B):
+%   if ( hasposition(B, C), student(A) )
+%   then if ( projectmember(D, B) )
+%   | then return 0.2756476319566373;  // std dev = 0.091, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | else if ( publication(E, A) )
+%   | | then return 0.2178733526015321;  // std dev = 0.046, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tempadvisedby(F, B), ta(G, A, H) )
+%   | | | then return -0.02342338578950062;  // std dev = 1.196, 7.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=5 */
+%   | | | else return -0.003664426420564193;  // std dev = 0.549, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   else if ( hasposition(B, I), hasposition(A, I) )
+%   | then return -0.09863155009788264;  // std dev = 0.000575, 4.000 (wgt'ed) examples reached here.  /* #neg=4 */
+%   | else if ( professor(B) )
+%   | | then return -0.031768898689380036;  // std dev = 0.707, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   | | else return -0.07072304454416846;  // std dev = 0.038, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+WILL Produced-Tree #10
+% FOR advisedby(A, B):
+%   if ( hasposition(B, C), student(A) )
+%   then if ( projectmember(D, B), publication(E, B) )
+%   | then return -0.19377897325724971;  // std dev = 0.912, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | else if ( tempadvisedby(F, B), publication(G, B) )
+%   | | then if ( ta(H, A, I), ta(H, F, J) )
+%   | | | then return -0.06125223213584163;  // std dev = 0.842, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return 0.14345925494672782;  // std dev = 0.656, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | else return 0.20371707359851943;  // std dev = 0.079, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else if ( professor(B) )
+%   | then if ( tempadvisedby(K, A) )
+%   | | then return -0.06713358044638583;  // std dev = 0.038, 3.000 (wgt'ed) examples reached here.  /* #neg=3 */
+%   | | else return -0.0413343157315646;  // std dev = 0.709, 5.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=1 */
+%   | else return -0.06754292173943317;  // std dev = 0.045, 31.000 (wgt'ed) examples reached here.  /* #neg=31 */
+
+
+Results
+   AUC ROC   = 0.943044
+   AUC PR    = 0.288209
+   CLL	      = -0.249736
+   Precision = 0.126316 at threshold = 0.5
+   Recall    = 0.865979
+   F1        = 0.220472
+
+
+Total learning time: 4.484534502029419 seconds
+Total inference time: 1.211 seconds
+AUC ROC: 0.943044
+
+
+Results scoring model
+   AUC ROC   = 0.973279
+   AUC PR    = 0.619648
+   CLL	      = -0.239639
+   Precision = 0.262295 at threshold = 0.5
+   Recall    = 1.0
+   F1        = 0.415584
+
+
+Total scoring time: 0.586 seconds
+Refined model CLL: -0.239639
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.943044
+   AUC PR    = 0.288209
+   CLL	      = -0.249736
+   Precision = 0.126316 at threshold = 0.5
+   Recall    = 0.865979
+   F1        = 0.220472
+
+
+Total learning time: 10.568604818344117 seconds
+Total inference time: 1.211 seconds
+AUC ROC: 0.943044
+Total revision time: 10.568604818344117
+Best scored revision CLL: -0.239639
+
+
+Dataset: 39_twitter_uwcse, Fold: 5, Type: Transfer (trRDN-B), Time: 00:01:10
+{'AUC ROC': 0.943044, 'AUC PR': 0.288209, 'CLL': -0.249736, 'Precision': [0.126316, 0.5], 'Recall': 0.865979, 'F1': 0.220472, 'Learning time': 10.568604818344117, 'Inference time': 1.211, 'parameter': {'AUC ROC': 0.911655, 'AUC PR': 0.12633, 'CLL': -0.298695, 'Precision': [0.124665, 0.5], 'Recall': 0.958763, 'F1': 0.220641, 'Learning time': 4.918070316314697, 'Inference time': 1.318}}
+
+
