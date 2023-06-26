@@ -1,0 +1,1243 @@
+Starting experiment #1 for 14_cora_twitter
+
+Loading pre-trained trees.
+Starting fold 1
+
+Target train facts examples: 1580
+Target train pos examples: 126
+Target train neg examples: 16128
+
+Target test facts examples: 1562
+Target test pos  examples: 156
+Target test neg examples: 24648
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+0;true;haswordtitle(D, C).;true;true
+0;true,true;title(E, D), venue(E, A).;false;true
+0;true,true,false;title(F, D), venue(F, B).;false;false
+0;true,false;haswordvenue(A, G), haswordtitle(H, G).;true;true
+0;true,false,true;haswordtitle(H, I), haswordauthor(J, I).;false;false
+0;true,false,false;haswordvenue(B, K), haswordtitle(L, K).;false;false
+0;false;haswordvenue(A, M), haswordtitle(N, M).;false;false
+1;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+1;true;haswordtitle(D, C).;true;true
+1;true,true;title(E, D), venue(E, B).;false;true
+1;true,true,false;title(F, D), venue(F, A).;false;false
+1;true,false;haswordvenue(B, G), haswordtitle(H, G).;true;true
+1;true,false,true;haswordtitle(H, I), haswordauthor(J, I).;false;false
+1;true,false,false;haswordvenue(A, K), haswordauthor(L, K).;false;false
+1;false;haswordvenue(B, M), haswordtitle(N, M).;false;false
+2;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+2;true;haswordtitle(D, C).;true;true
+2;true,true;title(E, D), venue(E, A).;false;true
+2;true,true,false;haswordtitle(D, F), haswordauthor(G, F).;false;false
+2;true,false;haswordvenue(A, H), haswordtitle(I, H).;true;true
+2;true,false,true;haswordtitle(I, J), haswordauthor(K, J).;false;false
+2;true,false,false;haswordvenue(B, L), haswordtitle(M, L).;false;false
+2;false;haswordvenue(A, N), haswordtitle(P, N).;false;false
+3;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+3;true;haswordtitle(D, C).;true;true
+3;true,true;haswordauthor(E, C).;false;true
+3;true,true,false;title(F, D), venue(F, B).;false;false
+3;true,false;haswordvenue(B, G), haswordauthor(H, G).;false;true
+3;true,false,false;haswordvenue(B, I), haswordtitle(J, I).;false;false
+3;false;haswordvenue(B, K), haswordtitle(L, K).;true;false
+3;false,true;haswordtitle(L, M), haswordauthor(N, M).;false;false
+4;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+4;true;haswordtitle(D, C).;true;true
+4;true,true;title(E, D), venue(E, B).;false;true
+4;true,true,false;title(F, D), venue(F, A).;false;false
+4;true,false;haswordvenue(A, G), haswordtitle(H, G).;true;true
+4;true,false,true;title(I, H), venue(I, A).;false;false
+4;true,false,false;haswordvenue(B, J), haswordtitle(K, J).;false;false
+4;false;haswordvenue(B, L), haswordtitle(M, L).;false;false
+5;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+5;true;haswordtitle(D, C).;true;true
+5;true,true;title(E, D), venue(E, A).;false;true
+5;true,true,false;title(F, D), venue(F, B).;false;false
+5;true,false;haswordvenue(A, G), haswordauthor(H, G).;false;true
+5;true,false,false;haswordvenue(A, I), haswordtitle(J, I).;false;false
+5;false;haswordvenue(A, K), haswordtitle(L, K).;true;false
+5;false,true;haswordauthor(M, K).;false;false
+6;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+6;true;haswordtitle(D, C).;true;true
+6;true,true;haswordauthor(E, C).;true;true
+6;true,true,true;author(F, E), title(F, D).;false;false
+6;true,true,false;title(G, D), venue(G, B).;false;false
+6;true,false;haswordvenue(B, H), haswordauthor(I, H).;false;true
+6;true,false,false;haswordvenue(B, J), haswordtitle(K, J).;false;false
+6;false;haswordvenue(A, L), haswordtitle(M, L).;false;false
+7;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+7;true;haswordtitle(D, C).;true;true
+7;true,true;title(E, D), venue(E, B).;false;true
+7;true,true,false;haswordtitle(D, F), haswordauthor(G, F).;false;false
+7;true,false;haswordvenue(A, H), haswordtitle(I, H).;true;true
+7;true,false,true;title(J, I), venue(J, A).;false;false
+7;true,false,false;haswordvenue(B, K), haswordtitle(L, K).;false;false
+7;false;haswordvenue(B, M), haswordauthor(N, M).;false;false
+8;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+8;true;haswordtitle(D, C).;true;true
+8;true,true;haswordauthor(E, C).;true;true
+8;true,true,true;author(F, E), title(F, D).;false;false
+8;true,true,false;title(G, D), venue(G, A).;false;false
+8;true,false;haswordvenue(B, H), haswordauthor(I, H).;false;true
+8;true,false,false;haswordvenue(A, J), haswordauthor(K, J).;false;false
+8;false;haswordvenue(B, L), haswordtitle(M, L).;false;false
+9;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+9;true;haswordtitle(D, C).;true;true
+9;true,true;title(E, D), venue(E, A).;false;true
+9;true,true,false;title(F, D), venue(F, B).;false;false
+9;true,false;haswordvenue(A, G), haswordtitle(H, G).;true;true
+9;true,false,true;title(I, H), venue(I, A).;false;false
+9;true,false,false;haswordvenue(B, J), haswordtitle(K, J).;false;false
+9;false;haswordvenue(A, L), haswordtitle(M, L).;false;false
+
+
+WILL Produced-Tree #1
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, C), tweets(A, D) )
+%   | then return 0.8392810105712104;  // std dev = 0.136, 53.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=52 */
+%   | else return 0.8581489350995123;  // std dev = 0.000, 30.000 (wgt'ed) examples reached here.  /* #pos=30 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(E, F), recursion_accounttype(F, B) )
+%   | | then if ( follows(A, F), follows(F, E) )
+%   | | | then return 0.6914822684328455;  // std dev = 0.913, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | | else return 0.8055173561521439;  // std dev = 0.973, 19.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=18 */
+%   | | else return -0.14185106490048835;  // std dev = 0.000, 191.000 (wgt'ed) examples reached here.  /* #neg=191 */
+%   | else if ( tweets(A, G) )
+%   | | then if ( tweets(H, G), recursion_accounttype(H, B) )
+%   | | | then return 0.8581489350995123;  // std dev = 0.000, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | | else return -0.1418510649004877;  // std dev = 3.33e-08, 34.000 (wgt'ed) examples reached here.  /* #neg=34 */
+%   | | else if ( follows(A, I), follows(I, J) )
+%   | | | then return 0.15814893509951225;  // std dev = 1.449, 10.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=3 */
+%   | | | else return 0.1914822684328457;  // std dev = 2.000, 18.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=6 */
+WILL Produced-Tree #2
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D) )
+%   | then return 0.7077233113936124;  // std dev = 0.120, 68.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=67 */
+%   | else if ( follows(C, E), follows(E, A) )
+%   | | then return 0.6194734122109542;  // std dev = 0.300, 10.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=9 */
+%   | | else return 0.7194734122109544;  // std dev = 2.11e-08, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), follows(G, A) )
+%   | | then return -0.10940710058978795;  // std dev = 0.120, 151.000 (wgt'ed) examples reached here.  /* #neg=148 #pos=3 */
+%   | | else if ( follows(F, H), recursion_accounttype(H, B) )
+%   | | | then return 0.6886048707114956;  // std dev = 0.961, 21.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=20 */
+%   | | | else return -0.12544463852839113;  // std dev = 6.66e-08, 69.000 (wgt'ed) examples reached here.  /* #neg=69 */
+%   | else if ( follows(A, I), recursion_accounttype(I, B) )
+%   | | then return 0.747906431966103;  // std dev = 0.098, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tweets(A, J) )
+%   | | | then return 0.08007596840820644;  // std dev = 2.205, 37.000 (wgt'ed) examples reached here.  /* #neg=28 #pos=9 */
+%   | | | else return 0.25618703377951924;  // std dev = 2.151, 19.000 (wgt'ed) examples reached here.  /* #neg=11 #pos=8 */
+WILL Produced-Tree #3
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D), tweets(C, E) )
+%   | then return 0.5497671212050946;  // std dev = 0.119, 70.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=69 */
+%   | else if ( follows(A, F), follows(C, F) )
+%   | | then return 0.3117517818600127;  // std dev = 0.865, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | else return 0.3923739693940149;  // std dev = 0.373, 12.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=10 */
+%   else if ( follows(A, G), recursion_accounttype(G, B) )
+%   | then if ( tweets(A, H), tweets(G, H) )
+%   | | then if ( follows(G, I), follows(I, A) )
+%   | | | then return 0.18758027515670495;  // std dev = 0.832, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return 0.5621067502557214;  // std dev = 0.028, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.6062315085286797;  // std dev = 0.117, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | else if ( follows(J, A) )
+%   | | then return -0.06776302783919559;  // std dev = 0.177, 238.000 (wgt'ed) examples reached here.  /* #neg=223 #pos=15 */
+%   | | else if ( tweets(A, K) )
+%   | | | then return 0.07488563424913493;  // std dev = 2.176, 36.000 (wgt'ed) examples reached here.  /* #neg=27 #pos=9 */
+%   | | | else return 0.025083360912102684;  // std dev = 2.484, 35.000 (wgt'ed) examples reached here.  /* #neg=27 #pos=8 */
+WILL Produced-Tree #4
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D), tweets(C, E) )
+%   | then if ( tweets(A, E), follows(D, C) )
+%   | | then return 0.3561508187296929;  // std dev = 0.255, 43.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=40 */
+%   | | else return 0.42961569417731893;  // std dev = 0.052, 29.000 (wgt'ed) examples reached here.  /* #pos=29 */
+%   | else return 0.46660184327501564;  // std dev = 0.035, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), recursion_accounttype(G, B) )
+%   | | then if ( follows(A, H), recursion_accounttype(H, B) )
+%   | | | then return 0.35673935972568965;  // std dev = 0.987, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | | | else return 0.6265594708214465;  // std dev = 0.265, 15.000 (wgt'ed) examples reached here.  /* #pos=15 */
+%   | | else return -0.10679095701946607;  // std dev = 0.010, 188.000 (wgt'ed) examples reached here.  /* #neg=188 */
+%   | else if ( follows(A, I), recursion_accounttype(I, B) )
+%   | | then return 0.44489712662555386;  // std dev = 0.137, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tweets(A, J) )
+%   | | | then return 0.05327070256761608;  // std dev = 2.177, 38.000 (wgt'ed) examples reached here.  /* #neg=29 #pos=9 */
+%   | | | else return 0.1253134373727499;  // std dev = 2.311, 24.000 (wgt'ed) examples reached here.  /* #neg=16 #pos=8 */
+WILL Produced-Tree #5
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, C), tweets(C, D) )
+%   | then return 0.30556900877099247;  // std dev = 0.176, 62.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=60 */
+%   | else return 0.34389359074122616;  // std dev = 0.072, 22.000 (wgt'ed) examples reached here.  /* #pos=22 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(E, F), follows(F, A) )
+%   | | then return -0.08613950030778252;  // std dev = 0.109, 146.000 (wgt'ed) examples reached here.  /* #neg=143 #pos=3 */
+%   | | else if ( follows(E, G), recursion_accounttype(G, B) )
+%   | | | then return 0.4164863414131168;  // std dev = 0.179, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   | | | else return -0.09605481639842206;  // std dev = 0.000, 66.000 (wgt'ed) examples reached here.  /* #neg=66 */
+%   | else if ( tweets(A, H) )
+%   | | then if ( tweets(I, H), recursion_accounttype(I, B) )
+%   | | | then return 0.48461806742762814;  // std dev = 1.346, 13.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=12 */
+%   | | | else return -0.15012528576696443;  // std dev = 1.83e-08, 15.000 (wgt'ed) examples reached here.  /* #neg=15 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.37473913338824305;  // std dev = 1.095, 5.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=3 */
+%   | | | else return 0.1477783399043793;  // std dev = 1.820, 15.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=6 */
+WILL Produced-Tree #6
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D) )
+%   | then if ( follows(D, A), follows(D, C) )
+%   | | then return 0.27500696037919;  // std dev = 0.050, 59.000 (wgt'ed) examples reached here.  /* #pos=59 */
+%   | | else return 0.19977276661027016;  // std dev = 0.238, 16.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=15 */
+%   | else return 0.16402027800300678;  // std dev = 0.314, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(E, F), follows(F, A) )
+%   | | then return -0.07884309345125125;  // std dev = 0.102, 167.000 (wgt'ed) examples reached here.  /* #neg=164 #pos=3 */
+%   | | else if ( follows(G, E), recursion_accounttype(G, B) )
+%   | | | then return 0.3235969357177954;  // std dev = 0.147, 19.000 (wgt'ed) examples reached here.  /* #pos=19 */
+%   | | | else return -0.0929099734209379;  // std dev = 0.737, 61.000 (wgt'ed) examples reached here.  /* #neg=60 #pos=1 */
+%   | else if ( follows(A, H), recursion_accounttype(H, B) )
+%   | | then return 0.26313744114754967;  // std dev = 0.177, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tweets(A, I) )
+%   | | | then return 0.04646942491559634;  // std dev = 1.794, 35.000 (wgt'ed) examples reached here.  /* #neg=26 #pos=9 */
+%   | | | else return 0.020357599009215455;  // std dev = 2.366, 28.000 (wgt'ed) examples reached here.  /* #neg=20 #pos=8 */
+WILL Produced-Tree #7
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, C), tweets(A, D) )
+%   | then if ( tweets(C, D) )
+%   | | then if ( follows(A, E), follows(E, C) )
+%   | | | then return 0.17151568597049618;  // std dev = 1.375, 37.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=35 */
+%   | | | else return 0.22362864275701458;  // std dev = 0.012, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | else return 0.22319584681669902;  // std dev = 0.045, 11.000 (wgt'ed) examples reached here.  /* #pos=11 */
+%   | else return 0.22746781751993356;  // std dev = 0.065, 30.000 (wgt'ed) examples reached here.  /* #pos=30 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), recursion_accounttype(G, B) )
+%   | | then return 0.28211665477517306;  // std dev = 0.200, 24.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=23 */
+%   | | else return -0.08283997920061384;  // std dev = 0.021, 207.000 (wgt'ed) examples reached here.  /* #neg=207 */
+%   | else if ( follows(A, H), recursion_accounttype(H, B) )
+%   | | then return 0.21709195061574757;  // std dev = 0.158, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else if ( tweets(A, I) )
+%   | | | then return 0.05607948369051145;  // std dev = 1.749, 32.000 (wgt'ed) examples reached here.  /* #neg=23 #pos=9 */
+%   | | | else return -0.03178797515120632;  // std dev = 2.455, 33.000 (wgt'ed) examples reached here.  /* #neg=25 #pos=8 */
+WILL Produced-Tree #8
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.1923830769045899;  // std dev = 0.079, 82.000 (wgt'ed) examples reached here.  /* #pos=82 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(D, E), follows(E, A) )
+%   | | then if ( follows(D, F), recursion_accounttype(F, B) )
+%   | | | then return 0.6053862487482987;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return -0.0777272770294619;  // std dev = 3.16e-08, 158.000 (wgt'ed) examples reached here.  /* #neg=158 */
+%   | | else if ( follows(D, G), recursion_accounttype(G, B) )
+%   | | | then return 0.2084985770330588;  // std dev = 0.110, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   | | | else return -0.07490647831350959;  // std dev = 0.000, 54.000 (wgt'ed) examples reached here.  /* #neg=54 */
+%   | else if ( tweets(A, H) )
+%   | | then if ( tweets(I, H), recursion_accounttype(I, B) )
+%   | | | then return 0.43810355994105715;  // std dev = 0.591, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | | else return -0.14415562163124948;  // std dev = 0.000, 31.000 (wgt'ed) examples reached here.  /* #neg=31 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.20515305255530183;  // std dev = 1.225, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | | else return 0.07095188634468101;  // std dev = 1.870, 17.000 (wgt'ed) examples reached here.  /* #neg=11 #pos=6 */
+WILL Produced-Tree #9
+% FOR accounttype(A, B):
+%   if ( follows(A, C), follows(C, D) )
+%   then if ( recursion_accounttype(D, B) )
+%   | then if ( follows(E, A) )
+%   | | then if ( follows(D, E), tweets(E, F) )
+%   | | | then return 0.14350423089608852;  // std dev = 1.781, 95.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=92 */
+%   | | | else return -0.09808562699101701;  // std dev = 0.949, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | else if ( tweets(A, G) )
+%   | | | then return 0.3036400470187376;  // std dev = 0.453, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | | else return 0.6607874713372539;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | else return -0.08667288408561812;  // std dev = 0.054, 221.000 (wgt'ed) examples reached here.  /* #neg=221 */
+%   else if ( tweets(A, H) )
+%   | then if ( follows(I, A) )
+%   | | then return -0.01326389986250594;  // std dev = 0.105, 38.000 (wgt'ed) examples reached here.  /* #neg=29 #pos=9 */
+%   | | else if ( tweets(J, H), recursion_accounttype(J, B) )
+%   | | | then return 0.22759953305816144;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return -0.12726607444186275;  // std dev = 0.000, 7.000 (wgt'ed) examples reached here.  /* #neg=7 */
+%   | else return 0.15778807049825483;  // std dev = 0.475, 13.000 (wgt'ed) examples reached here.  /* #neg=7 #pos=6 */
+WILL Produced-Tree #10
+% FOR accounttype(A, B):
+%   if ( follows(A, C), recursion_accounttype(C, B) )
+%   then return 0.14529945078611256;  // std dev = 0.205, 77.000 (wgt'ed) examples reached here.  /* #pos=77 */
+%   else if ( follows(D, A), recursion_accounttype(D, B) )
+%   | then if ( follows(A, E) )
+%   | | then return 0.14409999357710063;  // std dev = 0.050, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | | else return 0.0655188311145673;  // std dev = 0.314, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | else if ( follows(F, A) )
+%   | | then if ( follows(G, F), recursion_accounttype(G, B) )
+%   | | | then return 0.21546982764559033;  // std dev = 0.397, 15.000 (wgt'ed) examples reached here.  /* #pos=15 */
+%   | | | else return -0.06633341303837029;  // std dev = 0.026, 201.000 (wgt'ed) examples reached here.  /* #neg=201 */
+%   | | else if ( tweets(A, H) )
+%   | | | then return -0.010632731956059753;  // std dev = 1.389, 36.000 (wgt'ed) examples reached here.  /* #neg=27 #pos=9 */
+%   | | | else return -0.05095598651515264;  // std dev = 2.260, 29.000 (wgt'ed) examples reached here.  /* #neg=21 #pos=8 */
+
+
+Results
+   AUC ROC   = 0.987286
+   AUC PR    = 0.312877
+   CLL	      = -0.138043
+   Precision = 0.322196 at threshold = 0.5
+   Recall    = 0.865385
+   F1        = 0.469565
+
+
+Total learning time: 14.694662809371948 seconds
+Total inference time: 14.934 seconds
+AUC ROC: 0.987286
+
+
+Results scoring model
+   AUC ROC   = 0.991607
+   AUC PR    = 0.359259
+   CLL	      = -0.116806
+   Precision = 0.330532 at threshold = 0.5
+   Recall    = 0.936508
+   F1        = 0.488613
+
+
+Total scoring time: 12.748 seconds
+Parameter learned model CLL: -0.116806
+
+
+Structure after Parameter Learning
+[['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, C), tweets(A, D)', 'false': 'follows(E, A)', 'false,true': 'follows(E, F), recursion_accounttype(F, B)', 'false,true,true': 'follows(A, F), follows(F, E)', 'false,false': 'tweets(A, G)', 'false,false,true': 'tweets(H, G), recursion_accounttype(H, B)', 'false,false,false': 'follows(A, I), follows(I, J)'}, {'true,true': [0.136, 1, 52], 'true,false': [0.0, 0, 30], 'false,true,true,true': [0.913, 1, 5], 'false,true,true,false': [0.973, 1, 18], 'false,true,false': [0.0, 191, 0], 'false,false,true,true': [0.0, 0, 12], 'false,false,true,false': [3.33e-08, 34, 0], 'false,false,false,true': [1.449, 7, 3], 'false,false,false,false': [2.0, 12, 6]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'tweets(A, D)', 'true,false': 'follows(C, E), follows(E, A)', 'false': 'follows(F, A)', 'false,true': 'follows(F, G), follows(G, A)', 'false,true,false': 'follows(F, H), recursion_accounttype(H, B)', 'false,false': 'follows(A, I), recursion_accounttype(I, B)', 'false,false,false': 'tweets(A, J)'}, {'true,true': [0.12, 1, 67], 'true,false,true': [0.3, 1, 9], 'true,false,false': [2.11e-08, 0, 6], 'false,true,true': [0.12, 148, 3], 'false,true,false,true': [0.961, 1, 20], 'false,true,false,false': [6.66e-08, 69, 0], 'false,false,true': [0.098, 0, 4], 'false,false,false,true': [2.205, 28, 9], 'false,false,false,false': [2.151, 11, 8]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, D), tweets(C, E)', 'true,false': 'follows(A, F), follows(C, F)', 'false': 'follows(A, G), recursion_accounttype(G, B)', 'false,true': 'tweets(A, H), tweets(G, H)', 'false,true,true': 'follows(G, I), follows(I, A)', 'false,false': 'follows(J, A)', 'false,false,false': 'tweets(A, K)'}, {'true,true': [0.119, 1, 69], 'true,false,true': [0.865, 1, 3], 'true,false,false': [0.373, 2, 10], 'false,true,true,true': [0.832, 2, 2], 'false,true,true,false': [0.028, 0, 4], 'false,true,false': [0.117, 0, 6], 'false,false,true': [0.177, 223, 15], 'false,false,false,true': [2.176, 27, 9], 'false,false,false,false': [2.484, 27, 8]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, D), tweets(C, E)', 'true,true': 'tweets(A, E), follows(D, C)', 'false': 'follows(F, A)', 'false,true': 'follows(F, G), recursion_accounttype(G, B)', 'false,true,true': 'follows(A, H), recursion_accounttype(H, B)', 'false,false': 'follows(A, I), recursion_accounttype(I, B)', 'false,false,false': 'tweets(A, J)'}, {'true,true,true': [0.255, 3, 40], 'true,true,false': [0.052, 0, 29], 'true,false': [0.035, 0, 13], 'false,true,true,true': [0.987, 1, 8], 'false,true,true,false': [0.265, 0, 15], 'false,true,false': [0.01, 188, 0], 'false,false,true': [0.137, 0, 4], 'false,false,false,true': [2.177, 29, 9], 'false,false,false,false': [2.311, 16, 8]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, C), tweets(C, D)', 'false': 'follows(E, A)', 'false,true': 'follows(E, F), follows(F, A)', 'false,true,false': 'follows(E, G), recursion_accounttype(G, B)', 'false,false': 'tweets(A, H)', 'false,false,true': 'tweets(I, H), recursion_accounttype(I, B)', 'false,false,false': 'follows(A, J), follows(J, K)'}, {'true,true': [0.176, 2, 60], 'true,false': [0.072, 0, 22], 'false,true,true': [0.109, 143, 3], 'false,true,false,true': [0.179, 0, 20], 'false,true,false,false': [0.0, 66, 0], 'false,false,true,true': [1.346, 1, 12], 'false,false,true,false': [1.83e-08, 15, 0], 'false,false,false,true': [1.095, 2, 3], 'false,false,false,false': [1.82, 9, 6]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, D)', 'true,true': 'follows(D, A), follows(D, C)', 'false': 'follows(E, A)', 'false,true': 'follows(E, F), follows(F, A)', 'false,true,false': 'follows(G, E), recursion_accounttype(G, B)', 'false,false': 'follows(A, H), recursion_accounttype(H, B)', 'false,false,false': 'tweets(A, I)'}, {'true,true,true': [0.05, 0, 59], 'true,true,false': [0.238, 1, 15], 'true,false': [0.314, 1, 8], 'false,true,true': [0.102, 164, 3], 'false,true,false,true': [0.147, 0, 19], 'false,true,false,false': [0.737, 60, 1], 'false,false,true': [0.177, 0, 4], 'false,false,false,true': [1.794, 26, 9], 'false,false,false,false': [2.366, 20, 8]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, C), tweets(A, D)', 'true,true': 'tweets(C, D)', 'true,true,true': 'follows(A, E), follows(E, C)', 'false': 'follows(F, A)', 'false,true': 'follows(F, G), recursion_accounttype(G, B)', 'false,false': 'follows(A, H), recursion_accounttype(H, B)', 'false,false,false': 'tweets(A, I)'}, {'true,true,true,true': [1.375, 2, 35], 'true,true,true,false': [0.012, 0, 6], 'true,true,false': [0.045, 0, 11], 'true,false': [0.065, 0, 30], 'false,true,true': [0.2, 1, 23], 'false,true,false': [0.021, 207, 0], 'false,false,true': [0.158, 0, 4], 'false,false,false,true': [1.749, 23, 9], 'false,false,false,false': [2.455, 25, 8]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'false': 'follows(D, A)', 'false,true': 'follows(D, E), follows(E, A)', 'false,true,true': 'follows(D, F), recursion_accounttype(F, B)', 'false,true,false': 'follows(D, G), recursion_accounttype(G, B)', 'false,false': 'tweets(A, H)', 'false,false,true': 'tweets(I, H), recursion_accounttype(I, B)', 'false,false,false': 'follows(A, J), follows(J, K)'}, {'true': [0.079, 0, 82], 'false,true,true,true': [0.0, 0, 3], 'false,true,true,false': [3.16e-08, 158, 0], 'false,true,false,true': [0.11, 0, 20], 'false,true,false,false': [0.0, 54, 0], 'false,false,true,true': [0.591, 0, 12], 'false,false,true,false': [0.0, 31, 0], 'false,false,false,true': [1.225, 3, 3], 'false,false,false,false': [1.87, 11, 6]}], ['accounttype(A, B)', {'': 'follows(A, C), follows(C, D)', 'true': 'recursion_accounttype(D, B)', 'true,true': 'follows(E, A)', 'true,true,true': 'follows(D, E), tweets(E, F)', 'true,true,false': 'tweets(A, G)', 'false': 'tweets(A, H)', 'false,true': 'follows(I, A)', 'false,true,false': 'tweets(J, H), recursion_accounttype(J, B)'}, {'true,true,true,true': [1.781, 3, 92], 'true,true,true,false': [0.949, 3, 4], 'true,true,false,true': [0.453, 0, 8], 'true,true,false,false': [0.0, 0, 3], 'true,false': [0.054, 221, 0], 'false,true,true': [0.105, 29, 9], 'false,true,false,true': [0.894, 1, 4], 'false,true,false,false': [0.0, 7, 0], 'false,false': [0.475, 7, 6]}], ['accounttype(A, B)', {'': 'follows(A, C), recursion_accounttype(C, B)', 'false': 'follows(D, A), recursion_accounttype(D, B)', 'false,true': 'follows(A, E)', 'false,false': 'follows(F, A)', 'false,false,true': 'follows(G, F), recursion_accounttype(G, B)', 'false,false,false': 'tweets(A, H)'}, {'true': [0.205, 0, 77], 'false,true,true': [0.05, 0, 9], 'false,true,false': [0.314, 1, 8], 'false,false,true,true': [0.397, 0, 15], 'false,false,true,false': [0.026, 201, 0], 'false,false,false,true': [1.389, 27, 9], 'false,false,false,false': [2.26, 21, 8]}]]
+[{'': [0.011903033822034635, 0.12870392390011973], 'false': [0.09514317558299143, 0.20325054784514265], 'false,false': [0.19281663516067998, 0.21811224489795927], 'false,false,false': [0.20999999999999988, 0.22222222222222232], 'false,false,true': [-1.4802973661668753e-16, 3.2653618371328135e-17], 'false,true': [0.07360000000000064, -2.2320714212359167e-16], 'false,true,true': [0.1388888888888887, 0.04986149584487499], 'true': [0.018511925952296473, -2.3684757858670006e-16]}, {'': [0.023269627465243473, 0.09692110559411554], 'false': [0.0642116074086195, 0.18783222400742894], 'false,false': [0.002425309837189915, 0.1764249446182302], 'false,false,false': [0.1314093507240499, 0.24359476612607936], 'false,true': [0.014419083817324737, 0.12880298373085602], 'false,true,false': [0.043960724739453096, 6.436075505073371e-17], 'true': [0.0144674878375707, 0.05859375000000017], 'true,false': [0.09000000000000008, 7.401486830834377e-17]}, {'': [0.04463376075701129, 0.07392640947518522], 'false': [0.08359408922989206, 0.062008772056075426], 'false,true': [0.12164132426023028, 0.0022699256023526924], 'false,true,true': [0.1729579401379185, 0.00018966810749498908], 'false,false': [0.03129074872461998, 0.154236547257411], 'false,false,false': [0.13152236324152558, 0.17634210807970052], 'true': [0.014156728583902834, 0.1523120808333188], 'true,false': [0.1869230903575254, 0.13915009337789125]}, {'': [0.03490346992221063, 0.07768025338419196], 'false': [0.04697611002654022, 0.16169274520180404], 'false,false': [0.004688269290145708, 0.16380352093016545], 'false,false,false': [0.12470260514600659, 0.22253224112199066], 'false,true': [0.06055734858630043, 4.968175960038496e-07], 'false,true,true': [0.1081772578349873, 0.004684318405190642], 'true': [0.0401888661940053, 9.200999710989012e-05], 'true,true': [0.06505625415464328, 9.327147751640395e-05]}, {'': [0.02321818205715547, 0.06302236084741357], 'false': [0.027748524932639268, 0.19514660574856393], 'false,false': [0.16493460893935769, 0.23534749058461238], 'false,false,false': [0.24000000000000005, 0.22091885366811007], 'false,false,true': [0.13940495644405784, 2.2204460492503132e-17], 'false,true': [0.011830800637163505, 0.04725629808473472], 'false,true,false': [0.00159630341840169, -1.5139404881252134e-17], 'true': [0.03098832685686859, 0.00023640647036831714]}, {'': [0.023156750932953964, 0.04713300055432696], 'false': [0.021128802243554894, 0.13515615489696528], 'false,false': [0.007820769200960725, 0.1401299749144526], 'false,false,false': [0.09197312626072106, 0.19994724270263645], 'true': [0.01311803265717078, 0.09876543209876543], 'false,true': [0.01048933414962761, 0.03847059569711036], 'false,true,false': [0.0011350864907365757, 0.008898662455532308], 'true,true': [4.2749718714213496e-05, 0.05688046048190957]}, {'': [0.023331132840389245, 0.04491030230847325], 'false': [0.01657448462669077, 0.13618042444004422], 'false,false': [0.006255872349036927, 0.1417247410305075], 'false,false,false': [0.09563968895295262, 0.182612321142353], 'true': [0.03565420013395552, 0.00013975853601819004], 'true,true': [0.0443267112955223, 0.00018217177904765838], 'true,true,true': [0.05113221329437548, 2.2631997022857602e-05], 'false,true': [0.0401565606846033, 2.061303397992513e-06]}, {'': [7.664744182786577e-05, 0.038874329949888084], 'false': [0.011845574751611477, 0.12837935275455023], 'false,false': [0.07632257672706994, 0.2207004001151219], 'false,false,false': [0.25, 0.2056611162497333], 'false,false,true': [0.02907531721891225, -2.1488187573390126e-17], 'false,true': [0.008533208527203746, 0.01600534889206207], 'false,true,false': [0.0006090480440954449, -8.22387425648264e-18], 'false,true,true': [0.0, 6.324055203561018e-18]}, {'': [0.03187662192280131, 0.0763108310746219], 'false': [0.03195506098779247, 0.22584259825483377], 'false,true': [0.0110527167764891, 0.09727455540640727], 'false,true,false': [0.16, -1.982541115402065e-18], 'true': [0.05028912537270141, 0.0029289008602171028], 'true,true': [0.04366065897908702, 0.043926317149625624], 'true,true,false': [0.02561115443600334, 0.0], 'true,true,true': [0.03338547566323292, 0.1287494024063625]}, {'': [0.0005468275253928873, 0.03222278026675606], 'false': [0.05106431818024409, 0.029708293042128946], 'false,true': [0.00027570471474122, 0.09876543209876543], 'false,false': [0.00586430585738476, 0.10869073624887822], 'false,false,false': [0.053591767999759066, 0.17618892107165754], 'false,false,true': [0.010504096263045744, 3.256560093722772e-06]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(A, C), tweets(A, D).;true;true
+0;false;follows(E, A).;true;true
+0;false,true;follows(E, F), recursion_accounttype(F, B).;true;true
+0;false,false;tweets(A, G).;true;true
+0;false,false,true;tweets(H, G), recursion_accounttype(H, B).;true;true
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;true;tweets(A, D).;true;true
+1;true,false;follows(C, E), follows(E, A).;true;true
+1;false;follows(F, A).;true;true
+1;false,true;follows(F, G), follows(G, A).;true;true
+1;false,true,false;follows(F, H), recursion_accounttype(H, B).;true;true
+1;false,false;follows(A, I), recursion_accounttype(I, B).;true;true
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;false;follows(A, G), recursion_accounttype(G, B).;true;true
+2;false,true;tweets(A, H), tweets(G, H).;true;true
+2;false,true,true;follows(G, I), follows(I, A).;true;true
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;follows(A, D), tweets(C, E).;true;true
+3;true,true;tweets(A, E), follows(D, C).;true;true
+3;false;follows(F, A).;true;true
+3;false,true;follows(F, G), recursion_accounttype(G, B).;true;true
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, C), tweets(C, D).;true;true
+4;false;follows(E, A).;true;true
+4;false,true;follows(E, F), follows(F, A).;true;true
+4;false,true,false;follows(E, G), recursion_accounttype(G, B).;true;true
+4;false,false;tweets(A, H).;true;true
+4;false,false,true;tweets(I, H), recursion_accounttype(I, B).;true;true
+5;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+5;true;follows(A, D).;true;true
+5;true,true;follows(D, A), follows(D, C).;true;true
+5;false;follows(E, A).;true;true
+5;false,true;follows(E, F), follows(F, A).;true;true
+5;false,true,false;follows(G, E), recursion_accounttype(G, B).;true;true
+6;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+6;true;follows(A, C), tweets(A, D).;true;true
+6;true,true;tweets(C, D).;true;true
+6;true,true,true;follows(A, E), follows(E, C).;true;true
+6;false;follows(F, A).;true;true
+6;false,true;follows(F, G), recursion_accounttype(G, B).;true;true
+7;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+7;false;follows(D, A).;true;true
+7;false,true;follows(D, E), follows(E, A).;true;true
+7;false,true,true;follows(D, F), recursion_accounttype(F, B).;true;true
+7;false,true,false;follows(D, G), recursion_accounttype(G, B).;true;true
+7;false,false;tweets(A, H).;true;true
+7;false,false,true;tweets(I, H), recursion_accounttype(I, B).;true;true
+8;;accounttype(A, B) :- follows(A, C), follows(C, D).;true;true
+8;true;recursion_accounttype(D, B).;true;true
+8;true,true;follows(E, A).;true;true
+8;true,true,false;tweets(A, G).;true;true
+8;false;tweets(A, H).;true;true
+8;false,true;follows(I, A).;true;true
+8;false,true,false;tweets(J, H), recursion_accounttype(J, B).;true;true
+9;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+9;false;follows(D, A), recursion_accounttype(D, B).;true;true
+9;false,true;follows(A, E).;true;true
+9;false,false;follows(F, A).;true;true
+9;false,false,true;follows(G, F), recursion_accounttype(G, B).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(C, D) )
+%   | then return 0.8206489350995124;  // std dev = 0.190, 80.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=77 */
+%   | else if ( tweets(A, E), follows(A, C) )
+%   | | then return 0.8581489350995122;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | else return 0.19148226843284552;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=1 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), recursion_accounttype(G, B) )
+%   | | then return 0.8581489350995121;  // std dev = 8.43e-08, 23.000 (wgt'ed) examples reached here.  /* #pos=23 */
+%   | | else return -0.14185106490048846;  // std dev = 0.000, 213.000 (wgt'ed) examples reached here.  /* #neg=213 */
+%   | else if ( tweets(A, H) )
+%   | | then if ( tweets(I, H), recursion_accounttype(I, B) )
+%   | | | then return 0.7812258581764353;  // std dev = 0.961, 13.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=12 */
+%   | | | else return -0.14185106490048774;  // std dev = 1.05e-08, 21.000 (wgt'ed) examples reached here.  /* #neg=21 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.6081489350995122;  // std dev = 0.866, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | | | else return 0.35814893509951234;  // std dev = 1.732, 12.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=6 */
+WILL Produced-Tree #2
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.7279087267478356;  // std dev = 0.107, 82.000 (wgt'ed) examples reached here.  /* #pos=82 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(D, E), follows(E, A) )
+%   | | then if ( follows(D, F), recursion_accounttype(F, B) )
+%   | | | then return 0.7194734122109545;  // std dev = 0.000, 3.000 (wgt'ed) examples reached here.  /* #pos=3 */
+%   | | | else return -0.12544463852839127;  // std dev = 0.000, 147.000 (wgt'ed) examples reached here.  /* #neg=147 */
+%   | | else if ( follows(D, G), recursion_accounttype(G, B) )
+%   | | | then return 0.6718543645919066;  // std dev = 0.976, 21.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=20 */
+%   | | | else return -0.12544463852839113;  // std dev = 3.33e-08, 75.000 (wgt'ed) examples reached here.  /* #neg=75 */
+%   | else if ( tweets(A, H) )
+%   | | then if ( tweets(I, H), recursion_accounttype(I, B) )
+%   | | | then return 0.7347337483847239;  // std dev = 0.000, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | | else return -0.12544463852839138;  // std dev = 0.000, 20.000 (wgt'ed) examples reached here.  /* #neg=20 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.19564339080815027;  // std dev = 1.309, 7.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=3 */
+%   | | | else return 0.1420744691189683;  // std dev = 2.000, 18.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=6 */
+WILL Produced-Tree #3
+% FOR accounttype(A, B):
+%   if ( follows(A, C), recursion_accounttype(C, B) )
+%   then if ( follows(D, A) )
+%   | then return 0.5490110593121107;  // std dev = 0.115, 74.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=73 */
+%   | else return 0.6243517209774573;  // std dev = 0.186, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   else if ( follows(E, A), follows(A, E) )
+%   | then if ( follows(E, F), recursion_accounttype(F, B) )
+%   | | then if ( follows(E, G), follows(G, A) )
+%   | | | then return 0.4339489571572992;  // std dev = 0.939, 8.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=7 */
+%   | | | else return 0.5667412781783404;  // std dev = 0.004, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   | | else return -0.1123163781936064;  // std dev = 6.32e-08, 167.000 (wgt'ed) examples reached here.  /* #neg=167 */
+%   | else if ( follows(H, A), recursion_accounttype(H, B) )
+%   | | then if ( follows(A, I) )
+%   | | | then return 0.5986357096655053;  // std dev = 0.125, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return 0.3625314775683138;  // std dev = 1.265, 10.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=8 */
+%   | | else if ( follows(J, A) )
+%   | | | then return -0.11231637819360639;  // std dev = 0.000, 28.000 (wgt'ed) examples reached here.  /* #neg=28 */
+%   | | | else return 0.059745474291531146;  // std dev = 2.965, 63.000 (wgt'ed) examples reached here.  /* #neg=46 #pos=17 */
+WILL Produced-Tree #4
+% FOR accounttype(A, B):
+%   if ( follows(C, A), follows(D, C) )
+%   then if ( recursion_accounttype(D, B) )
+%   | then if ( follows(A, D), follows(A, C) )
+%   | | then if ( follows(D, A) )
+%   | | | then return 0.4069389519740537;  // std dev = 0.990, 53.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=52 */
+%   | | | else return 0.3180698249098277;  // std dev = 0.941, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | | else return 0.44108633361822164;  // std dev = 0.183, 43.000 (wgt'ed) examples reached here.  /* #pos=43 */
+%   | else return -0.09924105619086333;  // std dev = 0.531, 226.000 (wgt'ed) examples reached here.  /* #neg=225 #pos=1 */
+%   else if ( follows(A, E), recursion_accounttype(E, B) )
+%   | then return 0.46721406230634077;  // std dev = 0.219, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | else if ( follows(A, F), follows(F, G) )
+%   | | then if ( recursion_accounttype(G, B) )
+%   | | | then return 0.6167940728049448;  // std dev = 0.223, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | | else return -0.14329631405966986;  // std dev = 0.262, 19.000 (wgt'ed) examples reached here.  /* #neg=19 */
+%   | | else if ( tweets(A, H) )
+%   | | | then return 0.15128844661340118;  // std dev = 1.045, 10.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=4 */
+%   | | | else return 0.038727326105244424;  // std dev = 1.919, 19.000 (wgt'ed) examples reached here.  /* #neg=14 #pos=5 */
+WILL Produced-Tree #5
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D), follows(A, C) )
+%   | then if ( tweets(C, D) )
+%   | | then if ( follows(A, E), follows(E, C) )
+%   | | | then return 0.2772989955080081;  // std dev = 1.376, 37.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=35 */
+%   | | | else return 0.32580340331385865;  // std dev = 0.009, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | else return 0.3282803968423591;  // std dev = 0.031, 11.000 (wgt'ed) examples reached here.  /* #pos=11 */
+%   | else return 0.3440291830440255;  // std dev = 0.156, 30.000 (wgt'ed) examples reached here.  /* #pos=30 */
+%   else if ( follows(F, A) )
+%   | then return -0.06376549385573303;  // std dev = 0.148, 251.000 (wgt'ed) examples reached here.  /* #neg=228 #pos=23 */
+%   | else if ( tweets(A, G) )
+%   | | then if ( tweets(H, G), recursion_accounttype(H, B) )
+%   | | | then return 0.4178172834990301;  // std dev = 0.278, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | | else return -0.11145916218645466;  // std dev = 0.072, 30.000 (wgt'ed) examples reached here.  /* #neg=30 */
+%   | | else if ( follows(A, I), follows(I, J) )
+%   | | | then return 0.16284582581673426;  // std dev = 1.020, 6.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=3 */
+%   | | | else return 0.10893951239600926;  // std dev = 1.909, 17.000 (wgt'ed) examples reached here.  /* #neg=11 #pos=6 */
+WILL Produced-Tree #6
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D), tweets(C, D) )
+%   | then return 0.2725235980978864;  // std dev = 0.079, 55.000 (wgt'ed) examples reached here.  /* #pos=55 */
+%   | else if ( follows(C, E), follows(E, A) )
+%   | | then if ( recursion_accounttype(E, B) )
+%   | | | then return 0.26072127245381516;  // std dev = 0.005, 10.000 (wgt'ed) examples reached here.  /* #pos=10 */
+%   | | | else return 0.0391335136533555;  // std dev = 1.248, 9.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=7 */
+%   | | else return 0.26840688131489887;  // std dev = 0.120, 10.000 (wgt'ed) examples reached here.  /* #pos=10 */
+%   else if ( follows(A, F), recursion_accounttype(F, B) )
+%   | then if ( follows(G, A) )
+%   | | then return 0.37535914410388005;  // std dev = 0.108, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else return 0.14611754926869186;  // std dev = 0.741, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | else if ( follows(A, H), follows(H, I) )
+%   | | then return -0.05929236881695414;  // std dev = 0.148, 248.000 (wgt'ed) examples reached here.  /* #neg=225 #pos=23 */
+%   | | else if ( follows(J, A) )
+%   | | | then return -0.08765427398371096;  // std dev = 1.18e-08, 25.000 (wgt'ed) examples reached here.  /* #neg=25 */
+%   | | | else return 0.11554385924287625;  // std dev = 1.944, 23.000 (wgt'ed) examples reached here.  /* #neg=14 #pos=9 */
+WILL Produced-Tree #7
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D), tweets(C, E) )
+%   | then return 0.2060773519425756;  // std dev = 0.119, 70.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=69 */
+%   | else return 0.23946946809067246;  // std dev = 0.094, 13.000 (wgt'ed) examples reached here.  /* #pos=13 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), follows(G, A) )
+%   | | then return -0.07639488285854175;  // std dev = 0.085, 127.000 (wgt'ed) examples reached here.  /* #neg=124 #pos=3 */
+%   | | else if ( follows(F, H), recursion_accounttype(H, B) )
+%   | | | then return 0.3276544754508037;  // std dev = 0.161, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   | | | else return -0.08279113378740711;  // std dev = 0.007, 69.000 (wgt'ed) examples reached here.  /* #neg=69 */
+%   | else if ( tweets(A, I) )
+%   | | then if ( tweets(J, I), recursion_accounttype(J, B) )
+%   | | | then return 0.3131458211934888;  // std dev = 0.243, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | | else return -0.10407143440862981;  // std dev = 0.101, 22.000 (wgt'ed) examples reached here.  /* #neg=22 */
+%   | | else if ( follows(A, K), follows(K, L) )
+%   | | | then return 0.0021761648497278362;  // std dev = 1.170, 9.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=3 */
+%   | | | else return -0.05191491663235543;  // std dev = 2.074, 26.000 (wgt'ed) examples reached here.  /* #neg=20 #pos=6 */
+WILL Produced-Tree #8
+% FOR accounttype(A, B):
+%   if ( follows(A, C), follows(C, D) )
+%   then if ( recursion_accounttype(D, B) )
+%   | then if ( follows(E, A), recursion_accounttype(E, B) )
+%   | | then if ( follows(A, D), recursion_accounttype(C, B) )
+%   | | | then return 0.18597530590762076;  // std dev = 0.037, 48.000 (wgt'ed) examples reached here.  /* #pos=48 */
+%   | | | else return 0.15037314975005167;  // std dev = 0.986, 26.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=25 */
+%   | | else return 0.2877244214251912;  // std dev = 0.099, 34.000 (wgt'ed) examples reached here.  /* #pos=34 */
+%   | else return -0.08254324310533524;  // std dev = 0.476, 235.000 (wgt'ed) examples reached here.  /* #neg=235 */
+%   else if ( follows(F, A) )
+%   | then if ( recursion_accounttype(F, B) )
+%   | | then return 0.20432537669022807;  // std dev = 0.066, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   | | else return -0.07534759707890844;  // std dev = 0.000422, 10.000 (wgt'ed) examples reached here.  /* #neg=10 */
+%   | else if ( tweets(A, G) )
+%   | | then if ( tweets(H, G), recursion_accounttype(H, B) )
+%   | | | then return 0.3157223665905674;  // std dev = 0.000, 4.000 (wgt'ed) examples reached here.  /* #pos=4 */
+%   | | | else return -0.12387361758360971;  // std dev = 3.73e-09, 8.000 (wgt'ed) examples reached here.  /* #neg=8 */
+%   | | else return 0.040070458706511256;  // std dev = 0.449, 19.000 (wgt'ed) examples reached here.  /* #neg=13 #pos=6 */
+WILL Produced-Tree #9
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D), tweets(C, D) )
+%   | then if ( follows(A, E) )
+%   | | then if ( recursion_accounttype(E, B), follows(E, C) )
+%   | | | then return 0.16087258608648178;  // std dev = 0.015, 30.000 (wgt'ed) examples reached here.  /* #pos=30 */
+%   | | | else return 0.056064615770744265;  // std dev = 1.334, 19.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=17 */
+%   | | else return 0.05512749797943988;  // std dev = 0.314, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | else return 0.16638485395714767;  // std dev = 0.109, 27.000 (wgt'ed) examples reached here.  /* #pos=27 */
+%   else if ( tweets(A, F) )
+%   | then if ( follows(A, G), tweets(G, F) )
+%   | | then return -0.043155410723262726;  // std dev = 0.146, 199.000 (wgt'ed) examples reached here.  /* #neg=170 #pos=29 */
+%   | | else return -0.09496948847917051;  // std dev = 0.180, 22.000 (wgt'ed) examples reached here.  /* #neg=21 #pos=1 */
+%   | else if ( follows(H, A) )
+%   | | then return -0.04335809114638669;  // std dev = 0.084, 49.000 (wgt'ed) examples reached here.  /* #neg=44 #pos=5 */
+%   | | else if ( follows(A, I), follows(I, J) )
+%   | | | then return 0.05897505440744678;  // std dev = 0.968, 7.000 (wgt'ed) examples reached here.  /* #neg=4 #pos=3 */
+%   | | | else return 0.11298588514429095;  // std dev = 1.835, 15.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=6 */
+WILL Produced-Tree #10
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.1462865425175742;  // std dev = 0.119, 82.000 (wgt'ed) examples reached here.  /* #pos=82 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(E, D), recursion_accounttype(E, B) )
+%   | | then if ( follows(A, E), tweets(A, F) )
+%   | | | then return -0.21761228958575815;  // std dev = 1.231, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | | else return 0.24015582856224535;  // std dev = 0.199, 18.000 (wgt'ed) examples reached here.  /* #pos=18 */
+%   | | else return -0.06887423149509905;  // std dev = 0.534, 215.000 (wgt'ed) examples reached here.  /* #neg=214 #pos=1 */
+%   | else if ( tweets(A, G) )
+%   | | then if ( tweets(H, G), recursion_accounttype(H, B) )
+%   | | | then return 0.12434757537984072;  // std dev = 1.056, 13.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=12 */
+%   | | | else return -0.08505260915061376;  // std dev = 0.073, 19.000 (wgt'ed) examples reached here.  /* #neg=19 */
+%   | | else if ( follows(A, I), follows(I, J) )
+%   | | | then return -0.06861252240873349;  // std dev = 1.088, 11.000 (wgt'ed) examples reached here.  /* #neg=8 #pos=3 */
+%   | | | else return 0.008933606124857963;  // std dev = 1.957, 19.000 (wgt'ed) examples reached here.  /* #neg=13 #pos=6 */
+
+
+Results
+   AUC ROC   = 0.99323
+   AUC PR    = 0.393121
+   CLL	      = -0.12385
+   Precision = 0.34434 at threshold = 0.5
+   Recall    = 0.935897
+   F1        = 0.503448
+
+
+Total learning time: 16.826451778411865 seconds
+Total inference time: 17.817 seconds
+AUC ROC: 0.99323
+
+
+Results scoring model
+   AUC ROC   = 0.993171
+   AUC PR    = 0.423272
+   CLL	      = -0.112305
+   Precision = 0.337989 at threshold = 0.5
+   Recall    = 0.960317
+   F1        = 0.5
+
+
+Total scoring time: 14.092 seconds
+Refined model CLL: -0.112305
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.99323
+   AUC PR    = 0.393121
+   CLL	      = -0.12385
+   Precision = 0.34434 at threshold = 0.5
+   Recall    = 0.935897
+   F1        = 0.503448
+
+
+Total learning time: 58.36111458778381 seconds
+Total inference time: 17.817 seconds
+AUC ROC: 0.99323
+Total revision time: 58.36111458778381
+Best scored revision CLL: -0.112305
+
+
+Dataset: 14_cora_twitter, Fold: 1, Type: Transfer (trRDN-B), Time: 00:01:31
+{'AUC ROC': 0.99323, 'AUC PR': 0.393121, 'CLL': -0.12385, 'Precision': [0.34434, 0.5], 'Recall': 0.935897, 'F1': 0.503448, 'Learning time': 58.36111458778381, 'Inference time': 17.817, 'parameter': {'AUC ROC': 0.987286, 'AUC PR': 0.312877, 'CLL': -0.138043, 'Precision': [0.322196, 0.5], 'Recall': 0.865385, 'F1': 0.469565, 'Learning time': 14.694662809371948, 'Inference time': 14.934}}
+
+
+Starting fold 2
+
+Target train facts examples: 1562
+Target train pos examples: 156
+Target train neg examples: 24648
+
+Target test facts examples: 1580
+Target test pos  examples: 126
+Target test neg examples: 16128
+
+******************************************
+Performing Parameter Learning
+******************************************
+Refine
+0;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+0;true;haswordtitle(D, C).;true;true
+0;true,true;title(E, D), venue(E, A).;false;true
+0;true,true,false;title(F, D), venue(F, B).;false;false
+0;true,false;haswordvenue(A, G), haswordtitle(H, G).;true;true
+0;true,false,true;haswordtitle(H, I), haswordauthor(J, I).;false;false
+0;true,false,false;haswordvenue(B, K), haswordtitle(L, K).;false;false
+0;false;haswordvenue(A, M), haswordtitle(N, M).;false;false
+1;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+1;true;haswordtitle(D, C).;true;true
+1;true,true;title(E, D), venue(E, B).;false;true
+1;true,true,false;title(F, D), venue(F, A).;false;false
+1;true,false;haswordvenue(B, G), haswordtitle(H, G).;true;true
+1;true,false,true;haswordtitle(H, I), haswordauthor(J, I).;false;false
+1;true,false,false;haswordvenue(A, K), haswordauthor(L, K).;false;false
+1;false;haswordvenue(B, M), haswordtitle(N, M).;false;false
+2;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+2;true;haswordtitle(D, C).;true;true
+2;true,true;title(E, D), venue(E, A).;false;true
+2;true,true,false;haswordtitle(D, F), haswordauthor(G, F).;false;false
+2;true,false;haswordvenue(A, H), haswordtitle(I, H).;true;true
+2;true,false,true;haswordtitle(I, J), haswordauthor(K, J).;false;false
+2;true,false,false;haswordvenue(B, L), haswordtitle(M, L).;false;false
+2;false;haswordvenue(A, N), haswordtitle(P, N).;false;false
+3;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+3;true;haswordtitle(D, C).;true;true
+3;true,true;haswordauthor(E, C).;false;true
+3;true,true,false;title(F, D), venue(F, B).;false;false
+3;true,false;haswordvenue(B, G), haswordauthor(H, G).;false;true
+3;true,false,false;haswordvenue(B, I), haswordtitle(J, I).;false;false
+3;false;haswordvenue(B, K), haswordtitle(L, K).;true;false
+3;false,true;haswordtitle(L, M), haswordauthor(N, M).;false;false
+4;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+4;true;haswordtitle(D, C).;true;true
+4;true,true;title(E, D), venue(E, B).;false;true
+4;true,true,false;title(F, D), venue(F, A).;false;false
+4;true,false;haswordvenue(A, G), haswordtitle(H, G).;true;true
+4;true,false,true;title(I, H), venue(I, A).;false;false
+4;true,false,false;haswordvenue(B, J), haswordtitle(K, J).;false;false
+4;false;haswordvenue(B, L), haswordtitle(M, L).;false;false
+5;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+5;true;haswordtitle(D, C).;true;true
+5;true,true;title(E, D), venue(E, A).;false;true
+5;true,true,false;title(F, D), venue(F, B).;false;false
+5;true,false;haswordvenue(A, G), haswordauthor(H, G).;false;true
+5;true,false,false;haswordvenue(A, I), haswordtitle(J, I).;false;false
+5;false;haswordvenue(A, K), haswordtitle(L, K).;true;false
+5;false,true;haswordauthor(M, K).;false;false
+6;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+6;true;haswordtitle(D, C).;true;true
+6;true,true;haswordauthor(E, C).;true;true
+6;true,true,true;author(F, E), title(F, D).;false;false
+6;true,true,false;title(G, D), venue(G, B).;false;false
+6;true,false;haswordvenue(B, H), haswordauthor(I, H).;false;true
+6;true,false,false;haswordvenue(B, J), haswordtitle(K, J).;false;false
+6;false;haswordvenue(A, L), haswordtitle(M, L).;false;false
+7;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+7;true;haswordtitle(D, C).;true;true
+7;true,true;title(E, D), venue(E, B).;false;true
+7;true,true,false;haswordtitle(D, F), haswordauthor(G, F).;false;false
+7;true,false;haswordvenue(A, H), haswordtitle(I, H).;true;true
+7;true,false,true;title(J, I), venue(J, A).;false;false
+7;true,false,false;haswordvenue(B, K), haswordtitle(L, K).;false;false
+7;false;haswordvenue(B, M), haswordauthor(N, M).;false;false
+8;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+8;true;haswordtitle(D, C).;true;true
+8;true,true;haswordauthor(E, C).;true;true
+8;true,true,true;author(F, E), title(F, D).;false;false
+8;true,true,false;title(G, D), venue(G, A).;false;false
+8;true,false;haswordvenue(B, H), haswordauthor(I, H).;false;true
+8;true,false,false;haswordvenue(A, J), haswordauthor(K, J).;false;false
+8;false;haswordvenue(B, L), haswordtitle(M, L).;false;false
+9;;samevenue(A, B) :- haswordvenue(A, C), haswordvenue(B, C).;true;true
+9;true;haswordtitle(D, C).;true;true
+9;true,true;title(E, D), venue(E, A).;false;true
+9;true,true,false;title(F, D), venue(F, B).;false;false
+9;true,false;haswordvenue(A, G), haswordtitle(H, G).;true;true
+9;true,false,true;title(I, H), venue(I, A).;false;false
+9;true,false,false;haswordvenue(B, J), haswordtitle(K, J).;false;false
+9;false;haswordvenue(A, L), haswordtitle(M, L).;false;false
+
+
+WILL Produced-Tree #1
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(C, D), follows(D, A) )
+%   | then return 0.8581489350995126;  // std dev = 0.000, 63.000 (wgt'ed) examples reached here.  /* #pos=63 */
+%   | else return 0.8146706742299468;  // std dev = 0.204, 23.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=22 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(E, F), recursion_accounttype(F, B) )
+%   | | then if ( follows(A, G) )
+%   | | | then return 0.8126943896449667;  // std dev = 0.977, 22.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=21 */
+%   | | | else return 0.3581489350995122;  // std dev = 1.000, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | else return -0.1418510649004884;  // std dev = 0.000, 204.000 (wgt'ed) examples reached here.  /* #neg=204 */
+%   | else if ( tweets(A, H) )
+%   | | then if ( tweets(I, H), recursion_accounttype(I, B) )
+%   | | | then return 0.858148935099512;  // std dev = 1.33e-07, 25.000 (wgt'ed) examples reached here.  /* #pos=25 */
+%   | | | else return -0.14185106490048766;  // std dev = 5.96e-08, 57.000 (wgt'ed) examples reached here.  /* #neg=57 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.24703782398840124;  // std dev = 2.925, 36.000 (wgt'ed) examples reached here.  /* #neg=22 #pos=14 */
+%   | | | else return 0.3081489350995123;  // std dev = 2.225, 20.000 (wgt'ed) examples reached here.  /* #neg=11 #pos=9 */
+WILL Produced-Tree #2
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.7217228418184961;  // std dev = 0.035, 85.000 (wgt'ed) examples reached here.  /* #pos=85 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(D, E), recursion_accounttype(E, B) )
+%   | | then if ( follows(A, E), follows(E, D) )
+%   | | | then return 0.5285554015677009;  // std dev = 0.894, 5.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=4 */
+%   | | | else return 0.7369960051695884;  // std dev = 0.107, 19.000 (wgt'ed) examples reached here.  /* #pos=19 */
+%   | | else return -0.12544463852839163;  // std dev = 0.000, 195.000 (wgt'ed) examples reached here.  /* #neg=195 */
+%   | else if ( follows(A, F), recursion_accounttype(F, B) )
+%   | | then if ( tweets(A, G) )
+%   | | | then return 0.5766162693538116;  // std dev = 0.926, 7.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=6 */
+%   | | | else return 0.4920078170619879;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else if ( follows(A, H) )
+%   | | | then return 0.07667078454383872;  // std dev = 4.309, 119.000 (wgt'ed) examples reached here.  /* #neg=90 #pos=29 */
+%   | | | else return 0.13875789681285886;  // std dev = 2.598, 34.000 (wgt'ed) examples reached here.  /* #neg=23 #pos=11 */
+WILL Produced-Tree #3
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.5575833541642284;  // std dev = 0.043, 85.000 (wgt'ed) examples reached here.  /* #pos=85 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(D, E), recursion_accounttype(E, B) )
+%   | | then if ( follows(E, D) )
+%   | | | then return 0.5820565616911157;  // std dev = 0.158, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | | else return 0.2289193704732674;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else return -0.11231637819360667;  // std dev = 0.000, 211.000 (wgt'ed) examples reached here.  /* #neg=211 */
+%   | else if ( follows(A, F), recursion_accounttype(F, B) )
+%   | | then return 0.5130994472035564;  // std dev = 0.332, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | | else if ( follows(A, G) )
+%   | | | then return 0.11090987880610838;  // std dev = 4.158, 98.000 (wgt'ed) examples reached here.  /* #neg=69 #pos=29 */
+%   | | | else return 0.2686981011141188;  // std dev = 2.250, 23.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=11 */
+WILL Produced-Tree #4
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, C), tweets(A, D) )
+%   | then return 0.39695591681476866;  // std dev = 0.145, 47.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=46 */
+%   | else return 0.4202339054963596;  // std dev = 0.032, 39.000 (wgt'ed) examples reached here.  /* #pos=39 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(E, F), recursion_accounttype(F, B) )
+%   | | then if ( follows(E, G), follows(G, A) )
+%   | | | then return -0.0693351803596563;  // std dev = 0.975, 4.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=2 */
+%   | | | else return 0.4466890312322748;  // std dev = 0.184, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | else return -0.10159632948783653;  // std dev = 0.000, 209.000 (wgt'ed) examples reached here.  /* #neg=209 */
+%   | else if ( tweets(A, H), follows(A, I) )
+%   | | then if ( tweets(J, H), recursion_accounttype(J, B) )
+%   | | | then return 0.6181063588478357;  // std dev = 0.449, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | | else return -0.1475093847327153;  // std dev = 0.000, 39.000 (wgt'ed) examples reached here.  /* #neg=39 */
+%   | | else if ( follows(A, K) )
+%   | | | then return 0.10297821667210004;  // std dev = 3.252, 51.000 (wgt'ed) examples reached here.  /* #neg=35 #pos=16 */
+%   | | | else return 0.08475875839652368;  // std dev = 2.531, 33.000 (wgt'ed) examples reached here.  /* #neg=22 #pos=11 */
+WILL Produced-Tree #5
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D) )
+%   | then return 0.3252151050978478;  // std dev = 0.035, 70.000 (wgt'ed) examples reached here.  /* #pos=70 */
+%   | else return 0.2578383202317185;  // std dev = 0.242, 16.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=15 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(F, E), recursion_accounttype(F, B) )
+%   | | then return 0.3449757638042263;  // std dev = 0.201, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | else if ( tweets(A, G), tweets(E, G) )
+%   | | | then return -0.09282909597548288;  // std dev = 0.707, 175.000 (wgt'ed) examples reached here.  /* #neg=174 #pos=1 */
+%   | | | else return -0.07834007710968581;  // std dev = 0.481, 34.000 (wgt'ed) examples reached here.  /* #neg=33 #pos=1 */
+%   | else if ( tweets(A, H), follows(A, I) )
+%   | | then if ( tweets(J, H), recursion_accounttype(J, B) )
+%   | | | then return 0.47209216667299014;  // std dev = 0.448, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | | else return -0.12990717026726176;  // std dev = 0.000, 48.000 (wgt'ed) examples reached here.  /* #neg=48 */
+%   | | else if ( tweets(A, K) )
+%   | | | then return 0.2389498154717706;  // std dev = 1.147, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | | else return 0.08199510747290308;  // std dev = 3.900, 71.000 (wgt'ed) examples reached here.  /* #neg=48 #pos=23 */
+WILL Produced-Tree #6
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D), recursion_accounttype(D, B) )
+%   | then return 0.2582243172116617;  // std dev = 0.029, 64.000 (wgt'ed) examples reached here.  /* #pos=64 */
+%   | else return 0.2186160033222061;  // std dev = 0.211, 22.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=21 */
+%   else if ( follows(E, A) )
+%   | then if ( follows(E, F), recursion_accounttype(F, B) )
+%   | | then if ( tweets(A, G), follows(F, E) )
+%   | | | then return 0.27013389359898954;  // std dev = 0.163, 19.000 (wgt'ed) examples reached here.  /* #pos=19 */
+%   | | | else return 0.031030811603326252;  // std dev = 1.128, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+%   | | else return -0.08532967753550096;  // std dev = 0.005, 197.000 (wgt'ed) examples reached here.  /* #neg=197 */
+%   | else if ( follows(A, H), recursion_accounttype(H, B) )
+%   | | then if ( tweets(A, I) )
+%   | | | then return 0.22477329770104823;  // std dev = 1.05e-08, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | | else return 0.2564044724132975;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.02054425993590348;  // std dev = 3.450, 96.000 (wgt'ed) examples reached here.  /* #neg=71 #pos=25 */
+%   | | | else return 0.047838027010461685;  // std dev = 2.851, 44.000 (wgt'ed) examples reached here.  /* #neg=29 #pos=15 */
+WILL Produced-Tree #7
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D), tweets(C, D) )
+%   | then if ( follows(E, C), follows(A, E) )
+%   | | then if ( recursion_accounttype(E, B), follows(A, C) )
+%   | | | then return 0.11628726434063812;  // std dev = 1.346, 21.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=19 */
+%   | | | else return 0.21290110583777086;  // std dev = 0.017, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   | | else if ( follows(C, F), follows(F, A) )
+%   | | | then return 0.2205775116432697;  // std dev = 0.027, 17.000 (wgt'ed) examples reached here.  /* #pos=17 */
+%   | | | else return 0.12190100456210132;  // std dev = 0.937, 10.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=9 */
+%   | else return 0.21296987556983532;  // std dev = 0.030, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   else if ( tweets(A, G) )
+%   | then return -0.0345343680901274;  // std dev = 0.180, 282.000 (wgt'ed) examples reached here.  /* #neg=236 #pos=46 */
+%   | else if ( follows(A, H), follows(I, A) )
+%   | | then return -0.07013231663532689;  // std dev = 0.055, 33.000 (wgt'ed) examples reached here.  /* #neg=32 #pos=1 */
+%   | | else if ( follows(A, J) )
+%   | | | then return 0.04243433347900053;  // std dev = 3.301, 54.000 (wgt'ed) examples reached here.  /* #neg=38 #pos=16 */
+%   | | | else return 0.004861191352795144;  // std dev = 2.239, 29.000 (wgt'ed) examples reached here.  /* #neg=21 #pos=8 */
+WILL Produced-Tree #8
+% FOR accounttype(A, B):
+%   if ( follows(A, C), recursion_accounttype(C, B) )
+%   then if ( follows(D, A), recursion_accounttype(D, B) )
+%   | then if ( tweets(A, E) )
+%   | | then return 0.1855108509967922;  // std dev = 0.058, 51.000 (wgt'ed) examples reached here.  /* #pos=51 */
+%   | | else if ( follows(C, F), follows(F, A) )
+%   | | | then return 0.04949512933682877;  // std dev = 0.935, 8.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=7 */
+%   | | | else return 0.18084691645961193;  // std dev = 0.000, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | else if ( follows(G, A), follows(A, G) )
+%   | | then return 0.252489099459408;  // std dev = 0.054, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else return 0.2900758765970561;  // std dev = 0.139, 9.000 (wgt'ed) examples reached here.  /* #pos=9 */
+%   else if ( follows(H, A), follows(A, H) )
+%   | then return -0.05419522829981724;  // std dev = 0.090, 175.000 (wgt'ed) examples reached here.  /* #neg=160 #pos=15 */
+%   | else if ( follows(I, A), recursion_accounttype(I, B) )
+%   | | then return 0.1920721084897092;  // std dev = 0.033, 20.000 (wgt'ed) examples reached here.  /* #pos=20 */
+%   | | else if ( follows(J, A) )
+%   | | | then return -0.050447073597678554;  // std dev = 0.713, 48.000 (wgt'ed) examples reached here.  /* #neg=45 #pos=3 */
+%   | | | else return 0.05336957734153189;  // std dev = 4.317, 128.000 (wgt'ed) examples reached here.  /* #neg=88 #pos=40 */
+WILL Produced-Tree #9
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.16104933023307844;  // std dev = 0.071, 85.000 (wgt'ed) examples reached here.  /* #pos=85 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(E, D), follows(E, A) )
+%   | | then if ( follows(D, F), follows(F, A) )
+%   | | | then return -0.06928602737191038;  // std dev = 0.383, 122.000 (wgt'ed) examples reached here.  /* #neg=121 #pos=1 */
+%   | | | else return -0.04024015604932036;  // std dev = 0.307, 10.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=1 */
+%   | | else if ( follows(D, G), recursion_accounttype(G, B) )
+%   | | | then return 0.19076861981604648;  // std dev = 1.085, 22.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=21 */
+%   | | | else return -0.0726778254252398;  // std dev = 0.012, 76.000 (wgt'ed) examples reached here.  /* #neg=76 */
+%   | else if ( follows(A, H), follows(H, I) )
+%   | | then if ( recursion_accounttype(I, B) )
+%   | | | then return 0.4853303084642948;  // std dev = 1.244, 33.000 (wgt'ed) examples reached here.  /* #pos=33 */
+%   | | | else return -0.17622764512416358;  // std dev = 0.554, 68.000 (wgt'ed) examples reached here.  /* #neg=68 */
+%   | | else if ( follows(A, J), tweets(A, K) )
+%   | | | then return 0.22614984007624894;  // std dev = 0.428, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | | else return -0.03381843191910885;  // std dev = 2.899, 49.000 (wgt'ed) examples reached here.  /* #neg=36 #pos=13 */
+WILL Produced-Tree #10
+% FOR accounttype(A, B):
+%   if ( follows(C, A) )
+%   then if ( follows(C, D), recursion_accounttype(D, B) )
+%   | then if ( follows(A, D), follows(D, C) )
+%   | | then return 0.10780435791548816;  // std dev = 0.170, 52.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=50 */
+%   | | else return 0.16873957141915863;  // std dev = 0.053, 58.000 (wgt'ed) examples reached here.  /* #pos=58 */
+%   | else return -0.06812726538232433;  // std dev = 0.017, 235.000 (wgt'ed) examples reached here.  /* #neg=235 */
+%   else if ( tweets(A, E) )
+%   | then if ( tweets(F, E), recursion_accounttype(F, B) )
+%   | | then if ( follows(A, F) )
+%   | | | then return -0.04343916565656398;  // std dev = 0.926, 7.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=6 */
+%   | | | else return 0.3042212454425215;  // std dev = 1.072, 20.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=19 */
+%   | | else return -0.13450024643347822;  // std dev = 0.053, 49.000 (wgt'ed) examples reached here.  /* #neg=49 */
+%   | else if ( follows(A, G) )
+%   | | then if ( follows(H, G), recursion_accounttype(H, B) )
+%   | | | then return 0.6133581402851142;  // std dev = 0.446, 16.000 (wgt'ed) examples reached here.  /* #pos=16 */
+%   | | | else return -0.22826746040171556;  // std dev = 0.058, 22.000 (wgt'ed) examples reached here.  /* #neg=22 */
+%   | | else return 0.04959937247578054;  // std dev = 0.477, 20.000 (wgt'ed) examples reached here.  /* #neg=13 #pos=7 */
+
+
+Results
+   AUC ROC   = 0.993
+   AUC PR    = 0.349172
+   CLL	      = -0.109024
+   Precision = 0.333333 at threshold = 0.5
+   Recall    = 0.960317
+   F1        = 0.494888
+
+
+Total learning time: 14.29481554031372 seconds
+Total inference time: 12.427 seconds
+AUC ROC: 0.993
+
+
+Results scoring model
+   AUC ROC   = 0.993599
+   AUC PR    = 0.360957
+   CLL	      = -0.123558
+   Precision = 0.337156 at threshold = 0.5
+   Recall    = 0.942308
+   F1        = 0.496622
+
+
+Total scoring time: 14.04 seconds
+Parameter learned model CLL: -0.123558
+
+
+Structure after Parameter Learning
+[['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(C, D), follows(D, A)', 'false': 'follows(E, A)', 'false,true': 'follows(E, F), recursion_accounttype(F, B)', 'false,true,true': 'follows(A, G)', 'false,false': 'tweets(A, H)', 'false,false,true': 'tweets(I, H), recursion_accounttype(I, B)', 'false,false,false': 'follows(A, J), follows(J, K)'}, {'true,true': [0.0, 0, 63], 'true,false': [0.204, 1, 22], 'false,true,true,true': [0.977, 1, 21], 'false,true,true,false': [1.0, 2, 2], 'false,true,false': [0.0, 204, 0], 'false,false,true,true': [1.33e-07, 0, 25], 'false,false,true,false': [5.96e-08, 57, 0], 'false,false,false,true': [2.925, 22, 14], 'false,false,false,false': [2.225, 11, 9]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'false': 'follows(D, A)', 'false,true': 'follows(D, E), recursion_accounttype(E, B)', 'false,true,true': 'follows(A, E), follows(E, D)', 'false,false': 'follows(A, F), recursion_accounttype(F, B)', 'false,false,true': 'tweets(A, G)', 'false,false,false': 'follows(A, H)'}, {'true': [0.035, 0, 85], 'false,true,true,true': [0.894, 1, 4], 'false,true,true,false': [0.107, 0, 19], 'false,true,false': [0.0, 195, 0], 'false,false,true,true': [0.926, 1, 6], 'false,false,true,false': [0.816, 1, 2], 'false,false,false,true': [4.309, 90, 29], 'false,false,false,false': [2.598, 23, 11]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'false': 'follows(D, A)', 'false,true': 'follows(D, E), recursion_accounttype(E, B)', 'false,true,true': 'follows(E, D)', 'false,false': 'follows(A, F), recursion_accounttype(F, B)', 'false,false,false': 'follows(A, G)'}, {'true': [0.043, 0, 85], 'false,true,true,true': [0.158, 0, 21], 'false,true,true,false': [0.816, 1, 2], 'false,true,false': [0.0, 211, 0], 'false,false,true': [0.332, 1, 8], 'false,false,false,true': [4.158, 69, 29], 'false,false,false,false': [2.25, 12, 11]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, C), tweets(A, D)', 'false': 'follows(E, A)', 'false,true': 'follows(E, F), recursion_accounttype(F, B)', 'false,true,true': 'follows(E, G), follows(G, A)', 'false,false': 'tweets(A, H), follows(A, I)', 'false,false,true': 'tweets(J, H), recursion_accounttype(J, B)', 'false,false,false': 'follows(A, K)'}, {'true,true': [0.145, 1, 46], 'true,false': [0.032, 0, 39], 'false,true,true,true': [0.975, 2, 2], 'false,true,true,false': [0.184, 0, 21], 'false,true,false': [0.0, 209, 0], 'false,false,true,true': [0.449, 0, 21], 'false,false,true,false': [0.0, 39, 0], 'false,false,false,true': [3.252, 35, 16], 'false,false,false,false': [2.531, 22, 11]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, D)', 'false': 'follows(E, A)', 'false,true': 'follows(F, E), recursion_accounttype(F, B)', 'false,true,false': 'tweets(A, G), tweets(E, G)', 'false,false': 'tweets(A, H), follows(A, I)', 'false,false,true': 'tweets(J, H), recursion_accounttype(J, B)', 'false,false,false': 'tweets(A, K)'}, {'true,true': [0.035, 0, 70], 'true,false': [0.242, 1, 15], 'false,true,true': [0.201, 0, 21], 'false,true,false,true': [0.707, 174, 1], 'false,true,false,false': [0.481, 33, 1], 'false,false,true,true': [0.448, 0, 21], 'false,false,true,false': [0.0, 48, 0], 'false,false,false,true': [1.147, 3, 4], 'false,false,false,false': [3.9, 48, 23]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'follows(A, D), recursion_accounttype(D, B)', 'false': 'follows(E, A)', 'false,true': 'follows(E, F), recursion_accounttype(F, B)', 'false,true,true': 'tweets(A, G), follows(F, E)', 'false,false': 'follows(A, H), recursion_accounttype(H, B)', 'false,false,true': 'tweets(A, I)', 'false,false,false': 'follows(A, J), follows(J, K)'}, {'true,true': [0.029, 0, 64], 'true,false': [0.211, 1, 21], 'false,true,true,true': [0.163, 0, 19], 'false,true,true,false': [1.128, 2, 4], 'false,true,false': [0.005, 197, 0], 'false,false,true,true': [1.05e-08, 0, 6], 'false,false,true,false': [0.816, 1, 2], 'false,false,false,true': [3.45, 71, 25], 'false,false,false,false': [2.851, 29, 15]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'true': 'tweets(A, D), tweets(C, D)', 'true,true': 'follows(E, C), follows(A, E)', 'true,true,true': 'recursion_accounttype(E, B), follows(A, C)', 'true,true,false': 'follows(C, F), follows(F, A)', 'false': 'tweets(A, G)', 'false,false': 'follows(A, H), follows(I, A)', 'false,false,false': 'follows(A, J)'}, {'true,true,true,true': [1.346, 2, 19], 'true,true,true,false': [0.017, 0, 20], 'true,true,false,true': [0.027, 0, 17], 'true,true,false,false': [0.937, 1, 9], 'true,false': [0.03, 0, 20], 'false,true': [0.18, 236, 46], 'false,false,true': [0.055, 32, 1], 'false,false,false,true': [3.301, 38, 16], 'false,false,false,false': [2.239, 21, 8]}], ['accounttype(A, B)', {'': 'follows(A, C), recursion_accounttype(C, B)', 'true': 'follows(D, A), recursion_accounttype(D, B)', 'true,true': 'tweets(A, E)', 'true,true,false': 'follows(C, F), follows(F, A)', 'true,false': 'follows(G, A), follows(A, G)', 'false': 'follows(H, A), follows(A, H)', 'false,false': 'follows(I, A), recursion_accounttype(I, B)', 'false,false,false': 'follows(J, A)'}, {'true,true,true': [0.058, 0, 51], 'true,true,false,true': [0.935, 1, 7], 'true,true,false,false': [0.0, 0, 6], 'true,false,true': [0.054, 0, 5], 'true,false,false': [0.139, 0, 9], 'false,true': [0.09, 160, 15], 'false,false,true': [0.033, 0, 20], 'false,false,false,true': [0.713, 45, 3], 'false,false,false,false': [4.317, 88, 40]}], ['accounttype(A, B)', {'': 'follows(C, A), recursion_accounttype(C, B)', 'false': 'follows(D, A)', 'false,true': 'follows(E, D), follows(E, A)', 'false,true,true': 'follows(D, F), follows(F, A)', 'false,true,false': 'follows(D, G), recursion_accounttype(G, B)', 'false,false': 'follows(A, H), follows(H, I)', 'false,false,true': 'recursion_accounttype(I, B)', 'false,false,false': 'follows(A, J), tweets(A, K)'}, {'true': [0.071, 0, 85], 'false,true,true,true': [0.383, 121, 1], 'false,true,true,false': [0.307, 9, 1], 'false,true,false,true': [1.085, 1, 21], 'false,true,false,false': [0.012, 76, 0], 'false,false,true,true': [1.244, 0, 33], 'false,false,true,false': [0.554, 68, 0], 'false,false,false,true': [0.428, 1, 2], 'false,false,false,false': [2.899, 36, 13]}], ['accounttype(A, B)', {'': 'follows(C, A)', 'true': 'follows(C, D), recursion_accounttype(D, B)', 'true,true': 'follows(A, D), follows(D, C)', 'false': 'tweets(A, E)', 'false,true': 'tweets(F, E), recursion_accounttype(F, B)', 'false,true,true': 'follows(A, F)', 'false,false': 'follows(A, G)', 'false,false,true': 'follows(H, G), recursion_accounttype(H, B)'}, {'true,true,true': [0.17, 2, 50], 'true,true,false': [0.053, 0, 58], 'true,false': [0.017, 235, 0], 'false,true,true,true': [0.926, 1, 6], 'false,true,true,false': [1.072, 1, 19], 'false,true,false': [0.053, 49, 0], 'false,false,true,true': [0.446, 0, 16], 'false,false,true,false': [0.058, 22, 0], 'false,false,false': [0.477, 13, 7]}]]
+[{'': [0.011492698756084153, 0.15571095226843196], 'false': [0.09000000000000104, 0.2268431001890366], 'false,false': [0.2119274241522914, 0.24202806122449091], 'false,false,false': [0.23765432098765382, 0.2475], 'false,false,true': [7.105427357601002e-16, 6.232831015439475e-17], 'false,true': [0.10207100591716042, -2.394598680564063e-16], 'false,true,true': [0.04338842975206614, 0.25], 'true': [-7.894919286223335e-16, 0.04158790170132359]}, {'': [1.448980973815223e-05, 0.12171393649962915], 'false': [0.06994565926369371, 0.17759609154700468], 'false,false': [0.15388425632278838, 0.16612102982239405], 'false,false,false': [0.15601541369529473, 0.1984925010928703], 'false,false,true': [0.12244897959183687, 0.2222222222222222], 'false,true': [0.04097856254104726, -4.7824991830006746e-17], 'false,true,true': [0.16000000000000006, 0.0006055722078961317]}, {'': [2.2011253410880726e-05, 0.10653398500182035], 'false': [0.043105382550133665, 0.19209829086980043], 'false,false': [0.11032261851594176, 0.1885902104937001], 'false,false,false': [0.1764579202291504, 0.2201197047414934], 'false,true': [0.0424530387240886, -5.472189315687975e-17], 'false,true,true': [0.0011834923181299963, 0.2222222222222222]}, {'': [0.011577177711103703, 0.09036908945183428], 'false': [0.02872749886665125, 0.17509740868308854], 'false,false': [0.13671682944057834, 0.20225922877534191], 'false,false,false': [0.2073553508731958, 0.19418186345725305], 'false,false,true': [0.00961065925540853, -5.408778837917429e-17], 'false,true': [0.07516558941075518, -8.49931502105383e-17], 'false,true,true': [0.23764610849862816, 0.0016119611964513715], 'true': [0.020916577015195392, 2.5868800300771637e-05]}, {'': [0.011632263512339529, 0.07449001253070134], 'false': [0.01911305317116647, 0.1513378394219295], 'false,false': [0.07964309933477763, 0.213901440396196], 'false,false,false': [0.1879046403489054, 0.2142536915672694], 'false,false,true': [0.009577894163535213, -3.23815048849004e-17], 'false,true': [0.0019195161010927447, 0.003527979465673013], 'true': [1.7357640657574995e-05, 0.05875242809951994], 'false,true,false': [0.00285878586352839, 0.006796578195712615]}, {'': [0.011673889688483674, 0.06843760154287035], 'false': [0.01590921853616635, 0.141488126494319], 'false,false': [0.07429641434378007, 0.14323949726843108], 'false,false,false': [0.1239616517832434, 0.18478942838838422], 'false,false,true': [1.850371707708594e-17, 0.2222222222222222], 'false,true': [0.062427410674398, 1.5257045276344482e-07], 'false,true,true': [0.001404546538233216, 0.2122170647358529], 'true': [1.3043325403749861e-05, 0.04442885897671107]}, {'': [0.03274035208021782, 0.06417594243872984], 'false': [0.03252294459282841, 0.14022990557510767], 'false,false': [0.002999461978823634, 0.19197842692607675], 'false,false,false': [0.2017563504028121, 0.17285277697045082], 'true': [0.04196750672960472, 4.560683465615889e-05], 'true,true': [0.04650942346393277, 0.0348142929027986], 'true,true,true': [0.0862367572435905, 1.4773684426433454e-05], 'true,true,false': [4.401789901097101e-05, 0.08779302330384582]}, {'': [0.01676740783110367, 0.06013066493189583], 'false': [0.00818092218189368, 0.10214055959377012], 'false,false': [5.30800558856126e-05, 0.11089504231905623], 'false,false,false': [0.01058060998778898, 0.1455735279853995], 'true': [0.01549723215692089, 0.013012144729037112], 'true,true': [6.572513448869809e-05, 0.06672529599518749], 'true,true,false': [0.10937499999999999, 0.0], 'true,false': [0.0005860501947367536, 0.019410971361570772]}, {'': [5.938144494491377e-05, 0.06168071095388815], 'false': [0.012047656205005, 0.13381516611082273], 'false,false': [0.11464797782303614, 0.16876563198860012], 'false,false,false': [0.06092678660221785, 0.17146896205962467], 'false,false,true': [0.04692840725481889, 0.004514416212417875], 'false,true': [0.00188441589899789, 0.024091238191621487], 'false,true,false': [0.05348546193865173, 1.8875283872412486e-06], 'false,true,true': [0.0012046409073190978, 0.009397921993021656]}, {'': [0.01453706370167682, 0.12446087247207405], 'false': [0.06429681391626968, 0.1963861910222361], 'false,false': [0.17799238771034287, 0.22750000000000012], 'false,false,true': [0.01243685455095761, 0.00015066372879941008], 'false,true': [0.09754389832996485, 0.002807859449110838], 'false,true,true': [0.12244897959183675, 0.05749103358760246], 'true': [0.016103797382156473, 1.274872143969854e-06], 'true,true': [0.02903085291914459, 0.0027587397003850204]}]
+
+
+******************************************
+Performing Theory Revision
+******************************************
+Refining iteration 1
+********************************
+Candidate for revision
+0;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+0;true;follows(C, D), follows(D, A).;true;true
+0;false;follows(E, A).;true;true
+0;false,true;follows(E, F), recursion_accounttype(F, B).;true;true
+0;false,false;tweets(A, H).;true;true
+0;false,false,true;tweets(I, H), recursion_accounttype(I, B).;true;true
+1;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+1;false;follows(D, A).;true;true
+1;false,true;follows(D, E), recursion_accounttype(E, B).;true;true
+1;false,true,true;follows(A, E), follows(E, D).;true;true
+2;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+2;false;follows(D, A).;true;true
+2;false,true;follows(D, E), recursion_accounttype(E, B).;true;true
+2;false,true,true;follows(E, D).;true;true
+3;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+3;true;follows(A, C), tweets(A, D).;true;true
+3;false;follows(E, A).;true;true
+3;false,true;follows(E, F), recursion_accounttype(F, B).;true;true
+3;false,true,true;follows(E, G), follows(G, A).;true;true
+3;false,false;tweets(A, H), follows(A, I).;true;true
+3;false,false,true;tweets(J, H), recursion_accounttype(J, B).;true;true
+4;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+4;true;follows(A, D).;true;true
+4;false;follows(E, A).;true;true
+4;false,true;follows(F, E), recursion_accounttype(F, B).;true;true
+4;false,false;tweets(A, H), follows(A, I).;true;true
+4;false,false,true;tweets(J, H), recursion_accounttype(J, B).;true;true
+5;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+5;true;follows(A, D), recursion_accounttype(D, B).;true;true
+5;false;follows(E, A).;true;true
+5;false,true;follows(E, F), recursion_accounttype(F, B).;true;true
+5;false,true,true;tweets(A, G), follows(F, E).;true;true
+5;false,false;follows(A, H), recursion_accounttype(H, B).;true;true
+5;false,false,true;tweets(A, I).;true;true
+6;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+6;true;tweets(A, D), tweets(C, D).;true;true
+6;true,true;follows(E, C), follows(A, E).;true;true
+6;true,true,true;recursion_accounttype(E, B), follows(A, C).;true;true
+6;true,true,false;follows(C, F), follows(F, A).;true;true
+7;;accounttype(A, B) :- follows(A, C), recursion_accounttype(C, B).;true;true
+7;true;follows(D, A), recursion_accounttype(D, B).;true;true
+7;true,true;tweets(A, E).;true;true
+7;true,true,false;follows(C, F), follows(F, A).;true;true
+7;true,false;follows(G, A), follows(A, G).;true;true
+7;false;follows(H, A), follows(A, H).;true;true
+7;false,false;follows(I, A), recursion_accounttype(I, B).;true;true
+8;;accounttype(A, B) :- follows(C, A), recursion_accounttype(C, B).;true;true
+8;false;follows(D, A).;true;true
+8;false,true;follows(E, D), follows(E, A).;true;true
+8;false,true,true;follows(D, F), follows(F, A).;true;true
+8;false,true,false;follows(D, G), recursion_accounttype(G, B).;true;true
+9;;accounttype(A, B) :- follows(C, A).;true;true
+9;true;follows(C, D), recursion_accounttype(D, B).;true;true
+9;false;tweets(A, E).;true;true
+9;false,false;follows(A, G).;true;true
+9;false,false,true;follows(H, G), recursion_accounttype(H, B).;true;true
+
+
+Refining candidate
+***************************
+WILL Produced-Tree #1
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D), follows(A, C) )
+%   | then if ( follows(E, A), follows(E, C) )
+%   | | then return 0.8295775065280829;  // std dev = 0.167, 35.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=34 */
+%   | | else return 0.8581489350995123;  // std dev = 0.000, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | else return 0.8581489350995122;  // std dev = 5.96e-08, 39.000 (wgt'ed) examples reached here.  /* #pos=39 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), recursion_accounttype(G, B) )
+%   | | then if ( tweets(A, H) )
+%   | | | then return 0.8581489350995122;  // std dev = 0.000, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | | else return 0.5248156017661788;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | | else return -0.1418510649004885;  // std dev = 0.000, 222.000 (wgt'ed) examples reached here.  /* #neg=222 */
+%   | else if ( follows(A, I), recursion_accounttype(I, B) )
+%   | | then return 0.8581489350995123;  // std dev = 0.000, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | | else if ( follows(A, J) )
+%   | | | then return 0.14527764797079826;  // std dev = 4.547, 101.000 (wgt'ed) examples reached here.  /* #neg=72 #pos=29 */
+%   | | | else return 0.3364098046647297;  // std dev = 2.396, 23.000 (wgt'ed) examples reached here.  /* #neg=12 #pos=11 */
+WILL Produced-Tree #2
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(D, C), recursion_accounttype(D, B) )
+%   | then if ( tweets(C, E), follows(C, D) )
+%   | | then return 0.7095330398937575;  // std dev = 0.110, 81.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=80 */
+%   | | else return 0.47233855695076415;  // std dev = 0.863, 4.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=3 */
+%   | else return 0.3861400788776212;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   else if ( follows(A, F), recursion_accounttype(F, B) )
+%   | then if ( follows(F, G), recursion_accounttype(G, B) )
+%   | | then return 0.7194734122109542;  // std dev = 5.16e-08, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | else return 0.3861400788776212;  // std dev = 0.816, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else if ( follows(H, A) )
+%   | | then if ( follows(H, I), follows(I, A) )
+%   | | | then return -0.1186852941224763;  // std dev = 0.842, 125.000 (wgt'ed) examples reached here.  /* #neg=124 #pos=1 */
+%   | | | else return -0.0014173670142255568;  // std dev = 3.154, 110.000 (wgt'ed) examples reached here.  /* #neg=94 #pos=16 */
+%   | | else if ( tweets(A, J) )
+%   | | | then return 0.09416242695562467;  // std dev = 3.749, 73.000 (wgt'ed) examples reached here.  /* #neg=54 #pos=19 */
+%   | | | else return 0.13011783553633216;  // std dev = 3.837, 70.000 (wgt'ed) examples reached here.  /* #neg=49 #pos=21 */
+WILL Produced-Tree #3
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(C, D), follows(E, C) )
+%   | then if ( follows(E, A) )
+%   | | then return 0.5617692955565434;  // std dev = 0.026, 57.000 (wgt'ed) examples reached here.  /* #pos=57 */
+%   | | else return 0.5164461560917669;  // std dev = 0.200, 24.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=23 */
+%   | else return 0.6246929617926581;  // std dev = 0.020, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   else if ( follows(A, F), recursion_accounttype(F, B) )
+%   | then if ( tweets(A, G) )
+%   | | then return 0.5687152915542181;  // std dev = 0.103, 12.000 (wgt'ed) examples reached here.  /* #pos=12 */
+%   | | else return 0.2731419292526981;  // std dev = 0.691, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else if ( follows(H, A) )
+%   | | then if ( follows(H, I), recursion_accounttype(I, B) )
+%   | | | then return 0.6736643937961213;  // std dev = 0.961, 18.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=17 */
+%   | | | else return -0.1172192117600687;  // std dev = 0.087, 224.000 (wgt'ed) examples reached here.  /* #neg=224 */
+%   | | else if ( follows(A, J), follows(J, K) )
+%   | | | then return 0.09875057463959604;  // std dev = 4.258, 91.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=25 */
+%   | | | else return 0.11413343531101601;  // std dev = 3.213, 48.000 (wgt'ed) examples reached here.  /* #neg=33 #pos=15 */
+WILL Produced-Tree #4
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.42718786883456566;  // std dev = 0.112, 85.000 (wgt'ed) examples reached here.  /* #pos=85 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(E, D), follows(E, A) )
+%   | | then if ( follows(D, F), follows(F, A) )
+%   | | | then return -0.0999580079138566;  // std dev = 0.849, 118.000 (wgt'ed) examples reached here.  /* #neg=117 #pos=1 */
+%   | | | else return -0.06736345886343156;  // std dev = 0.499, 15.000 (wgt'ed) examples reached here.  /* #neg=14 #pos=1 */
+%   | | else if ( follows(D, G), recursion_accounttype(G, B) )
+%   | | | then return 0.54211562071268;  // std dev = 0.313, 21.000 (wgt'ed) examples reached here.  /* #pos=21 */
+%   | | | else return -0.11299694498738418;  // std dev = 0.000, 74.000 (wgt'ed) examples reached here.  /* #neg=74 */
+%   | else if ( follows(A, H), recursion_accounttype(H, B) )
+%   | | then return 0.3285552411397029;  // std dev = 0.325, 9.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=8 */
+%   | | else if ( follows(A, I), follows(I, J) )
+%   | | | then return 0.10005249784797535;  // std dev = 4.210, 86.000 (wgt'ed) examples reached here.  /* #neg=61 #pos=25 */
+%   | | | else return 0.13763900622855735;  // std dev = 3.118, 42.000 (wgt'ed) examples reached here.  /* #neg=27 #pos=15 */
+WILL Produced-Tree #5
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, C), tweets(A, D) )
+%   | then if ( follows(A, E), follows(E, C) )
+%   | | then if ( follows(E, A) )
+%   | | | then return 0.27143215963453887;  // std dev = 1.339, 35.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=33 */
+%   | | | else return 0.16202658097980804;  // std dev = 0.912, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | else return 0.32930811755152667;  // std dev = 1.49e-08, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | else return 0.3269525371990976;  // std dev = 0.094, 39.000 (wgt'ed) examples reached here.  /* #pos=39 */
+%   else if ( follows(F, A) )
+%   | then return -0.04708270755349529;  // std dev = 0.158, 233.000 (wgt'ed) examples reached here.  /* #neg=210 #pos=23 */
+%   | else if ( follows(A, G), follows(G, H) )
+%   | | then if ( recursion_accounttype(H, B) )
+%   | | | then return 0.6539370128221514;  // std dev = 1.589, 34.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=33 */
+%   | | | else return -0.20627614397647884;  // std dev = 0.023, 61.000 (wgt'ed) examples reached here.  /* #neg=61 */
+%   | | else if ( tweets(A, I) )
+%   | | | then return 0.11642314545340952;  // std dev = 1.975, 17.000 (wgt'ed) examples reached here.  /* #neg=11 #pos=6 */
+%   | | | else return -6.407753806031011E-4;  // std dev = 2.606, 37.000 (wgt'ed) examples reached here.  /* #neg=28 #pos=9 */
+WILL Produced-Tree #6
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(C, D), follows(A, D) )
+%   | then return 0.25503289412913;  // std dev = 0.115, 68.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=67 */
+%   | else if ( follows(C, E), follows(E, A) )
+%   | | then if ( recursion_accounttype(E, B), follows(E, C) )
+%   | | | then return 0.15282692715947563;  // std dev = 0.949, 10.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=9 */
+%   | | | else return 0.25282692715947563;  // std dev = 0.000, 5.000 (wgt'ed) examples reached here.  /* #pos=5 */
+%   | | else return -0.05587221344942608;  // std dev = 1.092, 6.000 (wgt'ed) examples reached here.  /* #neg=2 #pos=4 */
+%   else if ( follows(F, A) )
+%   | then return -0.048012725080844074;  // std dev = 0.147, 272.000 (wgt'ed) examples reached here.  /* #neg=249 #pos=23 */
+%   | else if ( tweets(A, G), follows(A, H) )
+%   | | then if ( follows(H, I), recursion_accounttype(I, B) )
+%   | | | then return 0.527660150696085;  // std dev = 0.914, 19.000 (wgt'ed) examples reached here.  /* #pos=19 */
+%   | | | else return -0.15617696179758592;  // std dev = 1.428, 45.000 (wgt'ed) examples reached here.  /* #neg=43 #pos=2 */
+%   | | else if ( tweets(A, J) )
+%   | | | then return 0.30272934263876944;  // std dev = 1.309, 7.000 (wgt'ed) examples reached here.  /* #neg=3 #pos=4 */
+%   | | | else return 0.08777414504728599;  // std dev = 3.460, 68.000 (wgt'ed) examples reached here.  /* #neg=45 #pos=23 */
+WILL Produced-Tree #7
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.2237146184688536;  // std dev = 0.137, 85.000 (wgt'ed) examples reached here.  /* #pos=85 */
+%   else if ( follows(D, A) )
+%   | then if ( follows(D, E), recursion_accounttype(E, B) )
+%   | | then if ( follows(A, E), follows(E, F) )
+%   | | | then return 0.20832647573815902;  // std dev = 0.651, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | | else return 0.47522988470760225;  // std dev = 0.204, 18.000 (wgt'ed) examples reached here.  /* #pos=18 */
+%   | | else return -0.08846389215113108;  // std dev = 0.061, 226.000 (wgt'ed) examples reached here.  /* #neg=226 */
+%   | else if ( follows(A, G), follows(G, H) )
+%   | | then if ( recursion_accounttype(H, B) )
+%   | | | then return 0.4523546445168878;  // std dev = 1.632, 34.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=33 */
+%   | | | else return -0.1719645399974291;  // std dev = 0.164, 69.000 (wgt'ed) examples reached here.  /* #neg=69 */
+%   | | else if ( tweets(A, I) )
+%   | | | then return 0.23087339748136157;  // std dev = 1.672, 12.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=6 */
+%   | | | else return 0.08306240733548015;  // std dev = 2.431, 26.000 (wgt'ed) examples reached here.  /* #neg=17 #pos=9 */
+WILL Produced-Tree #8
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( follows(A, D), follows(D, C) )
+%   | then if ( follows(A, C), follows(C, D) )
+%   | | then return 0.16542512896589726;  // std dev = 0.143, 48.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=47 */
+%   | | else if ( follows(A, E), recursion_accounttype(E, B) )
+%   | | | then return 0.03685083124695512;  // std dev = 0.797, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   | | | else return -0.15782538959784254;  // std dev = 0.819, 3.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=2 */
+%   | else return 0.1903665894972438;  // std dev = 0.098, 31.000 (wgt'ed) examples reached here.  /* #pos=31 */
+%   else if ( follows(F, A) )
+%   | then return -0.04790368548098045;  // std dev = 0.139, 246.000 (wgt'ed) examples reached here.  /* #neg=223 #pos=23 */
+%   | else if ( tweets(A, G) )
+%   | | then if ( tweets(H, G), recursion_accounttype(H, B) )
+%   | | | then return 0.35582102546594246;  // std dev = 1.634, 26.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=25 */
+%   | | | else return -0.18117139976360236;  // std dev = 0.716, 59.000 (wgt'ed) examples reached here.  /* #neg=59 */
+%   | | else if ( follows(A, I) )
+%   | | | then return 0.02130667973726192;  // std dev = 2.417, 56.000 (wgt'ed) examples reached here.  /* #neg=40 #pos=16 */
+%   | | | else return 0.15080785793948454;  // std dev = 1.984, 16.000 (wgt'ed) examples reached here.  /* #neg=9 #pos=7 */
+WILL Produced-Tree #9
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then if ( tweets(A, D) )
+%   | then return 0.15119311353707196;  // std dev = 0.116, 70.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=69 */
+%   | else if ( follows(A, E), follows(E, C) )
+%   | | then return 0.1546329393747956;  // std dev = 0.023, 11.000 (wgt'ed) examples reached here.  /* #pos=11 */
+%   | | else return 0.011537919400531263;  // std dev = 0.904, 6.000 (wgt'ed) examples reached here.  /* #neg=1 #pos=5 */
+%   else if ( follows(F, A) )
+%   | then if ( follows(F, G), follows(G, A) )
+%   | | then return -0.07447049488514954;  // std dev = 0.086, 132.000 (wgt'ed) examples reached here.  /* #neg=130 #pos=2 */
+%   | | else return 0.0244854174580248;  // std dev = 0.187, 84.000 (wgt'ed) examples reached here.  /* #neg=63 #pos=21 */
+%   | else if ( follows(A, H) )
+%   | | then if ( follows(I, H), recursion_accounttype(I, B) )
+%   | | | then return 0.3908892617028607;  // std dev = 1.180, 37.000 (wgt'ed) examples reached here.  /* #pos=37 */
+%   | | | else return -0.14026098137801288;  // std dev = 0.327, 69.000 (wgt'ed) examples reached here.  /* #neg=69 */
+%   | | else if ( tweets(A, J) )
+%   | | | then return 0.005213318818050883;  // std dev = 1.350, 10.000 (wgt'ed) examples reached here.  /* #neg=6 #pos=4 */
+%   | | | else return -0.03849511465921013;  // std dev = 2.245, 25.000 (wgt'ed) examples reached here.  /* #neg=18 #pos=7 */
+WILL Produced-Tree #10
+% FOR accounttype(A, B):
+%   if ( follows(C, A), recursion_accounttype(C, B) )
+%   then return 0.14572625399705313;  // std dev = 0.128, 85.000 (wgt'ed) examples reached here.  /* #pos=85 */
+%   else if ( follows(A, D), recursion_accounttype(D, B) )
+%   | then if ( follows(E, A) )
+%   | | then return 0.30100396828835446;  // std dev = 0.098, 6.000 (wgt'ed) examples reached here.  /* #pos=6 */
+%   | | else return 0.0660020376252043;  // std dev = 0.091, 8.000 (wgt'ed) examples reached here.  /* #pos=8 */
+%   | else if ( follows(F, A) )
+%   | | then if ( follows(F, G), follows(G, A) )
+%   | | | then return -0.06453810796796695;  // std dev = 0.625, 107.000 (wgt'ed) examples reached here.  /* #neg=106 #pos=1 */
+%   | | | else return -0.008593899910012272;  // std dev = 1.613, 93.000 (wgt'ed) examples reached here.  /* #neg=77 #pos=16 */
+%   | | else if ( follows(A, H) )
+%   | | | then return 0.024722958363943098;  // std dev = 2.438, 95.000 (wgt'ed) examples reached here.  /* #neg=66 #pos=29 */
+%   | | | else return -0.03701943910736446;  // std dev = 2.655, 37.000 (wgt'ed) examples reached here.  /* #neg=26 #pos=11 */
+
+
+Results
+   AUC ROC   = 0.993457
+   AUC PR    = 0.373844
+   CLL	      = -0.116631
+   Precision = 0.343373 at threshold = 0.5
+   Recall    = 0.904762
+   F1        = 0.497817
+
+
+Total learning time: 12.814613103866577 seconds
+Total inference time: 8.177 seconds
+AUC ROC: 0.993457
+
+
+Results scoring model
+   AUC ROC   = 0.993093
+   AUC PR    = 0.399558
+   CLL	      = -0.131047
+   Precision = 0.359897 at threshold = 0.5
+   Recall    = 0.897436
+   F1        = 0.513761
+
+
+Total scoring time: 10.107 seconds
+Refined model CLL: -0.131047
+
+
+******************************************
+Best model found
+******************************************
+Results
+   AUC ROC   = 0.993
+   AUC PR    = 0.349172
+   CLL	      = -0.109024
+   Precision = 0.333333 at threshold = 0.5
+   Recall    = 0.960317
+   F1        = 0.494888
+
+
+Total learning time: 51.256428644180296 seconds
+Total inference time: 12.427 seconds
+AUC ROC: 0.993
+Total revision time: 51.256428644180296
+Best scored revision CLL: -0.123558
+
+
+Dataset: 14_cora_twitter, Fold: 2, Type: Transfer (trRDN-B), Time: 00:02:43
+{'AUC ROC': 0.993, 'AUC PR': 0.349172, 'CLL': -0.109024, 'Precision': [0.333333, 0.5], 'Recall': 0.960317, 'F1': 0.494888, 'Learning time': 51.256428644180296, 'Inference time': 12.427, 'parameter': {'AUC ROC': 0.993, 'AUC PR': 0.349172, 'CLL': -0.109024, 'Precision': [0.333333, 0.5], 'Recall': 0.960317, 'F1': 0.494888, 'Learning time': 14.29481554031372, 'Inference time': 12.427}}
+
+
