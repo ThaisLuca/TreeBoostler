@@ -48,6 +48,15 @@ def print_function(message):
         print(message, file=f)
         print(message)
 
+def save_pickle_file(nodes, _id, source, target, filename):
+    if not os.path.exists('resources/' + experiment_title):
+        os.makedirs('resources/' + experiment_title)
+    if not os.path.exists('resources/{}_{}_{}'.format(_id, source, target)):
+        os.makedirs('resources/{}_{}_{}'.format(_id, source, target))
+
+    with open('resources/{}_{}_{}/{}'.format(_id, source, target, filename), 'wb') as file:
+        pickle.dump(nodes, file)
+
 def load_pickle_file(filename):
     with open(filename, 'rb') as file:
         return pickle.load(file)
@@ -883,6 +892,10 @@ for experiment in experiments:
             write_to_file(refine_structure, PATH + '/' + 'boostsrl/refine.txt')
             #write_to_file(refine_structure, PATH + 'transfer-experiments/{}_{}_{}/{}'.format(_id, source, target, PATH + '/' + 'boostsrl/refine.txt'.split('/')[1]))
             #write_to_file(refine_structure, PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, PATH + '/' + 'boostsrl/refine.txt'.split('/')[1]))
+
+            # Save models
+            #save_pickle_file(nodes, _id, source, target, params.SOURCE_TREE_NODES_FILES)
+            save_pickle_file(structured, _id, source, target, 'source_structured_nodes.pkl')
 
             del model, src_data, src_pos, src_neg, src_total_data
 
