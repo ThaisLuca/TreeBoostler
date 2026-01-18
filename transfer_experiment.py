@@ -895,7 +895,7 @@ for experiment in experiments:
 
             # Save models
             #save_pickle_file(nodes, _id, source, target, params.SOURCE_TREE_NODES_FILES)
-            save_pickle_file(structured, _id, source, target, 'source_structured_nodes.pkl')
+            save_pickle_file(source_structured, _id, source, target, 'source_structured_nodes.pkl')
 
             del model, src_data, src_pos, src_neg, src_total_data
 
