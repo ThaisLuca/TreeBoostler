@@ -21,16 +21,9 @@ import random
 import json
 import pickle
 
-import psutil
-
-if os.name == 'posix' and sys.version_info[0] < 3:
-    import subprocess32 as subprocess
-else:
-    import subprocess
-
 PATH = os.getcwd() + '/'
 
-learn_from_source = False
+learn_from_source = True
 
 #verbose=True
 source_balanced = False
@@ -200,7 +193,7 @@ def deep_first_search_nodes(structure, matches={}, trees=[]):
     return trees
 
 experiments = [
-            #{'id': '1', 'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby', 'arity': 2},
+            {'id': '1', 'source':'imdb', 'target':'uwcse', 'predicate':'workedunder', 'to_predicate':'advisedby', 'arity': 2},
             #{'id': '2', 'source':'uwcse', 'target':'imdb', 'predicate':'advisedby', 'to_predicate':'workedunder', 'arity': 2},
             #{'id': '3', 'source':'imdb', 'target':'cora', 'predicate':'workedunder', 'to_predicate':'samevenue', 'arity': 2},
             #{'id': '4', 'source':'cora', 'target':'imdb', 'predicate':'samevenue', 'to_predicate':'workedunder', 'arity': 2},
@@ -212,34 +205,57 @@ experiments = [
             #{'id': '8', 'source':'twitter', 'target':'yeast', 'predicate':'accounttype', 'to_predicate':'proteinclass', 'arity': 2},
             #{'id': '9', 'source':'nell_sports', 'target':'nell_finances', 'predicate':'teamplayssport', 'to_predicate':'companyeconomicsector', 'arity': 2},
             #{'id': '10', 'source':'nell_finances', 'target':'nell_sports', 'predicate':'companyeconomicsector', 'to_predicate':'teamplayssport', 'arity': 2},
-            #{'id': '13', 'source': 'twitter', 'target': 'cora', 'predicate':'accounttype', 'to_predicate':'samevenue', 'arity': 2},
-            #{'id': '14', 'source': 'cora', 'target': 'twitter', 'predicate':'samevenue', 'to_predicate':'accounttype', 'arity': 2},
-            #{'id': '34', 'source': 'imdb', 'target': 'twitter', 'predicate': 'workedunder', 'to_predicate': 'accounttype', 'arity': 2},
-            #{'id': '35', 'source': 'cora', 'target': 'uwcse', 'predicate': 'samevenue', 'to_predicate': 'advisedby', 'arity': 2},
-            #{'id': '36', 'source': 'uwcse', 'target': 'imdb', 'predicate': 'advisedby', 'to_predicate': 'workedunder', 'arity': 2},
-            #{'id': '37', 'source': 'uwcse', 'target': 'twitter', 'predicate': 'advisedby', 'to_predicate': 'accounttype', 'arity': 2},
-            #{'id': '38', 'source': 'uwcse', 'target': 'cora', 'predicate': 'advisedby', 'to_predicate': 'samevenue', 'arity': 2},
-            #{'id': '39', 'source': 'twitter', 'target': 'uwcse', 'predicate': 'accounttype', 'to_predicate': 'advisedby', 'arity': 2},
-            #{'id': '40', 'source': 'twitter', 'target': 'imdb', 'predicate': 'accounttype', 'to_predicate': 'workedunder', 'arity': 2},
-            #{'id': '11', 'source': 'yeast', 'target': 'cora', 'predicate': 'proteinclass', 'to_predicate': 'samevenue', 'arity': 2},
-            #{'id': '12', 'source': 'cora', 'target': 'yeast', 'predicate': 'samevenue', 'to_predicate': 'proteinclass', 'arity': 2},
-            #{'id': '13', 'source': 'twitter', 'target': 'cora', 'predicate': 'accounttype', 'to_predicate': 'samevenue', 'arity': 2},
-            #{'id': '14', 'source': 'cora', 'target': 'twitter', 'predicate': 'samevenue', 'to_predicate': 'accounttype', 'arity': 2},
             #{'id': '11', 'source':'uwcse', 'target':'webkb', 'predicate':'advisedby', 'to_predicate':'departmentof', 'arity':2},
             #{'id': '12', 'source':'webkb', 'target':'yeast', 'predicate':'departmentof', 'to_predicate':'proteinclass', 'arity':2},
             #{'id': '13', 'source': 'yago2s', 'target': 'yeast', 'predicate': 'wasbornin', 'to_predicate': 'proteinclass', 'arity': 2},
-            #{'id': '14', 'source': 'yeast', 'target': 'yago2s', 'predicate': 'proteinclass', 'to_predicate': 'wasbornin', 'arity': 2},
+            #{'id': '14', 'source': 'imdb', 'target': 'yeast', 'predicate': 'workedunder', 'to_predicate': 'proteinclass', 'arity': 2},
             #{'id': '15', 'source': 'yeast', 'target': 'yeast2', 'predicate': 'proteinclass', 'to_predicate': 'gene', 'arity': 2},
             #{'id': '16', 'source': 'yeast', 'target': 'fly', 'predicate': 'proteinclass', 'to_predicate': 'gene', 'arity': 2},
             #{'id': '48', 'source':'twitter', 'target':'facebook', 'predicate':'follows', 'to_predicate':'edge', 'arity': 2},
             #{'id': '49', 'source':'imdb', 'target':'facebook', 'predicate':'workedunder', 'to_predicate':'edge','arity': 2},
-                #{'id': '50', 'source':'uwcse', 'target':'facebook', 'predicate':'advisedby', 'to_predicate':'edge', 'arity': 2},
-            {'id': '17', 'source':'cora', 'target':'yeast', 'predicate':'samevenue', 'to_predicate':'proteinclass', 'arity': 2},
-            {'id': '18', 'source':'imdb', 'target':'yeast', 'predicate':'workedunder', 'to_predicate':'proteinclass', 'arity': 2},
-            {'id': '19', 'source':'yeast', 'target':'imdb', 'predicate':'proteinclass', 'to_predicate':'workedunder', 'arity': 2},
-            {'id': '20', 'source':'uwcse', 'target':'yeast', 'predicate':'advisedby', 'to_predicate':'proteinclass', 'arity': 2},
-            {'id': '21', 'source':'yeast', 'target':'uwcse', 'predicate':'proteinclass', 'to_predicate':'advisedby', 'arity': 2},
-            {'id': '41', 'source':'yeast', 'target':'cora', 'predicate':'proteinclass', 'to_predicate':'samevenue', 'arity': 2},
+            #{'id': '50', 'source':'uwcse', 'target':'facebook', 'predicate':'advisedby', 'to_predicate':'edge', 'arity': 2},
+            #{'id': '11', 'source':'yeast', 'target':'cora', 'predicate':'proteinclass', 'to_predicate':'samevenue', 'arity':2},
+            #{'id': '12', 'source':'cora', 'target':'yeast', 'predicate':'proteinclass', 'to_predicate':'samevenue', 'arity':2},
+
+            {'id': '20', 'source': 'bace', 'target': 'bbbp', 'predicate': 'inhibitor', 'to_predicate': 'permeability', 'arity':1},
+            {'id': '21', 'source': 'bace', 'target': 'hiv', 'predicate': 'inhibitor', 'to_predicate': 'active', 'arity':1},
+            {'id': '22', 'source': 'bace', 'target': 'clintoxapproved', 'predicate': 'inhibitor', 'to_predicate': 'approved', 'arity':1},
+            {'id': '23', 'source': 'bace', 'target': 'clintoxtoxicity', 'predicate': 'inhibitor', 'to_predicate': 'toxicity', 'arity':1},
+            {'id': '24', 'source': 'bace', 'target': 'zinc_standard_agent', 'predicate': 'inhibitor', 'to_predicate': 'soluble', 'arity':1},
+
+
+            {'id': '25', 'source': 'bbbp', 'target': 'bace', 'predicate': 'permeability', 'to_predicate': 'inhibitor', 'arity':1},
+            {'id': '26', 'source': 'bbbp', 'target': 'hiv', 'predicate': 'permeability', 'to_predicate': 'active', 'arity':1},
+            {'id': '27', 'source': 'bbbp', 'target': 'clintoxapproved', 'predicate': 'permeability', 'to_predicate': 'approved', 'arity':1},
+            {'id': '28', 'source': 'bbbp', 'target': 'clintoxtoxicity', 'predicate': 'permeability', 'to_predicate': 'toxicity', 'arity':1},
+            {'id': '29', 'source': 'bbbp', 'target': 'zinc_standard_agent', 'predicate': 'permeability', 'to_predicate': 'soluble', 'arity':1},
+
+
+            {'id': '30', 'source': 'hiv', 'target': 'bace', 'predicate': 'active', 'to_predicate': 'inhibitor', 'arity':1},
+            {'id': '31', 'source': 'hiv', 'target': 'bbbp', 'predicate': 'active', 'to_predicate': 'permeability', 'arity':1},
+            {'id': '32', 'source': 'hiv', 'target': 'clintoxapproved', 'predicate': 'active', 'to_predicate': 'approved', 'arity':1},
+            {'id': '33', 'source': 'hiv', 'target': 'clintoxtoxicity', 'predicate': 'active', 'to_predicate': 'toxicity', 'arity':1},
+            {'id': '34', 'source': 'hiv', 'target': 'zinc_standard_agent', 'predicate': 'active', 'to_predicate': 'soluble', 'arity':1},
+
+
+            {'id': '35', 'source': 'clintoxapproved', 'target': 'bace', 'predicate': 'approved', 'to_predicate': 'inhibitor', 'arity':1},
+            {'id': '36', 'source': 'clintoxapproved', 'target': 'bbbp', 'predicate': 'approved', 'to_predicate': 'permeability', 'arity':1},
+            {'id': '37', 'source': 'clintoxapproved', 'target': 'hiv', 'predicate': 'approved', 'to_predicate': 'active', 'arity':1},
+            {'id': '38', 'source': 'clintoxapproved', 'target': 'clintoxtoxicity', 'predicate': 'approved', 'to_predicate': 'toxicity', 'arity':1},
+            {'id': '39', 'source': 'clintoxapproved', 'target': 'zinc_standard_agent', 'predicate': 'approved', 'to_predicate': 'soluble', 'arity':1},
+
+
+            {'id': '40', 'source': 'clintoxtoxicity', 'target': 'bace', 'predicate': 'toxicity', 'to_predicate': 'inhibitor', 'arity':1},
+            {'id': '41', 'source': 'clintoxtoxicity', 'target': 'bbbp', 'predicate': 'toxicity', 'to_predicate': 'permeability', 'arity':1},
+            {'id': '42', 'source': 'clintoxtoxicity', 'target': 'hiv', 'predicate': 'toxicity', 'to_predicate': 'active', 'arity':1},
+            {'id': '43', 'source': 'clintoxtoxicity', 'target': 'clintoxapproved', 'predicate': 'toxicity', 'to_predicate': 'approved', 'arity':1},
+            {'id': '44', 'source': 'clintoxtoxicity', 'target': 'zinc_standard_agent', 'predicate': 'toxicity', 'to_predicate': 'soluble', 'arity':1},
+
+            {'id': '45', 'source': 'zinc_standard_agent', 'target': 'bace', 'predicate': 'soluble', 'to_predicate': 'inhibitor', 'arity':1},
+            {'id': '46', 'source': 'zinc_standard_agent', 'target': 'bbbp', 'predicate': 'soluble', 'to_predicate': 'permeability', 'arity':1},
+            {'id': '47', 'source': 'zinc_standard_agent', 'target': 'hiv', 'predicate': 'soluble', 'to_predicate': 'active', 'arity':1},
+            {'id': '48', 'source': 'zinc_standard_agent', 'target': 'clintoxapproved', 'predicate': 'soluble', 'to_predicate': 'approved', 'arity':1},
+            {'id': '49', 'source': 'zinc_standard_agent', 'target': 'clinxtoxtoxicity', 'predicate': 'soluble', 'to_predicate': 'toxicity', 'arity':1},
             ]
 
 bk = {
@@ -391,9 +407,9 @@ bk = {
                 'complex(-protein,+com).',
                 'phenotype(+protein,+phe).',
                 'phenotype(+protein,-phe).',
-                'phenotype(-protein,+phe).',
-                'recursion_proteinclass(+protein,`class).',
-                'recursion_proteinclass(`protein,+class).'],
+                'phenotype(-protein,+phe).'],
+                #'recursion_proteinclass(+protein,`class).',
+                #'recursion_proteinclass(`protein,+class).'],
       'nell_sports': ['athleteledsportsteam(+athlete,+sportsteam).',
               'athleteledsportsteam(+athlete,-sportsteam).',
               'athleteledsportsteam(-athlete,+sportsteam).',
@@ -692,6 +708,71 @@ bk = {
             'physical(+gene,+gene)',
             'physical(+gene,-gene)',
             'physical(-gene,+gene)'],
+    'bace': ['inhibitor(+molecule).',
+             'atomicNumber(+molecule,+nodetype,#integer).',
+             'atomicNumber(+molecule,-nodetype,#integer).',
+             'chiralityNumber(+molecule,+nodetype,#integer).',
+             'chiralityNumber(+molecule,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,-nodetype,#integer).',
+             'bond(+molecule,+nodetype,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,+nodetype,#integer).',
+             'bond(+molecule,+nodetype,+nodetype,#integer).',
+             'stereo(+molecule,-nodetype,-nodetype,#integer).',
+             'stereo(+molecule,-nodetype,+nodetype,#integer).',
+             'stereo(+molecule,+nodetype,-nodetype,#integer).',
+             'stereo(+molecule,+nodetype,+nodetype,#integer).'],
+        'bbbp': ['permeability(+molecule).',
+             'atomicNumber(+molecule,+nodetype,#integer).',
+             'atomicNumber(+molecule,-nodetype,#integer).',
+             'chiralityNumber(+molecule,+nodetype,#integer).',
+             'chiralityNumber(+molecule,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,-nodetype,#integer).',
+             'bond(+molecule,+nodetype,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,+nodetype,#integer).',
+             'bond(+molecule,+nodetype,+nodetype,#integer).',
+             'stereo(+molecule,-nodetype,-nodetype,#integer).',
+             'stereo(+molecule,-nodetype,+nodetype,#integer).',
+             'stereo(+molecule,+nodetype,-nodetype,#integer).',
+             'stereo(+molecule,+nodetype,+nodetype,#integer).'],
+        'clintoxapproved': ['approved(+molecule).',
+             'atomicNumber(+molecule,+nodetype,#integer).',
+             'atomicNumber(+molecule,-nodetype,#integer).',
+             'chiralityNumber(+molecule,+nodetype,#integer).',
+             'chiralityNumber(+molecule,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,-nodetype,#integer).',
+             'bond(+molecule,+nodetype,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,+nodetype,#integer).',
+             'bond(+molecule,+nodetype,+nodetype,#integer).',
+             'stereo(+molecule,-nodetype,-nodetype,#integer).',
+             'stereo(+molecule,-nodetype,+nodetype,#integer).',
+             'stereo(+molecule,+nodetype,-nodetype,#integer).',
+             'stereo(+molecule,+nodetype,+nodetype,#integer).'],
+        'clintoxtoxicity': ['toxicity(+molecule).',
+             'atomicNumber(+molecule,+nodetype,#integer).',
+             'atomicNumber(+molecule,-nodetype,#integer).',
+             'chiralityNumber(+molecule,+nodetype,#integer).',
+             'chiralityNumber(+molecule,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,-nodetype,#integer).',
+             'bond(+molecule,+nodetype,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,+nodetype,#integer).',
+             'bond(+molecule,+nodetype,+nodetype,#integer).',
+             'stereo(+molecule,-nodetype,-nodetype,#integer).',
+             'stereo(+molecule,-nodetype,+nodetype,#integer).',
+             'stereo(+molecule,+nodetype,-nodetype,#integer).',
+             'stereo(+molecule,+nodetype,+nodetype,#integer).'],
+        'hiv': ['active(+molecule).',
+             'atomicNumber(+molecule,+nodetype,#integer).',
+             'atomicNumber(+molecule,-nodetype,#integer).',
+             'chiralityNumber(+molecule,+nodetype,#integer).',
+             'chiralityNumber(+molecule,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,-nodetype,#integer).',
+             'bond(+molecule,+nodetype,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,+nodetype,#integer).',
+             'bond(+molecule,+nodetype,+nodetype,#integer).',
+             'stereo(+molecule,-nodetype,-nodetype,#integer).',
+             'stereo(+molecule,-nodetype,+nodetype,#integer).',
+             'stereo(+molecule,+nodetype,-nodetype,#integer).',
+             'stereo(+molecule,+nodetype,+nodetype,#integer).']
       }
     
 #if os.path.isfile('transfer_experiment.json'):
@@ -700,38 +781,7 @@ bk = {
 #else:
 #    results = { 'save': { }}
 #    firstRun = True
-
-def call_process(cmd):
-    '''Create a subprocess and wait for it to finish. Error out if errors occur.'''
-    p = subprocess.Popen(cmd, stdout=subprocess.PIPE, shell=True)
-    pid = p.pid
-
-    (output, err) = p.communicate()  
-
-    #This makes the wait possible
-    p_status = p.wait()
-
-def train_and_test(background, train_pos, train_neg, train_facts, test_pos, test_neg, test_facts, refine=None, transfer=None):
-    '''
-        Train RDN-B using transfer learning
-    '''
-    import time
-    start = time.time()
-    model = boostsrl.train(background, train_pos, train_neg, train_facts, refine=None, transfer=None, trees=10)
-    learning_time = time.time() - start
-
-    will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(10)]
-    for w in will:
-        print_function(w)
-
-    # Test transfered model
-    results = boostsrl.test(model, test_pos, test_neg, test_facts, trees=10)
-    inference_time = results.get_testing_time()
     
-    print_function('Inference time using transfer learning {}'.format(inference_time))
-
-    return model, results.summarize_results(), learning_time, inference_time    
-
 results = {}
 for experiment in experiments:
     
@@ -740,10 +790,12 @@ for experiment in experiments:
     # Load total target dataset
     tar_total_data = datasets.load(target, bk[target], seed=441773)
     
-    if target in ['nell_sports', 'nell_finances', 'yago2s']:
+    if target in ['nell_sports', 'nell_finances', 'yago2s', 'bace', 'hiv', 'clintoxapproved', 'clintoxtoxicity', 'bbbp', 'zinc_standard_agent']:
         n_runs = 3
     else:
         n_runs = len(tar_total_data[0])
+    n_runs = 1  
+    n_folds = folds  
             
     results = {'save': { }}
     firstRun = True
@@ -771,8 +823,6 @@ for experiment in experiments:
     target = experiment['target']
     predicate = experiment['predicate']
     to_predicate = experiment['to_predicate']
-
-    #os.mkdir('CLLs/' + target)
     
     experiment_title = experiment['id'] + '_' + experiment['source'] + '_' + experiment['target']
     
@@ -782,16 +832,15 @@ for experiment in experiments:
     if(not learn_from_source):
         print_function('Loading pre-trained trees.')
 
-        from shutil import copyfile
-        copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
-        nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
+        #from shutil import copyfile
+        #copyfile(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'refine.txt'), PATH + 'boostsrl/refine.txt')
+        #nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
         #sources_dict =  utils.match_bk_source(set(bk[source]))
         #nodes = [sources_dict[node] for node in utils.sweep_tree(nodes) if node != predicate]
-        source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+        #source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
     
     start = time.time()
 
-    n_runs = 1
     while results['save']['n_runs'] < n_runs:
         print('Run: ' + str(results['save']['n_runs'] + 1))
         
@@ -803,24 +852,45 @@ for experiment in experiments:
 
             # Group and shuffle
             src_facts = datasets.group_folds(src_data[0])
-            src_pos = datasets.group_folds(src_data[1])
-            src_neg = datasets.group_folds(src_data[2])
-
+            src_pos   = datasets.group_folds(src_data[1])
+            src_neg   = datasets.group_folds(src_data[2])
+                        
             print_function('Start learning from source dataset\n')
+            
+            print_function('Source train facts examples: {}'.format(len(src_facts)))
+            print_function('Source train pos examples: {}'.format(len(src_pos)))
+            print_function('Source train neg examples: {}\n'.format(len(src_neg)))
 
-            print_function('Source train facts examples: %s' % len(src_facts))
-            print_function('Source train pos examples: %s' % len(src_pos))
-            print_function('Source train neg examples: %s\n' % len(src_neg))
+            # Learning from source dataset
+            background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=8)
+            model = boostsrl.train(background, src_pos, src_neg, src_facts, trees=10, refine=None, transfer=None)
 
-            # learning from source dataset
-            background = boostsrl.modes(bk[source], [predicate], useStdLogicVariables=False, maxTreeDepth=maxTreeDepth, nodeSize=nodeSize, numOfClauses=numOfClauses)
-            [model, total_revision_time, source_structured, will, variances] = revision.learn_model(background, boostsrl, predicate, src_pos, src_neg, src_facts, refine=None, trees=trees, print_function=print_function)
+            #print_function('Model training time {} \n'.format(model.traintime()), experiment_title)
 
+            print_function('Building refine structure \n')
 
-        if target in ['nell_sports', 'nell_finances', 'yago2s']:
+            # Get all learned trees
+            source_structured = []
+            for i in range(trees):
+                source_structured.append(model.get_structured_tree(treenumber=i+1).copy())
+            
+            will = ['WILL Produced-Tree #'+str(i+1)+'\n'+('\n'.join(model.get_will_produced_tree(treenumber=i+1))) for i in range(10)]
+            for w in will:
+                print_function(w)
+
+            # Get all rules learned by RDN-B
+            refine_structure = get_all_rules_from_tree(source_structured)
+            write_to_file(refine_structure, PATH + '/' + 'boostsrl/refine.txt')
+            #write_to_file(refine_structure, PATH + 'transfer-experiments/{}_{}_{}/{}'.format(_id, source, target, PATH + '/' + 'boostsrl/refine.txt'.split('/')[1]))
+            #write_to_file(refine_structure, PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, PATH + '/' + 'boostsrl/refine.txt'.split('/')[1]))
+
+            del model, src_data, src_pos, src_neg, src_total_data
+
+        if target in ['nell_sports', 'nell_finances', 'yago2s', 'bace', 'bbbp', 'clintoxapproved', 'clintoxtoxicity', 'hiv', 'zinc_standard_agent']:
             n_folds = folds
         else:
             n_folds = len(tar_total_data[0])
+        n_folds = folds
 
         results_save = []
         
@@ -829,7 +899,7 @@ for experiment in experiments:
 
             ob_save = {}
             
-            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+            if target not in ['nell_sports', 'nell_finances', 'yago2s', 'bace', 'bbbp', 'clintoxapproved', 'clintoxtoxicity', 'hiv', 'zinc_standard_agent']:
                 [tar_train_pos, tar_test_pos] = datasets.get_kfold_small(i, tar_total_data[0])
             else:
                 t_total_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
@@ -839,7 +909,7 @@ for experiment in experiments:
             tar_data = datasets.load(target, bk[target], target=to_predicate, balanced=balanced, seed=results['save']['seed'])
 
             # Group and shuffle
-            if target not in ['nell_sports', 'nell_finances', 'yago2s']:
+            if target not in ['nell_sports', 'nell_finances', 'yago2s', 'bace', 'bbbp', 'clintoxapproved', 'clintoxtoxicity', 'hiv', 'zinc_standard_agent']:
                 [tar_train_facts, tar_test_facts] =  datasets.get_kfold_small(i, tar_data[0])
                 [tar_train_pos, tar_test_pos] =  datasets.get_kfold_small(i, tar_data[1])
                 [tar_train_neg, tar_test_neg] =  datasets.get_kfold_small(i, tar_data[2])
@@ -877,16 +947,11 @@ for experiment in experiments:
             print_function('\n')
 
             # learning from scratch (RDN-B)
-            #[model, t_results, learning_time, inference_time] = train_and_test(background, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts)
-            #ob_save['rdn_b'] = t_results
-            #ob_save['rdn_b']['Learning time'] = learning_time
-            #print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
-            #print_function(t_results)
-            #print_function('\n')
-
-            #if os.path.isfile('boostsrl/test/AUC/aucTemp.txt'):                
-            #  CALL = f'''mv boostsrl/test/AUC/aucTemp.txt CLLs/{target}/aucTemp_{i+1}'''
-            #  call_process(CALL)
+            [model, t_results, structured, will, variances] = revision.learn_test_model(background, boostsrl, target, tar_train_pos, tar_train_neg, tar_train_facts, tar_test_pos, tar_test_neg, tar_test_facts, trees=trees, print_function=print_function)
+            ob_save['rdn_b'] = t_results
+            print_function('Dataset: %s, Fold: %s, Type: %s, Time: %s' % (experiment_title, i+1, 'Scratch (RDN-B)', time.strftime('%H:%M:%S', time.gmtime(time.time()-start))))
+            print_function(t_results)
+            print_function('\n')
 
             # learning from scratch (RDN)
             #background = boostsrl.modes(bk[target], [new_target], useStdLogicVariables=False, maxTreeDepth=3, nodeSize=2, numOfClauses=20)
