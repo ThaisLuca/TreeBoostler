@@ -138,10 +138,6 @@ def save(data):
     with open(PATH +'/transfer-experiments/transfer_experiment.json', 'w') as fp:
         json.dump(data, fp)
 
-def save_pickle_file(nodes, _id, source, target, filename):
-    with open(os.getcwd() + '/resources/{}_{}_{}/{}'.format(_id, source, target, filename), 'wb') as file:
-        pickle.dump(nodes, file)
-
 def match_bk_source(sources):
   """
       Match nodes to source background
