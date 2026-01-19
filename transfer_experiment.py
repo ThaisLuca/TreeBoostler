@@ -23,7 +23,7 @@ import pickle
 
 PATH = os.getcwd() + '/'
 
-learn_from_source = True
+learn_from_source = False
 
 #verbose=True
 source_balanced = False
@@ -229,38 +229,38 @@ experiments = [
             {'id': '24', 'source': 'bace', 'target': 'zinc_standard_agent', 'predicate': 'inhibitor', 'to_predicate': 'soluble', 'arity':1},
 
 
-            {'id': '25', 'source': 'bbbp', 'target': 'bace', 'predicate': 'permeability', 'to_predicate': 'inhibitor', 'arity':1},
-            {'id': '26', 'source': 'bbbp', 'target': 'hiv', 'predicate': 'permeability', 'to_predicate': 'active', 'arity':1},
-            {'id': '27', 'source': 'bbbp', 'target': 'clintoxapproved', 'predicate': 'permeability', 'to_predicate': 'approved', 'arity':1},
-            {'id': '28', 'source': 'bbbp', 'target': 'clintoxtoxicity', 'predicate': 'permeability', 'to_predicate': 'toxicity', 'arity':1},
-            {'id': '29', 'source': 'bbbp', 'target': 'zinc_standard_agent', 'predicate': 'permeability', 'to_predicate': 'soluble', 'arity':1},
+            #{'id': '25', 'source': 'bbbp', 'target': 'bace', 'predicate': 'permeability', 'to_predicate': 'inhibitor', 'arity':1},
+            #{'id': '26', 'source': 'bbbp', 'target': 'hiv', 'predicate': 'permeability', 'to_predicate': 'active', 'arity':1},
+            #{'id': '27', 'source': 'bbbp', 'target': 'clintoxapproved', 'predicate': 'permeability', 'to_predicate': 'approved', 'arity':1},
+            #{'id': '28', 'source': 'bbbp', 'target': 'clintoxtoxicity', 'predicate': 'permeability', 'to_predicate': 'toxicity', 'arity':1},
+            #{'id': '29', 'source': 'bbbp', 'target': 'zinc_standard_agent', 'predicate': 'permeability', 'to_predicate': 'soluble', 'arity':1},
 
 
-            {'id': '30', 'source': 'hiv', 'target': 'bace', 'predicate': 'active', 'to_predicate': 'inhibitor', 'arity':1},
+            #{'id': '30', 'source': 'hiv', 'target': 'bace', 'predicate': 'active', 'to_predicate': 'inhibitor', 'arity':1},
             {'id': '31', 'source': 'hiv', 'target': 'bbbp', 'predicate': 'active', 'to_predicate': 'permeability', 'arity':1},
             {'id': '32', 'source': 'hiv', 'target': 'clintoxapproved', 'predicate': 'active', 'to_predicate': 'approved', 'arity':1},
             {'id': '33', 'source': 'hiv', 'target': 'clintoxtoxicity', 'predicate': 'active', 'to_predicate': 'toxicity', 'arity':1},
             {'id': '34', 'source': 'hiv', 'target': 'zinc_standard_agent', 'predicate': 'active', 'to_predicate': 'soluble', 'arity':1},
 
 
-            {'id': '35', 'source': 'clintoxapproved', 'target': 'bace', 'predicate': 'approved', 'to_predicate': 'inhibitor', 'arity':1},
+            #{'id': '35', 'source': 'clintoxapproved', 'target': 'bace', 'predicate': 'approved', 'to_predicate': 'inhibitor', 'arity':1},
             {'id': '36', 'source': 'clintoxapproved', 'target': 'bbbp', 'predicate': 'approved', 'to_predicate': 'permeability', 'arity':1},
             {'id': '37', 'source': 'clintoxapproved', 'target': 'hiv', 'predicate': 'approved', 'to_predicate': 'active', 'arity':1},
             {'id': '38', 'source': 'clintoxapproved', 'target': 'clintoxtoxicity', 'predicate': 'approved', 'to_predicate': 'toxicity', 'arity':1},
             {'id': '39', 'source': 'clintoxapproved', 'target': 'zinc_standard_agent', 'predicate': 'approved', 'to_predicate': 'soluble', 'arity':1},
 
 
-            {'id': '40', 'source': 'clintoxtoxicity', 'target': 'bace', 'predicate': 'toxicity', 'to_predicate': 'inhibitor', 'arity':1},
+            #{'id': '40', 'source': 'clintoxtoxicity', 'target': 'bace', 'predicate': 'toxicity', 'to_predicate': 'inhibitor', 'arity':1},
             {'id': '41', 'source': 'clintoxtoxicity', 'target': 'bbbp', 'predicate': 'toxicity', 'to_predicate': 'permeability', 'arity':1},
             {'id': '42', 'source': 'clintoxtoxicity', 'target': 'hiv', 'predicate': 'toxicity', 'to_predicate': 'active', 'arity':1},
             {'id': '43', 'source': 'clintoxtoxicity', 'target': 'clintoxapproved', 'predicate': 'toxicity', 'to_predicate': 'approved', 'arity':1},
             {'id': '44', 'source': 'clintoxtoxicity', 'target': 'zinc_standard_agent', 'predicate': 'toxicity', 'to_predicate': 'soluble', 'arity':1},
 
-            {'id': '45', 'source': 'zinc_standard_agent', 'target': 'bace', 'predicate': 'soluble', 'to_predicate': 'inhibitor', 'arity':1},
-            {'id': '46', 'source': 'zinc_standard_agent', 'target': 'bbbp', 'predicate': 'soluble', 'to_predicate': 'permeability', 'arity':1},
-            {'id': '47', 'source': 'zinc_standard_agent', 'target': 'hiv', 'predicate': 'soluble', 'to_predicate': 'active', 'arity':1},
-            {'id': '48', 'source': 'zinc_standard_agent', 'target': 'clintoxapproved', 'predicate': 'soluble', 'to_predicate': 'approved', 'arity':1},
-            {'id': '49', 'source': 'zinc_standard_agent', 'target': 'clinxtoxtoxicity', 'predicate': 'soluble', 'to_predicate': 'toxicity', 'arity':1},
+            #{'id': '45', 'source': 'zinc_standard_agent', 'target': 'bace', 'predicate': 'soluble', 'to_predicate': 'inhibitor', 'arity':1},
+            #{'id': '46', 'source': 'zinc_standard_agent', 'target': 'bbbp', 'predicate': 'soluble', 'to_predicate': 'permeability', 'arity':1},
+            #{'id': '47', 'source': 'zinc_standard_agent', 'target': 'hiv', 'predicate': 'soluble', 'to_predicate': 'active', 'arity':1},
+            #{'id': '48', 'source': 'zinc_standard_agent', 'target': 'clintoxapproved', 'predicate': 'soluble', 'to_predicate': 'approved', 'arity':1},
+            #{'id': '49', 'source': 'zinc_standard_agent', 'target': 'clinxtoxtoxicity', 'predicate': 'soluble', 'to_predicate': 'toxicity', 'arity':1},
             ]
 
 bk = {
@@ -777,6 +777,19 @@ bk = {
              'stereo(+molecule,-nodetype,-nodetype,#integer).',
              'stereo(+molecule,-nodetype,+nodetype,#integer).',
              'stereo(+molecule,+nodetype,-nodetype,#integer).',
+             'stereo(+molecule,+nodetype,+nodetype,#integer).'],
+        'zinc_standard_agent': ['soluble(+molecule).',
+             'atomicNumber(+molecule,+nodetype,#integer).',
+             'atomicNumber(+molecule,-nodetype,#integer).',
+             'chiralityNumber(+molecule,+nodetype,#integer).',
+             'chiralityNumber(+molecule,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,-nodetype,#integer).',
+             'bond(+molecule,+nodetype,-nodetype,#integer).',
+             'bond(+molecule,-nodetype,+nodetype,#integer).',
+             'bond(+molecule,+nodetype,+nodetype,#integer).',
+             'stereo(+molecule,-nodetype,-nodetype,#integer).',
+             'stereo(+molecule,-nodetype,+nodetype,#integer).',
+             'stereo(+molecule,+nodetype,-nodetype,#integer).',
              'stereo(+molecule,+nodetype,+nodetype,#integer).']
       }
     
@@ -842,7 +855,11 @@ for experiment in experiments:
         #nodes = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_tree_nodes.pkl'))
         #sources_dict =  utils.match_bk_source(set(bk[source]))
         #nodes = [sources_dict[node] for node in utils.sweep_tree(nodes) if node != predicate]
-        #source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+        source_structured = load_pickle_file(PATH + 'resources/{}_{}_{}/{}'.format(_id, source, target, 'source_structured_nodes.pkl'))
+        
+        # Get all rules learned by RDN-B
+        refine_structure = get_all_rules_from_tree(source_structured)
+        write_to_file(refine_structure, PATH + '/' + 'boostsrl/refine.txt')
     
     start = time.time()
 
